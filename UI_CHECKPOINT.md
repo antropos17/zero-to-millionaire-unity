@@ -180,3 +180,38 @@ Existing Windows-v0.3 executable09:34 is PREdepth/quests; no v0.3APK/source zip 
 Source selection should prioritize v0.3-quest-* renders, avoid stale diagnostic/
 pre-quest duplicates. Existing Library identities must be retained on replacements.
 Reopen hidden Editor and verify official project-pinned MCP read before final.
+
+X MIGRATION / LOCAL GIT CHECKPOINT:
+Canonical root X:\Projects\ZERO-TO-MILLIONAIRE (Windows case-insensitive PROJECTS).
+All8244original files/3,521,510,846bytes copied and individually SHA256verified.
+Full C copy preserved; baseline receipt Evidence/migration-to-x-verification.json.
+Local main repo created with configured Antropos7 identity, no remote/push.
+Initial commit6a56734 imports intended source/reference assets/provenance with
+Unity .gitignore; caches/build binaries/private helpers/configbackups excluded.
+Source hygiene scanned314intended files/181text files with zero findings; latest
+receipt updated when adding successful MCP read evidence.
+
+Official CLI copied/hashverified on X; latestcheck1.0.0-beta.12 is current.
+Only the named unity-zero-to-millionaire MCP config section changed; original
+config backed up privately at .tooling/mcp-config-before-x.toml (ignored byGit).
+Hidden EditorPID13044 is ready at project X:\PROJECTS\ZERO-TO-MILLIONAIRE/port7800.
+Standardstdio lists160tools; successful get_build_settings reads enabled Level1,
+StandaloneWindows64 target; runtime Pipeline enableInBuilds=false confirmed.
+First MCP read was503ServerBusy during import; bounded retry after actual ready
+succeeded. No terms/software installation or relaxed global safe.directory used.
+Library private helper roots now /mnt/x/Projects/ZERO-TO-MILLIONAIRE; WSL read
+verified that path exists. Existing Library identities remain unchanged.
+
+Core checks run from X pass34586assertions/1000levels (14-21spins median17),
+432000movement samples. New proof Evidence/net-model-checks-x.txt.
+PROJECT_HANDOFF.md is concise durable context; ARCHITECTURE_REVIEW.md lists
+inspection findings for next slice (session extraction, rawIDshape before
+canonicalization, resetsecondsavefailure, gross/net overflow boundary).
+These architecture fixes and six-ref UI review are pending; no fresh final
+Windows build yet. No tooling/build blocker. Latest owner scope is Windows
+desktop, portrait/resizable. Android packaging deferred, capability preserved.
+Next bounded slice: small offline architecture fixes+tests, six-ref measured UI
+comparison and live-state regression screenshot checkpoint; then rebuild/open
+final responding Windows player, preserve actual user's progress, source delivery.
+Parent requested immediate status boundary; no thread-sender tool is exposed,
+so end checkpoint turn now and resume promptly on parent continuation.

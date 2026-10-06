@@ -1,0 +1,11 @@
+{
+  "tool": "get_runtime_pipeline_settings",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"success\": true,\n  \"group\": \"runtime_pipeline\",\n  \"applied\": false,\n  \"dryRun\": false,\n  \"requiresDomainReload\": false,\n  \"requiresReimport\": false,\n  \"values\": {\n    \"enableInBuilds\": false,\n    \"port\": 0,\n    \"requestTimeoutMs\": 30000,\n    \"enableAuditLogging\": true,\n    \"autoStart\": true,\n    \"maxWorkItemsPerFrame\": 10\n  },\n  \"message\": \"Read runtime_pipeline settings.\"\n}"
+      }
+    ]
+  }
+}
