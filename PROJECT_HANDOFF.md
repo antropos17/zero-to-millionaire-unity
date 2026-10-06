@@ -65,3 +65,59 @@ Assets/Editor/VisualAudit.cs explicitly opens Level1, uses .tooling/visual-qa-sa
 Necessary model/session/walk checks passed unchanged (34586/52/432000). Current oldWindows-v0.3 executable is preserved; no freshWindows build for this iteration yet. Editor43948 remains ready; own test Playmode stopped. User save was not reset/restored; all animation fixtures use the private test profile.
 
 Next visible priorities: reserve unobstructed payout/progress feedback lane; improve compact reel/icon optical fill with viewport fit; readable task metadata; lamp/stool silhouette spacing and depth; current walk+SPIN/reel-stop+installation clip. New arm parts may improve natural swing without a framework migration. Full profiler/player workload follows visible polish.
+
+
+## Bounded visual/UI checkpoint v0.4b (2026-10-06)
+
+Reward feedback uses a reserved22-unit lane between task and reels; the room
+and quest illustration stay unobstructed while the parts progress bar pulses.
+All9 symbol images use measured optical alpha bounds and a44-unit maximum,
+centered without stretching or texture edits. Short reels144; tall endpoint204.
+Task title15, status11, counters12, NEXT12; raisedSPIN base10/press5 retained.
+The9m area uses a crisp drawn superscript2. Lamp anchor(.36,.56) shifts it8.16
+sourcepixels left, within its existing reserve; collision geometry unchanged.
+
+The ghostshoe cause was a vertical leg split retaining the neighbouring heel.
+MaskedShin draws original whole neutral pixels with diagonal separation, so the
+left toe is complete and the other heel no longer rides with it. Front/back
+source alpha partition has no duplicated pixels or missing source coverage;
+inspected runtime sourceframes13/15/17/66. Canvas212 and pivot178 unchanged.
+Arms remain static; front/back/mirror turning still needs a restrained planted
+pivot/head response or new transparent parts. Avoid claiming fully natural gait.
+
+Actual runtime screenshots before/after360x640 and480x960, reward lane both
+sizes, and an11-second480x960 clip include walking, pressedSPIN, real callback
+reel stop and explicit BUY callback/visible completion. Source captures and
+encoded GIF frames/duration are separately recorded in ui-v0.4b-checkpoint.json;
+this is Editor capture at12Hz, not nativePlayer performance or physical touch.
+848 UI assertions passed across64 combinations:8tasks x4resource states x2
+sizes; title/status/counter bounds, gates, repeat purchase and reload. Necessary
+core regressions also passed34586 economy/432000 navigation/52 session checks.
+Allfixtures use private .tooling QA profiles; currentuser save never reset.
+
+OldWindows-v0.3 player46276 was left responding, currentEditor43948 ready;
+no freshWindows build this slice. No blocked or running asset/compile operation.
+Library receipts are in ignored Deliverables/library-delivery.json; alloldIDs
+preserved. New evidence is ui-v0.4b-*, foot-mask-v0.4b-* underEvidence.
+
+Next visual work: restrained separate arms and planted turns; stool/bed spacing.
+Larger stool reserve moves must preserve legacy saved heroine coordinates:
+GameModel.IsPlausible currently validates them against the current geometry,
+so a geometry-only move could reject an otherwise validsave. Plan compatible
+layout validation/migration before moving reservedzones; keep cash/parts/owned.
+Then actualProfiler/nativePlayer workload, broader final regression and fresh
+Windows build/delivery. Window still ends14:05UTC, reserve13:15 onward.
+
+Optional parent art batch:10 aligned transparent128x192 files: front/back
+head+torso without arms(2), upperarmL/R(4), forearm+handL/R(4), same neutral
+adult blackbob/creamtee/bluejeans/whitesneakers. Source neutralLibraryID
+libfile_8be9a414782c8191b8e526f808e53eba; exactsource headtop12,sole178,center64;
+shoulders(50,60)/(85,62), elbows(51,84)/(87,86), wrists(49,105)/(88,108).
+Use2px joint overlap, no matte/glow/room/UI or duplicate body pixels.
+
+Static before/after galleries deliberately show all9symbol textures for optical
+review; actual spin reward captures and the runtime clip use the current pool.
+New Library verified IDs: compact libfile_444f808987b481919535a5cfd8f7ed69;
+tall libfile_5aaacdece308819199ade7294c1c3fee; rewards
+libfile_ca9c488e58388191ad285f981dd3b87f; current runtimeGIF
+libfile_64e549ca1cc08191b60fe4aba934c545. Native metadata verified.

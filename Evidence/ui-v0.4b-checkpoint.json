@@ -1,0 +1,87 @@
+{
+  "clip_source_captures": 132,
+  "clip_game_frames_advanced": 559,
+  "clip_seconds_actual": 11.0,
+  "clip_gif_decoded_frames": 130,
+  "clip_gif_duration_ms": 11000,
+  "distance_m": 2.056,
+  "events_seconds": {
+    "pressed": 1.6,
+    "spin_callback": 1.85,
+    "manual_install_callback": 4.0
+  },
+  "symbol_cash_footprints_from_rendered_bounds": {
+    "before": [
+      {
+        "viewport": "360x640",
+        "cash_optical_width_native_px": 24.9,
+        "cash_optical_height_native_px": 20.2
+      },
+      {
+        "viewport": "480x960",
+        "cash_optical_width_native_px": 49.0,
+        "cash_optical_height_native_px": 39.6
+      }
+    ],
+    "after": [
+      {
+        "viewport": "360x640",
+        "cash_optical_width_native_px": 44.0,
+        "cash_optical_height_native_px": 35.6
+      },
+      {
+        "viewport": "480x960",
+        "cash_optical_width_native_px": 58.0,
+        "cash_optical_height_native_px": 46.9
+      }
+    ]
+  },
+  "native_screen_views": [
+    [
+      360,
+      640
+    ],
+    [
+      480,
+      960
+    ]
+  ],
+  "qa": "848 UI layout/resource/counter/purchase/reload assertions in64 combinations;34586 economy;432000 walk;52 session",
+  "changes": [
+    "reserved22-unit reward lane outside room/task art, counter pulse",
+    "sourceRect optical alpha bounds for all9 symbols; cap44 units keeps tall icons balanced; Point/aspect retained",
+    "compact144-unit reels, tall204 endpoint; task15/status11/counters12/NEXT12",
+    "crisp superscript2",
+    "diagonal shin/shoe mask samples whole neutral shoe; rest-body crop remains",
+    "lamp moved8.16 sourcepixels left, same reserved geometry"
+  ],
+  "limits": [
+    "Editor render and UI callback automation, not physical touch or native Player/Profiler performance",
+    "arms remain static and front/back/mirror facing transition still needs turn art or planted pivot",
+    "stool placement unchanged; larger geometry moves need compatible validation of legacy saved heroine coordinates",
+    "no fresh Windows build yet; opened v0.3 process unaffected"
+  ],
+  "deliverables": [
+    {
+      "name": "ui-v0.4b-compact-comparison.png",
+      "bytes": 259988,
+      "sha256": "d392245a9b1464cb6538b14935ce1fed177686435c61e6d5ca7079bd3f440640"
+    },
+    {
+      "name": "ui-v0.4b-tall-comparison.png",
+      "bytes": 480534,
+      "sha256": "eda8626c64c67dbf43830fbca88a6ff23b38d2f4f17cffa002c87ab264b4bb3a"
+    },
+    {
+      "name": "ui-v0.4b-reward-lane-two-sizes.png",
+      "bytes": 328165,
+      "sha256": "c0c957b248d141ce3723545a3e96cec95b6366933474d218197c1e9c51ced870"
+    },
+    {
+      "name": "ui-v0.4b-walk-spin-install.gif",
+      "bytes": 12570004,
+      "sha256": "02ed7ebb59d80db0f7a160866acd2e8f484b732dbb879218906ba5db06ba7aa2"
+    }
+  ],
+  "static_grid_fixture": "All9 symbols shown only in before/after layout gallery for optical comparison. Actual SPIN reward screenshots and runtime clip use the active quest pool."
+}

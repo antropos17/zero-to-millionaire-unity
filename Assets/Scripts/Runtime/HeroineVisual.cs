@@ -12,7 +12,7 @@ namespace ZeroToMillionaire
         public readonly VisualElement Root;
         public int Phase {get;private set;}
         readonly Image upper=new Image{scaleMode=ScaleMode.StretchToFill,pickingMode=PickingMode.Ignore};
-        readonly Texture2D[] body=new Texture2D[2],leftTextures=new Texture2D[2],rightTextures=new Texture2D[2];
+        readonly Texture2D[] body=new Texture2D[2],leftTextures=new Texture2D[2],rightTextures=new Texture2D[2],neutralTextures=new Texture2D[2];
         readonly Leg[] legs={new Leg(58),new Leg(76)};
         Vector2 heading=new Vector2(1,.35f).normalized;
         float strength,faceWait;bool back,left;
@@ -20,7 +20,7 @@ namespace ZeroToMillionaire
         {
             public readonly float X;
             public readonly Image Thigh=new Image{scaleMode=ScaleMode.StretchToFill,pickingMode=PickingMode.Ignore};
-            public readonly Image Shin=new Image{scaleMode=ScaleMode.StretchToFill,pickingMode=PickingMode.Ignore};
+            public readonly MaskedShin Shin=new MaskedShin();
             public readonly VisualElement Shadow=new VisualElement{pickingMode=PickingMode.Ignore};
             public Vector2 Plant,Takeoff;public bool Initialized,Stance;
             public Leg(float x){X=x;}
@@ -32,6 +32,7 @@ namespace ZeroToMillionaire
             for(int i=0;i<2;i++){
                 string view=i==0?"front":"back";
                 body[i]=Resources.Load<Texture2D>("Art/animation/"+view+"-body");
+                neutralTextures[i]=Resources.Load<Texture2D>("Art/animation/"+view+"-idle");
                 leftTextures[i]=Resources.Load<Texture2D>("Art/animation/"+view+"-leg-left");
                 rightTextures[i]=Resources.Load<Texture2D>("Art/animation/"+view+"-leg-right");
             }
@@ -99,14 +100,19 @@ namespace ZeroToMillionaire
             Texture2D texture=side==0?leftTextures[view]:rightTextures[view];
             Rect thighCrop=side==0?new Rect(52,0,15,44):new Rect(66,0,19,44);
             DrawBone(leg.Thigh,texture,thighCrop,new Vector2(leg.X-thighCrop.x,5),hip,knee);
-            DrawBone(leg.Shin,texture,new Rect(0,35,128,43),new Vector2(leg.X,4),knee,ankle);
+            leg.Shin.SetSource(neutralTextures[view],view==1,side==1);
+            PositionBone(leg.Shin,new Rect(0,137,128,43),new Vector2(leg.X,4),knee,ankle);
             var shadow=leg.Shadow;shadow.style.position=Position.Absolute;
             shadow.style.left=Length.Percent((foot.x-7)/128*100);shadow.style.top=Length.Percent((foot.y+lift+6)/192*100);
             shadow.style.width=Length.Percent(14f/128*100);shadow.style.height=Length.Percent(3f/192*100);shadow.style.opacity=1-lift/14;
         }
         static void DrawBone(Image image,Texture2D texture,Rect crop,Vector2 pivot,Vector2 joint,Vector2 end)
         {
-            image.image=texture;image.sourceRect=crop;image.style.position=Position.Absolute;
+            image.image=texture;image.sourceRect=crop;PositionBone(image,crop,pivot,joint,end);
+        }
+        static void PositionBone(VisualElement image,Rect crop,Vector2 pivot,Vector2 joint,Vector2 end)
+        {
+            image.style.position=Position.Absolute;
             image.style.left=Length.Percent((joint.x-pivot.x)/128*100);image.style.top=Length.Percent((joint.y-pivot.y)/192*100);
             image.style.width=Length.Percent(crop.width/128*100);image.style.height=Length.Percent(crop.height/192*100);
             image.style.transformOrigin=new TransformOrigin(Length.Percent(pivot.x/crop.width*100),Length.Percent(pivot.y/crop.height*100),0);

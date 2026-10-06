@@ -35,11 +35,11 @@ namespace ZeroToMillionaire
         private VisualElement roomStage;
         private Label cashLabel, statusLabel, roomLabel, pageLabel, saveLabel;
         private Label roomProgress, rewardAmount;
-        private VisualElement roomTicks, rewardFly;
+        private VisualElement roomTicks, rewardFly, feedbackLane;
+        private Label feedbackHint;
         private Image rewardIcon;
         private int rewardQuest=-1,rewardParts;
         private float rewardStarted;
-        private Vector2 rewardStart;
         private bool rewardPending;
         private Button spinButton, recoveryButton, previous, next;
         private readonly Image[] cells = new Image[15];
@@ -141,6 +141,7 @@ namespace ZeroToMillionaire
         static Image Icon(Texture2D texture, float size)
         {
             var image = new Image { image=texture,scaleMode=ScaleMode.ScaleToFit,pickingMode=PickingMode.Ignore };
+            SymbolVisual.SetTexture(image,texture);
             image.style.width=size;image.style.height=size;image.style.flexShrink=0;return image;
         }
         static VisualElement Frame(string name, PixelUi.Finish finish)
@@ -182,9 +183,11 @@ namespace ZeroToMillionaire
 
             room=Box("room",Cream);room.style.flexGrow=1;room.style.flexShrink=1;room.style.minHeight=140;
             room.style.overflow=Overflow.Hidden;room.RegisterCallback<GeometryChangedEvent>(_=>SizeRoomStage());main.Add(room);
-            roomLabel=Text("9m²",15,Forest);roomLabel.name="room-area";roomLabel.style.position=Position.Absolute;
+            roomLabel=Text("9m",15,Forest);roomLabel.name="room-area";roomLabel.style.position=Position.Absolute;
             roomLabel.style.right=0;roomLabel.style.top=3;roomLabel.style.width=44;roomLabel.style.height=23;
-            roomLabel.style.backgroundColor=Sand;roomLabel.style.unityTextAlign=TextAnchor.MiddleCenter;room.Add(roomLabel);
+            roomLabel.style.backgroundColor=Sand;roomLabel.style.unityTextAlign=TextAnchor.MiddleCenter;
+            var square=new VisualElement{name="room-area-exponent",pickingMode=PickingMode.Ignore};square.style.position=Position.Absolute;square.style.right=4;square.style.top=2;square.style.width=6;square.style.height=10;
+            square.generateVisualContent+=ctx=>{var painter=ctx.painter2D;painter.fillColor=Forest;int[] bits={7,1,7,4,7};for(int y=0;y<5;y++)for(int x=0;x<3;x++)if((bits[y]&(1<<(2-x)))!=0){float sx=x*2,sy=y*2;painter.BeginPath();painter.MoveTo(new Vector2(sx,sy));painter.LineTo(new Vector2(sx+2,sy));painter.LineTo(new Vector2(sx+2,sy+2));painter.LineTo(new Vector2(sx,sy+2));painter.ClosePath();painter.Fill();}};roomLabel.Add(square);room.Add(roomLabel);
             menuButton=Action("MENU",ShowSettings,Forest);menuButton.name="menu";menuButton.style.fontSize=10;
             menuButton.style.position=Position.Absolute;menuButton.style.right=0;menuButton.style.top=29;menuButton.style.width=44;room.Add(menuButton);
             roomProgress=Text("ROOM 0/8 DONE",12,Forest);roomProgress.name="room-progress";
@@ -195,17 +198,19 @@ namespace ZeroToMillionaire
 
             upgradeRows=Frame("upgrades",PixelUi.Finish.Cream);upgradeRows.style.flexShrink=0;
             upgradeRows.style.paddingLeft=5;upgradeRows.style.paddingRight=5;upgradeRows.style.paddingTop=5;
-            upgradeRows.style.marginBottom=4;main.Add(upgradeRows);
+            upgradeRows.style.marginBottom=3;main.Add(upgradeRows);
+            feedbackLane=Frame("feedback-lane",PixelUi.Finish.Cream);feedbackLane.style.height=22;feedbackLane.style.flexShrink=0;feedbackLane.style.marginBottom=3;main.Add(feedbackLane);
+            feedbackHint=Text("1 ICON = 1 PART  |  BUY USES PARTS + CASH",10,Forest);feedbackHint.style.height=22;feedbackHint.style.unityTextAlign=TextAnchor.MiddleCenter;feedbackLane.Add(feedbackHint);
             grid=Frame("reels",PixelUi.Finish.Forest);grid.style.flexShrink=0;grid.style.paddingLeft=5;grid.style.paddingRight=5;
             grid.style.paddingTop=5;grid.style.paddingBottom=5;grid.style.marginBottom=5;
             for(int y=0;y<3;y++){
                 var line=new VisualElement();Row(line);line.style.flexGrow=1;line.style.flexBasis=0;
                 for(int x=0;x<5;x++){
                     var cell=Frame("cell-"+(y*5+x),PixelUi.Finish.Slot);cell.style.flexGrow=1;cell.style.flexBasis=0;
-                    cell.style.height=Length.Percent(100);cell.style.marginLeft=1;cell.style.marginRight=1;cell.style.marginTop=1;cell.style.marginBottom=1;
+                    cell.style.height=Length.Percent(100);cell.style.alignItems=Align.Center;cell.style.justifyContent=Justify.Center;cell.style.marginLeft=1;cell.style.marginRight=1;cell.style.marginTop=1;cell.style.marginBottom=1;
                     cell.style.paddingLeft=4;cell.style.paddingRight=4;cell.style.paddingTop=4;cell.style.paddingBottom=4;
                     var image=new Image {scaleMode=ScaleMode.ScaleToFit,name="symbol",pickingMode=PickingMode.Ignore};
-                    image.style.width=Length.Percent(100);image.style.height=Length.Percent(100);cells[y*5+x]=image;cell.Add(image);line.Add(cell);
+                    image.style.width=Length.Percent(100);image.style.height=Length.Percent(100);image.style.maxWidth=44;image.style.maxHeight=44;cells[y*5+x]=image;cell.Add(image);line.Add(cell);
                 }grid.Add(line);
             }main.Add(grid);
 
@@ -214,19 +219,19 @@ namespace ZeroToMillionaire
             var betTitle=Text("BET",16,Cream);betTitle.style.unityTextAlign=TextAnchor.MiddleCenter;betTitle.style.height=22;bet.Add(betTitle);
             var value=new VisualElement();Row(value);value.style.justifyContent=Justify.Center;value.style.height=30;
             value.Add(Icon(reelTextures[0],30));betLabel=Text("5",24,Cream);betLabel.style.marginLeft=5;value.Add(betLabel);bet.Add(value);
-            freeLabel=Text("",11,PixelUi.Hex(0xffce76));freeLabel.style.unityTextAlign=TextAnchor.MiddleCenter;freeLabel.style.flexGrow=1;bet.Add(freeLabel);spinRow.Add(bet);
+            freeLabel=Text("",12,PixelUi.Hex(0xffce76));freeLabel.style.unityTextAlign=TextAnchor.MiddleCenter;freeLabel.style.flexGrow=1;bet.Add(freeLabel);spinRow.Add(bet);
             var actionArea=new VisualElement();actionArea.style.flexGrow=1;actionArea.style.height=Length.Percent(100);
             spinButton=Action("SPIN",BeginSpin,Rust);spinButton.name="spin";spinButton.style.height=Length.Percent(100);spinButton.style.fontSize=45;
             recoveryButton=Action("FREE SPIN",()=>{Recover();BeginSpin();},Rust);recoveryButton.name="recovery";recoveryButton.style.height=Length.Percent(100);recoveryButton.style.fontSize=27;
             actionArea.Add(spinButton);actionArea.Add(recoveryButton);spinRow.Add(actionArea);main.Add(spinRow);
 
-            toast=Frame("toast",PixelUi.Finish.Forest);toast.style.position=Position.Absolute;toast.style.left=16;toast.style.right=16;
-            toast.style.top=Length.Percent(32);toast.style.paddingLeft=8;toast.style.paddingRight=8;toast.style.height=32;toast.pickingMode=PickingMode.Ignore;
-            statusLabel=Text("",13,Cream);statusLabel.style.unityTextAlign=TextAnchor.MiddleCenter;toast.Add(statusLabel);root.Add(toast);toast.style.display=DisplayStyle.None;
+            toast=Frame("toast",PixelUi.Finish.Forest);toast.style.position=Position.Absolute;toast.style.left=0;toast.style.right=0;
+            toast.style.top=0;toast.style.paddingLeft=8;toast.style.paddingRight=8;toast.style.height=22;toast.pickingMode=PickingMode.Ignore;
+            statusLabel=Text("",11,Cream);statusLabel.style.height=22;statusLabel.style.unityTextAlign=TextAnchor.MiddleCenter;toast.Add(statusLabel);feedbackLane.Add(toast);toast.style.display=DisplayStyle.None;
             rewardFly=Frame("reward-to-task",PixelUi.Finish.Forest);Row(rewardFly);rewardFly.style.position=Position.Absolute;
-            rewardFly.style.width=68;rewardFly.style.height=32;rewardFly.pickingMode=PickingMode.Ignore;
-            rewardIcon=Icon(reelTextures[1],28);rewardAmount=Text("",16,Cream);rewardFly.Add(rewardIcon);rewardFly.Add(rewardAmount);
-            rewardFly.style.display=DisplayStyle.None;root.Add(rewardFly);
+            rewardFly.style.width=88;rewardFly.style.height=22;rewardFly.style.top=0;rewardFly.pickingMode=PickingMode.Ignore;
+            rewardIcon=Icon(reelTextures[1],18);rewardIcon.style.marginLeft=3;rewardAmount=Text("",11,Cream);rewardAmount.style.marginLeft=3;rewardFly.Add(rewardIcon);rewardFly.Add(rewardAmount);
+            rewardFly.style.display=DisplayStyle.None;feedbackLane.Add(rewardFly);
             settings=Modal("settings");settings.Add(Text("MY ROOM",23,PixelUi.Hex(0xffc472)));
             saveLabel=Text("Saved locally",13,Cream);settings.Add(saveLabel);
             settings.Add(Text("Finish 8 tasks in this same room. Only the current task earns parts: 1 matching icon = 1 part. When parts are full, reels earn cash. BUY & INSTALL uses both.\n\nBET is 5. Spins give 12 base cash plus cash icons and triples. Starter and recovery spins are free.",14,Cream));
@@ -249,8 +254,8 @@ namespace ZeroToMillionaire
         }
         void ShowSettings(){if(spinning)return;HideToast();main.SetEnabled(false);settings.style.display=DisplayStyle.Flex;settings.BringToFront();}
         void HideSettings(){settings.style.display=DisplayStyle.None;main.SetEnabled(true);}
-        void ShowToast(string text){statusLabel.text=text;toastUntil=Time.unscaledTime+3;toast.style.display=DisplayStyle.Flex;toast.BringToFront();}
-        void HideToast(){toast.style.display=DisplayStyle.None;}
+        void ShowToast(string text){statusLabel.text=text;statusLabel.style.marginLeft=0;toastUntil=Time.unscaledTime+2;feedbackHint.style.display=DisplayStyle.None;toast.style.display=DisplayStyle.Flex;toast.BringToFront();}
+        void HideToast(){toast.style.display=DisplayStyle.None;feedbackHint.style.display=DisplayStyle.Flex;}
         void ApplySafeArea()
         {
             float width=root.contentRect.width;if(width<=0)return;
@@ -262,9 +267,9 @@ namespace ZeroToMillionaire
             // the reference's generous reel and SPIN proportions.
             float tall=Mathf.Clamp01((height-628)/160);
             header.style.height=43;pathbar.style.height=Mathf.Lerp(24,32,tall);
-            grid.style.height=Mathf.Lerp(120,204,tall);
+            grid.style.height=Mathf.Lerp(144,204,tall);
             spinRow.style.height=Mathf.Lerp(68,96,tall);
-            upgradeRows.style.height=112;
+            upgradeRows.style.height=104;
             SizeRoomStage();
         }
 
@@ -288,7 +293,7 @@ namespace ZeroToMillionaire
                 if (s.purchased[4]) AddRoomOverlay("window-overlay");
                 // Floor footprints and render anchors share one metre-based layout.
                 if (s.purchased[5]) AddFurniture(model.Complete ? "mattress-dressed" : "mattress", new FloorPoint(0.47f, 1.82f), 164, 0.98f);
-                if (s.purchased[6]) AddFurniture("lamp", new FloorPoint(0.42f, 0.50f), 38, 0.98f);
+                if (s.purchased[6]) AddFurniture("lamp", new FloorPoint(0.36f, 0.56f), 38, 0.98f);
                 if (s.purchased[7]) AddFurniture("stool", new FloorPoint(1.23f, 2.45f), 45, 0.97f);
                 heroine = new HeroineVisual(); roomStage.Add(heroine.Root);
                 UpdateHeroine();
@@ -300,7 +305,7 @@ namespace ZeroToMillionaire
                 placeholder.style.unityTextAlign = TextAnchor.MiddleCenter;
                 placeholder.style.height = Length.Percent(100); Border(placeholder); roomStage.Add(placeholder);
             }
-            roomLabel.text = "9m²";
+            roomLabel.text = "9m";
         }
         void AddFurniture(string filename, FloorPoint feet, float width, float pivotY)
         {
@@ -405,59 +410,59 @@ namespace ZeroToMillionaire
                 var nextDone=Text("NO MORE TASKS",11,Forest);nextDone.name="next-quest";nextDone.style.unityTextAlign=TextAnchor.MiddleCenter;upgradeRows.Add(nextDone);return;
             }
             var d=Economy.Upgrades[index];bool partsFull=s.fragments[index]>=d.FragmentGoal,cashFull=s.cash>=d.CashPrice,ready=model.CanBuy(index);
-            var row=new VisualElement{name="active-quest"};Row(row);row.style.height=69;row.style.flexShrink=0;
+            var row=new VisualElement{name="active-quest"};Row(row);row.style.height=74;row.style.flexShrink=0;
             var well=Box("quest-item-well",PixelUi.Hex(0xc9a77c));well.style.width=48;well.style.height=55;well.style.marginRight=5;
             well.Add(Icon(reelTextures[index+1],47));row.Add(well);
             var info=new VisualElement();info.style.flexGrow=1;info.style.flexBasis=0;info.style.marginRight=4;
             string need=ready?"READY TO INSTALL":partsFull?"NEED CASH":cashFull?"COLLECT PARTS":"PARTS + CASH";
-            var eyebrow=Text("TASK "+(index+1)+"/8  -  "+need,9,Forest);eyebrow.name="quest-status";eyebrow.style.height=12;eyebrow.style.whiteSpace=WhiteSpace.NoWrap;info.Add(eyebrow);
-            var titleLabel=Text(d.ActionTitle.ToUpperInvariant(),14,Forest);titleLabel.name="quest-title";titleLabel.style.height=19;titleLabel.style.whiteSpace=WhiteSpace.NoWrap;info.Add(titleLabel);
-            var parts=new VisualElement();Row(parts);parts.style.height=16;
+            var eyebrow=Text("TASK "+(index+1)+"/8  -  "+need,11,Forest);eyebrow.name="quest-status";eyebrow.style.height=14;eyebrow.style.whiteSpace=WhiteSpace.NoWrap;info.Add(eyebrow);
+            var titleLabel=Text(d.ActionTitle.ToUpperInvariant(),15,Forest);titleLabel.name="quest-title";titleLabel.style.height=20;titleLabel.style.whiteSpace=WhiteSpace.NoWrap;info.Add(titleLabel);
+            var parts=new VisualElement();Row(parts);parts.style.height=19;
             var partsTrack=new VisualElement{name="progress-track-"+index};Row(partsTrack);partsTrack.style.flexGrow=1;partsTrack.style.height=10;
             for(int block=0;block<d.FragmentGoal;block++){
                 var segment=Box("fragment-"+index+"-"+block,s.fragments[index]>block?(partsFull?PixelUi.Hex(0x477650):PixelUi.Hex(0xf6ad38)):Sand);
                 segment.style.height=9;segment.style.flexGrow=1;segment.style.flexBasis=0;segment.style.marginRight=1;partsTrack.Add(segment);
             }
-            parts.Add(partsTrack);var count=Text(Mathf.Min(s.fragments[index],d.FragmentGoal)+"/"+d.FragmentGoal,11,Forest);count.name="fragment-count-"+index;
+            parts.Add(partsTrack);var count=Text(Mathf.Min(s.fragments[index],d.FragmentGoal)+"/"+d.FragmentGoal,12,Forest);count.name="fragment-count-"+index;
             count.style.width=38;count.style.unityTextAlign=TextAnchor.MiddleRight;parts.Add(count);info.Add(parts);
-            var cash=new VisualElement();Row(cash);cash.style.height=17;cash.Add(Icon(reelTextures[0],17));
+            var cash=new VisualElement();Row(cash);cash.style.height=19;cash.Add(Icon(reelTextures[0],17));
             var cashTrack=Box("cash-progress-track",Sand);cashTrack.style.height=7;cashTrack.style.flexGrow=1;cashTrack.style.marginLeft=2;
             var cashFill=Box("cash-progress-fill",cashFull?PixelUi.Hex(0x477650):PixelUi.Hex(0xf6ad38));cashFill.style.width=Length.Percent(Mathf.Clamp01((float)s.cash/d.CashPrice)*100);cashFill.style.height=Length.Percent(100);cashTrack.Add(cashFill);cash.Add(cashTrack);
-            var cashCount=Text(s.cash+"/"+d.CashPrice,11,Forest);cashCount.name="cash-count";cashCount.style.width=64;cashCount.style.unityTextAlign=TextAnchor.MiddleRight;cash.Add(cashCount);info.Add(cash);row.Add(info);
+            var cashCount=Text(s.cash+"/"+d.CashPrice,12,Forest);cashCount.name="cash-count";cashCount.style.width=70;cashCount.style.unityTextAlign=TextAnchor.MiddleRight;cash.Add(cashCount);info.Add(cash);row.Add(info);
             var buy=Action("BUY &\nINSTALL",()=>Buy(index),ready?Rust:Color.gray);buy.name="buy-"+index;
             buy.style.width=77;buy.style.height=48;buy.style.flexShrink=0;buy.style.paddingLeft=buy.style.paddingRight=2;
             var caption=buy.Q<Label>("button-caption");caption.style.fontSize=12;caption.style.whiteSpace=WhiteSpace.Normal;
             buy.SetEnabled(!spinning&&ready);row.Add(buy);upgradeRows.Add(row);
-            int nextIndex=model.NextQuest;var preview=new VisualElement{name="next-quest"};Row(preview);preview.style.height=22;
+            int nextIndex=model.NextQuest;var preview=new VisualElement{name="next-quest"};Row(preview);preview.style.height=24;
             preview.style.borderTopWidth=1;preview.style.borderTopColor=Sand;
-            if(nextIndex>=0){preview.Add(Icon(reelTextures[nextIndex+1],21));var nextTitle=Text("NEXT: "+Economy.Upgrades[nextIndex].ActionTitle.ToUpperInvariant(),11,Forest);nextTitle.style.flexGrow=1;preview.Add(nextTitle);preview.Add(Text("LOCKED",9,Forest));}
+            if(nextIndex>=0){preview.Add(Icon(reelTextures[nextIndex+1],21));var nextTitle=Text("NEXT: "+Economy.Upgrades[nextIndex].ActionTitle.ToUpperInvariant(),12,Forest);nextTitle.style.flexGrow=1;preview.Add(nextTitle);preview.Add(Text("LOCKED",10,Forest));}
             else{var final=Text("FINAL TASK - FINISH YOUR ROOM",11,Forest);preview.Add(final);}
             upgradeRows.Add(preview);
-            var legend=Text("1 ITEM ICON = 1 PART   BUY USES PARTS + CASH",9,Forest);legend.name="quest-legend";legend.style.height=13;legend.style.whiteSpace=WhiteSpace.NoWrap;upgradeRows.Add(legend);
         }
         void StartRewardFlight(SpinResult result)
         {
             rewardQuest=-1;for(int i=0;i<result.Fragments.Length;i++)if(result.Fragments[i]>0){rewardQuest=i;rewardParts=result.Fragments[i];break;}
             if(rewardQuest<0)return;
-            for(int i=0;i<result.Grid.Length;i++)if(result.Grid[i]==rewardQuest+1){rewardStart=cells[i].worldBound.center-(Vector2)root.worldBound.position;break;}
-            rewardIcon.image=reelTextures[rewardQuest+1];rewardAmount.text="+"+rewardParts;rewardPending=true;
+            SymbolVisual.SetTexture(rewardIcon,reelTextures[rewardQuest+1]);rewardAmount.text="+"+rewardParts+" PART"+(rewardParts==1?"":"S");rewardPending=true;
+            statusLabel.style.marginLeft=94;
         }
         void UpdateRewardFlight()
         {
             if(rewardFly==null)return;
             if(rewardPending){rewardPending=false;rewardStarted=Time.unscaledTime;rewardFly.style.display=DisplayStyle.Flex;rewardFly.BringToFront();}
             if(rewardFly.style.display==DisplayStyle.None)return;
-            var target=root.Q<VisualElement>("quest-item-well");
-            float t=(Time.unscaledTime-rewardStarted)/0.7f;
-            if(t>=1||target==null){rewardFly.style.display=DisplayStyle.None;return;}
-            Vector2 end=target.worldBound.center-(Vector2)root.worldBound.position;
-            Vector2 point=Vector2.Lerp(rewardStart,end,Mathf.SmoothStep(0,1,t));
-            rewardFly.style.left=point.x-34;rewardFly.style.top=point.y-16;
+            float t=(Time.unscaledTime-rewardStarted)/1.25f;
+            var track=root.Q<VisualElement>("progress-track-"+rewardQuest);
+            if(t>=1){rewardFly.style.display=DisplayStyle.None;if(track!=null)track.style.opacity=1;return;}
+            // Rewards remain in their own lane. Only the destination progress
+            // bar pulses; neither the room nor the task illustration is covered.
+            rewardFly.style.left=2+5*Mathf.Sin(Mathf.Clamp01(t*2)*Mathf.PI);rewardFly.style.top=0;
+            if(track!=null)track.style.opacity=.65f+.35f*Mathf.Abs(Mathf.Cos(t*Mathf.PI*3));
         }
         void SetCell(int i, int symbol)
         {
             cells[i].Clear();
-            cells[i].image = reelTextures[symbol];
+            SymbolVisual.SetTexture(cells[i],reelTextures[symbol]);
             if (reelTextures[symbol] == null)
             {
                 var label = Text(symbolNames[symbol], 11, Cream); label.style.height = Length.Percent(100);
@@ -485,8 +490,7 @@ namespace ZeroToMillionaire
                 yield return new WaitForSecondsRealtime(0.055f);
             }
             session.FinishSpinPresentation();spinning = false; spinReadyAt = Time.unscaledTime + 0.12f; Refresh();
-            int collected=0;foreach(int value in result.Fragments)collected+=value;
-            ShowToast("+"+result.Payout+" CASH"+(collected>0?"  ·  +"+collected+" PARTS":""));StartRewardFlight(result);
+            ShowToast("+"+result.Payout+" CASH");StartRewardFlight(result);
         }
         void Buy(int index)
         {

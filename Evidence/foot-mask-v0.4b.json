@@ -1,0 +1,56 @@
+{
+  "source": "unchanged front/back-idle approved textures, alpha threshold65, shin rows137..179",
+  "render": "runtime textured mesh masks, diagonal boundaries, no texture writes",
+  "components": [
+    {
+      "view": "front",
+      "side": "left",
+      "old_connected_alpha_components": [
+        649
+      ],
+      "new_connected_alpha_components": [
+        708
+      ],
+      "nonduplicated_source_alpha": true
+    },
+    {
+      "view": "front",
+      "side": "right",
+      "old_connected_alpha_components": [
+        782
+      ],
+      "new_connected_alpha_components": [
+        731
+      ],
+      "nonduplicated_source_alpha": true
+    },
+    {
+      "view": "back",
+      "side": "left",
+      "old_connected_alpha_components": [
+        726
+      ],
+      "new_connected_alpha_components": [
+        688
+      ],
+      "nonduplicated_source_alpha": true
+    },
+    {
+      "view": "back",
+      "side": "right",
+      "old_connected_alpha_components": [
+        668
+      ],
+      "new_connected_alpha_components": [
+        715
+      ],
+      "nonduplicated_source_alpha": true
+    }
+  ],
+  "union_preserves_every_source_pixel": true,
+  "intersection_has_no_duplicate_pixels": true,
+  "body_crop_top112_excludes_rest_shoes": true,
+  "canvas_height": 212,
+  "feet_pivot_source_y": 178,
+  "geometry_unchanged": true
+}

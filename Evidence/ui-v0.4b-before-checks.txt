@@ -1,0 +1,52 @@
+PASS SPIN fits 360x640
+PASS MENU target44
+PASS 5x3 remains stable
+PASS task above reels
+PASS room aspect preserved
+BOUNDS 360x640
+room (x:10.00, y:73.00, width:340.00, height:252.00) font=14
+upgrades (x:10.00, y:325.00, width:340.00, height:112.00) font=14
+reels (x:10.00, y:441.00, width:340.00, height:120.00) font=14
+cash-count (x:200.00, y:381.00, width:64.00, height:14.00) font=11
+quest-title (x:68.00, y:345.00, width:196.00, height:19.00) font=14
+quest-status (x:68.00, y:333.00, width:196.00, height:12.00) font=9
+next-quest (x:15.00, y:399.00, width:330.00, height:22.00) font=14
+spin (x:125.00, y:566.00, width:225.00, height:68.00) font=45
+symbol0 (x:20.00, y:450.00, width:56.00, height:29.00)
+symbol1 (x:86.00, y:450.00, width:56.00, height:29.00)
+symbol2 (x:152.00, y:450.00, width:56.00, height:29.00)
+symbol3 (x:218.00, y:450.00, width:56.00, height:29.00)
+symbol4 (x:284.00, y:450.00, width:56.00, height:29.00)
+symbol5 (x:20.00, y:487.00, width:56.00, height:28.00)
+symbol6 (x:86.00, y:487.00, width:56.00, height:28.00)
+symbol7 (x:152.00, y:487.00, width:56.00, height:28.00)
+symbol8 (x:218.00, y:487.00, width:56.00, height:28.00)
+PASS actual SPIN callback started
+PASS BUY rejected while spinning
+PASS matching last-part spin reaches manual BUY readiness
+PASS SPIN fits 480x960
+PASS MENU target44
+PASS 5x3 remains stable
+PASS task above reels
+PASS room aspect preserved
+BOUNDS 480x960
+room (x:9.75, y:77.25, width:340.50, height:271.50) font=14
+upgrades (x:9.75, y:348.75, width:340.50, height:112.50) font=14
+reels (x:9.75, y:465.00, width:340.50, height:162.00) font=14
+cash-count (x:200.25, y:405.00, width:63.75, height:14.25) font=11
+quest-title (x:68.25, y:368.25, width:195.75, height:19.50) font=14
+quest-status (x:68.25, y:356.25, width:195.75, height:12.00) font=9
+next-quest (x:15.00, y:423.00, width:330.00, height:21.75) font=14
+spin (x:124.50, y:632.25, width:225.75, height:81.75) font=45
+symbol0 (x:19.50, y:474.00, width:57.00, height:42.75)
+symbol1 (x:85.50, y:474.00, width:57.00, height:42.75)
+symbol2 (x:151.50, y:474.00, width:57.00, height:42.75)
+symbol3 (x:217.50, y:474.00, width:57.00, height:42.75)
+symbol4 (x:283.50, y:474.00, width:57.00, height:42.75)
+symbol5 (x:19.50, y:524.25, width:57.00, height:42.75)
+symbol6 (x:85.50, y:524.25, width:57.00, height:42.75)
+symbol7 (x:151.50, y:524.25, width:57.00, height:42.75)
+symbol8 (x:217.50, y:524.25, width:57.00, height:42.75)
+PASS actual SPIN callback started
+PASS BUY rejected while spinning
+PASS matching last-part spin reaches manual BUY readiness
