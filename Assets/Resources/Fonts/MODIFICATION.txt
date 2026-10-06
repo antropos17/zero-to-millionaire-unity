@@ -1,3 +1,5 @@
 Pixelify Sans, SIL OFL1.1. Local derivative named ZTM Pixelify. Cyrillic uppercase Pe U+041F aliases the existing visually identical Greek Pi U+03A0 glyph; no glyph outlines changed. Original copyright/license retained in OFL.txt.
 
 2026-10-06: Added U+041E Cyrillic capital O as an alias of existing Latin O; no glyph outlines changed.
+
+2026-10-06 v0.7: digit1 advance404 ->586units, matching other digits. Its unchanged outline is translated91units to remain centered; HVAR and TrueType phantom advance variation follow digit0. Verified equal digit advances at wght400/550/700. Cmap/Cyrillic coverage, font family and OFL retained.

@@ -1,0 +1,227 @@
+PASS target44 menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS caption passes hit menu
+PASS target44 buy-0
+PASS target44 spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS caption passes hit spin
+PASS metadata role12
+PASS counter role13
+CAPTURE main 360x640 frame=10
+PASS visible focus state on SPIN
+CAPTURE focused 360x640 frame=17
+PASS menu initial focus
+PASS target44 menu
+PASS target44 buy-0
+PASS target44 spin
+PASS target44 tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS caption passes hit tutorial-replay
+PASS target44 motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS caption passes hit motion-toggle
+PASS target44 reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS caption passes hit reset
+PASS target44 close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS caption passes hit close-settings
+CAPTURE menu 360x640 frame=23
+PASS modal tab motion-toggle
+PASS modal tab reset
+PASS modal tab close-settings
+PASS modal tab tutorial-replay
+PASS modal shift tab
+PASS modal blocks underlying submit
+PASS Escape closes and restores MENU focus
+PASS main tab skips disabled BUY
+PASS main shift tab order
+PASS reset initial focus safe cancel
+PASS reset Escape keeps resources
+PASS reset cancel returns to settings trigger
+CAPTURE dialogue 360x640 frame=41
+PASS dialogue role14
+PASS target44 menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS caption passes hit menu
+PASS target44 tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS caption passes hit tutorial-next
+PASS target44 tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS caption passes hit tutorial-skip
+PASS target44 buy-0
+PASS target44 spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS caption passes hit spin
+PASS target44 menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS caption passes hit menu
+PASS target44 buy-0
+PASS target44 spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS caption passes hit spin
+PASS metadata role12
+PASS counter role13
+CAPTURE main 360x800 frame=46
+PASS visible focus state on SPIN
+CAPTURE focused 360x800 frame=51
+PASS menu initial focus
+PASS target44 menu
+PASS target44 buy-0
+PASS target44 spin
+PASS target44 tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS caption passes hit tutorial-replay
+PASS target44 motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS caption passes hit motion-toggle
+PASS target44 reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS caption passes hit reset
+PASS target44 close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS caption passes hit close-settings
+CAPTURE menu 360x800 frame=56
+PASS modal tab motion-toggle
+PASS modal tab reset
+PASS modal tab close-settings
+PASS modal tab tutorial-replay
+PASS modal shift tab
+PASS modal blocks underlying submit
+PASS Escape closes and restores MENU focus
+PASS main tab skips disabled BUY
+PASS main shift tab order
+PASS reset initial focus safe cancel
+PASS reset Escape keeps resources
+PASS reset cancel returns to settings trigger
+CAPTURE dialogue 360x800 frame=76
+PASS dialogue role14
+PASS target44 menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS caption passes hit menu
+PASS target44 tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS caption passes hit tutorial-next
+PASS target44 tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS caption passes hit tutorial-skip
+PASS target44 buy-0
+PASS target44 spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS caption passes hit spin
+PASS target44 menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS caption passes hit menu
+PASS target44 buy-0
+PASS target44 spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS caption passes hit spin
+PASS metadata role12
+PASS counter role13
+CAPTURE main 480x960 frame=81
+PASS visible focus state on SPIN
+CAPTURE focused 480x960 frame=85
+PASS menu initial focus
+PASS target44 menu
+PASS target44 buy-0
+PASS target44 spin
+PASS target44 tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS caption passes hit tutorial-replay
+RESULT FAIL phase=3 size=2 System.Exception: target44 motion-toggle
+  at ZeroToMillionaire.Editor.UsabilityRegressionV07.Check (System.Boolean value, System.String message) [0x0002c] in X:\PROJECTS\ZERO-TO-MILLIONAIRE\Assets\Editor\UsabilityRegressionV07.cs:8 
+  at ZeroToMillionaire.Editor.UsabilityRegressionV07.Targets () [0x00032] in X:\PROJECTS\ZERO-TO-MILLIONAIRE\Assets\Editor\UsabilityRegressionV07.cs:20 
+  at ZeroToMillionaire.Editor.UsabilityRegressionV07.Tick () [0x00205] in X:\PROJECTS\ZERO-TO-MILLIONAIRE\Assets\Editor\UsabilityRegressionV07.cs:26 

@@ -1,0 +1,43 @@
+{
+  "original_sha256": "d16f0a028f0e09e5357b7e39a28fbe63865f782a359bb2be19fb6ff1a4b3ea7d",
+  "new_sha256": "a35270ca7aaffb010105fe73c78d89ca7245a77ee747ca23113d4518271b4ef4",
+  "outline_change": "digit1 translated91units horizontally; shape unchanged",
+  "tabular_weights": {
+    "400": [
+      586,
+      586,
+      586,
+      586,
+      586,
+      586,
+      586,
+      586,
+      586,
+      586
+    ],
+    "550": [
+      595,
+      595,
+      595,
+      595,
+      595,
+      595,
+      595,
+      595,
+      595,
+      595
+    ],
+    "700": [
+      603,
+      603,
+      603,
+      603,
+      603,
+      603,
+      603,
+      603,
+      603,
+      603
+    ]
+  }
+}

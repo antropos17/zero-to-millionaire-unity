@@ -28,7 +28,14 @@ namespace ZeroToMillionaire
             element.style.backgroundColor=Color.clear;
             element.style.borderLeftWidth=element.style.borderRightWidth=element.style.borderTopWidth=element.style.borderBottomWidth=0;
             element.style.borderTopLeftRadius=element.style.borderTopRightRadius=element.style.borderBottomLeftRadius=element.style.borderBottomRightRadius=0;
+            if(element is Button)element.style.opacity=1;
             element.generateVisualContent += context => Draw(context,element,finish);
+            if(element is Button){
+                element.RegisterCallback<FocusEvent>(_=>{element.AddToClassList("focus-ring");element.MarkDirtyRepaint();});
+                element.RegisterCallback<BlurEvent>(_=>{element.RemoveFromClassList("focus-ring");element.MarkDirtyRepaint();});
+                element.RegisterCallback<PointerEnterEvent>(_=>{element.AddToClassList("hover");element.MarkDirtyRepaint();});
+                element.RegisterCallback<PointerLeaveEvent>(_=>{element.RemoveFromClassList("hover");element.MarkDirtyRepaint();});
+            }
             element.RegisterCallback<GeometryChangedEvent>(_=>{UpdateCaption(element);element.MarkDirtyRepaint();});
             element.RegisterCallback<PointerDownEvent>(_=>SetPressed(element,true),TrickleDown.TrickleDown);
             element.RegisterCallback<PointerUpEvent>(_=>SetPressed(element,false));
@@ -73,13 +80,13 @@ namespace ZeroToMillionaire
             Finish kind=!element.enabledInHierarchy && requested==Finish.Rust?Finish.Grey:requested;
             var p=context.painter2D;Rect r=new Rect(0,0,element.layout.width,element.layout.height);
             bool pressed=element is Button&&element.ClassListContains("pressed")&&element.enabledInHierarchy;
-            if(requested==Finish.Rust){DrawRust(p,r,element,kind==Finish.Grey,pressed);return;}
+            if(requested==Finish.Rust){DrawRust(p,r,element,kind==Finish.Grey,pressed);DrawInteraction(p,r,element);return;}
             Color outer=Hex(0x122b25),edge=Hex(0x68826a),inner=Hex(0x12352b),face=Hex(0x142c28);
             float corner=5;
             switch(kind) {
                 case Finish.Cream:edge=Hex(0xfff5db);inner=Hex(0xc8a478);face=Hex(0xf3dfbb);break;
                 case Finish.Rust:outer=Hex(0x38261c);edge=Hex(0xf69655);inner=Hex(0xe16a36);face=Hex(0xbd4827);corner=7;break;
-                case Finish.Grey:outer=Hex(0x625c54);edge=Hex(0xb4ad9d);inner=Hex(0x807e79);face=Hex(0x72756f);break;
+                case Finish.Grey:outer=Hex(0x625c54);edge=Hex(0xb4ad9d);inner=Hex(0x807e79);face=Hex(0x5b6257);break;
                 case Finish.Owned:edge=Hex(0x8eac73);inner=Hex(0x426e4b);face=Hex(0x356445);break;
                 case Finish.Slot:edge=Hex(0x587c65);inner=Hex(0x264c3e);face=Hex(0x142c28);corner=4;break;
                 case Finish.Title:outer=Hex(0x15222b);edge=Hex(0x25333c);inner=Hex(0x19272e);face=Hex(0x19272e);break;
@@ -90,6 +97,15 @@ namespace ZeroToMillionaire
             Rect front=Inset(r,4);
             if(kind==Finish.Owned||kind==Finish.Grey||kind==Finish.Forest){front.height-=Depth(element);front.y+=RenderedFaceTravel(element);}
             Polygon(p,front,Mathf.Max(1,corner-3),face);
+            DrawInteraction(p,r,element);
+        }
+        static void DrawInteraction(Painter2D p,Rect r,VisualElement element)
+        {
+            if(!(element is Button)||!element.enabledInHierarchy)return;
+            bool focus=element.ClassListContains("focus-ring"),hover=element.ClassListContains("hover");
+            if(!focus&&!hover)return;
+            var edge=Inset(r,2);p.strokeColor=focus?Hex(0xffce76):Hex(0xf9edd9);p.lineWidth=focus?2:1;
+            p.BeginPath();p.MoveTo(new Vector2(edge.x+3,edge.y));p.LineTo(new Vector2(edge.xMax-3,edge.y));p.LineTo(new Vector2(edge.xMax,edge.y+3));p.LineTo(new Vector2(edge.xMax,edge.yMax-3));p.LineTo(new Vector2(edge.xMax-3,edge.yMax));p.LineTo(new Vector2(edge.x+3,edge.yMax));p.LineTo(new Vector2(edge.x,edge.yMax-3));p.LineTo(new Vector2(edge.x,edge.y+3));p.ClosePath();p.Stroke();
         }
         static void DrawRust(Painter2D p,Rect r,VisualElement element,bool disabled,bool pressed)
         {
@@ -104,12 +120,12 @@ namespace ZeroToMillionaire
             Polygon(p,Inset(front,3),corner-2,disabled?Hex(0x929084):Hex(0xec703b));
             Polygon(p,Inset(front,5),corner-3,disabled?Hex(0x6c6d67):Hex(0x9e3b21));
             Rect face=Inset(front,6);
-            Polygon(p,face,Mathf.Max(1,corner-4),disabled?Hex(0x777a73):Hex(0xbe4a29));
+            Polygon(p,face,Mathf.Max(1,corner-4),disabled?Hex(0x5b6257):Hex(0xb34326));
             // Crisp horizontal bands give the reference's restrained face light.
             if(face.height>15){
                 int bands=24;float bandHeight=(face.height-4)/bands;
                 for(int i=0;i<bands;i++){
-                    Color color=disabled?Color.Lerp(Hex(0x83867c),Hex(0x73766f),i/23f):Color.Lerp(Hex(0xc5522c),Hex(0xb94728),i/23f);
+                    Color color=disabled?Color.Lerp(Hex(0x636b5e),Hex(0x555e51),i/23f):Color.Lerp(Hex(0xb64926),Hex(0xaa3e24),i/23f);
                     if(pressed&&!disabled){color*=0.94f;color.a=1;}
                     Polygon(p,new Rect(face.x+2,face.y+2+i*bandHeight,face.width-4,bandHeight+0.1f),0,color);
                 }

@@ -1,0 +1,8 @@
+{
+  "before_changed_pixels_each_size": 0,
+  "after_changed_pixels": {
+    "360x640": 1152,
+    "360x800": 1264,
+    "480x960": 2384
+  }
+}

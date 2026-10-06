@@ -1,0 +1,18 @@
+{
+  "user_instruction": "открой прототип",
+  "scope_cancelled": false,
+  "opened_version": "v0.6",
+  "opened_pid": 46592,
+  "qa_input": "synthetic only inside owned Editor UIDocument; no OS input sent",
+  "qa_profiles": [
+    ".tooling/v07-input-regression/save",
+    ".tooling/russian-layout-v07-save",
+    ".tooling/v07-model-checks"
+  ],
+  "save_hash_before_open": "1bc60cbf31ef17176b0b6870fee9485b318c30a330e1b61b90ea9110d19bc1ca",
+  "save_hash_current": "785be6ebbcbaee012786e88d3acf7b67c45ddddea1faf0d87de67083a5d2cfbc",
+  "save_mtime": 1791320385.33192,
+  "save_handling": "Active user save preserved as found; changes during active v0.6 session are not rolled back. No audit/test pointed at it.",
+  "frozen_core_scene_packages_art_png_unchanged": true,
+  "codec_class_identical": true
+}

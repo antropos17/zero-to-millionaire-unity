@@ -5,7 +5,7 @@ namespace ZeroToMillionaire.Editor {
   static readonly int[] Widths={360,360,480},Heights={640,800,960};
   static string Root=>Directory.GetParent(Application.dataPath).FullName;static VisualElement UI=>view.GetComponent<UIDocument>().rootVisualElement;
   static UsabilityAuditV07(){EditorApplication.update+=Tick;}
-  public static string Start(){if(EditorApplication.isPlaying)throw new Exception("Editor busy");phase=size=warm=frame0=0;view=null;started=0;log.Clear();Environment.SetEnvironmentVariable("ZTM_QA_SAVE_DIR",Path.Combine(Root,".tooling","v07-before-ui","save"));UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Assets/Scenes/Level1.unity");SessionState.SetBool(Key,true);EditorApplication.EnterPlaymode();return "baseline audit queued; private profile; no production edits";}
+  public static string Start(){if(File.Exists(Path.Combine(Root,"Evidence","v07-before-usability-audit.txt")))throw new Exception("Immutable baseline exists; use v0.7 regression audit");if(EditorApplication.isPlaying)throw new Exception("Editor busy");phase=size=warm=frame0=0;view=null;started=0;log.Clear();Environment.SetEnvironmentVariable("ZTM_QA_SAVE_DIR",Path.Combine(Root,".tooling","v07-before-ui","save"));UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Assets/Scenes/Level1.unity");SessionState.SetBool(Key,true);EditorApplication.EnterPlaymode();return "baseline audit queued; private profile; no production edits";}
   static string Focused=>(UI.panel.focusController.focusedElement as VisualElement)?.name??"<none>";
   static bool Warm(){return ++warm>20;}
   static void At(int p){phase=p;warm=0;}
