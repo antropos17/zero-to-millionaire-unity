@@ -1,0 +1,68 @@
+[
+  {
+    "case": "resume-step1",
+    "source": "exact clean Release binary, persisted private fixture, no input dispatch",
+    "passed": true,
+    "dialogueVisible": true,
+    "tutorialStep": 1,
+    "seenMask": 0,
+    "resourceFieldsPreserved": true,
+    "frames": 833,
+    "drawCounterNonzero": 830
+  },
+  {
+    "case": "skipped",
+    "source": "exact clean Release binary, persisted private fixture, no input dispatch",
+    "passed": true,
+    "dialogueVisible": false,
+    "tutorialStep": -1,
+    "seenMask": 0,
+    "resourceFieldsPreserved": true,
+    "frames": 873,
+    "drawCounterNonzero": 870
+  },
+  {
+    "case": "resume-meters",
+    "source": "exact clean Release binary, persisted private fixture, no input dispatch",
+    "passed": true,
+    "dialogueVisible": true,
+    "tutorialStep": 2,
+    "seenMask": 0,
+    "resourceFieldsPreserved": true,
+    "frames": 859,
+    "drawCounterNonzero": 856
+  },
+  {
+    "case": "story-pending",
+    "source": "exact clean Release binary, persisted private fixture, no input dispatch",
+    "passed": true,
+    "dialogueVisible": true,
+    "tutorialStep": -1,
+    "seenMask": 1,
+    "resourceFieldsPreserved": true,
+    "frames": 889,
+    "drawCounterNonzero": 886
+  },
+  {
+    "case": "story-seen",
+    "source": "exact clean Release binary, persisted private fixture, no input dispatch",
+    "passed": true,
+    "dialogueVisible": false,
+    "tutorialStep": -1,
+    "seenMask": 1,
+    "resourceFieldsPreserved": true,
+    "frames": 835,
+    "drawCounterNonzero": 832
+  },
+  {
+    "case": "story-latest-pending",
+    "source": "exact clean Release binary, persisted private fixture, no input dispatch",
+    "passed": true,
+    "dialogueVisible": true,
+    "tutorialStep": -1,
+    "seenMask": 15,
+    "resourceFieldsPreserved": true,
+    "frames": 828,
+    "drawCounterNonzero": 825
+  }
+]

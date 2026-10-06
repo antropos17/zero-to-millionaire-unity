@@ -1,0 +1,15 @@
+{
+  "source": "actual native frames, separate Release validation variant v0.5b of frozen17f5252 game code",
+  "input": "synthetic UIDocument callbacks, no physical input",
+  "fixtures": "story/reset branches use private fixtures; not ordinary playthrough or pacing duration",
+  "captured_png_frames": 96,
+  "decoded_gif_frames": 74,
+  "gif_size": [
+    360,
+    720
+  ],
+  "total_duration_ms": 7680,
+  "duplicate_frames": "Consecutive identical GIF frames merged with preserved summed duration",
+  "bytes": 4071693,
+  "sha256": "2b78dc5bd99164b56318d89be885082c6d4b8891856931427c5544a169815ad9"
+}

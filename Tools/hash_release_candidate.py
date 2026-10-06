@@ -1,7 +1,7 @@
 from pathlib import Path
 import hashlib,json,subprocess
 root=Path(__file__).resolve().parents[1]
-source=subprocess.check_output(["git","-C",str(root),"rev-parse","HEAD"],text=True).strip()
+source=next(x.split("=",1)[1] for x in (root/"Evidence/release-v0.5-candidate-build.txt").read_text().splitlines() if x.startswith("source="))
 for kind,folder in (("candidate","Windows-rc-v0.5"),("audit","Windows-release-audit-v0.5")):
     base=root/"Builds"/folder
     files=[]

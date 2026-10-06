@@ -1,0 +1,30 @@
+PASS actual native store private
+PASS BuildOptions.None Release, separate test-only binary
+PASS fresh introduction rendered
+CAPTURE initial frame=4
+PASS NEXT saves invitation without resources
+PASS in-process save reload resumes invitation
+CAPTURE resume frame=64
+PASS SKIP persists and cannot grant resources
+PASS skipped introduction stays absent after load
+PASS help-only replay step0 keeps resources and saved tutorial
+PASS help-only replay step1 keeps resources and saved tutorial
+CAPTURE replay frame=165
+PASS help-only replay step2 keeps resources and saved tutorial
+PASS help-only replay step3 keeps resources and saved tutorial
+PASS replay buy help does not claim resources already ready
+PASS help-only replay step4 keeps resources and saved tutorial
+PASS replay closes with no rewards
+PASS pending milestone waits during spin lease
+PASS first story shown once after reel/reward feedback
+CAPTURE queued-milestone frame=373
+PASS closing story cannot grant rewards
+PASS seen milestone stays suppressed after load
+PASS multiple pending milestones collapse to latest completed story, no reward
+CAPTURE latest-milestone frame=451
+PASS no backlog barrage after final story
+PASS reset cancel preserves complete resources
+PASS confirmed reset clears replay/story and returns saved intro
+CAPTURE reset-intro frame=492
+PASS actual native advancing frames
+RESULT PASS assertions=23 actual_frames=488 captures=96; synthetic UIDocument callbacks, no physical input; separate test-only Release binary; frozen game code17f5252

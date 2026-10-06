@@ -1,0 +1,6 @@
+Succeeded
+gameSource=17f525238b1925819b857f9bfd31cb5ec4062126
+options=None
+extraDefines=ZTM_RELEASE_AUDIT,ZTM_NATIVE_ONBOARDING_CHECK
+Separate test-only validation binary v0.5b; clean Release unchanged.
+Named screenshot recorder collision corrected; no game changes.
