@@ -6,7 +6,7 @@ namespace ZeroToMillionaire
  public sealed class DialoguePresenter
  {
   readonly GameSession session;readonly VisualElement ui,room,bubble;readonly Label words,title;readonly Button next,skip;
-  readonly Func<bool> busy;readonly Action changed;VisualElement ring;int replay=-1,story=-1,lastMode=-99;float nextCheck;
+  readonly Func<bool> busy;readonly Action changed;VisualElement ring;int replay=-1,story=-1,storyMask,lastMode=-99;float nextCheck;
   static readonly Color Cream=new Color32(249,237,217,255),Forest=new Color32(20,44,40,255),Rust=new Color32(186,75,45,255);
   public DialoguePresenter(GameSession session,VisualElement root,VisualElement room,Func<bool> busy,Action changed){
    this.session=session;ui=root;this.room=room;this.busy=busy;this.changed=changed;
@@ -27,29 +27,32 @@ namespace ZeroToMillionaire
   public void Replay(){replay=0;story=-1;lastMode=-99;nextCheck=0;Tick();}
   void Advance(){
    if(replay>=0){if(++replay>4)replay=-1;lastMode=-99;nextCheck=0;Tick();return;}
-   if(story>=0){story=-1;lastMode=-99;nextCheck=0;Tick();return;}
-   var s=session.Model.Snapshot;if(TutorialPolicy.CanNext(s)&&session.TrySetTutorial(TutorialPolicy.Advance(s))){lastMode=-99;changed();nextCheck=0;Tick();}
+   if(story>=0){DismissStory();return;}
+   var s=session.Model.Snapshot;if(TutorialPolicy.CanNext(s)){bool saved=session.TrySetTutorial(TutorialPolicy.Advance(s));changed();if(saved){lastMode=-99;nextCheck=0;Tick();}}
   }
   void Skip(){
-   if(replay>=0){replay=-1;lastMode=-99;nextCheck=0;Tick();return;}if(story>=0){story=-1;lastMode=-99;nextCheck=0;Tick();return;}
-   var s=session.Model.Snapshot;if(session.TrySetTutorial(TutorialPolicy.Skip(s))){lastMode=-99;changed();nextCheck=0;Tick();}
+   if(replay>=0){replay=-1;lastMode=-99;nextCheck=0;Tick();return;}if(story>=0){DismissStory();return;}
+   var s=session.Model.Snapshot;bool saved=session.TrySetTutorial(TutorialPolicy.Skip(s));changed();if(saved){lastMode=-99;nextCheck=0;Tick();}
   }
-  void Highlight(int step){
+  void DismissStory(){var state=session.Model.Snapshot.tutorial.Clone();state.storySeenMask|=storyMask;bool saved=session.TrySetTutorial(state);changed();if(saved){story=-1;storyMask=0;lastMode=-99;nextCheck=0;Tick();}}
+   VisualElement HighlightTarget(int step){return step==1?ui.Q<Button>("spin"):step==2?ui.Q<VisualElement>("active-quest"):step==3?ui.Q<Button>("buy-"+session.Model.ActiveQuest):null;}
+   void Highlight(int step){
    if(ring!=null){ring.RemoveFromHierarchy();ring=null;}
-   VisualElement target=step==1?ui.Q<Button>("spin"):step==2?ui.Q<VisualElement>("active-quest"):step==3?ui.Q<Button>("buy-"+session.Model.ActiveQuest):null;
+   VisualElement target=HighlightTarget(step);
    if(target==null)return;ring=new VisualElement{name="tutorial-highlight",pickingMode=PickingMode.Ignore};ring.style.position=Position.Absolute;ring.style.left=ring.style.top=-2;ring.style.right=ring.style.bottom=-2;ring.style.borderLeftWidth=ring.style.borderRightWidth=ring.style.borderTopWidth=ring.style.borderBottomWidth=2;ring.style.borderLeftColor=ring.style.borderRightColor=ring.style.borderTopColor=ring.style.borderBottomColor=Rust;target.Add(ring);
   }
   public void Tick(){
    if(Time.unscaledTime<nextCheck)return;nextCheck=Time.unscaledTime+.12f;
    if(busy()){bubble.style.display=DisplayStyle.None;if(ring!=null)ring.style.display=DisplayStyle.None;return;}
    var s=session.Model.Snapshot;int step=replay>=0?replay:TutorialPolicy.Step(s);
-   if(step<0&&story<0){int pending=TutorialPolicy.PendingStory(s);if(pending>=0){var state=s.tutorial.Clone();state.storySeenMask|=TutorialPolicy.MetMilestones(s);if(session.TrySetTutorial(state))story=pending;}}
+   if(step<0&&story<0){int pending=TutorialPolicy.PendingStory(s);if(pending>=0){story=pending;storyMask=TutorialPolicy.MetMilestones(s);}}
    int mode=story>=0?10+story:step;
    if(mode<0){bubble.style.display=DisplayStyle.None;if(ring!=null){ring.RemoveFromHierarchy();ring=null;}lastMode=-99;return;}
    bubble.style.display=DisplayStyle.Flex;bubble.BringToFront();if(ring!=null)ring.style.display=DisplayStyle.Flex;
    bool canNext=replay>=0||story>=0||TutorialPolicy.CanNext(s);next.style.display=canNext?DisplayStyle.Flex:DisplayStyle.None;
    Caption(next,story>=0||step==4?"Готово":"Далее");Caption(skip,replay>=0||story>=0?"Закрыть":"Пропустить обучение");
-   if(lastMode!=mode){title.text=replay>=0?"Обучение — без наград":story>=0?"Наша комната":"Маленькими шагами";
+   if(story<0&&mode>=0&&(ring==null||ring.parent!=HighlightTarget(step)||ring.panel!=ui.panel))Highlight(step);
+    if(lastMode!=mode){title.text=replay>=0?"Обучение — без наград":story>=0?"Наша комната":"Маленькими шагами";
     words.text=story>=0?TutorialPolicy.Stories[story]:replay==3?"Когда хватает монет и фрагментов, улучшение можно купить вручную.":TutorialPolicy.Steps[step];Highlight(story>=0?-1:step);lastMode=mode;}
   }
  }

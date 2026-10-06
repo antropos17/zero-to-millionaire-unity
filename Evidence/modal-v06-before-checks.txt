@@ -1,0 +1,8 @@
+PASS menu 320x640 modal=(x:15.75, y:186.75, width:328.50, height:511.88) viewport=(x:0.00, y:0.00, width:360.00, height:720.00)
+PASS confirmation 320x640
+FAIL menu 360x640 modal=(x:16.00, y:166.00, width:328.00, height:521.00) viewport=(x:0.00, y:0.00, width:360.00, height:640.00)
+PASS confirmation 360x640
+PASS menu 360x800 modal=(x:16.00, y:208.00, width:328.00, height:521.00) viewport=(x:0.00, y:0.00, width:360.00, height:800.00)
+PASS confirmation 360x800
+PASS menu 480x960 modal=(x:15.75, y:187.50, width:328.50, height:525.75) viewport=(x:0.00, y:0.00, width:360.00, height:720.00)
+PASS confirmation 480x960

@@ -14,6 +14,7 @@ namespace ZeroToMillionaire
         bool presentingSpin;
         public string Notice { get; private set; }
         public string Error { get; private set; }
+        public bool RecoveryRequired { get { return store is IRecoverableStateStore recovery && recovery.RecoveryRequired; } }
         public GameModel Model { get {lock(gate)return model;} }
         public bool PresentingSpin { get {lock(gate)return presentingSpin;} }
 
@@ -21,7 +22,7 @@ namespace ZeroToMillionaire
         {
             store=stateStore??throw new ArgumentNullException(nameof(stateStore));
             rewards=rewardRandom??throw new ArgumentNullException(nameof(rewardRandom));
-            string notice;model=new GameModel(store.Load(out notice));Notice=notice;Error="";
+            string notice;model=new GameModel(store.Load(out notice));Notice=notice;Error=RecoveryRequired?notice:"";
         }
         public GameSession(IStateStore stateStore,IRandomSource rewardRandom,PlayerState initial)
             :this(stateStore,rewardRandom){model=new GameModel(initial);Notice="";}
@@ -72,13 +73,22 @@ namespace ZeroToMillionaire
             lock(gate){
                 Error="";if(presentingSpin)return false;
                 var fresh=new GameModel();
-                if(!Publish(fresh))return false;
+                if (RecoveryRequired) {
+                    var recovery=(IRecoverableStateStore)store;string error;
+                    if(!recovery.TryStartFresh(fresh.Snapshot,out error)){Error=error;Notice=error;return false;}
+                    model=fresh;Error="";Notice="Saved locally · offline";
+                } else if(!Publish(fresh))return false;
                 // Primary already commits the reset. A backup failure must not
                 // resurrect the old live state; retry on a later save/pause.
                 if(!Write(fresh.Snapshot)){Notice="Reset saved; backup update pending.";Error="";}
                 return true;
             }
         }
+        public bool TryReload() { lock(gate) {
+            string notice;var loaded=store.Load(out notice);
+            if(RecoveryRequired){Error=notice;Notice=notice;return false;}
+            model=new GameModel(loaded);presentingSpin=false;Error="";Notice=notice;return true;
+        } }
         public bool TrySetTutorial(TutorialState tutorial){lock(gate){var candidate=new GameModel(model.Snapshot);candidate.SetTutorial(tutorial);return Publish(candidate);}}
         public bool Save(){lock(gate)return Write(model.Snapshot);}
         public void SetHeroinePosition(FloorPoint feet){lock(gate)model.SetHeroinePosition(feet);}

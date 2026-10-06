@@ -1,0 +1,4 @@
+initialRing=True initialStep=2
+afterActualSpin step=2 spins=2 ringAttachedToCurrentCard=True
+fullCount=20/20 natural=(38.25, 15.00) wrapped=(48.00, 15.00) rect=(x:0.00, y:0.00, width:48.00, height:15.00) fits=True
+coverage=Editor UI callbacks and actual rendered target; no OS/human input
