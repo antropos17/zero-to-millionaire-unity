@@ -1,0 +1,87 @@
+{
+  "result": "PASS",
+  "kind": "Extracted",
+  "exe": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\final-v0.7-split-extraction\\windows\\zero-to-millionaire-windows-v0.7\\ZeroToMillionaire.exe",
+  "source": "dd74c983dcb22eaa7a03b54027dfa3b3aefe8926",
+  "scope": "actual native clean Release launch/quit/relaunch and rendered pixels; no OS input; case=Extracted",
+  "runs": [
+    {
+      "name": "first",
+      "pid": 15624,
+      "privateProfile": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\final-v0.7-split-extraction\\.tooling\\native-v07-extracted-final\\save",
+      "frames": 628,
+      "draws": 625,
+      "cash": 0,
+      "freeSpins": 3,
+      "spins": 0,
+      "owned": 0,
+      "fragments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "purchased": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "storySeen": 0,
+      "dialogue": true,
+      "recovery": false,
+      "desktop": "Default",
+      "ownedForeground": false,
+      "physicalInputSent": false,
+      "exitCode": 0,
+      "nativePixels": true
+    },
+    {
+      "name": "relaunch",
+      "pid": 18240,
+      "privateProfile": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\final-v0.7-split-extraction\\.tooling\\native-v07-extracted-final\\save",
+      "frames": 667,
+      "draws": 664,
+      "cash": 0,
+      "freeSpins": 3,
+      "spins": 0,
+      "owned": 0,
+      "fragments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "purchased": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "storySeen": 0,
+      "dialogue": true,
+      "recovery": false,
+      "desktop": "Default",
+      "ownedForeground": false,
+      "physicalInputSent": false,
+      "exitCode": 0,
+      "nativePixels": true
+    }
+  ]
+}

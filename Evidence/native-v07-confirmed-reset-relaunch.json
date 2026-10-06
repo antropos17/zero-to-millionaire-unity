@@ -1,0 +1,138 @@
+{
+    "development": false,
+    "qaHooksPresent": false,
+    "automatedHarnessPresent": false,
+    "profileVerified": true,
+    "recoveryRequired": false,
+    "recoveryVisible": false,
+    "actualSavePath": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\native-v07-confirmed-reset\\save\\level1-v1.json",
+    "unity": "6000.3.21f1",
+    "graphicsApi": "Direct3D11",
+    "questTitle": "ЗАЛАТАТЬ ПОЛ",
+    "questStatus": "ЗАДАНИЕ 1/8 • ФР. + МОНЕТЫ",
+    "dialogueText": "Пока здесь неуютно, но всё можно исправить понемногу. Начнём с пола.",
+    "dialogueVisible": true,
+    "tutorialStep": 0,
+    "taskCashPrice": 60,
+    "taskFragmentGoal": 20,
+    "firstFrame": 1,
+    "lastFrame": 652,
+    "samples": 651,
+    "width": 480,
+    "height": 960,
+    "owned": 0,
+    "activeQuest": 0,
+    "drawCounterNonzero": 649,
+    "seconds": 3.165070600000001,
+    "medianMs": 4.16910000000037,
+    "p95Ms": 5.686999999999998,
+    "p99Ms": 6.455899999999737,
+    "maxMs": 272.6570000000006,
+    "distance": 0.6110498309135437,
+    "complete": false,
+    "spinEnabled": true,
+    "buyEnabled": false,
+    "state": {
+        "version": 5,
+        "cash": 0,
+        "freeSpins": 3,
+        "spins": 0,
+        "recoveries": 0,
+        "heroineU": 2.1147987842559816,
+        "heroineV": 1.616600751876831,
+        "fragments": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "purchased": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "lastGrid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "quests": [
+            {
+                "id": "floor-patches",
+                "status": 1,
+                "cashPrice": 60,
+                "fragmentGoal": 20
+            },
+            {
+                "id": "surface-repair",
+                "status": 0,
+                "cashPrice": 115,
+                "fragmentGoal": 30
+            },
+            {
+                "id": "cheap-wallpaper",
+                "status": 0,
+                "cashPrice": 155,
+                "fragmentGoal": 38
+            },
+            {
+                "id": "door-repair",
+                "status": 0,
+                "cashPrice": 195,
+                "fragmentGoal": 44
+            },
+            {
+                "id": "window-repair",
+                "status": 0,
+                "cashPrice": 235,
+                "fragmentGoal": 50
+            },
+            {
+                "id": "first-mattress",
+                "status": 0,
+                "cashPrice": 300,
+                "fragmentGoal": 58
+            },
+            {
+                "id": "small-lamp",
+                "status": 0,
+                "cashPrice": 315,
+                "fragmentGoal": 62
+            },
+            {
+                "id": "wooden-stool",
+                "status": 0,
+                "cashPrice": 355,
+                "fragmentGoal": 70
+            }
+        ],
+        "tutorial": {
+            "version": 1,
+            "step": 0,
+            "storySeenMask": 0,
+            "completed": false,
+            "skipped": false
+        }
+    }
+}

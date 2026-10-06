@@ -1,0 +1,9 @@
+{
+    "scope": "Owned Unity Editor offscreen actual frames; synthetic callbacks; includes screenshot pauses; not standalone/device benchmark",
+    "frames": 8110,
+    "samples": 8099,
+    "medianMs": 16.54670000061742,
+    "p95Ms": 20.347700000456827,
+    "maxMs": 293.89480000008919,
+    "elapsedSeconds": 137.40946770000029
+}

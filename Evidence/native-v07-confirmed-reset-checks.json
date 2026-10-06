@@ -1,0 +1,87 @@
+{
+  "result": "PASS",
+  "kind": "Reset",
+  "exe": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\Builds\\Windows-v0.7-candidate-1\\ZeroToMillionaire.exe",
+  "source": "dd74c983dcb22eaa7a03b54027dfa3b3aefe8926",
+  "scope": "actual native clean Release launch/quit/relaunch and rendered pixels; no OS input; case=Reset",
+  "runs": [
+    {
+      "name": "first",
+      "pid": 46716,
+      "privateProfile": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\native-v07-confirmed-reset\\save",
+      "frames": 660,
+      "draws": 657,
+      "cash": 0,
+      "freeSpins": 3,
+      "spins": 0,
+      "owned": 0,
+      "fragments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "purchased": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "storySeen": 0,
+      "dialogue": true,
+      "recovery": false,
+      "desktop": "Default",
+      "ownedForeground": false,
+      "physicalInputSent": false,
+      "exitCode": 0,
+      "nativePixels": true
+    },
+    {
+      "name": "relaunch",
+      "pid": 34364,
+      "privateProfile": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\native-v07-confirmed-reset\\save",
+      "frames": 652,
+      "draws": 649,
+      "cash": 0,
+      "freeSpins": 3,
+      "spins": 0,
+      "owned": 0,
+      "fragments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "purchased": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "storySeen": 0,
+      "dialogue": true,
+      "recovery": false,
+      "desktop": "Default",
+      "ownedForeground": false,
+      "physicalInputSent": false,
+      "exitCode": 0,
+      "nativePixels": true
+    }
+  ]
+}
