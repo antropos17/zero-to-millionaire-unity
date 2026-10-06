@@ -1,0 +1,19 @@
+{
+  "development": false,
+  "qaHooksPresent": false,
+  "automatedHarnessPresent": false,
+  "profileVerified": true,
+  "firstFrame": 1,
+  "lastFrame": 867,
+  "drawCounterNonzero": 864,
+  "width": 480,
+  "height": 960,
+  "owned": 0,
+  "activeQuest": 0,
+  "complete": false,
+  "tutorialStep": 0,
+  "taskCashPrice": 60,
+  "taskFragmentGoal": 20,
+  "normal_exit": true,
+  "source": "exact extracted Windows ZIP binary in private profile"
+}

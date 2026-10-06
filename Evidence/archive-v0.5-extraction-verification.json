@@ -1,0 +1,16 @@
+{
+  "source_archive_crc": true,
+  "windows_archive_crc": true,
+  "source_extracted": true,
+  "windows_extracted": true,
+  "source_game_files_match": true,
+  "windows_manifest_files_verified": 158,
+  "six_reference_pngs": true,
+  "private_coordination_caches_saves_excluded": true,
+  "source_docs_testing_head": "48daf9f9e2c62f49e42b97582c88fcb544fedeef",
+  "game_build_source": "17f525238b1925819b857f9bfd31cb5ec4062126",
+  "archive_sha256": {
+    "zero-to-millionaire-first-playable-source-v0.5.zip": "fd34be4fb29c625266abb5ef470a0198b89a45f6f8c15afea2b8eabe99918bfc",
+    "zero-to-millionaire-windows-v0.5.zip": "2d5f663eaccbd9eb4005576a162b4815fc17b2c33693e2ed1a905c2640fba2c0"
+  }
+}
