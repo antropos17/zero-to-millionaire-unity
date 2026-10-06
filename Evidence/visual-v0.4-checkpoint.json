@@ -1,0 +1,57 @@
+{
+  "package": "com.unity.2d.animation13.0.6",
+  "viewport": [
+    480,
+    960
+  ],
+  "before": {
+    "frames_advanced": 525,
+    "captures": 119,
+    "seconds": 10.0,
+    "distance_m": 1.697
+  },
+  "after": {
+    "frames_advanced": 476,
+    "captures": 119,
+    "seconds": 10.0,
+    "distance_m": 1.703
+  },
+  "verified": [
+    "real frame count advances",
+    "same seeded route and distance",
+    "idle captured",
+    "feet centre clear against reserved geometry",
+    "stable212canvas and unchanged178pivot",
+    "Unity compile and model/session/walk regression pass"
+  ],
+  "changes": [
+    "two articulated segments per leg with alternating stance/swing",
+    "bounded planted-foot targets and contact shadows",
+    "gentle start/stop blend and idle torso breathing",
+    "facing hysteresis and support-phase turn",
+    "crop torso after assigning texture to avoid residual foot pixels"
+  ],
+  "limits": [
+    "Editor captured12Hz; these are not native Player performance measurements",
+    "arms remain part of neutral torso; no arm swing",
+    "only front/back source poses plus mirroring; no new dedicated turn artwork",
+    "old split shoe art can limit toe quality; review real clip before further polish",
+    "no fresh Windows build yet; prior v0.3 executable remains intact",
+    "feedback lane, compact reel/icon fill, typography and lamp/stool spacing pending"
+  ],
+  "user_save_profile": "isolated .tooling/visual-qa-save, no user reset/restore",
+  "gifs": [
+    {
+      "name": "visual-v0.4-gait-before-after.gif",
+      "bytes": 14937515
+    },
+    {
+      "name": "visual-v0.4-gait-after.gif",
+      "bytes": 11192519
+    },
+    {
+      "name": "visual-v0.4-before-after.png",
+      "bytes": 238491
+    }
+  ]
+}

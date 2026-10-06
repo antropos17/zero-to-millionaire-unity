@@ -1,0 +1,12 @@
+{
+  "package": "com.unity.2d.animation",
+  "version": "13.0.6",
+  "minimum_editor": "6000.3",
+  "installed_editor": "6000.3.21f1",
+  "source": "registry",
+  "official_docs": "https://docs.unity3d.com/Packages/com.unity.2d.animation@13.0/manual/index.html",
+  "existing_dependency_version_changes": {},
+  "import_compile": "Tundra build success; Assembly-CSharp and Editor loaded; official Pipeline ready on7800",
+  "at_utc": "2026-10-06T08:06:56.337281+00:00",
+  "uses_bone_rig": false
+}
