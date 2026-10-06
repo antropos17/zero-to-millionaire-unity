@@ -53,3 +53,15 @@ Run/edit paths and gameplay: README.md. Durable evidence: Evidence/windows-v0.3-
 Keep only intended source, Unity .meta, docs, references and bounded QA evidence in local Git. Keep existing identity/signing configuration. Never push, publish, add monetization, reset user progress, remove the old C copy or delete prior builds/graphics. This file summarizes project state; it does not claim chat compaction.
 
 Final observation: the live player subsequently closed during user play. No repeated relaunch was attempted. Current user save is authoritative; never restore the older87/9/2 or120/18/7 observations.
+
+## Active six-hour visual iteration (2026-10-06)
+
+Owner window ends14:05UTC; stop long-risk work13:15UTC and reserve final50minutes. Visual/animation first, then response/performance, then full regression and fresh desktop build/delivery. User sleeping; checkpoints go to parent, no direct outreach unless critical permission/data blocker.
+
+Official2D Animation13.0.6 now pinned/installed forUnity6000.3.21f1, registry source and successful compile; existing dependency versions unchanged. New HeroineVisual uses two articulated segments per leg, alternating stance/swing targets, contact shadows, gradual start/stop, idle torso breathing and facing hysteresis. Canvas212 and feet178/192 anchor unchanged. This is still a procedural UI Toolkit cutout, not SpriteSkin animation. Arms remain rigid; only front/back source views plus mirroring.
+
+Assets/Editor/VisualAudit.cs explicitly opens Level1, uses .tooling/visual-qa-save and records actual advancing Time.frameCount. Evidence/visual-v0.4-*.json contains before/after10second480x960 renders (119captures each;525/476game frames advanced;1.697/1.703m). GIFs are12Hz diagnostic capture, not native Player performance data. Native stills/GIF are inEvidence; parent should judge gait quality from the clip before claiming maximum polish.
+
+Necessary model/session/walk checks passed unchanged (34586/52/432000). Current oldWindows-v0.3 executable is preserved; no freshWindows build for this iteration yet. Editor43948 remains ready; own test Playmode stopped. User save was not reset/restored; all animation fixtures use the private test profile.
+
+Next visible priorities: reserve unobstructed payout/progress feedback lane; improve compact reel/icon optical fill with viewport fit; readable task metadata; lamp/stool silhouette spacing and depth; current walk+SPIN/reel-stop+installation clip. New arm parts may improve natural swing without a framework migration. Full profiler/player workload follows visible polish.

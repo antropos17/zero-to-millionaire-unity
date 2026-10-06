@@ -18,7 +18,7 @@
   },
   "verified": [
     "real frame count advances",
-    "same seeded route and distance",
+    "same seeded route; rendered distance1.697m before /1.703m after (capture timing difference0.006m)",
     "idle captured",
     "feet centre clear against reserved geometry",
     "stable212canvas and unchanged178pivot",
