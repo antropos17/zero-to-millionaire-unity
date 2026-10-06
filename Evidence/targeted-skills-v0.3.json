@@ -1,0 +1,25 @@
+{
+  "installed_skill_package": "unity-agent-plugin/unity/0.1.8-beta",
+  "read_skills": [
+    "C:\\Users\\murtu\\.codex\\plugins\\cache\\unity-agent-plugin\\unity\\0.1.8-beta\\skills\\unity-cli\\SKILL.md",
+    "C:\\Users\\murtu\\.codex\\plugins\\cache\\unity-agent-plugin\\unity\\0.1.8-beta\\skills\\2d-pixel-perfect\\SKILL.md",
+    "C:\\Users\\murtu\\.codex\\plugins\\cache\\unity-agent-plugin\\unity\\0.1.8-beta\\skills\\sprite-editor\\SKILL.md",
+    "C:\\Users\\murtu\\.codex\\plugins\\cache\\unity-agent-plugin\\unity\\0.1.8-beta\\skills\\manage-sprite-atlas\\SKILL.md"
+  ],
+  "render_pipeline": "Built-in; GraphicsSettings custom pipeline fileID0 and no URP package",
+  "presentation": "UI Toolkit UIDocument / Texture2D Images, PanelSettings360x640 reference; not a Canvas or SpriteRenderer scene",
+  "texture_count": 45,
+  "all_art_point_nomips_uncompressed_default": true,
+  "sprite_ppu_serialized": "100; irrelevant to Texture2D UI layout",
+  "feet_pivot": "HeroineVisual explicitly anchors178/192 canvas height; foot/collision geometry unchanged",
+  "sprite_atlases": 0,
+  "atlas_or_pivot_changes": false,
+  "pixel_perfect_camera": "Not installed or added: skill excludes UI-only scenes, existing textures use point sampling and pixel-snapped room layout",
+  "ui_ugui": "Not applicable; no UI framework migration",
+  "animation_package": "com.unity.2d.animation absent; procedural cutout currently works, no install required",
+  "test_framework": "1.6.0 installed; existing final model/session/Unity callback checks reused",
+  "performance": "fresh Editor sample8.90ms median/50.67ms p95; rendered gait100frames/11.9s/2.11m",
+  "framecount_limit": "Time.frameCount was not directly logged. Existing QA demonstrates actual changing walking/reward renders; no new paused-Editor capture is claimed.",
+  "toolchain_network_limit": "Game requires no network; this is not a claim that the full Unity Editor/CLI toolchain never contacts services",
+  "new_tools_or_packages_installed": false
+}
