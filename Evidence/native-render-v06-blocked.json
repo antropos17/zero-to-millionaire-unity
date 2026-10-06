@@ -1,0 +1,12 @@
+{
+  "utc": "2026-10-06T16:37:44.3918483Z",
+  "status": "BLOCKED_BEFORE_LAUNCH",
+  "inputDesktop": "Screen-saver",
+  "requiredDesktop": "Default",
+  "foregroundHwnd": 0,
+  "osInputSent": false,
+  "nativePlayersLaunched": 0,
+  "securityOrDesktopChanges": false,
+  "checkpointBuildSource": "d425e9b69fe823948bfb7f71f0f304e1b9a3ff5f",
+  "userSaveSHA": "93A5CDC9A2E7B5D7DA598926A413BFC967B0738E1A92D6269B59D1052C5A125E"
+}
