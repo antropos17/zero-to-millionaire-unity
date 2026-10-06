@@ -1,0 +1,23 @@
+GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer.
+0x00007ff9ee61ce9e (UnityPlayer) UnityMain
+0x00007ff9ef16a272 (UnityPlayer) UnityMain
+0x00007ff9ef15cb7e (UnityPlayer) UnityMain
+0x00007ff9ef49c401 (UnityPlayer) UnityMain
+0x00007ff9ed37047e (UnityPlayer)
+0x00000229e5ecd8ad (Mono JIT Code) (wrapper managed-to-native) UnityEngine.DebugLogHandler:Internal_Log_Injected (UnityEngine.LogType,UnityEngine.LogOption,UnityEngine.Bindings.ManagedSpanWrapper&,intptr)
+0x00000229e5ecd763 (Mono JIT Code) UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+0x00000229e5ecd16b (Mono JIT Code) UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:10)
+0x00000229e5ecceb0 (Mono JIT Code) UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:61)
+0x0000022a0899c958 (Mono JIT Code) UnityEngine.Debug:LogWarning (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:213)
+0x0000022a0899c8cb (Mono JIT Code) UnityEngine.ComputeBuffer:Dispose (bool) (at C:/build/output/unity/unity/Runtime/Export/Shaders/ComputeBuffer.bindings.cs:61)
+0x0000022a0899c7bb (Mono JIT Code) UnityEngine.ComputeBuffer:Finalize () (at C:/build/output/unity/unity/Runtime/Export/Shaders/ComputeBuffer.bindings.cs:30)
+0x000002295bc8a7fc (Mono JIT Code) (wrapper runtime-invoke) object:runtime_invoke_virtual_void__this__ (object,intptr,intptr,intptr)
+0x00007ffa020dc637 (mono-2.0-bdwgc) mono_callspec_cleanup
+0x00007ffa020dd898 (mono-2.0-bdwgc) mono_gc_finalize_notify
+0x00007ffa020dde1a (mono-2.0-bdwgc) mono_gc_finalize_notify
+0x00007ffa020782fb (mono-2.0-bdwgc) mono_profiler_init_etw
+0x00007ffa0207850e (mono-2.0-bdwgc) mono_profiler_init_etw
+0x00007ffb2f9be957 (KERNEL32) BaseThreadInitThunk
+0x00007ffb31ca7c1c (ntdll) RtlUserThreadStart
+
+PlayerConnection::Cleanup##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1791285918296,"processId":42724,"allocatedMemory":2058842,"memoryLabels":[{"Default":136},{"NewDelete":104},{"Manager":547763},{"GfxDevice":288},{"GfxThread":24},{"Audio":752},{"Serialization":520},{"JobScheduler":32768},{"String":571},{"HashMap":3584},{"PoolAlloc":240},{"CloudService":144},{"VR":1872},{"Video":144},{"NativeArray":1469820},{"Subsystems":96},{"CoreBusinessMetrics":120}]}

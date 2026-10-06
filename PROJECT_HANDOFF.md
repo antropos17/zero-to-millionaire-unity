@@ -196,3 +196,23 @@ Native rawProfiler+CSV+reports+reproduction tools ZIP
 libfile_7d3e055a70c481919fb0ab5df110cb78. Source code commit
 1b0e48c534f5525a5b36477117d728e3be6c0bef. User save SHA unchanged,
 originalPlayer46276 responding, own EditorPlaymodefalse, no native testPlayer.
+## Slice5 reliability checkpoint v0.4e
+
+Direct owner request to open prototype restored existing v0.3 Player46276,
+HWND61870534; no duplicate user-profile instance. User save SHA unchanged.
+Native panel lifetime leak proved:10destroyed GameViews left10PanelSettings.
+GameView now owns/detaches/destroys runtime panel; final native10cycles leave0,
+with10SPIN/BUY/repeat checks each and unchanged nonblack360x720 render.
+Final testexe:Builds/Windows-dev-v0.4d-reliability/ZeroToMillionaireDev.exe.
+ComputeBuffer warning persists afterfix: finalizer stack only, allocationowner
+unresolved. No engine edits/suppression/ForgiveLeaks; bounded investigationdone.
+Actual OS mouse blocked by inputdesktop Screen-saver vs processdesktop Default,
+foreground0/SetForegroundfalse. NoSendInputattempt/no physicaltouch claim.
+Observer guard confirmed fail-before-launch. Actualpress/drag/cancel/rapid/menu/
+focus/resize/relaunch pointer cases pending; do not unlock or clickotherwindows.
+15min reliability-before native private soak finished53579frames/57cycles,
+967spins/460buys/1427guards/57reloads/158.061m,errors0. Late managedheapreserve
+expanded6.387MiB; no leakfreedom claim. NATIVE_RELIABILITY_AUDIT.md and compact
+Evidence/native-v0.4e-* CSV/JSON include scope/timing/active-desktop limitations.
+Soak predates lifetimefix; finalcode has targeted native lifetime/UIregression.
+Art/rig frozen. Final release/delivery remains13:15..14:05UTC; Androiddeferred.

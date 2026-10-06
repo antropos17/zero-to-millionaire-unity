@@ -1,0 +1,129 @@
+{
+  "summary": {
+    "input": "Automated NavigationSubmitEvent callbacks for soak; separate Windows pointer audit supplies OS input evidence.",
+    "savePath": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\soak-v0.4e-before\\save\\level1-v1.json",
+    "startedUtc": "2026-10-06T11:18:00.7431658Z",
+    "secondsRequested": 900,
+    "frames": 53579,
+    "cycles": 57,
+    "spins": 967,
+    "buys": 460,
+    "resets": 57,
+    "repeatChecks": 1427,
+    "reloadChecks": 57,
+    "buckets": 90,
+    "errors": 0,
+    "originalVsync": 1,
+    "originalTarget": 60,
+    "distance": 158.06101989746094,
+    "seconds": 900.0151624,
+    "privateProfile": true,
+    "finished": true
+  },
+  "phase_early": {
+    "window_seconds": [
+      120,
+      300
+    ],
+    "buckets": 18,
+    "mean_bucket_quantiles_ms": {
+      "median_ms": 16.666322222222224,
+      "p95_ms": 17.764694444444444,
+      "p99_ms": 19.730677777777778
+    },
+    "maximum_ms": 34.9126,
+    "over33": 1,
+    "over50": 0,
+    "allocated_bytes_per_second": 323205.1452095553,
+    "memory_mib": {
+      "system_used": {
+        "first": 304.12890625,
+        "last": 307.04296875,
+        "min": 304.12890625,
+        "max": 307.90234375
+      },
+      "unity_used": {
+        "first": 155.15102863311768,
+        "last": 159.2890977859497,
+        "min": 154.50365924835205,
+        "max": 160.33678913116455
+      },
+      "unity_reserved": {
+        "first": 297.90085315704346,
+        "last": 297.90085315704346,
+        "min": 297.90085315704346,
+        "max": 297.90085315704346
+      },
+      "gc_used": {
+        "first": 12.375,
+        "last": 16.05859375,
+        "min": 11.27734375,
+        "max": 17.1015625
+      },
+      "gc_reserved": {
+        "first": 19.15234375,
+        "last": 19.15234375,
+        "min": 19.15234375,
+        "max": 19.15234375
+      }
+    },
+    "gc0_collections_delta": 29
+  },
+  "phase_late": {
+    "window_seconds": [
+      600,
+      900.0151624
+    ],
+    "buckets": 31,
+    "mean_bucket_quantiles_ms": {
+      "median_ms": 16.668187096774194,
+      "p95_ms": 17.928412903225805,
+      "p99_ms": 21.417945161290323
+    },
+    "maximum_ms": 38.4038,
+    "over33": 3,
+    "over50": 0,
+    "allocated_bytes_per_second": 324471.50799966225,
+    "memory_mib": {
+      "system_used": {
+        "first": 308.59765625,
+        "last": 309.23828125,
+        "min": 308.59765625,
+        "max": 309.23828125
+      },
+      "unity_used": {
+        "first": 155.23788928985596,
+        "last": 161.59393787384033,
+        "min": 155.23788928985596,
+        "max": 161.79074573516846
+      },
+      "unity_reserved": {
+        "first": 297.90085315704346,
+        "last": 304.28757190704346,
+        "min": 297.90085315704346,
+        "max": 304.28757190704346
+      },
+      "gc_used": {
+        "first": 11.984375,
+        "last": 18.32421875,
+        "min": 11.984375,
+        "max": 18.51953125
+      },
+      "gc_reserved": {
+        "first": 19.15234375,
+        "last": 25.5390625,
+        "min": 19.15234375,
+        "max": 25.5390625
+      }
+    },
+    "gc0_collections_delta": 47
+  },
+  "total_over33": 9,
+  "total_over50": 2,
+  "total_maximum_ms": 700.2353,
+  "warning_count": 1,
+  "all_memory_counters_available": true,
+  "quantile_scope": "Means of per-10-second frame-loop quantiles, not whole-session frame quantiles.",
+  "display_scope": "Native D3D11 Player/window visible on Default; input desktop Screen-saver. No full-session GPU/present or human pointer claim.",
+  "build_scope": "reliability-before; fixed panel lifetime tested separately in final reliability build."
+}

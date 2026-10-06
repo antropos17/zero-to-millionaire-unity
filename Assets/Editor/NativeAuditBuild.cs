@@ -11,7 +11,7 @@ namespace ZeroToMillionaire.Editor
         {
             string root=Directory.GetParent(Application.dataPath).FullName;
             string label=Environment.GetEnvironmentVariable("ZTM_NATIVE_BUILD_TAG")??"baseline";
-            if(label!="baseline"&&label!="optimized"&&label!="rendered")throw new InvalidOperationException("Unknown build tag");
+            if(label!="baseline"&&label!="optimized"&&label!="rendered"&&label!="reliability-before"&&label!="reliability"&&label!="lifecycle-before")throw new InvalidOperationException("Unknown build tag");
             string dir=Path.Combine(root,"Builds","Windows-dev-v0.4d-"+label);
             if(File.Exists(Path.Combine(dir,"ZeroToMillionaireDev.exe")))throw new InvalidOperationException("Use a fresh build directory");
             Directory.CreateDirectory(dir);

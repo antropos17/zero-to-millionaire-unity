@@ -1,0 +1,21 @@
+{
+    "input": "Automated NavigationSubmitEvent callbacks for soak; separate Windows pointer audit supplies OS input evidence.",
+    "savePath": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\soak-v0.4e-before\\save\\level1-v1.json",
+    "startedUtc": "2026-10-06T11:18:00.7431658Z",
+    "secondsRequested": 900,
+    "frames": 53579,
+    "cycles": 57,
+    "spins": 967,
+    "buys": 460,
+    "resets": 57,
+    "repeatChecks": 1427,
+    "reloadChecks": 57,
+    "buckets": 90,
+    "errors": 0,
+    "originalVsync": 1,
+    "originalTarget": 60,
+    "distance": 158.06101989746095,
+    "seconds": 900.0151624,
+    "privateProfile": true,
+    "finished": true
+}

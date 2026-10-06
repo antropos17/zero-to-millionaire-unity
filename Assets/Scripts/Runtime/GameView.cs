@@ -30,6 +30,7 @@ namespace ZeroToMillionaire
         private GameSession session;
         private GameModel model { get {return session.Model;} }
         private SaveStore saves;
+        private PanelSettings ownedPanel;
         private IRandomSource random;
         private VisualElement root, room, upgradeRows, confirmation, main;
         private VisualElement roomStage;
@@ -80,7 +81,7 @@ namespace ZeroToMillionaire
             session=new GameSession(saves,new SeededRandom(unchecked(Environment.TickCount+31)));notice=session.Notice;
             wanderer = new RoomWanderer(new FloorPoint(model.Snapshot.heroineU, model.Snapshot.heroineV), new SeededRandom(unchecked(Environment.TickCount + 17)));
             if (!string.IsNullOrEmpty(notice)) saveNotice = notice;
-            var panel = ScriptableObject.CreateInstance<PanelSettings>();
+            var panel = ownedPanel = ScriptableObject.CreateInstance<PanelSettings>();
             panel.scaleMode = PanelScaleMode.ScaleWithScreenSize;
             panel.referenceResolution = new Vector2Int(360, 640);
             panel.screenMatchMode = PanelScreenMatchMode.MatchWidthOrHeight;
@@ -564,6 +565,13 @@ namespace ZeroToMillionaire
             HideReset(); Refresh(); ShowToast("3 FREE SPINS · A FRESH START");
         }
         void OnApplicationPause(bool paused) { if (paused && model != null) Persist(); }
+        void OnDestroy()
+        {
+            // This runtime panel belongs to this view, rather than a shared project asset.
+            var document = GetComponent<UIDocument>();
+            if (document != null) document.panelSettings = null;
+            if (ownedPanel != null) { Destroy(ownedPanel); ownedPanel = null; }
+        }
         void OnApplicationQuit() { if (model != null) Persist(); }
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
         public void SetQaState(PlayerState state, int upgradePage)

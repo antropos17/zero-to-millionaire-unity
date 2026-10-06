@@ -1,0 +1,20 @@
+{
+  "appBufferConstructionFound": false,
+  "diagnosticMode": "EnabledWithStackTrace before scene, Full warning stacks, process-local",
+  "allocationOrigin": "unresolved",
+  "finalizer": "UnityEngine.ComputeBuffer.Dispose(Boolean) -> Finalize()",
+  "warningPhase": "after Input System Shutdown and before PlayerConnection Cleanup",
+  "warningBeforePanelFix": true,
+  "warningAfterPanelFix": true,
+  "panelDefectProven": true,
+  "beforeOrphanPanels": 10,
+  "afterOrphanPanels": 0,
+  "cyclesEach": 10,
+  "spinChecksEach": 10,
+  "buyChecksEach": 10,
+  "inference": "Engine-owned/upstream resource is plausible; actual allocation stack/owner not isolated. Not classified as proven upstream.",
+  "noVendorChanges": true,
+  "noWarningSuppression": true,
+  "noForgiveLeaks": true,
+  "diagnosticInvestigationStoppedUtc": "2026-10-06T11:30:29.8016807Z"
+}
