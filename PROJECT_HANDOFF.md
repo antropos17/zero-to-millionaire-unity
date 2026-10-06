@@ -189,3 +189,10 @@ reduction 21.76%; timing limits/no physicaltouch/release/Android
 claims documented. RawProfiler imported596 mainthreadframes. All applicable
 model/session/walk/migration/UIchecks and finalUIcallback run passed. No native
 Player left running; original46276 preserved. Finalreleasewindow13:15..14:05UTC.
+
+Slice4 Library metadata verified: visual-fixes-v0.4d.gif
+libfile_ac20453a80348191a8dbd9ae2d228a0e (144decoded frames/12s).
+Native rawProfiler+CSV+reports+reproduction tools ZIP
+libfile_7d3e055a70c481919fb0ab5df110cb78. Source code commit
+1b0e48c534f5525a5b36477117d728e3be6c0bef. User save SHA unchanged,
+originalPlayer46276 responding, own EditorPlaymodefalse, no native testPlayer.
