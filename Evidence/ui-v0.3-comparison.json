@@ -1,0 +1,110 @@
+{
+  "palette": {
+    "cream": "#F9EEDA",
+    "forest": "#142C28",
+    "rust": "#BA4B2D"
+  },
+  "reference_sample_modes": {
+    "cream": [
+      249,
+      237,
+      217
+    ],
+    "forest": [
+      20,
+      44,
+      40
+    ],
+    "rust": [
+      186,
+      75,
+      45
+    ]
+  },
+  "layout_measurements": [
+    {
+      "capture": "v0.3-start-360x640",
+      "stage_pixels_in_panel": [
+        277.0,
+        277.0
+      ],
+      "opaque_room_width_in_panel": 247.2,
+      "heroine_canvas_height_in_panel": 87.6,
+      "heroine_neutral_opaque_height_in_panel": 75.8
+    },
+    {
+      "capture": "v0.3-wallpaper-360x800",
+      "stage_pixels_in_panel": [
+        339.0,
+        339.0
+      ],
+      "opaque_room_width_in_panel": 302.6,
+      "heroine_canvas_height_in_panel": 107.3,
+      "heroine_neutral_opaque_height_in_panel": 92.7
+    },
+    {
+      "capture": "v0.3-mattress-480x960",
+      "stage_pixels_in_panel": [
+        308.25,
+        308.25
+      ],
+      "opaque_room_width_in_panel": 275.1,
+      "heroine_canvas_height_in_panel": 97.5,
+      "heroine_neutral_opaque_height_in_panel": 84.3
+    },
+    {
+      "capture": "v0.3-complete-360x800",
+      "stage_pixels_in_panel": [
+        317.0,
+        317.0
+      ],
+      "opaque_room_width_in_panel": 282.9,
+      "heroine_canvas_height_in_panel": 100.3,
+      "heroine_neutral_opaque_height_in_panel": 86.7
+    },
+    {
+      "capture": "v0.3-buy-ready-360x640",
+      "stage_pixels_in_panel": [
+        277.0,
+        277.0
+      ],
+      "opaque_room_width_in_panel": 247.2,
+      "heroine_canvas_height_in_panel": 87.6,
+      "heroine_neutral_opaque_height_in_panel": 75.8
+    },
+    {
+      "capture": "v0.3-spin-pressed-360x640",
+      "stage_pixels_in_panel": [
+        277.0,
+        277.0
+      ],
+      "opaque_room_width_in_panel": 247.2,
+      "heroine_canvas_height_in_panel": 87.6,
+      "heroine_neutral_opaque_height_in_panel": 75.8
+    },
+    {
+      "capture": "v0.3-menu-360x640",
+      "stage_pixels_in_panel": [
+        277.0,
+        277.0
+      ],
+      "opaque_room_width_in_panel": 247.2,
+      "heroine_canvas_height_in_panel": 87.6,
+      "heroine_neutral_opaque_height_in_panel": 75.8
+    },
+    {
+      "capture": "v0.3-reset-confirmation-360x640",
+      "stage_pixels_in_panel": [
+        277.0,
+        277.0
+      ],
+      "opaque_room_width_in_panel": 247.2,
+      "heroine_canvas_height_in_panel": 87.6,
+      "heroine_neutral_opaque_height_in_panel": 75.8
+    }
+  ],
+  "reference_room_width_at360": 251.0,
+  "responsive_tradeoff": "At 360x640 the grid uses compact 44-unit rows and SPIN height68 so the entire room can grow proportionally. Taller screens restore grid height204 and SPIN96. Character/object ratios and floor projection are unchanged.",
+  "font": "Pixelify Sans, unmodified OFL TTF, explicitly bound with FontDefinition.FromFont",
+  "comparison_is_supporting_evidence_only": true
+}

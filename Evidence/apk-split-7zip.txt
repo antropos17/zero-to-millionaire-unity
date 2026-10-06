@@ -1,0 +1,25 @@
+
+7-Zip 24.09 (x64) : Copyright (c) 1999-2024 Igor Pavlov : 2024-11-29
+
+Scanning the drive for archives:
+1 file, 15000000 bytes (15 MiB)
+
+Extracting archive: C:\Users\murtu\Documents\Codex\2026-10-06\task\zero-to-millionaire-first-playable\Deliverables\zero-to-millionaire-android-v0.1.zip.001
+--
+Path = C:\Users\murtu\Documents\Codex\2026-10-06\task\zero-to-millionaire-first-playable\Deliverables\zero-to-millionaire-android-v0.1.zip.001
+Type = Split
+Physical Size = 15000000
+Volumes = 2
+Total Physical Size = 22937919
+----
+Path = zero-to-millionaire-android-v0.1.zip
+Size = 22937919
+--
+Path = zero-to-millionaire-android-v0.1.zip
+Type = zip
+Physical Size = 22937919
+
+Everything is Ok
+
+Size:       23582792
+Compressed: 22937919

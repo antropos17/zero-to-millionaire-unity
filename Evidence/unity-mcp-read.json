@@ -1,0 +1,11 @@
+{
+  "tool": "get_build_settings",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"activeBuildTarget\": \"StandaloneWindows64\",\n  \"activeBuildTargetGroup\": \"Standalone\",\n  \"developmentBuild\": false,\n  \"allowDebugging\": false,\n  \"connectWithProfiler\": false,\n  \"buildScriptsOnly\": false,\n  \"symlinkSources\": false,\n  \"il2CppCodeGeneration\": \"OptimizeSpeed\",\n  \"scenes\": [\n    {\n      \"path\": \"Assets/Scenes/Level1.unity\",\n      \"guid\": \"e6a817fde6f38fe40816ff22c9919396\",\n      \"enabled\": true\n    }\n  ]\n}"
+      }
+    ]
+  }
+}

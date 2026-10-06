@@ -1,0 +1,16 @@
+{
+  "canonical_project": "X:\\Projects\\ZERO-TO-MILLIONAIRE",
+  "cli": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\unity-cli\\bin\\unity.exe",
+  "cli_sha256": "3010efdd511df0ca631ba3d51e720afd0cfb19d6446bbf6fd38db39d78cfef6d",
+  "config_backup": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\mcp-config-before-x.toml",
+  "only_named_mcp_section_changed": true,
+  "private_transfer_wrappers_repointed": [
+    ".library-helper\\wsl_materialize.py",
+    ".library-upload-helper\\apply_create_metadata.py",
+    ".library-upload-helper\\run_uploads.py",
+    ".library-upload-helper\\stage_quest_review.py",
+    ".library-upload-helper\\stage_spin_review.py",
+    ".library-upload-helper\\stage_uploads.py"
+  ],
+  "time_utc": "2026-10-06T06:33:40.541809+00:00"
+}

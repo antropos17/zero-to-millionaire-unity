@@ -1,0 +1,2 @@
+PASS 34586 economy assertions; 1000 complete levels; spins min=14 median=17 p95=18 max=21; simulation_ms=52
+PASS walking: 432000 random motion samples, 1560 destinations, 1843,7m; walls/furniture/door clear; stall integration and no teleport

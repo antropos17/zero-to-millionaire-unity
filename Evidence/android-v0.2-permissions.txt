@@ -1,0 +1,3 @@
+package: com.prototypeworkspace.zerotomillionaire
+permission: com.prototypeworkspace.zerotomillionaire.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+uses-permission: name='com.prototypeworkspace.zerotomillionaire.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'

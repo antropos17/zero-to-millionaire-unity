@@ -1,0 +1,28 @@
+[
+  {
+    "reference_index": 1,
+    "library_file_id": "libfile_d28d1a8536b88191bb9e5ce02343e11f",
+    "file_id": "file_00000000939881fd974ef6fe407ee2ec",
+    "version": 0,
+    "native_original": "/tmp/zero-to-millionaire-first-playable-20261006/exec-3211cb7a-72a8-4750-8762-d7d0bc3feb7d.png",
+    "project_derived": "/mnt/c/Users/murtu/Documents/Codex/2026-10-06/task/zero-to-millionaire-first-playable/asset-source-v0.2-walk/exec-3211cb7a-72a8-4750-8762-d7d0bc3feb7d.png",
+    "size_bytes": 841041,
+    "xattrs": {
+      "user.library-file-version": "0",
+      "user.library-file-id": "libfile_d28d1a8536b88191bb9e5ce02343e11f"
+    }
+  },
+  {
+    "reference_index": 2,
+    "library_file_id": "libfile_e63e99b38b98819186349b3370e0e154",
+    "file_id": "file_00000000b2b481fdace2c889c0258d51",
+    "version": 0,
+    "native_original": "/tmp/zero-to-millionaire-first-playable-20261006/exec-c0c10161-231a-4911-a7da-1c1f01f280ff.png",
+    "project_derived": "/mnt/c/Users/murtu/Documents/Codex/2026-10-06/task/zero-to-millionaire-first-playable/asset-source-v0.2-walk/exec-c0c10161-231a-4911-a7da-1c1f01f280ff.png",
+    "size_bytes": 934990,
+    "xattrs": {
+      "user.library-file-version": "0",
+      "user.library-file-id": "libfile_e63e99b38b98819186349b3370e0e154"
+    }
+  }
+]

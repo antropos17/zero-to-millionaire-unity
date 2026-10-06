@@ -1,0 +1,158 @@
+[
+  {
+    "name": "cash",
+    "source_bounds": [
+      50,
+      111,
+      339,
+      345
+    ],
+    "size": [
+      128,
+      128
+    ]
+  },
+  {
+    "name": "floorpatch",
+    "source_bounds": [
+      380,
+      105,
+      724,
+      347
+    ],
+    "size": [
+      128,
+      128
+    ]
+  },
+  {
+    "name": "wallrepair",
+    "source_bounds": [
+      768,
+      76,
+      1036,
+      355
+    ],
+    "size": [
+      128,
+      128
+    ]
+  },
+  {
+    "name": "wallpaper",
+    "source_bounds": [
+      53,
+      405,
+      384,
+      708
+    ],
+    "size": [
+      128,
+      128
+    ]
+  },
+  {
+    "name": "door",
+    "source_bounds": [
+      463,
+      383,
+      635,
+      718
+    ],
+    "size": [
+      128,
+      128
+    ]
+  },
+  {
+    "name": "window",
+    "source_bounds": [
+      789,
+      379,
+      1015,
+      720
+    ],
+    "size": [
+      128,
+      128
+    ]
+  },
+  {
+    "name": "mattress",
+    "source_bounds": [
+      27,
+      781,
+      430,
+      1023
+    ],
+    "size": [
+      128,
+      128
+    ]
+  },
+  {
+    "name": "lamp",
+    "source_bounds": [
+      523,
+      731,
+      653,
+      1042
+    ],
+    "size": [
+      128,
+      128
+    ]
+  },
+  {
+    "name": "stool",
+    "source_bounds": [
+      805,
+      787,
+      1004,
+      1014
+    ],
+    "size": [
+      128,
+      128
+    ]
+  },
+  {
+    "name": "door-owned",
+    "source_bounds": [
+      102,
+      1053,
+      287,
+      1396
+    ],
+    "size": [
+      128,
+      128
+    ]
+  },
+  {
+    "name": "window-owned",
+    "source_bounds": [
+      420,
+      1066,
+      652,
+      1392
+    ],
+    "size": [
+      128,
+      128
+    ]
+  },
+  {
+    "name": "mattress-owned",
+    "source_bounds": [
+      699,
+      1109,
+      1071,
+      1380
+    ],
+    "size": [
+      128,
+      128
+    ]
+  }
+]

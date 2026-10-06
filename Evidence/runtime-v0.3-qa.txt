@@ -1,0 +1,362 @@
+PASS v0.3-quest-start-360x640 spin fits viewport
+PASS v0.3-quest-start-360x640 44-unit menu fits viewport
+PASS v0.3-quest-start-360x640 stable 5x3 grid
+PASS v0.3-quest-start-360x640 reset modal visibility correct
+PASS v0.3-quest-start-360x640 room aspect preserved
+PASS v0.3-quest-start-360x640 visible primary button child caption
+PASS v0.3-quest-start-360x640 actual Pixelify font bound
+PASS v0.3-quest-start-360x640 exactly current finite task shown
+PASS v0.3-quest-start-360x640 only one install control
+PASS v0.3-quest-start-360x640 exact capped task display preserves saved surplus
+PASS v0.3-quest-start-360x640 cash available and required remain explicit
+PASS v0.3-quest-start-360x640 single compact next preview
+PASS v0.3-quest-start-360x640 install touch target fits
+PASS v0.3-quest-start-360x640 active task stays above reels
+PASS v0.3-quest-start-360x640 visible overall task completion
+PASS v0.3-quest-wallpaper-360x800 spin fits viewport
+PASS v0.3-quest-wallpaper-360x800 44-unit menu fits viewport
+PASS v0.3-quest-wallpaper-360x800 stable 5x3 grid
+PASS v0.3-quest-wallpaper-360x800 reset modal visibility correct
+PASS v0.3-quest-wallpaper-360x800 room aspect preserved
+PASS v0.3-quest-wallpaper-360x800 visible primary button child caption
+PASS v0.3-quest-wallpaper-360x800 actual Pixelify font bound
+PASS v0.3-quest-wallpaper-360x800 exactly current finite task shown
+PASS v0.3-quest-wallpaper-360x800 only one install control
+PASS v0.3-quest-wallpaper-360x800 exact capped task display preserves saved surplus
+PASS v0.3-quest-wallpaper-360x800 cash available and required remain explicit
+PASS v0.3-quest-wallpaper-360x800 single compact next preview
+PASS v0.3-quest-wallpaper-360x800 install touch target fits
+PASS v0.3-quest-wallpaper-360x800 active task stays above reels
+PASS v0.3-quest-wallpaper-360x800 visible overall task completion
+PASS v0.3-quest-mattress-480x960 spin fits viewport
+PASS v0.3-quest-mattress-480x960 44-unit menu fits viewport
+PASS v0.3-quest-mattress-480x960 stable 5x3 grid
+PASS v0.3-quest-mattress-480x960 reset modal visibility correct
+PASS v0.3-quest-mattress-480x960 room aspect preserved
+PASS v0.3-quest-mattress-480x960 visible primary button child caption
+PASS v0.3-quest-mattress-480x960 actual Pixelify font bound
+PASS v0.3-quest-mattress-480x960 exactly current finite task shown
+PASS v0.3-quest-mattress-480x960 only one install control
+PASS v0.3-quest-mattress-480x960 exact capped task display preserves saved surplus
+PASS v0.3-quest-mattress-480x960 cash available and required remain explicit
+PASS v0.3-quest-mattress-480x960 single compact next preview
+PASS v0.3-quest-mattress-480x960 install touch target fits
+PASS v0.3-quest-mattress-480x960 active task stays above reels
+PASS v0.3-quest-mattress-480x960 visible overall task completion
+PASS v0.3-quest-complete-360x800 spin fits viewport
+PASS v0.3-quest-complete-360x800 44-unit menu fits viewport
+PASS v0.3-quest-complete-360x800 stable 5x3 grid
+PASS v0.3-quest-complete-360x800 reset modal visibility correct
+PASS v0.3-quest-complete-360x800 room aspect preserved
+PASS v0.3-quest-complete-360x800 visible primary button child caption
+PASS v0.3-quest-complete-360x800 actual Pixelify font bound
+PASS v0.3-quest-complete-360x800 visible overall task completion
+PASS v0.3-quest-buy-ready-360x640 spin fits viewport
+PASS v0.3-quest-buy-ready-360x640 44-unit menu fits viewport
+PASS v0.3-quest-buy-ready-360x640 stable 5x3 grid
+PASS v0.3-quest-buy-ready-360x640 reset modal visibility correct
+PASS v0.3-quest-buy-ready-360x640 room aspect preserved
+PASS v0.3-quest-buy-ready-360x640 visible primary button child caption
+PASS v0.3-quest-buy-ready-360x640 actual Pixelify font bound
+PASS v0.3-quest-buy-ready-360x640 exactly current finite task shown
+PASS v0.3-quest-buy-ready-360x640 only one install control
+PASS v0.3-quest-buy-ready-360x640 exact capped task display preserves saved surplus
+PASS v0.3-quest-buy-ready-360x640 cash available and required remain explicit
+PASS v0.3-quest-buy-ready-360x640 single compact next preview
+PASS v0.3-quest-buy-ready-360x640 install touch target fits
+PASS v0.3-quest-buy-ready-360x640 active task stays above reels
+PASS v0.3-quest-buy-ready-360x640 visible overall task completion
+PASS v0.3-quest-buy-ready-360x640 ready explicit install caption and gate
+PASS v0.3-quest-spin-pressed-360x640 spin fits viewport
+PASS v0.3-quest-spin-pressed-360x640 44-unit menu fits viewport
+PASS v0.3-quest-spin-pressed-360x640 stable 5x3 grid
+PASS v0.3-quest-spin-pressed-360x640 reset modal visibility correct
+PASS v0.3-quest-spin-pressed-360x640 room aspect preserved
+PASS v0.3-quest-spin-pressed-360x640 visible primary button child caption
+PASS v0.3-quest-spin-pressed-360x640 actual Pixelify font bound
+PASS v0.3-quest-spin-pressed-360x640 exactly current finite task shown
+PASS v0.3-quest-spin-pressed-360x640 only one install control
+PASS v0.3-quest-spin-pressed-360x640 exact capped task display preserves saved surplus
+PASS v0.3-quest-spin-pressed-360x640 cash available and required remain explicit
+PASS v0.3-quest-spin-pressed-360x640 single compact next preview
+PASS v0.3-quest-spin-pressed-360x640 install touch target fits
+PASS v0.3-quest-spin-pressed-360x640 active task stays above reels
+PASS v0.3-quest-spin-pressed-360x640 visible overall task completion
+PASS SPIN face travels5 pixels over fixed10-pixel base
+PASS SPIN release returns face to raised position
+PASS v0.3-quest-menu-360x640 spin fits viewport
+PASS v0.3-quest-menu-360x640 44-unit menu fits viewport
+PASS v0.3-quest-menu-360x640 stable 5x3 grid
+PASS v0.3-quest-menu-360x640 reset modal visibility correct
+PASS v0.3-quest-menu-360x640 room aspect preserved
+PASS v0.3-quest-menu-360x640 visible primary button child caption
+PASS v0.3-quest-menu-360x640 actual Pixelify font bound
+PASS v0.3-quest-menu-360x640 exactly current finite task shown
+PASS v0.3-quest-menu-360x640 only one install control
+PASS v0.3-quest-menu-360x640 exact capped task display preserves saved surplus
+PASS v0.3-quest-menu-360x640 cash available and required remain explicit
+PASS v0.3-quest-menu-360x640 single compact next preview
+PASS v0.3-quest-menu-360x640 install touch target fits
+PASS v0.3-quest-menu-360x640 active task stays above reels
+PASS v0.3-quest-menu-360x640 visible overall task completion
+PASS v0.3-quest-reset-confirmation-360x640 spin fits viewport
+PASS v0.3-quest-reset-confirmation-360x640 44-unit menu fits viewport
+PASS v0.3-quest-reset-confirmation-360x640 stable 5x3 grid
+PASS v0.3-quest-reset-confirmation-360x640 reset modal visibility correct
+PASS v0.3-quest-reset-confirmation-360x640 room aspect preserved
+PASS v0.3-quest-reset-confirmation-360x640 visible primary button child caption
+PASS v0.3-quest-reset-confirmation-360x640 actual Pixelify font bound
+PASS v0.3-quest-reset-confirmation-360x640 exactly current finite task shown
+PASS v0.3-quest-reset-confirmation-360x640 only one install control
+PASS v0.3-quest-reset-confirmation-360x640 exact capped task display preserves saved surplus
+PASS v0.3-quest-reset-confirmation-360x640 cash available and required remain explicit
+PASS v0.3-quest-reset-confirmation-360x640 single compact next preview
+PASS v0.3-quest-reset-confirmation-360x640 install touch target fits
+PASS v0.3-quest-reset-confirmation-360x640 active task stays above reels
+PASS v0.3-quest-reset-confirmation-360x640 visible overall task completion
+PASS v0.3-quest-progress-360x640 spin fits viewport
+PASS v0.3-quest-progress-360x640 44-unit menu fits viewport
+PASS v0.3-quest-progress-360x640 stable 5x3 grid
+PASS v0.3-quest-progress-360x640 reset modal visibility correct
+PASS v0.3-quest-progress-360x640 room aspect preserved
+PASS v0.3-quest-progress-360x640 visible primary button child caption
+PASS v0.3-quest-progress-360x640 actual Pixelify font bound
+PASS v0.3-quest-progress-360x640 exactly current finite task shown
+PASS v0.3-quest-progress-360x640 only one install control
+PASS v0.3-quest-progress-360x640 exact capped task display preserves saved surplus
+PASS v0.3-quest-progress-360x640 cash available and required remain explicit
+PASS v0.3-quest-progress-360x640 single compact next preview
+PASS v0.3-quest-progress-360x640 install touch target fits
+PASS v0.3-quest-progress-360x640 active task stays above reels
+PASS v0.3-quest-progress-360x640 visible overall task completion
+PASS v0.3-quest-cash-needed-360x640 spin fits viewport
+PASS v0.3-quest-cash-needed-360x640 44-unit menu fits viewport
+PASS v0.3-quest-cash-needed-360x640 stable 5x3 grid
+PASS v0.3-quest-cash-needed-360x640 reset modal visibility correct
+PASS v0.3-quest-cash-needed-360x640 room aspect preserved
+PASS v0.3-quest-cash-needed-360x640 visible primary button child caption
+PASS v0.3-quest-cash-needed-360x640 actual Pixelify font bound
+PASS v0.3-quest-cash-needed-360x640 exactly current finite task shown
+PASS v0.3-quest-cash-needed-360x640 only one install control
+PASS v0.3-quest-cash-needed-360x640 exact capped task display preserves saved surplus
+PASS v0.3-quest-cash-needed-360x640 cash available and required remain explicit
+PASS v0.3-quest-cash-needed-360x640 single compact next preview
+PASS v0.3-quest-cash-needed-360x640 install touch target fits
+PASS v0.3-quest-cash-needed-360x640 active task stays above reels
+PASS v0.3-quest-cash-needed-360x640 visible overall task completion
+PASS v0.3-quest-cash-needed-360x640 full parts never masquerade as cash readiness
+PASS after-buy screenshot follows actual explicit installation from same18cash/8parts state
+PASS v0.3-quest-after-buy-360x640 spin fits viewport
+PASS v0.3-quest-after-buy-360x640 44-unit menu fits viewport
+PASS v0.3-quest-after-buy-360x640 stable 5x3 grid
+PASS v0.3-quest-after-buy-360x640 reset modal visibility correct
+PASS v0.3-quest-after-buy-360x640 room aspect preserved
+PASS v0.3-quest-after-buy-360x640 visible primary button child caption
+PASS v0.3-quest-after-buy-360x640 actual Pixelify font bound
+PASS v0.3-quest-after-buy-360x640 exactly current finite task shown
+PASS v0.3-quest-after-buy-360x640 only one install control
+PASS v0.3-quest-after-buy-360x640 exact capped task display preserves saved surplus
+PASS v0.3-quest-after-buy-360x640 cash available and required remain explicit
+PASS v0.3-quest-after-buy-360x640 single compact next preview
+PASS v0.3-quest-after-buy-360x640 install touch target fits
+PASS v0.3-quest-after-buy-360x640 active task stays above reels
+PASS v0.3-quest-after-buy-360x640 visible overall task completion
+PASS spin rewards saved before cosmetic reel animation; relaunch cannot lose or double charge
+PASS install blocked during unresolved reel animation
+PASS runtime spin coroutine commits cash/fragments once
+PASS runtime BUY handlers complete level without double-buy
+PASS runtime full-level purchases reload from local disk
+PASS reset cancellation preserves room
+PASS confirmed runtime reset
+PASS runtime confirmed reset reloads from disk
+PASS rendered walk sample 0 feet clear
+PASS rendered walk sample 1 feet clear
+PASS rendered walk sample 2 feet clear
+PASS rendered walk sample 3 feet clear
+PASS rendered walk sample 4 feet clear
+PASS rendered walk sample 5 feet clear
+PASS rendered walk sample 6 feet clear
+PASS rendered walk sample 7 feet clear
+PASS rendered walk sample 8 feet clear
+PASS rendered walk sample 9 feet clear
+PASS rendered walk sample 10 feet clear
+PASS rendered walk sample 11 feet clear
+PASS rendered walk sample 12 feet clear
+PASS rendered walk sample 13 feet clear
+PASS rendered walk sample 14 feet clear
+PASS rendered walk sample 15 feet clear
+PASS rendered walk sample 16 feet clear
+PASS rendered walk sample 17 feet clear
+PASS rendered walk sample 18 feet clear
+PASS rendered walk sample 19 feet clear
+PASS rendered walk sample 20 feet clear
+PASS rendered walk sample 21 feet clear
+PASS rendered walk sample 22 feet clear
+PASS rendered walk sample 23 feet clear
+PASS rendered walk sample 24 feet clear
+PASS rendered walk sample 25 feet clear
+PASS rendered walk sample 26 feet clear
+PASS rendered walk sample 27 feet clear
+PASS rendered walk sample 28 feet clear
+PASS rendered walk sample 29 feet clear
+PASS rendered walk sample 30 feet clear
+PASS rendered walk sample 31 feet clear
+PASS rendered walk sample 32 feet clear
+PASS rendered walk sample 33 feet clear
+PASS rendered walk sample 34 feet clear
+PASS rendered walk sample 35 feet clear
+PASS rendered walk sample 36 feet clear
+PASS rendered walk sample 37 feet clear
+PASS rendered walk sample 38 feet clear
+PASS rendered walk sample 39 feet clear
+PASS rendered walk sample 40 feet clear
+PASS rendered walk sample 41 feet clear
+PASS rendered walk sample 42 feet clear
+PASS rendered walk sample 43 feet clear
+PASS rendered walk sample 44 feet clear
+PASS rendered walk sample 45 feet clear
+PASS rendered walk sample 46 feet clear
+PASS rendered walk sample 47 feet clear
+PASS rendered walk sample 48 feet clear
+PASS rendered walk sample 49 feet clear
+PASS rendered walk sample 50 feet clear
+PASS rendered walk sample 51 feet clear
+PASS rendered walk sample 52 feet clear
+PASS rendered walk sample 53 feet clear
+PASS rendered walk sample 54 feet clear
+PASS rendered walk sample 55 feet clear
+PASS rendered walk sample 56 feet clear
+PASS rendered walk sample 57 feet clear
+PASS rendered walk sample 58 feet clear
+PASS rendered walk sample 59 feet clear
+PASS rendered walk sample 60 feet clear
+PASS rendered walk sample 61 feet clear
+PASS rendered walk sample 62 feet clear
+PASS rendered walk sample 63 feet clear
+PASS rendered walk sample 64 feet clear
+PASS rendered walk sample 65 feet clear
+PASS rendered walk sample 66 feet clear
+PASS rendered walk sample 67 feet clear
+PASS rendered walk sample 68 feet clear
+PASS rendered walk sample 69 feet clear
+PASS rendered walk sample 70 feet clear
+PASS rendered walk sample 71 feet clear
+PASS rendered walk sample 72 feet clear
+PASS rendered walk sample 73 feet clear
+PASS rendered walk sample 74 feet clear
+PASS rendered walk sample 75 feet clear
+PASS rendered walk sample 76 feet clear
+PASS rendered walk sample 77 feet clear
+PASS rendered walk sample 78 feet clear
+PASS rendered walk sample 79 feet clear
+PASS rendered walk sample 80 feet clear
+PASS rendered walk sample 81 feet clear
+PASS rendered walk sample 82 feet clear
+PASS rendered walk sample 83 feet clear
+PASS rendered walk sample 84 feet clear
+PASS rendered walk sample 85 feet clear
+PASS rendered walk sample 86 feet clear
+PASS rendered walk sample 87 feet clear
+PASS rendered walk sample 88 feet clear
+PASS rendered walk sample 89 feet clear
+PASS rendered walk sample 90 feet clear
+PASS rendered walk sample 91 feet clear
+PASS rendered walk sample 92 feet clear
+PASS rendered walk sample 93 feet clear
+PASS rendered walk sample 94 feet clear
+PASS rendered walk sample 95 feet clear
+PASS rendered walk sample 96 feet clear
+PASS rendered walk sample 97 feet clear
+PASS rendered walk sample 98 feet clear
+PASS rendered walk sample 99 feet clear
+PASS actual editor game updates move heroine over time
+PASS actual visible gait visits four alternating cutout phases
+PASS walking feet position survives disk reload
+Actual rendered demo: 100 frames; 11,9s; travelled 2,11m.
+Editor frame-time sample median_ms=7,18 p95_ms=39,69; no device benchmark.
+Coverage: editor runtime rendered to texture, direct UI handlers; no physical touch/device test.
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS busy SPIN disabled
+PASS actual matching item +n feedback travels from reels toward active task
+PASS live UI spin commits once 1
+PASS live UI enables dual-resource BUY 0
+PASS live repeated BUY commits once 0
+PASS purchase and next stable quest committed before visuals 0
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 2
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 3
+PASS live UI enables dual-resource BUY 1
+PASS live repeated BUY commits once 1
+PASS purchase and next stable quest committed before visuals 1
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 4
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 5
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 6
+PASS live UI enables dual-resource BUY 2
+PASS live repeated BUY commits once 2
+PASS purchase and next stable quest committed before visuals 2
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 7
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 8
+PASS live UI enables dual-resource BUY 3
+PASS live repeated BUY commits once 3
+PASS purchase and next stable quest committed before visuals 3
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 9
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 10
+PASS live UI enables dual-resource BUY 4
+PASS live repeated BUY commits once 4
+PASS purchase and next stable quest committed before visuals 4
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 11
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 12
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 13
+PASS live UI enables dual-resource BUY 5
+PASS live repeated BUY commits once 5
+PASS purchase and next stable quest committed before visuals 5
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 14
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 15
+PASS live UI enables dual-resource BUY 6
+PASS live repeated BUY commits once 6
+PASS purchase and next stable quest committed before visuals 6
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 16
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 17
+PASS live UI enables dual-resource BUY 7
+PASS live repeated BUY commits once 7
+PASS purchase and next stable quest committed before visuals 7
+PASS actual UI callback playthrough completes all eight purchases
+PASS matching item feedback rendered during actual level flow
+PASS MENU opens actual settings
+PASS settings RESET opens confirmation
+PASS actual KEEP ROOM cancellation preserves completion and cash
+PASS actual confirmed reset starts fresh
+PASS actual zero-cash recovery control grants and spins once
+Actual UI callback level flow: 17 spins, 8 buys; menu, reset-cancel, confirmed-reset and recovery passed.

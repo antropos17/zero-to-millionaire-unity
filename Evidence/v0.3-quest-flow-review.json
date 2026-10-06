@@ -1,0 +1,17 @@
+{
+  "source": "actual Unity UI render textures; second panel follows live BUY callback",
+  "before": {
+    "cash": 18,
+    "parts": 8,
+    "completed": 0,
+    "active": "floor-patches"
+  },
+  "after": {
+    "cash": 0,
+    "parts": 0,
+    "completed": 1,
+    "active": "surface-repair"
+  },
+  "file": "v0.3-quest-flow-review.png",
+  "sha256": "708673f9bb48558eadfa3b40b56bd71e8d92018e47e14aecd922e8f4d30b4261"
+}

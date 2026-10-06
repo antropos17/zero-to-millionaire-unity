@@ -1,0 +1,418 @@
+[
+  {
+    "file": "Assets\\Resources\\Art\\room\\ruined.png",
+    "source": "exec-0a67835e-5076-4f83-be77-df00043ad0f6.png",
+    "source_bounds": [
+      [
+        0,
+        0,
+        441,
+        713
+      ],
+      [
+        18,
+        151,
+        441,
+        577
+      ]
+    ],
+    "size": [
+      512,
+      512
+    ],
+    "rgba": true,
+    "sha256": "0604cdf3f5ba16cb89386e90850ef6774c4095d6e79a007db3bf3141046b2e1c"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\room\\patches.png",
+    "source": "exec-0a67835e-5076-4f83-be77-df00043ad0f6.png",
+    "source_bounds": [
+      [
+        441,
+        0,
+        882,
+        713
+      ],
+      [
+        16,
+        151,
+        437,
+        577
+      ]
+    ],
+    "size": [
+      512,
+      512
+    ],
+    "rgba": true,
+    "sha256": "f46a6bda0ed07111bf217321da03a66bb70e13fae322011abf49006e99c77d38"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\room\\surfaces.png",
+    "source": "exec-0a67835e-5076-4f83-be77-df00043ad0f6.png",
+    "source_bounds": [
+      [
+        882,
+        0,
+        1324,
+        713
+      ],
+      [
+        11,
+        151,
+        432,
+        577
+      ]
+    ],
+    "size": [
+      512,
+      512
+    ],
+    "rgba": true,
+    "sha256": "b59885e6704b74b2148a933901030156e55e8da49615e182eaeeb822586c6e62"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\room\\wallpaper.png",
+    "source": "exec-0a67835e-5076-4f83-be77-df00043ad0f6.png",
+    "source_bounds": [
+      [
+        1324,
+        0,
+        1765,
+        713
+      ],
+      [
+        5,
+        151,
+        427,
+        577
+      ]
+    ],
+    "size": [
+      512,
+      512
+    ],
+    "rgba": true,
+    "sha256": "44b9f40b603ed83a43126bea6b21d352598a8895e65e78754f67894243f2661c"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\room\\repaired.png",
+    "source": "exec-0a67835e-5076-4f83-be77-df00043ad0f6.png",
+    "source_bounds": [
+      [
+        1765,
+        0,
+        2206,
+        713
+      ],
+      [
+        1,
+        151,
+        423,
+        577
+      ]
+    ],
+    "size": [
+      512,
+      512
+    ],
+    "rgba": true,
+    "sha256": "0a7bbc49ef0d4eb06a0aba9c202cb80571b027abc8871b12ae67960d0578cb92"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\room\\door-overlay.png",
+    "source": "exec-0a67835e-5076-4f83-be77-df00043ad0f6.png",
+    "source_bounds": [
+      [
+        312,
+        94
+      ],
+      [
+        375,
+        122
+      ],
+      [
+        375,
+        310
+      ],
+      [
+        312,
+        276
+      ]
+    ],
+    "size": [
+      512,
+      512
+    ],
+    "rgba": true,
+    "sha256": "ac4c3af4dc2251fa92b9f87ceffe5a6fbcb5528f579ea9d632a2b5e8bdf4e51e"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\room\\window-overlay.png",
+    "source": "exec-0a67835e-5076-4f83-be77-df00043ad0f6.png",
+    "source_bounds": [
+      [
+        50,
+        112
+      ],
+      [
+        125,
+        77
+      ],
+      [
+        125,
+        180
+      ],
+      [
+        50,
+        216
+      ]
+    ],
+    "size": [
+      512,
+      512
+    ],
+    "rgba": true,
+    "sha256": "670559f5b6ab0566373fe89a2879b71624613f666fe7f2cbf6afc84ece7305c2"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\objects\\heroine.png",
+    "source": "exec-d0de5681-7375-4430-b693-9d5a23bd6b37.png",
+    "source_bounds": [
+      [
+        150,
+        0,
+        570,
+        800
+      ],
+      [
+        89,
+        65,
+        317,
+        721
+      ]
+    ],
+    "size": [
+      137,
+      388
+    ],
+    "rgba": true,
+    "sha256": "92bbe6188386c20fc9828b344f9d379517a34d05bdc6e97c0ba57fdd7f3cabea"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\objects\\mattress-dressed.png",
+    "source": "exec-d0de5681-7375-4430-b693-9d5a23bd6b37.png",
+    "source_bounds": [
+      [
+        570,
+        0,
+        1358,
+        680
+      ],
+      [
+        100,
+        265,
+        707,
+        622
+      ]
+    ],
+    "size": [
+      388,
+      230
+    ],
+    "rgba": true,
+    "sha256": "a5d1c47f560a768cda01f0f733b4e4d40950ab628a56173de6983c3a487df95e"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\objects\\stool.png",
+    "source": "exec-d0de5681-7375-4430-b693-9d5a23bd6b37.png",
+    "source_bounds": [
+      [
+        160,
+        780,
+        600,
+        1159
+      ],
+      [
+        109,
+        66,
+        329,
+        312
+      ]
+    ],
+    "size": [
+      147,
+      164
+    ],
+    "rgba": true,
+    "sha256": "cbac9071a732f7152062d2b46266b6fdd12c1e92acc135b378050cb0b34f85bf"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\objects\\lamp.png",
+    "source": "exec-d0de5681-7375-4430-b693-9d5a23bd6b37.png",
+    "source_bounds": [
+      [
+        840,
+        630,
+        1200,
+        1159
+      ],
+      [
+        69,
+        67,
+        227,
+        464
+      ]
+    ],
+    "size": [
+      106,
+      260
+    ],
+    "rgba": true,
+    "sha256": "5e4fe6e35feaf3e6afddd79faa1f9eca71c1ef90b99bcf56899aed503024da9d"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\objects\\mattress.png",
+    "source": "exec-d92ab5f9-51ce-4be4-9aa9-2076bd4b17a6.png",
+    "source_bounds": [
+      [
+        600,
+        200,
+        1300,
+        670
+      ],
+      [
+        69,
+        61,
+        628,
+        395
+      ]
+    ],
+    "size": [
+      388,
+      233
+    ],
+    "rgba": true,
+    "sha256": "9537eb71a21d44fe2ec6f1b4653886280a7fa9e26f1cc0c4299cf9f149aa6709"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\symbols\\cash.png",
+    "source": "exec-5acc7cd6-421a-40c8-807f-3421139fa2f8.png",
+    "source_bounds": [
+      [
+        30,
+        220,
+        440,
+        565
+      ],
+      [
+        27,
+        26,
+        400,
+        328
+      ]
+    ],
+    "size": [
+      128,
+      128
+    ],
+    "rgba": true,
+    "sha256": "d44f259330164d22cbaa772635ebe37f59eb969ad999ae7152949b41452175d2"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\symbols\\key.png",
+    "source": "exec-5acc7cd6-421a-40c8-807f-3421139fa2f8.png",
+    "source_bounds": [
+      [
+        490,
+        180,
+        845,
+        535
+      ],
+      [
+        18,
+        17,
+        340,
+        340
+      ]
+    ],
+    "size": [
+      128,
+      128
+    ],
+    "rgba": true,
+    "sha256": "d381ede4638650023f9ffbf38baa04fab6f9c9024dc2e8f195c952fbc86d014a"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\symbols\\shirt.png",
+    "source": "exec-5acc7cd6-421a-40c8-807f-3421139fa2f8.png",
+    "source_bounds": [
+      [
+        890,
+        200,
+        1280,
+        540
+      ],
+      [
+        19,
+        20,
+        384,
+        323
+      ]
+    ],
+    "size": [
+      128,
+      128
+    ],
+    "rgba": true,
+    "sha256": "3ba9e725025342ea63e20a99d1b001ec1aa957f0729cd5740977e2d82938d175"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\symbols\\chair.png",
+    "source": "exec-5acc7cd6-421a-40c8-807f-3421139fa2f8.png",
+    "source_bounds": [
+      [
+        1340,
+        180,
+        1655,
+        565
+      ],
+      [
+        13,
+        17,
+        295,
+        368
+      ]
+    ],
+    "size": [
+      128,
+      128
+    ],
+    "rgba": true,
+    "sha256": "2aef39473030ffb233bf8005b100072f623861507df9956a24aff76fc5f3156e"
+  },
+  {
+    "file": "Assets\\Resources\\Art\\symbols\\car.png",
+    "source": "exec-5acc7cd6-421a-40c8-807f-3421139fa2f8.png",
+    "source_bounds": [
+      [
+        1720,
+        230,
+        2172,
+        535
+      ],
+      [
+        12,
+        17,
+        417,
+        285
+      ]
+    ],
+    "size": [
+      128,
+      128
+    ],
+    "rgba": true,
+    "sha256": "a3dda9a186dedb61f0f687965ef7b02b61961142e7193bba09c67a05d17b112b"
+  }
+]

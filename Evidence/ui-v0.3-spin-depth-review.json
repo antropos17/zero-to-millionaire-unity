@@ -1,0 +1,24 @@
+{
+  "logical_screen": [
+    360,
+    640
+  ],
+  "spin_base_depth": 10,
+  "pressed_face_travel": 5,
+  "source": "actual Unity UI render textures",
+  "reference": "exec-2799bd70-2d1b-4e9c-8be5-9e81503711c5.png",
+  "files": [
+    {
+      "name": "ui-v0.3-spin-depth-review.png",
+      "sha256": "0cceb7108c24a9f44294901a18424137bf0079aa0f995e20ea509686da1d05d7"
+    },
+    {
+      "name": "ui-v0.3-spin-depth-after-full.png",
+      "sha256": "008782b52cfa18ec2c9eb731311c76d3fe73ba8fcb02ccfda47947eeaeca5a9c"
+    },
+    {
+      "name": "ui-v0.3-spin-depth-after-pressed-full.png",
+      "sha256": "eb43d3c98347a4673a70eed797bb3d95ecf784f3456c3f28ba39da61a4608c3e"
+    }
+  ]
+}

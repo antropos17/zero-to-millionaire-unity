@@ -1,0 +1,32 @@
+[
+  {
+    "view": "front",
+    "canvas": [
+      128,
+      192
+    ],
+    "feet": [
+      64,
+      178
+    ],
+    "cutout_split_y": 102,
+    "source_key_poses": 2,
+    "gait_phases": 4,
+    "alternation": "production: two independent neutral leg cutouts rotate oppositely at hip; continuous distance-driven gait; draft contact candidates retained only for comparison"
+  },
+  {
+    "view": "back",
+    "canvas": [
+      128,
+      192
+    ],
+    "feet": [
+      64,
+      178
+    ],
+    "cutout_split_y": 102,
+    "source_key_poses": 2,
+    "gait_phases": 4,
+    "alternation": "production: two independent neutral leg cutouts rotate oppositely at hip; continuous distance-driven gait; draft contact candidates retained only for comparison"
+  }
+]

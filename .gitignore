@@ -1,0 +1,47 @@
+# Unity-generated state and local tooling
+/Library/
+/Temp/
+/Obj/
+/Logs/
+/UserSettings/
+/MemoryCaptures/
+/Recordings/
+/.tooling/
+/.library-helper/
+/.library-upload-helper/
+/.dotnet/
+/.utmp/
+/Builds/
+/Deliverables/
+/Checks/bin/
+/Checks/obj/
+/*.csproj
+/*.sln
+/*.slnx
+*.log
+*.tmp
+*.bak
+*.user
+*.pidb
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+# Keep .meta, Assets, Packages, ProjectSettings and Checks/Checks.csproj.
+# Generated runtime captures and test saves
+/Evidence/checks-tmp/
+/Evidence/qa-save*/
+/Evidence/walk-demo-frames*/
+/Evidence/migration-to-x-manifest.json
+/migration-copy.log
+# Credentials and signing material
+.env
+.env.*
+*.keystore
+*.jks
+*.p12
+*.pfx
+*.pem
+*.key
+credentials*
+secrets*

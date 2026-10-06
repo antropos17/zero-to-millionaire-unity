@@ -1,0 +1,14 @@
+{
+  "source": "C:\\Users\\murtu\\Documents\\Codex\\2026-10-06\\task\\zero-to-millionaire-first-playable",
+  "destination": "X:\\Projects\\ZERO-TO-MILLIONAIRE",
+  "source_preserved": true,
+  "copied_files": 8244,
+  "copied_bytes": 3521510846.0,
+  "verified_files": 8244,
+  "all_sha256_equal": true,
+  "robocopy_exit": 3,
+  "manifest_file": "Evidence/migration-to-x-manifest.json",
+  "manifest_sha256": "2cb0ff91304d7be62f1be106bcaafe59dbe2ed8e3c483826cb62635ea8a5c78a",
+  "elapsed_seconds": 224.96,
+  "verified_at_utc": "2026-10-06T06:32:18.3898737Z"
+}

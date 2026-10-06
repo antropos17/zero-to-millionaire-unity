@@ -1,0 +1,1 @@
+PASS 42189 assertions; 1000 complete levels; spins min=17 median=20 p95=22 max=23; simulation_ms=34

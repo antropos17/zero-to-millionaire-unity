@@ -1,0 +1,18 @@
+{
+  "apk": "zero-to-millionaire-first-playable\\Builds\\Android\\zero-to-millionaire-v0.2.apk",
+  "bytes": 24021296,
+  "sha256": "e4dcf6ebc573867fa716089926c97d021c13738bb9e8a0df150ad69dc7bb652c",
+  "package": "com.prototypeworkspace.zerotomillionaire",
+  "versionName": "0.2.0",
+  "versionCode": 2,
+  "minApi": 26,
+  "targetApi": 36,
+  "abi": "arm64-v8a",
+  "portrait": true,
+  "signatureV2": true,
+  "certificateSha256": "97632ef6482af7a5fb7cc66215a388e53382326e0dc284f5c8062bab4d5eb02b",
+  "sameSignerAsV01": true,
+  "internetPermission": false,
+  "storagePermission": false,
+  "physicalAndroidRun": false
+}

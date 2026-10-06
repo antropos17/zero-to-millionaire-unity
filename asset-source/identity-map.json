@@ -1,0 +1,34 @@
+[
+  {
+    "file_name": "exec-0a67835e-5076-4f83-be77-df00043ad0f6.png",
+    "library_file_id": "libfile_3146efc1d61c81918a57e22890beef9c",
+    "version": 0,
+    "native_original": "/tmp/zero-to-millionaire-first-playable-20261006/exec-0a67835e-5076-4f83-be77-df00043ad0f6.png",
+    "derived_input": "/mnt/c/Users/murtu/Documents/Codex/2026-10-06/task/zero-to-millionaire-first-playable/asset-source/exec-0a67835e-5076-4f83-be77-df00043ad0f6.png",
+    "sha256": "35330ed4375181ffc697ed4e4dea193cd36070cc5b31a718b24d9f1787f9e60a"
+  },
+  {
+    "file_name": "exec-5acc7cd6-421a-40c8-807f-3421139fa2f8.png",
+    "library_file_id": "libfile_fbe134aaf93481918d7991b3424f9940",
+    "version": 0,
+    "native_original": "/tmp/zero-to-millionaire-first-playable-20261006/exec-5acc7cd6-421a-40c8-807f-3421139fa2f8.png",
+    "derived_input": "/mnt/c/Users/murtu/Documents/Codex/2026-10-06/task/zero-to-millionaire-first-playable/asset-source/exec-5acc7cd6-421a-40c8-807f-3421139fa2f8.png",
+    "sha256": "32ce0714b4a76f580d12ab7b3d43ff9669dbeece745418af1140a019f61eedf5"
+  },
+  {
+    "file_name": "exec-d0de5681-7375-4430-b693-9d5a23bd6b37.png",
+    "library_file_id": "libfile_52837629012c81918ea7030b828149fe",
+    "version": 0,
+    "native_original": "/tmp/zero-to-millionaire-first-playable-20261006/exec-d0de5681-7375-4430-b693-9d5a23bd6b37.png",
+    "derived_input": "/mnt/c/Users/murtu/Documents/Codex/2026-10-06/task/zero-to-millionaire-first-playable/asset-source/exec-d0de5681-7375-4430-b693-9d5a23bd6b37.png",
+    "sha256": "fb4ab820ba30a9f1668c30991316672cda62f98833489adcd7beef30fd437863"
+  },
+  {
+    "file_name": "exec-d92ab5f9-51ce-4be4-9aa9-2076bd4b17a6.png",
+    "library_file_id": "libfile_2f2ff73fae1081919c512bdf08978db6",
+    "version": 0,
+    "native_original": "/tmp/zero-to-millionaire-first-playable-20261006/exec-d92ab5f9-51ce-4be4-9aa9-2076bd4b17a6.png",
+    "derived_input": "/mnt/c/Users/murtu/Documents/Codex/2026-10-06/task/zero-to-millionaire-first-playable/asset-source/exec-d92ab5f9-51ce-4be4-9aa9-2076bd4b17a6.png",
+    "sha256": "08ea251f94f24bfc5684ee292436cf265ca1c9a1b0eae743a0bdcb37e4ab55d1"
+  }
+]

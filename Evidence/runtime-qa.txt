@@ -1,0 +1,20 @@
+PASS start-360x640 spin fits viewport
+PASS start-360x640 reset fits viewport
+PASS start-360x640 room aspect preserved
+PASS wallpaper-360x800 spin fits viewport
+PASS wallpaper-360x800 reset fits viewport
+PASS wallpaper-360x800 room aspect preserved
+PASS mattress-480x960 spin fits viewport
+PASS mattress-480x960 reset fits viewport
+PASS mattress-480x960 room aspect preserved
+PASS complete-360x800 spin fits viewport
+PASS complete-360x800 reset fits viewport
+PASS complete-360x800 room aspect preserved
+PASS runtime spin coroutine commits cash/fragments once
+PASS runtime BUY handlers complete level without double-buy
+PASS runtime full-level purchases reload from local disk
+PASS reset cancellation preserves room
+PASS confirmed runtime reset
+PASS runtime confirmed reset reloads from disk
+Editor frame-time sample median_ms=7,48 p95_ms=14,12; no device benchmark.
+Coverage: editor runtime rendered to texture, direct UI handlers; no physical touch/device test.

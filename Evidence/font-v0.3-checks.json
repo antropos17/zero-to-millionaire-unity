@@ -1,0 +1,10 @@
+{
+  "family": "Pixelify Sans",
+  "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/pixelifysans/PixelifySans%5Bwght%5D.ttf",
+  "license": "OFL-1.1",
+  "license_bundled": "Assets/Resources/Fonts/OFL.txt",
+  "sha256": "9ba86cd010a4de309d263ceff8e8044092c9db7efda869620cb9ff1c4389e8a5",
+  "ui_characters_checked": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/<>.+-\u00b2 \u00b7",
+  "missing": [],
+  "ttf_unmodified": true
+}
