@@ -14,5 +14,7 @@
   "observed_owned": 0,
   "pid": 13084,
   "window": "ZERO TO MILLIONAIRE",
-  "screenshot": "Evidence/windows-v0.3-final-window.png"
+  "screenshot": "Evidence/windows-v0.3-final-window.png",
+  "window_open_at_final_check": false,
+  "repeat_relaunch_attempted": false
 }

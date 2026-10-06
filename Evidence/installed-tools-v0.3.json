@@ -1,0 +1,32 @@
+{
+  "at_utc": "2026-10-06T07:29:30.051917+00:00",
+  "editor": "6000.3.21f1",
+  "official_cli": "1.0.0-beta.12",
+  "official_plugin": "0.1.8-beta",
+  "packages": {
+    "com.unity.nuget.mono-cecil": {
+      "version": "1.11.6",
+      "source": "registry"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.2",
+      "source": "registry"
+    },
+    "com.unity.pipeline": {
+      "version": "0.8.0-exp.1",
+      "source": "registry"
+    },
+    "com.unity.test-framework": {
+      "version": "1.6.0",
+      "source": "builtin"
+    },
+    "com.unity.modules.uielements": {
+      "version": "1.0.0",
+      "source": "builtin"
+    }
+  },
+  "project_declares_2d_animation_package": false,
+  "profiling_used": "Editor frame samples in runtime-v0.3-qa.txt; no Android benchmark",
+  "animation_used": "generated neutral cutout sprites with procedural C# limbs, no additional animation package installed",
+  "no_new_mcp_or_skill_installed": true
+}

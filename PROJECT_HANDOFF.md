@@ -40,7 +40,7 @@ Identity maps, art provenance and older deliverables are retained.
 
 ## Final desktop checkpoint
 
-Fresh v0.3 Windows build succeeded and is open/responding at Builds/Windows-v0.3/ZeroToMillionaire.exe (PID24084, title ZERO TO MILLIONAIRE). EXE SHA25648efab523aa684c653bd1254a6962d3410127b5c02dc1310f6f16f4810666556. Initial launch preserved87cash/9spins/2owned. At closeout the user had actively reached120cash/18spins/7owned; preserve their current state, never restore an older observation. A forced close was avoided. After the user had already closed the player, the unchanged build was reopened (PID13084). Live gameplay changed fields before the after-load observation, so exact player-relaunch resource equality is unverified; preserve current state and never restore an old snapshot.
+Fresh v0.3 Windows build succeeded and was opened/responding at Builds/Windows-v0.3/ZeroToMillionaire.exe (PID24084, title ZERO TO MILLIONAIRE). EXE SHA25648efab523aa684c653bd1254a6962d3410127b5c02dc1310f6f16f4810666556. Initial launch preserved87cash/9spins/2owned. At closeout the user had actively reached120cash/18spins/7owned; preserve their current state, never restore an older observation. A forced close was avoided. After the user had already closed the player, the unchanged build was reopened (PID13084). Live gameplay changed fields before the after-load observation, so exact player-relaunch resource equality is unverified; preserve current state and never restore an old snapshot.
 
 Final checks:34,586 economy assertions/1000 completed seeds14-21spins median17;432,000 navigation samples;52 targeted offline session checks. Fresh rendered UI callback run completed16spins/8buys, with resource/repeat gates, save-before-cosmetics, menu, reset-cancel/confirm and free recovery. Three portrait sizes and all six matched reference stages were rendered. Actual Editor timing is recorded in Evidence/runtime-v0.3-qa.txt; it is not an Android benchmark.
 
@@ -51,3 +51,5 @@ Code is unchanged since the fresh QA/build; do not rebuild or repeat the broad l
 Run/edit paths and gameplay: README.md. Durable evidence: Evidence/windows-v0.3-startup.json, windows-v0.3-closeout.json, unity-model-checks.txt, runtime-v0.3-qa.txt, windows-v0.3-final-window.png and v0.3-six-reference-review.png. Library IDs and source archive hashes are stored locally in Deliverables/library-delivery.json.
 
 Keep only intended source, Unity .meta, docs, references and bounded QA evidence in local Git. Keep existing identity/signing configuration. Never push, publish, add monetization, reset user progress, remove the old C copy or delete prior builds/graphics. This file summarizes project state; it does not claim chat compaction.
+
+Final observation: the live player subsequently closed during user play. No repeated relaunch was attempted. Current user save is authoritative; never restore the older87/9/2 or120/18/7 observations.

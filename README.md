@@ -4,7 +4,7 @@ Offline portrait single-player Unity prototype. One fixed 3x3m (9m2) room starts
 
 ## Run
 
-Open Builds/Windows-v0.3/ZeroToMillionaire.exe, keeping its companion folders beside it. Canonical project: X:/Projects/ZERO-TO-MILLIONAIRE. The latest Windows build is already open on the connected computer. To edit, open the project with installed Unity6000.3.21f1 at X:/Programs/Unity/6000.3.21f1/Editor/Unity.exe; load Assets/Scenes/Level1.unity and press Play.
+Open Builds/Windows-v0.3/ZeroToMillionaire.exe, keeping its companion folders beside it. Canonical project: X:/Projects/ZERO-TO-MILLIONAIRE. The latest Windows build was launched and confirmed responding on this computer. The live window subsequently closed during user play; use the executable above to reopen it with the current save. To edit, open the project with installed Unity6000.3.21f1 at X:/Programs/Unity/6000.3.21f1/Editor/Unity.exe; load Assets/Scenes/Level1.unity and press Play.
 
 ## Play and balance
 
