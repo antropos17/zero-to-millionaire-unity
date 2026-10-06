@@ -1,0 +1,44 @@
+[
+  {
+    "run": "story-first",
+    "pid": 49944,
+    "frames": 674,
+    "cash": 170,
+    "storySeen": 0,
+    "dialogue": true,
+    "recovery": false,
+    "recoveryVisible": false,
+    "spinEnabled": true,
+    "normalExit": true,
+    "medianMs": 4.164699999999577,
+    "p95Ms": 4.7126000000004
+  },
+  {
+    "run": "story-relaunch",
+    "pid": 31364,
+    "frames": 736,
+    "cash": 170,
+    "storySeen": 0,
+    "dialogue": true,
+    "recovery": false,
+    "recoveryVisible": false,
+    "spinEnabled": true,
+    "normalExit": true,
+    "medianMs": 4.159399999999813,
+    "p95Ms": 4.807399999999795
+  },
+  {
+    "run": "future-blocked",
+    "pid": 46760,
+    "frames": 756,
+    "cash": 0,
+    "storySeen": 0,
+    "dialogue": false,
+    "recovery": true,
+    "recoveryVisible": true,
+    "spinEnabled": false,
+    "normalExit": true,
+    "medianMs": 4.168299999999903,
+    "p95Ms": 4.971700000000467
+  }
+]
