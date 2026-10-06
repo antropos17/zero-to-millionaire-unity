@@ -1,0 +1,138 @@
+{
+    "development": false,
+    "qaHooksPresent": false,
+    "automatedHarnessPresent": false,
+    "profileVerified": true,
+    "recoveryRequired": false,
+    "recoveryVisible": false,
+    "actualSavePath": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\native-v06-motion-checkpoint\\story-save\\level1-v1.json",
+    "unity": "6000.3.21f1",
+    "graphicsApi": "Direct3D11",
+    "questTitle": "ПОКЛЕИТЬ ОБОИ",
+    "questStatus": "ЗАДАНИЕ 3/8 • НУЖНЫ ФР.",
+    "dialogueText": "У комнаты появилась основа. Теперь легче представить, какой она станет.",
+    "dialogueVisible": true,
+    "tutorialStep": -1,
+    "taskCashPrice": 155,
+    "taskFragmentGoal": 38,
+    "firstFrame": 1,
+    "lastFrame": 9337,
+    "samples": 9336,
+    "width": 480,
+    "height": 960,
+    "owned": 2,
+    "activeQuest": 2,
+    "drawCounterNonzero": 0,
+    "seconds": 3.5517313999999997,
+    "medianMs": 0.28649999999963429,
+    "p95Ms": 0.6624999999989001,
+    "p99Ms": 1.875200000000632,
+    "maxMs": 230.89970000000018,
+    "distance": 0.757936418056488,
+    "complete": false,
+    "spinEnabled": true,
+    "buyEnabled": false,
+    "state": {
+        "version": 5,
+        "cash": 170,
+        "freeSpins": 3,
+        "spins": 15,
+        "recoveries": 0,
+        "heroineU": 1.2677377462387086,
+        "heroineV": 0.9647812843322754,
+        "fragments": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "purchased": [
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "lastGrid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "quests": [
+            {
+                "id": "floor-patches",
+                "status": 3,
+                "cashPrice": 60,
+                "fragmentGoal": 20
+            },
+            {
+                "id": "surface-repair",
+                "status": 3,
+                "cashPrice": 115,
+                "fragmentGoal": 30
+            },
+            {
+                "id": "cheap-wallpaper",
+                "status": 1,
+                "cashPrice": 155,
+                "fragmentGoal": 38
+            },
+            {
+                "id": "door-repair",
+                "status": 0,
+                "cashPrice": 195,
+                "fragmentGoal": 44
+            },
+            {
+                "id": "window-repair",
+                "status": 0,
+                "cashPrice": 235,
+                "fragmentGoal": 50
+            },
+            {
+                "id": "first-mattress",
+                "status": 0,
+                "cashPrice": 300,
+                "fragmentGoal": 58
+            },
+            {
+                "id": "small-lamp",
+                "status": 0,
+                "cashPrice": 315,
+                "fragmentGoal": 62
+            },
+            {
+                "id": "wooden-stool",
+                "status": 0,
+                "cashPrice": 355,
+                "fragmentGoal": 70
+            }
+        ],
+        "tutorial": {
+            "version": 1,
+            "step": 0,
+            "storySeenMask": 0,
+            "completed": true,
+            "skipped": false
+        }
+    }
+}

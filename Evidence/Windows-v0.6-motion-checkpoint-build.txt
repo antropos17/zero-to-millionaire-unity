@@ -1,0 +1,6 @@
+Succeeded
+source=d425e9b69fe823948bfb7f71f0f304e1b9a3ff5f
+options=None
+target=StandaloneWindows64
+bytes=104593198
+duration=00:00:15.5117843
