@@ -1,0 +1,10 @@
+{
+  "decoded_frames": 144,
+  "duration_ms": 12000,
+  "actual_source_frames": 144,
+  "source_seconds": 12.002,
+  "source_frame_advance": 603,
+  "bytes": 12875808,
+  "sha256": "a3eb0739458138e3f2b84d38cb3818139d2fb356361dfc8a2778e3f436dafdee",
+  "limitation": "Editor diagnostic12Hz, fixed crop; not nativeFPS and routes differ after neutralturn fix."
+}

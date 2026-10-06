@@ -48,10 +48,11 @@ namespace ZeroToMillionaire
         private RoomWanderer wanderer;
         private HeroineVisual heroine;
         private int drawnRoom = -1;
+        private int drawnQuest=-2,drawnQuestCash=-1,drawnQuestParts=-1,drawnQuestNext=-2;
         private readonly List<RoomLayer> roomLayers = new List<RoomLayer>();
         private int lastDepthBand = -1;
         private sealed class RoomLayer
-        { public VisualElement Element; public float Depth; }
+        { public VisualElement Element; public float Depth; public bool Mattress; }
         private int page;
         private VisualElement header, pathbar, grid, spinRow, settings, toast, completion;
         private Label betLabel, freeLabel;
@@ -318,34 +319,48 @@ namespace ZeroToMillionaire
             image.style.left = Length.Percent((RoomGeometry.PixelX(feet) - width / 2) / 512 * 100);
             image.style.top = Length.Percent((floorFront - height * pivotY) / 512 * 100);
             image.style.width = Length.Percent(width / 512 * 100); image.style.height = Length.Percent(height / 512 * 100);
-            roomStage.Add(image); roomLayers.Add(new RoomLayer { Element = image, Depth = RoomGeometry.PixelY(feet) + (filename.StartsWith("mattress") ? 37 : 5) });
+            roomStage.Add(image); roomLayers.Add(new RoomLayer { Element = image, Mattress=filename.StartsWith("mattress"), Depth = RoomGeometry.PixelY(feet) + (filename.StartsWith("mattress") ? 37 : 5) });
         }
         void Update()
         {
             if (toast != null && Time.unscaledTime > toastUntil) HideToast();
             UpdateRewardFlight();
             if (wanderer == null || model == null || heroine == null) return;
-            if(heroine.HoldWalk)wanderer.HoldForTurn();else wanderer.Step(Time.unscaledDeltaTime);
+            #if UNITY_EDITOR || DEVELOPMENT_BUILD
+            using(NativeMetrics.Navigation.Auto())
+#endif
+            {if(heroine.HoldWalk)wanderer.HoldForTurn();else wanderer.Step(Time.unscaledDeltaTime);}
             session.SetHeroinePosition(wanderer.Position);
             UpdateHeroine();
         }
         void UpdateHeroine()
         {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            using(NativeMetrics.Pose.Auto())
+#endif
+            {
             if (heroine == null || wanderer == null) return;
             FloorPoint feet = wanderer.Position;
             heroine.SetPose(feet, wanderer.Delta, wanderer.Walking, wanderer.Travelled);
             float depth = RoomGeometry.PixelY(feet);
-            int band = 0; foreach (var layer in roomLayers) if (layer.Depth < depth) band++;
+            bool frontOfBed=feet.U>RoomGeometry.Obstacles[1].U1+RoomGeometry.FootRadius&&feet.V>=RoomGeometry.Obstacles[1].V0-RoomGeometry.FootRadius;
+            int band = frontOfBed?16:0; foreach (var layer in roomLayers) if (layer.Depth < depth) band++;
             if (lastDepthBand == band) return;
             lastDepthBand = band;
             roomLayers.Sort((a, b) => a.Depth.CompareTo(b.Depth));
             bool added = false;
+            // The long bed has a footprint: its far corner must not hide a
+            // person standing beside its exposed right/front edge.
+            if(frontOfBed)foreach(var layer in roomLayers)if(layer.Mattress)layer.Element.BringToFront();
             foreach (var layer in roomLayers)
             {
+                if(frontOfBed&&layer.Mattress)continue;
                 if (!added && depth < layer.Depth) { heroine.Root.BringToFront(); added = true; }
                 layer.Element.BringToFront();
             }
             if (!added) heroine.Root.BringToFront();
+
+            }
         }
         void SizeRoomStage()
         {
@@ -378,6 +393,10 @@ namespace ZeroToMillionaire
 
         void Refresh()
         {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            using(NativeMetrics.Refresh.Auto())
+#endif
+            {
             PlayerState s=model.Snapshot;
             feedbackHint.text=model.Complete?"YOUR ROOM IS COMPLETE":"1 ICON = 1 PART  |  BUY USES PARTS + CASH";
             cashLabel.text=s.cash.ToString();cashLabel.style.fontSize=s.cash.ToString().Length>6?16:26;
@@ -399,10 +418,28 @@ namespace ZeroToMillionaire
             DrawRoom(s);DrawQuest(s);
             int[] pool=model.ActivePool;for(int i=0;i<cells.Length;i++)SetCell(i,s.spins>0?s.lastGrid[i]:pool[i%pool.Length]);
             ApplySafeArea();
+
+            }
         }
         void DrawQuest(PlayerState s)
         {
-            upgradeRows.Clear();int index=model.ActiveQuest;
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            using(NativeMetrics.Quest.Auto())
+#endif
+            {
+            int index=model.ActiveQuest,nextIndex=model.NextQuest;
+            int currentParts=index<0?0:s.fragments[index];
+            if(index==drawnQuest&&s.cash==drawnQuestCash&&currentParts==drawnQuestParts&&nextIndex==drawnQuestNext){
+                if(index>=0){
+                    var cachedDefinition=Economy.Upgrades[index];bool cachedReady=model.CanBuy(index);
+                    string cachedNeed=spinning?"RESOLVING SPIN":cachedReady?"READY TO INSTALL":currentParts>=cachedDefinition.FragmentGoal?"NEED CASH":s.cash>=cachedDefinition.CashPrice?"COLLECT PARTS":"PARTS + CASH";
+                    upgradeRows.Q<Label>("quest-status").text="TASK "+(index+1)+"/8  -  "+cachedNeed;
+                    upgradeRows.Q<Button>("buy-"+index).SetEnabled(!spinning&&cachedReady);
+                }
+                return;
+            }
+            drawnQuest=index;drawnQuestCash=s.cash;drawnQuestParts=currentParts;drawnQuestNext=nextIndex;
+            upgradeRows.Clear();
             if(index<0){
                 var done=Text("8/8 TASKS DONE",14,Forest);done.style.height=21;done.style.unityTextAlign=TextAnchor.MiddleCenter;upgradeRows.Add(done);
                 completion=Frame("completion",PixelUi.Finish.Forest);completion.style.height=44;
@@ -434,11 +471,13 @@ namespace ZeroToMillionaire
             buy.style.width=77;buy.style.height=48;buy.style.flexShrink=0;buy.style.paddingLeft=buy.style.paddingRight=2;
             var caption=buy.Q<Label>("button-caption");caption.style.fontSize=12;caption.style.whiteSpace=WhiteSpace.Normal;
             buy.SetEnabled(!spinning&&ready);row.Add(buy);upgradeRows.Add(row);
-            int nextIndex=model.NextQuest;var preview=new VisualElement{name="next-quest"};Row(preview);preview.style.height=24;
+            var preview=new VisualElement{name="next-quest"};Row(preview);preview.style.height=24;
             preview.style.borderTopWidth=1;preview.style.borderTopColor=Sand;
             if(nextIndex>=0){preview.Add(Icon(reelTextures[nextIndex+1],21));var nextTitle=Text("NEXT: "+Economy.Upgrades[nextIndex].ActionTitle.ToUpperInvariant(),12,Forest);nextTitle.style.flexGrow=1;preview.Add(nextTitle);preview.Add(Text("LOCKED",10,Forest));}
             else{var final=Text("FINAL TASK - FINISH YOUR ROOM",11,Forest);preview.Add(final);}
             upgradeRows.Add(preview);
+
+            }
         }
         void StartRewardFlight(SpinResult result)
         {
@@ -462,12 +501,18 @@ namespace ZeroToMillionaire
         }
         void SetCell(int i, int symbol)
         {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            using(NativeMetrics.Cell.Auto())
+#endif
+            {
             cells[i].Clear();
             SymbolVisual.SetTexture(cells[i],reelTextures[symbol]);
             if (reelTextures[symbol] == null)
             {
                 var label = Text(symbolNames[symbol], 11, Cream); label.style.height = Length.Percent(100);
                 label.style.unityTextAlign = TextAnchor.MiddleCenter; cells[i].Add(label);
+            }
+
             }
         }
         void BeginSpin()
@@ -520,7 +565,7 @@ namespace ZeroToMillionaire
         }
         void OnApplicationPause(bool paused) { if (paused && model != null) Persist(); }
         void OnApplicationQuit() { if (model != null) Persist(); }
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
         public void SetQaState(PlayerState state, int upgradePage)
         { HideReset();HideSettings();HideToast();rewardPending=false;rewardFly.style.display=DisplayStyle.None;PixelUi.SetPressed(spinButton,false);random=new SeededRandom(57);session=new GameSession(saves,new SeededRandom(57),state); wanderer = new RoomWanderer(new FloorPoint(state.heroineU, state.heroineV), new SeededRandom(57)); drawnRoom = -1; page = upgradePage; spinning = false; statusLabel.text = ""; Refresh(); }
         public void QaClick(string name)

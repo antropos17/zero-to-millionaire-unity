@@ -1,0 +1,68 @@
+category,name,unit,selected
+"Render","UIR.DrawChain",TimeNanoseconds,True
+"Render","UIR.DrawRanges",TimeNanoseconds,True
+"Render","UIR.Job.CopyMesh",TimeNanoseconds,True
+"Render","UIR.Job.ConvertMesh",TimeNanoseconds,True
+"Render","UIR.Job.Nudge",TimeNanoseconds,True
+"Render","Gfx.WaitForPresentOnGfxThread",TimeNanoseconds,True
+"Memory","GC.Alloc",TimeNanoseconds,False
+"Internal","Main Thread",TimeNanoseconds,True
+"PlayerLoop","PlayerLoop",TimeNanoseconds,True
+"VSync","WaitForTargetFPS",TimeNanoseconds,True
+"Memory","System Used Memory",Bytes,True
+"Memory","Total Used Memory",Bytes,True
+"Memory","Total Reserved Memory",Bytes,True
+"Memory","GC Used Memory",Bytes,True
+"Memory","GC Reserved Memory",Bytes,True
+"Memory","GC Allocated In Frame",Bytes,True
+"Render","Batches Count",Count,True
+"Render","Draw Calls Count",Count,True
+"Render","Vertices Count",Count,True
+"Render","CPU Total Frame Time",TimeNanoseconds,True
+"Render","CPU Main Thread Frame Time",TimeNanoseconds,True
+"Render","CPU Render Thread Frame Time",TimeNanoseconds,True
+"Render","GPU Frame Time",TimeNanoseconds,True
+"Scripts","InitializeUIElementsManaged",TimeNanoseconds,False
+"Scripts","UIElements.CollectLayoutNodes",TimeNanoseconds,True
+"Scripts","UIElementsUtility.DoDispatch(Repaint Event)",TimeNanoseconds,False
+"Scripts","UIElementsUtility.DoDispatch(Non Repaint Event)",TimeNanoseconds,False
+"Scripts","UIElements.PickAll",TimeNanoseconds,True
+"Scripts","UIElements.UpdateEditorBindings",TimeNanoseconds,True
+"Scripts","UIElements.UpdateRuntimeBindings",TimeNanoseconds,True
+"Scripts","UIElements.UpdateAnimation",TimeNanoseconds,True
+"Scripts","UIElements.UpdateAnimationProperties",TimeNanoseconds,True
+"Scripts","UIElements.UpdateStyle",TimeNanoseconds,True
+"Scripts","UIElements.UpdateLayout",TimeNanoseconds,True
+"Scripts","UIElements.UpdateElementBounds",TimeNanoseconds,True
+"Scripts","UIElements.UpdateRenderData",TimeNanoseconds,True
+"Scripts","UIR.RaiseEngineUpdate",TimeNanoseconds,True
+"Scripts","ZTM.Navigation",TimeNanoseconds,True
+"Scripts","ZTM.PoseAndDepth",TimeNanoseconds,True
+"Scripts","ZTM.Refresh",TimeNanoseconds,True
+"Scripts","ZTM.DrawQuest",TimeNanoseconds,True
+"Scripts","ZTM.SetCell",TimeNanoseconds,True
+"PlayerLoop","PreLateUpdate.UIElementsUpdatePanels",TimeNanoseconds,False
+"Scripts","UIR.Allocate",TimeNanoseconds,True
+"Scripts","UIR.Free",TimeNanoseconds,True
+"Scripts","UIR.AdvanceFrame",TimeNanoseconds,True
+"Scripts","UIR.WaitOnFence",TimeNanoseconds,True
+"Scripts","UIR.BeforeDraw",TimeNanoseconds,True
+"Scripts","UIR.ComputeTransformMatrix",TimeNanoseconds,True
+"PlayerLoop","PostLateUpdate.UIElementsRepaintPanels",TimeNanoseconds,False
+"Scripts","UIR.VectorImageManager.Register",TimeNanoseconds,True
+"Scripts","UIR.VectorImageManager.Unregister",TimeNanoseconds,True
+"Scripts","UIR.GradientSettingsAtlas.Write",TimeNanoseconds,True
+"Scripts","UIR.GradientSettingsAtlas.Commit",TimeNanoseconds,True
+"Scripts","UIR.GenerateEntries",TimeNanoseconds,True
+"Scripts","UIR.ConvertEntriesToCommands",TimeNanoseconds,True
+"Scripts","UIR.UpdateOpacityId",TimeNanoseconds,True
+"Scripts","UIR.MeshGenerationContext.Allocate",TimeNanoseconds,True
+"Scripts","UIR.MeshGenerationContext.DrawVectorImage",TimeNanoseconds,True
+"Scripts","UIR.NudgeVertices",TimeNanoseconds,True
+"Scripts","UIR.ShaderInfoStorage.CopyTexture",TimeNanoseconds,True
+"Scripts","UIR.ShaderInfoStorage.GetTextureData",TimeNanoseconds,False
+"Scripts","UIR.ShaderInfoStorage.UpdateTexture",TimeNanoseconds,False
+"Scripts","UIR.ImmediateOverhead",TimeNanoseconds,False
+"Scripts","UIR.TextureBlitter.Commit",TimeNanoseconds,False
+"PlayerLoop","PostLateUpdate.UIElementsRenderBatchModeOffscreen",TimeNanoseconds,False
+"PlayerLoop","UIEvents.UIElementsRenderOffscreenPanels",TimeNanoseconds,False

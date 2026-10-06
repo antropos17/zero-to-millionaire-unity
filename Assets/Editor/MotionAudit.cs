@@ -18,6 +18,8 @@ namespace ZeroToMillionaire.Editor
         static readonly List<string> samples=new List<string>();
         static string Root=>Directory.GetParent(Application.dataPath).FullName;
         static MotionAudit(){EditorApplication.update+=Tick;}
+        static string Prefix=>SessionState.GetString(Tag,"")=="v0.4d"?"motion-v0.4d":"motion-v0.4c-"+SessionState.GetString(Tag,"unknown");
+        public static void Current(){Start("v0.4d");}
         public static void Before(){Start("before");}
         public static void After(){Start("after");}
         static void Start(string tag)
@@ -40,7 +42,7 @@ namespace ZeroToMillionaire.Editor
                     view.SetQaState(state,3);previous=view.QaFeet;firstFrame=Time.frameCount;
                 }
                 if(++warm<30)return;
-                if(SessionState.GetString(Tag,"")=="after"){var rig=view.GetComponent<UIDocument>().rootVisualElement.Q<VisualElement>("articulated-upper-body");if(rig==null||rig.Query<Image>().ToList().Count!=6)throw new Exception("Upper rig missing");foreach(var picture in rig.Query<Image>().ToList())if(picture.image==null||picture.worldBound.height<1)throw new Exception("Actual upper image not rendered");}
+                if(SessionState.GetString(Tag,"")!="before"){var rig=view.GetComponent<UIDocument>().rootVisualElement.Q<VisualElement>("articulated-upper-body");if(rig==null||rig.Query<Image>().ToList().Count!=6)throw new Exception("Upper rig missing");foreach(var picture in rig.Query<Image>().ToList())if(picture.image==null||picture.worldBound.height<1)throw new Exception("Actual upper image not rendered");}
                 if(started==0){started=EditorApplication.timeSinceStartup;next=started;}
                 float moved=FloorPoint.Distance(previous,view.QaFeet);distance+=moved;previous=view.QaFeet;
                 if(!RoomGeometry.IsFree(view.QaFeet))throw new Exception("Feet intersect reserved geometry");
@@ -52,16 +54,16 @@ namespace ZeroToMillionaire.Editor
                 armAngles.Add((int)Math.Round(leftArm*10));
                 double now=EditorApplication.timeSinceStartup;
                 if(now>=next){
-                    string tag=SessionState.GetString(Tag,"unknown");string folder=Path.Combine(Root,".tooling","motion-v0.4c-"+tag);
+                    string tag=SessionState.GetString(Tag,"unknown");string folder=Path.Combine(Root,".tooling",Prefix);
                     Directory.CreateDirectory(folder);File.WriteAllBytes(Path.Combine(folder,captured.ToString("D4")+".png"),Read());
                     samples.Add((now-started).ToString("F4",System.Globalization.CultureInfo.InvariantCulture));
                     captured++;next=now+1.0/12;
                 }
                 if(now-started<12)return;
-                if(SessionState.GetString(Tag,"")=="after"&&(armAngles.Count<20||!turningSeen||maxJointGap>1))throw new Exception("Arm/turn/joint check failed: angles"+armAngles.Count+" turning"+turningSeen+" gap"+maxJointGap);
+                if(SessionState.GetString(Tag,"")!="before"&&(armAngles.Count<20||!turningSeen||maxJointGap>1))throw new Exception("Arm/turn/joint check failed: angles"+armAngles.Count+" turning"+turningSeen+" gap"+maxJointGap);
                 if(lastFrame-firstFrame<100||captured<65||distance<1||!phases.Contains(-1))throw new Exception("No real advancing walk/idle capture");
                 string report="{\"tag\":\""+SessionState.GetString(Tag,"unknown")+"\",\"width\":480,\"height\":960,\"seconds\":"+(now-started).ToString("F3",System.Globalization.CultureInfo.InvariantCulture)+",\"captured\":"+captured+",\"first_frame\":"+firstFrame+",\"last_frame\":"+lastFrame+",\"distance_m\":"+distance.ToString("F3",System.Globalization.CultureInfo.InvariantCulture)+",\"idle_seen\":true,\"feet_clear\":true,\"turning_seen\":"+turningSeen.ToString().ToLowerInvariant()+",\"arm_angle_bins\":"+armAngles.Count+",\"max_joint_gap_ui_units\":"+maxJointGap.ToString("F4",System.Globalization.CultureInfo.InvariantCulture)+",\"capture_times\":["+string.Join(",",samples)+"]}";
-                File.WriteAllText(Path.Combine(Root,"Evidence","motion-v0.4c-"+SessionState.GetString(Tag,"unknown")+".json"),report);
+                File.WriteAllText(Path.Combine(Root,"Evidence",Prefix+".json"),report);
                 Finish();Debug.Log("MOTION_AUDIT_PASS "+report);
             }catch(Exception e){Debug.LogException(e);File.WriteAllText(Path.Combine(Root,".tooling","motion-audit-error.txt"),e.ToString());Finish();}
         }

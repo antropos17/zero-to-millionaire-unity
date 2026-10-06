@@ -176,3 +176,16 @@ Current SPIN/manualBUY clip132captures,11.002s,frameCount78..628,2.193m;
 repeatedspin/buy,reload,completedhint,resetcancel/confirm passed privately.
 Existing v0.3 Player46276 kept responding and brought foreground on owner
 request 10:09UTC. No fresh native build or native Profiler result this slice.
+
+## Slice4 native checkpoint v0.4d
+
+See NATIVE_PERFORMANCE_AUDIT.md and native-v0.4d-* evidence. Slice3 committed
+102b85a0d0af774a33a5157fcec53cb8f418f7a9. Three bounded reviewer visual fixes
+precede all valid native measurements. Rejected hidden/IME/early-show attempts
+remain privately under .tooling, excluded from benchmarks. Valid baseline/trace
+and optimized Development Players rendered all phases, private saves unchanged
+actual userhash;16spins/8buys/25guards each. Measured quest-cache allocation
+reduction 21.76%; timing limits/no physicaltouch/release/Android
+claims documented. RawProfiler imported596 mainthreadframes. All applicable
+model/session/walk/migration/UIchecks and finalUIcallback run passed. No native
+Player left running; original46276 preserved. Finalreleasewindow13:15..14:05UTC.

@@ -1,0 +1,45 @@
+{
+  "cause": "Source skin alpha is252..253; exact255 test removed two forearm overlap rows. Restored source-only elbow overlap, retained outer outline and original alpha.",
+  "parts": [
+    {
+      "name": "front-rig-fore-left.png",
+      "source_alpha_rows_restored": [
+        87,
+        88
+      ],
+      "pixels": 20,
+      "rgb_source_unchanged": true,
+      "sha256": "71f1e61befc99aecd7aaaa15eff39ab7d3cded2ed1cda7116168e90a4dbef28d"
+    },
+    {
+      "name": "front-rig-fore-right.png",
+      "source_alpha_rows_restored": [
+        87,
+        88
+      ],
+      "pixels": 9,
+      "rgb_source_unchanged": true,
+      "sha256": "4cc0f721e7993bf02f2259748d2d853ae4b799569ccab76fcb419849590bc15b"
+    },
+    {
+      "name": "back-rig-fore-left.png",
+      "source_alpha_rows_restored": [
+        87,
+        88
+      ],
+      "pixels": 16,
+      "rgb_source_unchanged": true,
+      "sha256": "8e64ba1074f73d0b3bdca6ceae4266d3867cab41f70fe0770afae2e31574089f"
+    },
+    {
+      "name": "back-rig-fore-right.png",
+      "source_alpha_rows_restored": [
+        87,
+        88
+      ],
+      "pixels": 20,
+      "rgb_source_unchanged": true,
+      "sha256": "46e4fd3b0cca4012f5c95075f90e57bcf8e0000e814ca5644820438cbbdd5304"
+    }
+  ]
+}

@@ -58,7 +58,7 @@ namespace ZeroToMillionaire
         public void SetPose(FloorPoint feet,FloorPoint delta,bool walking,float distance)
         {
             float dt=Mathf.Clamp(Time.unscaledDeltaTime,0,.1f);
-            strength=Mathf.MoveTowards(strength,walking&&!turning?1:0,dt*4);
+            strength=Mathf.MoveTowards(strength,walking&&!turning?1:0,dt*(turning?12:4));
             Vector2 move=new Vector2((delta.U-delta.V)*68,(delta.U+delta.V)*100f/3);
             if(walking&&move.sqrMagnitude>.00001f)heading=Vector2.Lerp(heading,move.normalized,1-Mathf.Exp(-dt*12)).normalized;
             float cycle=Mathf.Repeat(distance/.72f,1);
@@ -70,8 +70,8 @@ namespace ZeroToMillionaire
                 }else faceWait=0;
             }
             if(turning){turnTime+=dt;
-                if(!turnSwitched&&turnTime>=.20f){back=pendingBack;left=pendingLeft;turnSwitched=true;foreach(var leg in legs)leg.Initialized=false;}
-                if(turnTime>=.36f){turning=false;turnTime=0;}
+                if(!turnSwitched&&turnTime>=.20f&&strength<=.02f){strength=0;back=pendingBack;left=pendingLeft;turnSwitched=true;foreach(var leg in legs)leg.Initialized=false;}
+                if(turnSwitched&&turnTime>=.36f){turning=false;turnTime=0;}
             }
             Root.style.left=Length.Percent((RoomGeometry.PixelX(feet)-CanvasWidth/2)/512*100);
             Root.style.top=Length.Percent((RoomGeometry.PixelY(feet)-178f/192*CanvasHeight)/512*100);

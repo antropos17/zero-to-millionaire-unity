@@ -1,0 +1,2357 @@
+{
+  "run": "rendered-normal-baseline",
+  "manifest": {
+    "unity": "6000.3.21f1",
+    "os": "Windows 11  (10.0.26200)",
+    "cpu": "Intel(R) Core(TM) Ultra 9 185H",
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "graphicsApi": "Direct3D11",
+    "gpuDriver": "Direct3D 11.0 [level 11.1]",
+    "savePath": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\perf-v0.4d-rendered-normal-baseline\\save\\level1-v1.json",
+    "persistentPath": "C:/Users/murtu/AppData/LocalLow/PrototypeWorkspace/ZERO TO MILLIONAIRE",
+    "counterTiming": "ProfilerRecorder.LastValue is the completed preceding frame; wall interval uses Stopwatch timestamps. CSV frame labels the preceding frame.",
+    "input": "UIDocument NavigationSubmitEvent callbacks, repeated attempts; no physical touch or hardware input claim.",
+    "workload": "5s warm,10s idle walk,20s seeded continuous spin/manual purchase,5s ready final quest,10s completed walk,10s portrait resize360x640 then540x1080.",
+    "sourceCommit": "102b85a+documented-v0.4d-current-rendered",
+    "startedUtc": "2026-10-06T10:38:38.7448340Z",
+    "cpuCount": 22,
+    "ramMb": 32173,
+    "width": 480,
+    "height": 960,
+    "targetFrameRate": 60,
+    "vsync": 0,
+    "originalVsync": 1,
+    "originalTarget": 60,
+    "quality": 5,
+    "firstFrame": 82,
+    "lastFrame": 3672,
+    "sampleCount": 3591,
+    "spins": 16,
+    "purchases": 8,
+    "repeatChecks": 25,
+    "development": true,
+    "traceRequested": false,
+    "traceStarted": false,
+    "traceStopped": false,
+    "finished": true,
+    "privateProfileVerified": true,
+    "fullCompletion": true,
+    "reloadVerified": true,
+    "resizeFit": true,
+    "feetClear": true,
+    "travelMetres": 13.70837688446045,
+    "seconds": 60.006822899999996
+  },
+  "phases": {
+    "idle_walk": {
+      "frames": 600,
+      "frame_intervals_ms": {
+        "n": 600,
+        "mean": 16.672713833333333,
+        "median": 16.6596,
+        "p95": 17.538944999999995,
+        "p99": 18.332973999999997,
+        "max": 19.7886,
+        "min": 14.4125
+      },
+      "over33_333ms": 0,
+      "over50ms": 0,
+      "metrics": {
+        "UIR.DrawChain [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.10972583333333333,
+          "median": 0.0977,
+          "p95": 0.1709949999999999,
+          "p99": 0.28544499999999995,
+          "max": 0.8149,
+          "min": 0.0643,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIR.DrawRanges [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.014551166666666665,
+          "median": 0.0129,
+          "p95": 0.024304999999999993,
+          "p99": 0.04301899999999998,
+          "max": 0.0688,
+          "min": 0.006699999999999999,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIR.Job.CopyMesh [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.Job.ConvertMesh [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.005105166666666667,
+          "median": 0.0033,
+          "p95": 0.017304999999999994,
+          "p99": 0.02651099999999999,
+          "max": 0.047,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 371
+        },
+        "UIR.Job.Nudge [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.006147,
+          "median": 0.0045,
+          "p95": 0.015204999999999995,
+          "p99": 0.036634999999999966,
+          "max": 0.055,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 596
+        },
+        "Gfx.WaitForPresentOnGfxThread [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.0033451666666666664,
+          "median": 0.0031,
+          "p95": 0.004399999999999999,
+          "p99": 0.005502999999999997,
+          "max": 0.0626,
+          "min": 0.0015,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "Main Thread [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 16.659550166666666,
+          "median": 16.6566,
+          "p95": 17.478874999999995,
+          "p99": 18.013671999999996,
+          "max": 18.2287,
+          "min": 15.272499999999999,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "PlayerLoop [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 16.647591166666665,
+          "median": 16.64685,
+          "p95": 17.469429999999996,
+          "p99": 18.003502,
+          "max": 18.2172,
+          "min": 15.2617,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "WaitForTargetFPS [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 15.134715499999999,
+          "median": 15.198049999999999,
+          "p95": 15.83084,
+          "p99": 15.90588,
+          "max": 16.2405,
+          "min": 11.4679,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "System Used Memory [Bytes]": {
+          "n": 600,
+          "mean": 308643621.5466667,
+          "median": 308723712.0,
+          "p95": 313025331.2,
+          "p99": 313462784.0,
+          "max": 317108224.0,
+          "min": 303108096.0,
+          "unit": "Bytes",
+          "nonzero_frames": 600
+        },
+        "Total Used Memory [Bytes]": {
+          "n": 600,
+          "mean": 149802535.61166668,
+          "median": 149802307.0,
+          "p95": 149806403.0,
+          "p99": 149806442.0,
+          "max": 149806482.0,
+          "min": 149796215.0,
+          "unit": "Bytes",
+          "nonzero_frames": 600
+        },
+        "Total Reserved Memory [Bytes]": {
+          "n": 600,
+          "mean": 282278277.0,
+          "median": 282278277.0,
+          "p95": 282278277.0,
+          "p99": 282278277.0,
+          "max": 282278277.0,
+          "min": 282278277.0,
+          "unit": "Bytes",
+          "nonzero_frames": 600
+        },
+        "GC Used Memory [Bytes]": {
+          "n": 600,
+          "mean": 10355022.506666666,
+          "median": 10354688.0,
+          "p95": 10358784.0,
+          "p99": 10358784.0,
+          "max": 10358784.0,
+          "min": 10354688.0,
+          "unit": "Bytes",
+          "nonzero_frames": 600
+        },
+        "GC Reserved Memory [Bytes]": {
+          "n": 600,
+          "mean": 13754368.0,
+          "median": 13754368.0,
+          "p95": 13754368.0,
+          "p99": 13754368.0,
+          "max": 13754368.0,
+          "min": 13754368.0,
+          "unit": "Bytes",
+          "nonzero_frames": 600
+        },
+        "GC Allocated In Frame [Bytes]": {
+          "n": 600,
+          "mean": 14.106666666666667,
+          "median": 0.0,
+          "p95": 0.0,
+          "p99": 104.39999999999964,
+          "max": 4048.0,
+          "min": 0.0,
+          "unit": "Bytes",
+          "nonzero_frames": 14,
+          "total_bytes": 8464
+        },
+        "Batches Count [Count]": {
+          "n": 600,
+          "mean": 7.361666666666666,
+          "median": 7.0,
+          "p95": 9.0,
+          "p99": 11.0,
+          "max": 11.0,
+          "min": 7.0,
+          "unit": "Count",
+          "nonzero_frames": 600
+        },
+        "Draw Calls Count [Count]": {
+          "n": 600,
+          "mean": 15.863333333333333,
+          "median": 18.0,
+          "p95": 18.0,
+          "p99": 18.0,
+          "max": 18.0,
+          "min": 11.0,
+          "unit": "Count",
+          "nonzero_frames": 600
+        },
+        "Vertices Count [Count]": {
+          "n": 600,
+          "mean": 8929.886666666667,
+          "median": 8928.0,
+          "p95": 8928.0,
+          "p99": 8956.68,
+          "max": 9048.0,
+          "min": 8928.0,
+          "unit": "Count",
+          "nonzero_frames": 600
+        },
+        "CPU Total Frame Time [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 16.672381118333334,
+          "median": 16.66605,
+          "p95": 17.507509999999996,
+          "p99": 18.07068,
+          "max": 18.358999999999998,
+          "min": 15.2858,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "CPU Main Thread Frame Time [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 1.5048348116666668,
+          "median": 1.4519,
+          "p95": 2.5096899999999978,
+          "p99": 3.0492289999999995,
+          "max": 4.5541,
+          "min": 0.7067,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "CPU Render Thread Frame Time [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.18627832833333333,
+          "median": 0.17845,
+          "p95": 0.2623149999999999,
+          "p99": 0.335653,
+          "max": 0.5799,
+          "min": 0.0838,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "GPU Frame Time [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.3834470383333333,
+          "median": 0.32972799999999997,
+          "p95": 0.38830079999999983,
+          "p99": 2.0712959999999994,
+          "max": 2.494464,
+          "min": 0.280576,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.CollectLayoutNodes [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.0008588333333333333,
+          "median": 0.0007999999999999999,
+          "p95": 0.0013,
+          "p99": 0.0015,
+          "max": 0.0034,
+          "min": 0.0005,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.PickAll [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIElements.UpdateEditorBindings [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.002149666666666667,
+          "median": 0.0021,
+          "p95": 0.0026999999999999997,
+          "p99": 0.0033,
+          "max": 0.014799999999999999,
+          "min": 0.0015,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.UpdateRuntimeBindings [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.005177666666666666,
+          "median": 0.00475,
+          "p95": 0.0076049999999999954,
+          "p99": 0.0086,
+          "max": 0.012499999999999999,
+          "min": 0.0038,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.UpdateAnimation [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.0017794999999999998,
+          "median": 0.0015,
+          "p95": 0.0021999999999999997,
+          "p99": 0.0028009999999999992,
+          "max": 0.09409999999999999,
+          "min": 0.001,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.UpdateAnimationProperties [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.00040066666666666663,
+          "median": 0.0003,
+          "p95": 0.0005,
+          "p99": 0.000600999999999999,
+          "max": 0.0213,
+          "min": 0.00019999999999999998,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.UpdateStyle [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.0007393333333333333,
+          "median": 0.0007,
+          "p95": 0.001,
+          "p99": 0.0013,
+          "max": 0.0168,
+          "min": 0.00019999999999999998,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.UpdateLayout [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.06897916666666666,
+          "median": 0.0887,
+          "p95": 0.15193499999999996,
+          "p99": 0.1888989999999999,
+          "max": 0.2907,
+          "min": 0.0028,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.UpdateElementBounds [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.0076295,
+          "median": 0.0073999999999999995,
+          "p95": 0.0109,
+          "p99": 0.012403999999999997,
+          "max": 0.0482,
+          "min": 0.0042,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.UpdateRenderData [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.3965706666666666,
+          "median": 0.4075,
+          "p95": 0.7418199999999997,
+          "p99": 0.907705,
+          "max": 1.0794,
+          "min": 0.1103,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIR.RaiseEngineUpdate [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "ZTM.Navigation [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.004604166666666666,
+          "median": 0.00505,
+          "p95": 0.0076049999999999954,
+          "p99": 0.009401,
+          "max": 0.148,
+          "min": 0.0006,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "ZTM.PoseAndDepth [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.09532399999999999,
+          "median": 0.08929999999999999,
+          "p95": 0.15792499999999987,
+          "p99": 0.20763799999999993,
+          "max": 0.35009999999999997,
+          "min": 0.0566,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "ZTM.Refresh [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "ZTM.DrawQuest [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "ZTM.SetCell [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.Allocate [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.Free [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.AdvanceFrame [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.WaitOnFence [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.BeforeDraw [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.ComputeTransformMatrix [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.VectorImageManager.Register [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.VectorImageManager.Unregister [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.GradientSettingsAtlas.Write [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.GradientSettingsAtlas.Commit [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.GenerateEntries [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.ConvertEntriesToCommands [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.UpdateOpacityId [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.MeshGenerationContext.Allocate [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.001385833333333333,
+          "median": 0.00165,
+          "p95": 0.0036999999999999997,
+          "p99": 0.0046019999999999985,
+          "max": 0.0207,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 302
+        },
+        "UIR.MeshGenerationContext.DrawVectorImage [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.NudgeVertices [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.ShaderInfoStorage.CopyTexture [TimeNanoseconds]": {
+          "available_nonzero": false
+        }
+      }
+    },
+    "progression_spins_buys": {
+      "frames": 1191,
+      "frame_intervals_ms": {
+        "n": 1191,
+        "mean": 16.79046364399664,
+        "median": 16.6655,
+        "p95": 17.874850000000002,
+        "p99": 22.13090999999998,
+        "max": 43.4287,
+        "min": 13.2694
+      },
+      "over33_333ms": 1,
+      "over50ms": 0,
+      "metrics": {
+        "UIR.DrawChain [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.16236574307304785,
+          "median": 0.1547,
+          "p95": 0.26154999999999995,
+          "p99": 0.3447599999999991,
+          "max": 0.5889,
+          "min": 0.08109999999999999,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "UIR.DrawRanges [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.04033560033585222,
+          "median": 0.0372,
+          "p95": 0.06725,
+          "p99": 0.09267999999999965,
+          "max": 0.2342,
+          "min": 0.015,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "UIR.Job.CopyMesh [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.Job.ConvertMesh [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.0329864819479429,
+          "median": 0.0059,
+          "p95": 0.0364,
+          "p99": 0.7664299999999998,
+          "max": 3.28,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 940
+        },
+        "UIR.Job.Nudge [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.006632829554995801,
+          "median": 0.0049,
+          "p95": 0.01505,
+          "p99": 0.03382999999999997,
+          "max": 0.141,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 1184
+        },
+        "Gfx.WaitForPresentOnGfxThread [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.0034303946263643994,
+          "median": 0.0033,
+          "p95": 0.0045,
+          "p99": 0.00510999999999999,
+          "max": 0.0943,
+          "min": 0.0015999999999999999,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "Main Thread [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 16.77856414777498,
+          "median": 16.656299999999998,
+          "p95": 17.7104,
+          "p99": 21.992849999999965,
+          "max": 43.5119,
+          "min": 14.7339,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "PlayerLoop [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 16.766849202350965,
+          "median": 16.6461,
+          "p95": 17.69295,
+          "p99": 21.983419999999963,
+          "max": 43.4997,
+          "min": 14.717699999999999,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "WaitForTargetFPS [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 14.614367926112509,
+          "median": 14.991399999999999,
+          "p95": 15.650549999999999,
+          "p99": 15.79782,
+          "max": 16.048299999999998,
+          "min": 0.0018,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "System Used Memory [Bytes]": {
+          "n": 1191,
+          "mean": 316345195.2577666,
+          "median": 317693952.0,
+          "p95": 318332928.0,
+          "p99": 318337433.6,
+          "max": 318398464.0,
+          "min": 307032064.0,
+          "unit": "Bytes",
+          "nonzero_frames": 1191
+        },
+        "Total Used Memory [Bytes]": {
+          "n": 1191,
+          "mean": 132741676.5575147,
+          "median": 134025618.0,
+          "p95": 135622927.0,
+          "p99": 135623006.0,
+          "max": 135623006.0,
+          "min": 125226999.0,
+          "unit": "Bytes",
+          "nonzero_frames": 1191
+        },
+        "Total Reserved Memory [Bytes]": {
+          "n": 1191,
+          "mean": 279158823.9420655,
+          "median": 281991557.0,
+          "p95": 282916805.0,
+          "p99": 282916805.0,
+          "max": 282916805.0,
+          "min": 271985029.0,
+          "unit": "Bytes",
+          "nonzero_frames": 1191
+        },
+        "GC Used Memory [Bytes]": {
+          "n": 1191,
+          "mean": 13246663.469353484,
+          "median": 13406208.0,
+          "p95": 14340096.0,
+          "p99": 14340096.0,
+          "max": 14340096.0,
+          "min": 10625024.0,
+          "unit": "Bytes",
+          "nonzero_frames": 1191
+        },
+        "GC Reserved Memory [Bytes]": {
+          "n": 1191,
+          "mean": 16436618.639798488,
+          "median": 18518016.0,
+          "p95": 18518016.0,
+          "p99": 18518016.0,
+          "max": 18518016.0,
+          "min": 13754368.0,
+          "unit": "Bytes",
+          "nonzero_frames": 1191
+        },
+        "GC Allocated In Frame [Bytes]": {
+          "n": 1191,
+          "mean": 5905.663308144416,
+          "median": 0.0,
+          "p95": 1512.0,
+          "p99": 173033.799999999,
+          "max": 321206.0,
+          "min": 0.0,
+          "unit": "Bytes",
+          "nonzero_frames": 453,
+          "total_bytes": 7033645
+        },
+        "Batches Count [Count]": {
+          "n": 1191,
+          "mean": 32.604534005037785,
+          "median": 26.0,
+          "p95": 49.0,
+          "p99": 56.0,
+          "max": 59.0,
+          "min": 11.0,
+          "unit": "Count",
+          "nonzero_frames": 1191
+        },
+        "Draw Calls Count [Count]": {
+          "n": 1191,
+          "mean": 59.737195633921075,
+          "median": 68.0,
+          "p95": 85.0,
+          "p99": 97.0,
+          "max": 103.0,
+          "min": 18.0,
+          "unit": "Count",
+          "nonzero_frames": 1191
+        },
+        "Vertices Count [Count]": {
+          "n": 1191,
+          "mean": 9660.664987405542,
+          "median": 9512.0,
+          "p95": 10650.0,
+          "p99": 10786.0,
+          "max": 10842.0,
+          "min": 8928.0,
+          "unit": "Count",
+          "nonzero_frames": 1191
+        },
+        "CPU Total Frame Time [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 16.79055943240974,
+          "median": 16.667199999999998,
+          "p95": 17.7235,
+          "p99": 22.011779999999963,
+          "max": 43.5188,
+          "min": 14.745899999999999,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "CPU Main Thread Frame Time [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 2.14189419479429,
+          "median": 1.643,
+          "p95": 3.1745,
+          "p99": 21.971159999999962,
+          "max": 43.4895,
+          "min": 0.641,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "CPU Render Thread Frame Time [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.21372794794290512,
+          "median": 0.2052,
+          "p95": 0.2976,
+          "p99": 0.3470599999999998,
+          "max": 0.4339,
+          "min": 0.0986,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "GPU Frame Time [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.6546154206549119,
+          "median": 0.39833599999999997,
+          "p95": 1.7044479999999997,
+          "p99": 2.2170623999999997,
+          "max": 2.786304,
+          "min": 0.299008,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "UIElements.CollectLayoutNodes [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.0016411418975650714,
+          "median": 0.001,
+          "p95": 0.0017,
+          "p99": 0.025779999999999925,
+          "max": 0.0863,
+          "min": 9.999999999999999e-05,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "UIElements.PickAll [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIElements.UpdateEditorBindings [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.002246179680940386,
+          "median": 0.0021,
+          "p95": 0.0028,
+          "p99": 0.0053,
+          "max": 0.0428,
+          "min": 0.0010999999999999998,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "UIElements.UpdateRuntimeBindings [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.005263727959697733,
+          "median": 0.0047,
+          "p95": 0.007699999999999999,
+          "p99": 0.01120999999999999,
+          "max": 0.0749,
+          "min": 0.0031999999999999997,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "UIElements.UpdateAnimation [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.0016349286314021828,
+          "median": 0.0015,
+          "p95": 0.0021999999999999997,
+          "p99": 0.0040999999999999995,
+          "max": 0.0455,
+          "min": 0.0009,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "UIElements.UpdateAnimationProperties [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.00036599496221662465,
+          "median": 0.0003,
+          "p95": 0.0006,
+          "p99": 0.0011099999999999908,
+          "max": 0.0025,
+          "min": 0.00019999999999999998,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "UIElements.UpdateStyle [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.014130310663308145,
+          "median": 0.0007,
+          "p95": 0.0015,
+          "p99": 0.3978199999999998,
+          "max": 0.6527999999999999,
+          "min": 0.00019999999999999998,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "UIElements.UpdateLayout [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.11470864819479429,
+          "median": 0.105,
+          "p95": 0.22344999999999998,
+          "p99": 0.5871599999999991,
+          "max": 1.7046,
+          "min": 0.0025,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "UIElements.UpdateElementBounds [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.009108144416456758,
+          "median": 0.0081,
+          "p95": 0.013399999999999999,
+          "p99": 0.03181999999999998,
+          "max": 0.1893,
+          "min": 0.0031,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "UIElements.UpdateRenderData [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.5779696893366918,
+          "median": 0.5284,
+          "p95": 0.94995,
+          "p99": 2.511149999999996,
+          "max": 8.253499999999999,
+          "min": 0.0969,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "UIR.RaiseEngineUpdate [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "ZTM.Navigation [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.004948278757346767,
+          "median": 0.0056,
+          "p95": 0.007549999999999999,
+          "p99": 0.01,
+          "max": 0.13549999999999998,
+          "min": 0.00039999999999999996,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "ZTM.PoseAndDepth [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.09426104114189757,
+          "median": 0.0895,
+          "p95": 0.15644999999999998,
+          "p99": 0.21531999999999907,
+          "max": 0.8311,
+          "min": 0.0418,
+          "unit": "ms",
+          "nonzero_frames": 1191
+        },
+        "ZTM.Refresh [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.051224013434089,
+          "median": 0.0,
+          "p95": 0.0,
+          "p99": 1.7419799999999221,
+          "max": 3.5745999999999998,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 40
+        },
+        "ZTM.DrawQuest [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.024349034424853064,
+          "median": 0.0,
+          "p95": 0.0,
+          "p99": 0.623999999999995,
+          "max": 2.5633,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 40
+        },
+        "ZTM.SetCell [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.003671452560873216,
+          "median": 0.0,
+          "p95": 0.03165,
+          "p99": 0.05814999999999977,
+          "max": 0.1389,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 120
+        },
+        "UIR.Allocate [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.Free [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.AdvanceFrame [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.WaitOnFence [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.BeforeDraw [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.ComputeTransformMatrix [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.VectorImageManager.Register [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.VectorImageManager.Unregister [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.GradientSettingsAtlas.Write [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.GradientSettingsAtlas.Commit [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.GenerateEntries [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.ConvertEntriesToCommands [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.UpdateOpacityId [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.MeshGenerationContext.Allocate [TimeNanoseconds]": {
+          "n": 1191,
+          "mean": 0.001534592779177162,
+          "median": 0.002,
+          "p95": 0.0036999999999999997,
+          "p99": 0.0048099999999999905,
+          "max": 0.0263,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 668
+        },
+        "UIR.MeshGenerationContext.DrawVectorImage [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.NudgeVertices [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.ShaderInfoStorage.CopyTexture [TimeNanoseconds]": {
+          "available_nonzero": false
+        }
+      }
+    },
+    "ready_final_task": {
+      "frames": 300,
+      "frame_intervals_ms": {
+        "n": 300,
+        "mean": 16.686638,
+        "median": 16.6676,
+        "p95": 17.74014,
+        "p99": 18.415443,
+        "max": 21.2349,
+        "min": 14.9529
+      },
+      "over33_333ms": 0,
+      "over50ms": 0,
+      "metrics": {
+        "UIR.DrawChain [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.19026266666666664,
+          "median": 0.17049999999999998,
+          "p95": 0.274215,
+          "p99": 0.3370479999999994,
+          "max": 0.5651999999999999,
+          "min": 0.1105,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "UIR.DrawRanges [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.055305999999999994,
+          "median": 0.052849999999999994,
+          "p95": 0.07431499999999999,
+          "p99": 0.10125299999999986,
+          "max": 0.1324,
+          "min": 0.0337,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "UIR.Job.CopyMesh [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.Job.ConvertMesh [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.006842999999999999,
+          "median": 0.0,
+          "p95": 0.013325000000000005,
+          "p99": 0.020309999999999898,
+          "max": 1.0668,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 129
+        },
+        "UIR.Job.Nudge [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.005823666666666666,
+          "median": 0.00385,
+          "p95": 0.015680000000000017,
+          "p99": 0.04081499999999998,
+          "max": 0.0836,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 297
+        },
+        "Gfx.WaitForPresentOnGfxThread [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.0032156666666666666,
+          "median": 0.0031,
+          "p95": 0.0043,
+          "p99": 0.004614999999999986,
+          "max": 0.0144,
+          "min": 0.0019,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "Main Thread [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 16.675914333333335,
+          "median": 16.65665,
+          "p95": 17.73028,
+          "p99": 18.105413,
+          "max": 21.2512,
+          "min": 14.968,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "PlayerLoop [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 16.664449333333334,
+          "median": 16.6466,
+          "p95": 17.719255,
+          "p99": 18.094092999999997,
+          "max": 21.2415,
+          "min": 14.9543,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "WaitForTargetFPS [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 15.093417666666667,
+          "median": 15.276399999999999,
+          "p95": 15.674909999999999,
+          "p99": 15.731179,
+          "max": 15.832699999999999,
+          "min": 0.004399999999999999,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "System Used Memory [Bytes]": {
+          "n": 300,
+          "mean": 318891622.4,
+          "median": 318230528.0,
+          "p95": 320356352.0,
+          "p99": 320356352.0,
+          "max": 320356352.0,
+          "min": 316669952.0,
+          "unit": "Bytes",
+          "nonzero_frames": 300
+        },
+        "Total Used Memory [Bytes]": {
+          "n": 300,
+          "mean": 135893576.42666668,
+          "median": 135893605.0,
+          "p95": 135893644.0,
+          "p99": 135893684.0,
+          "max": 135893684.0,
+          "min": 135893487.0,
+          "unit": "Bytes",
+          "nonzero_frames": 300
+        },
+        "Total Reserved Memory [Bytes]": {
+          "n": 300,
+          "mean": 282916805.0,
+          "median": 282916805.0,
+          "p95": 282916805.0,
+          "p99": 282916805.0,
+          "max": 282916805.0,
+          "min": 282916805.0,
+          "unit": "Bytes",
+          "nonzero_frames": 300
+        },
+        "GC Used Memory [Bytes]": {
+          "n": 300,
+          "mean": 14598144.0,
+          "median": 14598144.0,
+          "p95": 14598144.0,
+          "p99": 14598144.0,
+          "max": 14598144.0,
+          "min": 14598144.0,
+          "unit": "Bytes",
+          "nonzero_frames": 300
+        },
+        "GC Reserved Memory [Bytes]": {
+          "n": 300,
+          "mean": 18518016.0,
+          "median": 18518016.0,
+          "p95": 18518016.0,
+          "p99": 18518016.0,
+          "max": 18518016.0,
+          "min": 18518016.0,
+          "unit": "Bytes",
+          "nonzero_frames": 300
+        },
+        "GC Allocated In Frame [Bytes]": {
+          "n": 300,
+          "mean": 841.1366666666667,
+          "median": 0.0,
+          "p95": 0.0,
+          "p99": 1.0399999999990541,
+          "max": 251981.0,
+          "min": 0.0,
+          "unit": "Bytes",
+          "nonzero_frames": 3,
+          "total_bytes": 252341
+        },
+        "Batches Count [Count]": {
+          "n": 300,
+          "mean": 47.13333333333333,
+          "median": 47.0,
+          "p95": 47.0,
+          "p99": 57.0,
+          "max": 57.0,
+          "min": 47.0,
+          "unit": "Count",
+          "nonzero_frames": 300
+        },
+        "Draw Calls Count [Count]": {
+          "n": 300,
+          "mean": 76.10666666666667,
+          "median": 76.0,
+          "p95": 76.0,
+          "p99": 87.02999999999997,
+          "max": 90.0,
+          "min": 69.0,
+          "unit": "Count",
+          "nonzero_frames": 300
+        },
+        "Vertices Count [Count]": {
+          "n": 300,
+          "mean": 10232.933333333332,
+          "median": 10236.0,
+          "p95": 10236.0,
+          "p99": 10264.0,
+          "max": 10332.0,
+          "min": 9024.0,
+          "unit": "Count",
+          "nonzero_frames": 300
+        },
+        "CPU Total Frame Time [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 16.687259473333334,
+          "median": 16.666999999999998,
+          "p95": 17.73866,
+          "p99": 18.142204,
+          "max": 21.2589,
+          "min": 14.9782,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "CPU Main Thread Frame Time [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 1.56990231,
+          "median": 1.394,
+          "p95": 2.2971750000000006,
+          "p99": 2.835531999999996,
+          "max": 21.2308,
+          "min": 0.9130999999999999,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "CPU Render Thread Frame Time [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.24064965000000002,
+          "median": 0.2213,
+          "p95": 0.3131000000000001,
+          "p99": 0.3929699999999998,
+          "max": 2.0989,
+          "min": 0.0914,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "GPU Frame Time [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.6701977566666667,
+          "median": 0.433152,
+          "p95": 1.4938624000000023,
+          "p99": 2.4545484799999997,
+          "max": 18.984959999999997,
+          "min": 0.401408,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "UIElements.CollectLayoutNodes [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.0009693333333333333,
+          "median": 0.0009,
+          "p95": 0.0014,
+          "p99": 0.001800999999999999,
+          "max": 0.0021999999999999997,
+          "min": 0.0007,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "UIElements.PickAll [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIElements.UpdateEditorBindings [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.0021356666666666664,
+          "median": 0.002,
+          "p95": 0.0025,
+          "p99": 0.003001999999999998,
+          "max": 0.0234,
+          "min": 0.0015999999999999999,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "UIElements.UpdateRuntimeBindings [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.005503666666666667,
+          "median": 0.0045,
+          "p95": 0.007005000000000001,
+          "p99": 0.008404999999999994,
+          "max": 0.1943,
+          "min": 0.0038,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "UIElements.UpdateAnimation [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.0014843333333333332,
+          "median": 0.0014,
+          "p95": 0.002005000000000001,
+          "p99": 0.0023009999999999992,
+          "max": 0.0039,
+          "min": 0.001,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "UIElements.UpdateAnimationProperties [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.0003263333333333333,
+          "median": 0.0003,
+          "p95": 0.0005,
+          "p99": 0.000700999999999999,
+          "max": 0.0015999999999999999,
+          "min": 0.00019999999999999998,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "UIElements.UpdateStyle [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.002278,
+          "median": 0.0007,
+          "p95": 0.0009,
+          "p99": 0.001201999999999998,
+          "max": 0.4799,
+          "min": 0.0003,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "UIElements.UpdateLayout [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.05333966666666667,
+          "median": 0.0059,
+          "p95": 0.11881500000000005,
+          "p99": 0.2546949999999996,
+          "max": 0.5952999999999999,
+          "min": 0.0036,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "UIElements.UpdateElementBounds [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.006610666666666667,
+          "median": 0.0066,
+          "p95": 0.008405000000000001,
+          "p99": 0.010736999999999965,
+          "max": 0.030799999999999998,
+          "min": 0.004399999999999999,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "UIElements.UpdateRenderData [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.32627199999999995,
+          "median": 0.20765,
+          "p95": 0.6739299999999999,
+          "p99": 0.8074869999999998,
+          "max": 2.5355,
+          "min": 0.1191,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "UIR.RaiseEngineUpdate [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "ZTM.Navigation [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.003855333333333333,
+          "median": 0.0024,
+          "p95": 0.0075,
+          "p99": 0.0078,
+          "max": 0.014799999999999999,
+          "min": 0.0015,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "ZTM.PoseAndDepth [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.08722333333333333,
+          "median": 0.08635,
+          "p95": 0.13322000000000006,
+          "p99": 0.20731699999999978,
+          "max": 0.2877,
+          "min": 0.053099999999999994,
+          "unit": "ms",
+          "nonzero_frames": 300
+        },
+        "ZTM.Refresh [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.0029406666666666665,
+          "median": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 0.8822,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 1
+        },
+        "ZTM.DrawQuest [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.0011466666666666665,
+          "median": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 0.344,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 1
+        },
+        "ZTM.SetCell [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 6.333333333333333e-05,
+          "median": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 0.019,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 1
+        },
+        "UIR.Allocate [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.Free [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.AdvanceFrame [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.WaitOnFence [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.BeforeDraw [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.ComputeTransformMatrix [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.VectorImageManager.Register [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.VectorImageManager.Unregister [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.GradientSettingsAtlas.Write [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.GradientSettingsAtlas.Commit [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.GenerateEntries [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.ConvertEntriesToCommands [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.UpdateOpacityId [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.MeshGenerationContext.Allocate [TimeNanoseconds]": {
+          "n": 300,
+          "mean": 0.000975,
+          "median": 0.0,
+          "p95": 0.0034,
+          "p99": 0.004002999999999997,
+          "max": 0.0058,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 112
+        },
+        "UIR.MeshGenerationContext.DrawVectorImage [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.NudgeVertices [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.ShaderInfoStorage.CopyTexture [TimeNanoseconds]": {
+          "available_nonzero": false
+        }
+      }
+    },
+    "completed_walk": {
+      "frames": 598,
+      "frame_intervals_ms": {
+        "n": 598,
+        "mean": 16.699403678929766,
+        "median": 16.6652,
+        "p95": 17.342805,
+        "p99": 18.195221,
+        "max": 34.0449,
+        "min": 14.8544
+      },
+      "over33_333ms": 1,
+      "over50ms": 0,
+      "metrics": {
+        "UIR.DrawChain [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.19632023411371236,
+          "median": 0.17279999999999998,
+          "p95": 0.29328999999999994,
+          "p99": 0.4191039999999998,
+          "max": 0.6069,
+          "min": 0.11309999999999999,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "UIR.DrawRanges [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.05827441471571906,
+          "median": 0.05465,
+          "p95": 0.07955999999999999,
+          "p99": 0.13916299999999995,
+          "max": 0.42879999999999996,
+          "min": 0.033,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "UIR.Job.CopyMesh [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.Job.ConvertMesh [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.0064561872909699,
+          "median": 0.0048,
+          "p95": 0.017814999999999998,
+          "p99": 0.03723299999999997,
+          "max": 0.17809999999999998,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 426
+        },
+        "UIR.Job.Nudge [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.0066951505016722415,
+          "median": 0.0046,
+          "p95": 0.0162,
+          "p99": 0.044150999999999954,
+          "max": 0.0578,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 592
+        },
+        "Gfx.WaitForPresentOnGfxThread [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.0034486622073578595,
+          "median": 0.0034,
+          "p95": 0.0046,
+          "p99": 0.0053,
+          "max": 0.0056,
+          "min": 0.0015999999999999999,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "Main Thread [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 16.687622240802675,
+          "median": 16.65625,
+          "p95": 17.24878,
+          "p99": 17.993077,
+          "max": 33.865899999999996,
+          "min": 15.076799999999999,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "PlayerLoop [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 16.675434448160534,
+          "median": 16.645649999999996,
+          "p95": 17.235995,
+          "p99": 17.983285,
+          "max": 33.8491,
+          "min": 15.059199999999999,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "WaitForTargetFPS [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 14.902736120401338,
+          "median": 14.9828,
+          "p95": 15.535279999999998,
+          "p99": 15.645783,
+          "max": 15.831299999999999,
+          "min": 0.0052,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "System Used Memory [Bytes]": {
+          "n": 598,
+          "mean": 319067851.77257526,
+          "median": 319635456.0,
+          "p95": 319639552.0,
+          "p99": 319639552.0,
+          "max": 319639552.0,
+          "min": 316735488.0,
+          "unit": "Bytes",
+          "nonzero_frames": 598
+        },
+        "Total Used Memory [Bytes]": {
+          "n": 598,
+          "mean": 135787349.82274246,
+          "median": 135787360.0,
+          "p95": 135787436.0,
+          "p99": 135787439.0,
+          "max": 135787439.0,
+          "min": 135783300.0,
+          "unit": "Bytes",
+          "nonzero_frames": 598
+        },
+        "Total Reserved Memory [Bytes]": {
+          "n": 598,
+          "mean": 282916805.0,
+          "median": 282916805.0,
+          "p95": 282916805.0,
+          "p99": 282916805.0,
+          "max": 282916805.0,
+          "min": 282916805.0,
+          "unit": "Bytes",
+          "nonzero_frames": 598
+        },
+        "GC Used Memory [Bytes]": {
+          "n": 598,
+          "mean": 14495716.602006689,
+          "median": 14495744.0,
+          "p95": 14495744.0,
+          "p99": 14495744.0,
+          "max": 14495744.0,
+          "min": 14491648.0,
+          "unit": "Bytes",
+          "nonzero_frames": 598
+        },
+        "GC Reserved Memory [Bytes]": {
+          "n": 598,
+          "mean": 18518016.0,
+          "median": 18518016.0,
+          "p95": 18518016.0,
+          "p99": 18518016.0,
+          "max": 18518016.0,
+          "min": 18518016.0,
+          "unit": "Bytes",
+          "nonzero_frames": 598
+        },
+        "GC Allocated In Frame [Bytes]": {
+          "n": 598,
+          "mean": 356.8745819397993,
+          "median": 0.0,
+          "p95": 0.0,
+          "p99": 107.299999999997,
+          "max": 202709.0,
+          "min": 0.0,
+          "unit": "Bytes",
+          "nonzero_frames": 7,
+          "total_bytes": 213411
+        },
+        "Batches Count [Count]": {
+          "n": 598,
+          "mean": 47.468227424749166,
+          "median": 47.0,
+          "p95": 49.0,
+          "p99": 49.0,
+          "max": 59.0,
+          "min": 47.0,
+          "unit": "Count",
+          "nonzero_frames": 598
+        },
+        "Draw Calls Count [Count]": {
+          "n": 598,
+          "mean": 69.14715719063545,
+          "median": 69.0,
+          "p95": 71.0,
+          "p99": 71.0,
+          "max": 82.0,
+          "min": 64.0,
+          "unit": "Count",
+          "nonzero_frames": 598
+        },
+        "Vertices Count [Count]": {
+          "n": 598,
+          "mean": 9111.66220735786,
+          "median": 9064.0,
+          "p95": 9252.0,
+          "p99": 9280.42,
+          "max": 10236.0,
+          "min": 9020.0,
+          "unit": "Count",
+          "nonzero_frames": 598
+        },
+        "CPU Total Frame Time [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 16.699342118729096,
+          "median": 16.666798999999997,
+          "p95": 17.258554999999998,
+          "p99": 18.004437,
+          "max": 33.8743,
+          "min": 15.0854,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "CPU Main Thread Frame Time [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 1.7623053377926423,
+          "median": 1.6492499999999999,
+          "p95": 2.520939999999999,
+          "p99": 3.235357,
+          "max": 33.837199999999996,
+          "min": 0.9581,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "CPU Render Thread Frame Time [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.24870566555183946,
+          "median": 0.2307,
+          "p95": 0.3297,
+          "p99": 0.40712399999999993,
+          "max": 2.9181,
+          "min": 0.123,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "GPU Frame Time [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 1.0089618963210703,
+          "median": 0.999424,
+          "p95": 2.2466559999999998,
+          "p99": 2.46603776,
+          "max": 31.582207999999998,
+          "min": 0.38911999999999997,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "UIElements.CollectLayoutNodes [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.001337123745819398,
+          "median": 0.001,
+          "p95": 0.0017,
+          "p99": 0.0021059999999999946,
+          "max": 0.0549,
+          "min": 0.0007,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "UIElements.PickAll [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIElements.UpdateEditorBindings [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.0021244147157190637,
+          "median": 0.0021,
+          "p95": 0.0026,
+          "p99": 0.0031999999999999997,
+          "max": 0.0073999999999999995,
+          "min": 0.0015,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "UIElements.UpdateRuntimeBindings [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.005299832775919732,
+          "median": 0.0049,
+          "p95": 0.0075,
+          "p99": 0.008499999999999999,
+          "max": 0.0348,
+          "min": 0.0036999999999999997,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "UIElements.UpdateAnimation [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.0016202341137123745,
+          "median": 0.0015,
+          "p95": 0.0021,
+          "p99": 0.0025,
+          "max": 0.006699999999999999,
+          "min": 0.0010999999999999998,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "UIElements.UpdateAnimationProperties [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.0003774247491638796,
+          "median": 0.0003,
+          "p95": 0.0006,
+          "p99": 0.0006029999999999972,
+          "max": 0.0015999999999999999,
+          "min": 0.00019999999999999998,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "UIElements.UpdateStyle [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.0012894648829431439,
+          "median": 0.0007,
+          "p95": 0.001,
+          "p99": 0.0012,
+          "max": 0.3414,
+          "min": 0.0003,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "UIElements.UpdateLayout [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.09052809364548495,
+          "median": 0.10544999999999999,
+          "p95": 0.16582499999999997,
+          "p99": 0.21349699999999974,
+          "max": 0.441,
+          "min": 0.0036,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "UIElements.UpdateElementBounds [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.007821070234113712,
+          "median": 0.0076,
+          "p95": 0.0109,
+          "p99": 0.014205999999999993,
+          "max": 0.0313,
+          "min": 0.0043,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "UIElements.UpdateRenderData [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.46914665551839463,
+          "median": 0.4926,
+          "p95": 0.8111749999999998,
+          "p99": 0.9780009999999998,
+          "max": 2.0486999999999997,
+          "min": 0.1108,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "UIR.RaiseEngineUpdate [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "ZTM.Navigation [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.005869397993311037,
+          "median": 0.0059,
+          "p95": 0.0081,
+          "p99": 0.012924999999999794,
+          "max": 0.28709999999999997,
+          "min": 0.0009,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "ZTM.PoseAndDepth [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.10362692307692307,
+          "median": 0.09725,
+          "p95": 0.16476,
+          "p99": 0.2151229999999999,
+          "max": 0.3268,
+          "min": 0.0633,
+          "unit": "ms",
+          "nonzero_frames": 598
+        },
+        "ZTM.Refresh [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.0027811036789297658,
+          "median": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 1.6631,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 1
+        },
+        "ZTM.DrawQuest [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.0004352842809364548,
+          "median": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 0.2603,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 1
+        },
+        "ZTM.SetCell [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 3.812709030100334e-05,
+          "median": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 0.022799999999999997,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 1
+        },
+        "UIR.Allocate [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.Free [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.AdvanceFrame [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.WaitOnFence [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.BeforeDraw [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.ComputeTransformMatrix [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.VectorImageManager.Register [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.VectorImageManager.Unregister [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.GradientSettingsAtlas.Write [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.GradientSettingsAtlas.Commit [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.GenerateEntries [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.ConvertEntriesToCommands [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.UpdateOpacityId [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.MeshGenerationContext.Allocate [TimeNanoseconds]": {
+          "n": 598,
+          "mean": 0.00171438127090301,
+          "median": 0.0021,
+          "p95": 0.0038,
+          "p99": 0.0048,
+          "max": 0.0337,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 360
+        },
+        "UIR.MeshGenerationContext.DrawVectorImage [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.NudgeVertices [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.ShaderInfoStorage.CopyTexture [TimeNanoseconds]": {
+          "available_nonzero": false
+        }
+      }
+    },
+    "resize_portraits": {
+      "frames": 600,
+      "frame_intervals_ms": {
+        "n": 600,
+        "mean": 16.67098616666667,
+        "median": 16.65905,
+        "p95": 17.320159999999998,
+        "p99": 18.052809999999997,
+        "max": 27.5019,
+        "min": 7.0135
+      },
+      "over33_333ms": 0,
+      "over50ms": 0,
+      "metrics": {
+        "UIR.DrawChain [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.18759033333333333,
+          "median": 0.16804999999999998,
+          "p95": 0.285805,
+          "p99": 0.42548899999999973,
+          "max": 0.653,
+          "min": 0.10919999999999999,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIR.DrawRanges [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.054760333333333334,
+          "median": 0.0521,
+          "p95": 0.07346999999999992,
+          "p99": 0.1219119999999999,
+          "max": 0.2387,
+          "min": 0.0322,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIR.Job.CopyMesh [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.Job.ConvertMesh [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.010300833333333332,
+          "median": 0.0031,
+          "p95": 0.013514999999999985,
+          "p99": 0.024526999999999972,
+          "max": 2.2422,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 436
+        },
+        "UIR.Job.Nudge [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.008003,
+          "median": 0.005699999999999999,
+          "p95": 0.017104999999999995,
+          "p99": 0.04110599999999999,
+          "max": 0.0706,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 596
+        },
+        "Gfx.WaitForPresentOnGfxThread [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.0034449999999999997,
+          "median": 0.0031999999999999997,
+          "p95": 0.0046,
+          "p99": 0.005300999999999999,
+          "max": 0.0326,
+          "min": 0.0018,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "Main Thread [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 16.659389166666667,
+          "median": 16.656399999999998,
+          "p95": 17.17081,
+          "p99": 17.948082,
+          "max": 18.225199999999997,
+          "min": 15.0803,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "PlayerLoop [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 16.6483095,
+          "median": 16.6468,
+          "p95": 17.159764999999997,
+          "p99": 17.937164,
+          "max": 18.2132,
+          "min": 15.060699999999999,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "WaitForTargetFPS [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 14.946853666666666,
+          "median": 15.08005,
+          "p95": 15.592335,
+          "p99": 15.772604999999999,
+          "max": 15.879199999999999,
+          "min": 0.6272,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "System Used Memory [Bytes]": {
+          "n": 600,
+          "mean": 320095389.0133333,
+          "median": 320733184.0,
+          "p95": 320794624.0,
+          "p99": 320880640.0,
+          "max": 320880640.0,
+          "min": 317980672.0,
+          "unit": "Bytes",
+          "nonzero_frames": 600
+        },
+        "Total Used Memory [Bytes]": {
+          "n": 600,
+          "mean": 134019702.28333333,
+          "median": 141851281.0,
+          "p95": 141855456.0,
+          "p99": 151069558.0,
+          "max": 151069637.0,
+          "min": 124846952.0,
+          "unit": "Bytes",
+          "nonzero_frames": 600
+        },
+        "Total Reserved Memory [Bytes]": {
+          "n": 600,
+          "mean": 280992485.0,
+          "median": 288792005.0,
+          "p95": 288792005.0,
+          "p99": 298008005.0,
+          "max": 298008005.0,
+          "min": 271857605.0,
+          "unit": "Bytes",
+          "nonzero_frames": 600
+        },
+        "GC Used Memory [Bytes]": {
+          "n": 600,
+          "mean": 14603045.546666667,
+          "median": 14569472.0,
+          "p95": 14639104.0,
+          "p99": 14639104.0,
+          "max": 14639104.0,
+          "min": 14499840.0,
+          "unit": "Bytes",
+          "nonzero_frames": 600
+        },
+        "GC Reserved Memory [Bytes]": {
+          "n": 600,
+          "mean": 18518016.0,
+          "median": 18518016.0,
+          "p95": 18518016.0,
+          "p99": 18518016.0,
+          "max": 18518016.0,
+          "min": 18518016.0,
+          "unit": "Bytes",
+          "nonzero_frames": 600
+        },
+        "GC Allocated In Frame [Bytes]": {
+          "n": 600,
+          "mean": 341.9033333333333,
+          "median": 0.0,
+          "p95": 0.0,
+          "p99": 523.759999999982,
+          "max": 98310.0,
+          "min": 0.0,
+          "unit": "Bytes",
+          "nonzero_frames": 8,
+          "total_bytes": 205142
+        },
+        "Batches Count [Count]": {
+          "n": 600,
+          "mean": 46.946666666666665,
+          "median": 47.0,
+          "p95": 47.0,
+          "p99": 47.0,
+          "max": 47.0,
+          "min": 42.0,
+          "unit": "Count",
+          "nonzero_frames": 600
+        },
+        "Draw Calls Count [Count]": {
+          "n": 600,
+          "mean": 69.20833333333333,
+          "median": 69.0,
+          "p95": 69.0,
+          "p99": 100.0,
+          "max": 101.0,
+          "min": 66.0,
+          "unit": "Count",
+          "nonzero_frames": 600
+        },
+        "Vertices Count [Count]": {
+          "n": 600,
+          "mean": 9067.336666666666,
+          "median": 9064.0,
+          "p95": 9088.0,
+          "p99": 9106.08,
+          "max": 9160.0,
+          "min": 8920.0,
+          "unit": "Count",
+          "nonzero_frames": 600
+        },
+        "CPU Total Frame Time [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 16.670862135,
+          "median": 16.6664,
+          "p95": 17.18332,
+          "p99": 17.958396999999998,
+          "max": 18.2436,
+          "min": 15.088899999999999,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "CPU Main Thread Frame Time [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 1.688719985,
+          "median": 1.55615,
+          "p95": 2.539324999999999,
+          "p99": 3.3925379999999987,
+          "max": 16.95,
+          "min": 0.8021999999999999,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "CPU Render Thread Frame Time [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.24065082333333332,
+          "median": 0.2253,
+          "p95": 0.34393999999999997,
+          "p99": 0.423015,
+          "max": 0.9130999999999999,
+          "min": 0.09999999999999999,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "GPU Frame Time [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.7984759433333333,
+          "median": 0.430592,
+          "p95": 2.2589952,
+          "p99": 2.5746739199999995,
+          "max": 2.970624,
+          "min": 0.242688,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.CollectLayoutNodes [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.0010093333333333334,
+          "median": 0.0009,
+          "p95": 0.0015999999999999999,
+          "p99": 0.0018,
+          "max": 0.013099999999999999,
+          "min": 0.0007,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.PickAll [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIElements.UpdateEditorBindings [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.0020845,
+          "median": 0.002,
+          "p95": 0.0026049999999999953,
+          "p99": 0.0030009999999999993,
+          "max": 0.022699999999999998,
+          "min": 0.0013,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.UpdateRuntimeBindings [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.0048881666666666665,
+          "median": 0.0045,
+          "p95": 0.0073,
+          "p99": 0.008100999999999999,
+          "max": 0.039799999999999995,
+          "min": 0.0033,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.UpdateAnimation [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.0015375,
+          "median": 0.00145,
+          "p95": 0.0021,
+          "p99": 0.002400999999999999,
+          "max": 0.0133,
+          "min": 0.001,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.UpdateAnimationProperties [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.0003473333333333333,
+          "median": 0.0003,
+          "p95": 0.0005049999999999955,
+          "p99": 0.0007,
+          "max": 0.001,
+          "min": 0.00019999999999999998,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.UpdateStyle [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.004954,
+          "median": 0.0007,
+          "p95": 0.001,
+          "p99": 0.0014,
+          "max": 1.4770999999999999,
+          "min": 0.00019999999999999998,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.UpdateLayout [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.0876725,
+          "median": 0.09564999999999999,
+          "p95": 0.16732999999999998,
+          "p99": 0.2639719999999998,
+          "max": 1.1019999999999999,
+          "min": 0.0033,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.UpdateElementBounds [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.0074975,
+          "median": 0.0070999999999999995,
+          "p95": 0.010499999999999999,
+          "p99": 0.014313999999999988,
+          "max": 0.043699999999999996,
+          "min": 0.0040999999999999995,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIElements.UpdateRenderData [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.42766916666666666,
+          "median": 0.42705,
+          "p95": 0.72632,
+          "p99": 0.9118119999999998,
+          "max": 3.9436999999999998,
+          "min": 0.1008,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "UIR.RaiseEngineUpdate [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "ZTM.Navigation [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.005605499999999999,
+          "median": 0.0053,
+          "p95": 0.0076,
+          "p99": 0.029928999999999973,
+          "max": 0.1744,
+          "min": 0.0006,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "ZTM.PoseAndDepth [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.09263133333333333,
+          "median": 0.0886,
+          "p95": 0.14213999999999996,
+          "p99": 0.18317599999999992,
+          "max": 0.2452,
+          "min": 0.053399999999999996,
+          "unit": "ms",
+          "nonzero_frames": 600
+        },
+        "ZTM.Refresh [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "ZTM.DrawQuest [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "ZTM.SetCell [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.Allocate [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.Free [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.AdvanceFrame [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.WaitOnFence [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.BeforeDraw [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.ComputeTransformMatrix [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.VectorImageManager.Register [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.VectorImageManager.Unregister [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.GradientSettingsAtlas.Write [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.GradientSettingsAtlas.Commit [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.GenerateEntries [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.ConvertEntriesToCommands [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.UpdateOpacityId [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.MeshGenerationContext.Allocate [TimeNanoseconds]": {
+          "n": 600,
+          "mean": 0.0012331666666666667,
+          "median": 0.0,
+          "p95": 0.0034999999999999996,
+          "p99": 0.004401999999999998,
+          "max": 0.0144,
+          "min": 0.0,
+          "unit": "ms",
+          "nonzero_frames": 288
+        },
+        "UIR.MeshGenerationContext.DrawVectorImage [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.NudgeVertices [TimeNanoseconds]": {
+          "available_nonzero": false
+        },
+        "UIR.ShaderInfoStorage.CopyTexture [TimeNanoseconds]": {
+          "available_nonzero": false
+        }
+      }
+    }
+  },
+  "notes": [
+    "Development Mono/D3D11 Player, target60 vSync0. Oldv0.3 Player and idle Editor remain open in both measurements.",
+    "Stopwatch intervals are end-to-end frame intervals; they include scheduling, limiter waits and instrumentation.",
+    "ProfilerRecorder.LastValue labels completed preceding frame. Custom markers include whole methods; nested durations overlap.",
+    "UIDocument NavigationSubmitEvent exercises real button callbacks; additional guard snapshots add allocations on action frames.",
+    "Uninstrumented Release performance, physical touch, thermal endurance and Android performance are not measured.",
+    "A zero-only or absent metric is reported unavailable rather than fabricated. Resize contains real swapchain/layout transients."
+  ]
+}
