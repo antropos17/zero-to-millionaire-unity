@@ -1,0 +1,56 @@
+{
+  "font_file": "PixelifySans.ttf",
+  "sha256": "d16f0a028f0e09e5357b7e39a28fbe63865f782a359bb2be19fb6ff1a4b3ea7d",
+  "corpus": "ЁёЙйАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя0123456789/×²—–•…«»",
+  "missing_characters": [],
+  "digit_advances": [
+    586,
+    404,
+    586,
+    586,
+    586,
+    586,
+    586,
+    586,
+    586,
+    586
+  ],
+  "units_per_em": 1000,
+  "fvar_axes": [
+    [
+      "wght",
+      400.0,
+      400.0,
+      700.0
+    ]
+  ],
+  "palette_contrast_ratios": {
+    "cream_foreground_vs_forest": 12.771249904005364,
+    "cream_vs_rust_face": 4.318910369664767,
+    "cream_vs_rust_light_band": 3.929433763502937,
+    "cream_vs_grey": 3.7675393109279542
+  },
+  "focus_button_crop_differences": {
+    "360x640": {
+      "pixels_changed": 0,
+      "dimensions": [
+        225,
+        68
+      ]
+    },
+    "360x800": {
+      "pixels_changed": 0,
+      "dimensions": [
+        225,
+        96
+      ]
+    },
+    "480x960": {
+      "pixels_changed": 0,
+      "dimensions": [
+        301,
+        109
+      ]
+    }
+  }
+}

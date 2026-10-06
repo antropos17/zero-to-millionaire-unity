@@ -1,0 +1,9 @@
+{
+  "focusBefore": null,
+  "hidden": false,
+  "cashBefore": 60,
+  "cashAfter": 60,
+  "ownedAfter": 0,
+  "frame": 9335,
+  "scope": "Synthetic navigation sent only to actual retained focused element; no OS input"
+}

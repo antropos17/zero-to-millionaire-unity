@@ -1,0 +1,11 @@
+{
+  "tool": "eval",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"output\": null,\n  \"diagnostics\": [],\n  \"success\": true,\n  \"result\": {\n    \"project\": \"X:\\\\PROJECTS\\\\ZERO-TO-MILLIONAIRE\",\n    \"unity\": \"6000.3.21f1\",\n    \"scene\": \"Assets/Scenes/Level1.unity\",\n    \"playing\": false,\n    \"privateProfile\": \"X:\\\\Projects\\\\ZERO-TO-MILLIONAIRE\\\\.tooling\\\\v07-audit-private\\\\save\"\n  }\n}"
+      }
+    ]
+  }
+}
