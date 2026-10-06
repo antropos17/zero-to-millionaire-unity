@@ -1,0 +1,10 @@
+{
+  "playing": false,
+  "development": false,
+  "defines": "",
+  "backend": "Mono2x",
+  "target": "StandaloneWindows64",
+  "scenes": [
+    "Assets/Scenes/Level1.unity"
+  ]
+}

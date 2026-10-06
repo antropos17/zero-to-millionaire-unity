@@ -1,0 +1,1 @@
+PASS 14 dialogue persistence checks; counted store failure/retry/modal/relaunch/help/resource invariants; synthetic calls, no OS input
