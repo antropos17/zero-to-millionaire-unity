@@ -151,9 +151,10 @@ namespace ZeroToMillionaire
             }
             watch.Stop(); runs.Sort();
             string walking = NavigationChecks.Run();
+            string sessions=SessionChecks.Run(codec,directory);
             return "PASS " + assertions + " economy assertions; 1000 complete levels; spins min=" + runs[0] +
                 " median=" + runs[500] + " p95=" + runs[950] + " max=" + runs[999] +
-                "; simulation_ms=" + watch.ElapsedMilliseconds + "\n" + walking;
+                "; simulation_ms=" + watch.ElapsedMilliseconds + "\n" + walking+"\n"+sessions;
         }
     }
 }

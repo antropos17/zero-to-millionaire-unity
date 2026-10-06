@@ -4,7 +4,13 @@ using System.IO;
 namespace ZeroToMillionaire
 {
     public interface IStateCodec { string Encode(PlayerState state); PlayerState Decode(string text); }
-    public sealed class SaveStore
+    public interface IStateStore
+    {
+        bool Save(PlayerState state,out string error);
+        PlayerState Load(out string notice);
+    }
+
+    public sealed class SaveStore : IStateStore
     {
         private readonly string path;
         private readonly IStateCodec codec;
@@ -50,6 +56,7 @@ namespace ZeroToMillionaire
             {
                 if (!File.Exists(source) || new FileInfo(source).Length > 64 * 1024) return false;
                 state = codec.Decode(File.ReadAllText(source));
+                string rawReason;if(!GameModel.IsPersistedValid(state,out rawReason))return false;
                 migrated = state != null && state.version < Economy.SaveVersion;
                 state = GameModel.Migrate(state);
                 string reason;

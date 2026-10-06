@@ -10,16 +10,25 @@ namespace ZeroToMillionaire
     public sealed class UnityStateCodec : IStateCodec
     {
         public string Encode(PlayerState state) { return JsonUtility.ToJson(state, true); }
-        public PlayerState Decode(string text) { return JsonUtility.FromJson<PlayerState>(text); }
+        [Serializable] sealed class RawShape
+        {public int version;public int[] fragments,lastGrid;public bool[] purchased;public QuestRecord[] quests;}
+        public PlayerState Decode(string text)
+        {
+            var state=JsonUtility.FromJson<PlayerState>(text);var raw=JsonUtility.FromJson<RawShape>(text);
+            if(state==null||raw==null)return null;
+            state.version=raw.version;state.fragments=raw.fragments;state.purchased=raw.purchased;
+            state.lastGrid=raw.lastGrid;state.quests=raw.quests;return state;
+        }
     }
 
     public sealed class GameView : MonoBehaviour
     {
-        private static readonly Color Cream = new Color32(249, 238, 218, 255);
+        private static readonly Color Cream = new Color32(249, 237, 217, 255);
         private static readonly Color Forest = new Color32(20, 44, 40, 255);
         private static readonly Color Rust = new Color32(186, 75, 45, 255);
         private static readonly Color Sand = new Color32(202, 169, 125, 255);
-        private GameModel model;
+        private GameSession session;
+        private GameModel model { get {return session.Model;} }
         private SaveStore saves;
         private IRandomSource random;
         private VisualElement root, room, upgradeRows, confirmation, main;
@@ -67,7 +76,7 @@ namespace ZeroToMillionaire
 #endif
             saves = new SaveStore(Path.Combine(saveDirectory, "level1-v1.json"), new UnityStateCodec());
             string notice;
-            model = new GameModel(saves.Load(out notice));
+            session=new GameSession(saves,new SeededRandom(unchecked(Environment.TickCount+31)));notice=session.Notice;
             wanderer = new RoomWanderer(new FloorPoint(model.Snapshot.heroineU, model.Snapshot.heroineV), new SeededRandom(unchecked(Environment.TickCount + 17)));
             if (!string.IsNullOrEmpty(notice)) saveNotice = notice;
             var panel = ScriptableObject.CreateInstance<PanelSettings>();
@@ -148,7 +157,7 @@ namespace ZeroToMillionaire
             header=new VisualElement { name="header" };Row(header);header.style.flexShrink=0;
             var title=Frame("title-panel",PixelUi.Finish.Title);title.style.flexGrow=1;title.style.flexBasis=0;
             title.style.height=Length.Percent(100);title.style.marginRight=10;title.style.paddingLeft=6;
-            var first=Text("ZERO TO",16,Cream);first.style.height=19;first.style.marginTop=3;
+            var first=Text("ZERO TO",16,Cream);first.style.height=18;first.style.marginTop=3;
             var second=Text("MILLIONAIRE",20,PixelUi.Hex(0xffb758));second.style.height=22;
             title.Add(first);title.Add(second);header.Add(title);
             var bank=Frame("cash-panel",PixelUi.Finish.Forest);Row(bank);bank.style.flexGrow=1;bank.style.flexBasis=0;
@@ -160,11 +169,13 @@ namespace ZeroToMillionaire
             bank.Add(bankInfo);header.Add(bank);main.Add(header);
 
             pathbar=new VisualElement { name="cash-path" };Row(pathbar);pathbar.style.flexShrink=0;
-            pathbar.style.justifyContent=Justify.SpaceBetween;
+            pathbar.style.justifyContent=Justify.SpaceBetween;pathbar.style.paddingLeft=10;pathbar.style.paddingRight=10;
+            var connector=Box("milestone-line",PixelUi.Hex(0x887669));connector.style.position=Position.Absolute;
+            connector.style.left=35;connector.style.right=35;connector.style.top=6;connector.style.height=2;pathbar.Add(connector);
             string[] names={"START","1K","10K","100K","1M"};
             for(int i=0;i<5;i++) {
                 var step=new VisualElement { name="milestone-"+i };step.style.width=50;step.style.alignItems=Align.Center;
-                var dot=Box("milestone-dot-"+i,i==0?PixelUi.Hex(0xffb13b):Cream);dot.style.width=12;dot.style.height=12;Border(dot);dot.style.borderTopLeftRadius=3;dot.style.borderTopRightRadius=3;dot.style.borderBottomLeftRadius=3;dot.style.borderBottomRightRadius=3;
+                var dot=new VisualElement{name="milestone-dot-"+i};dot.style.width=13;dot.style.height=13;PixelUi.CashMarker(dot);
                 step.Add(dot);var label=Text(names[i],11,Forest);label.style.unityTextAlign=TextAnchor.MiddleCenter;step.Add(label);pathbar.Add(step);
             }
             main.Add(pathbar);
@@ -250,10 +261,10 @@ namespace ZeroToMillionaire
             // Short portrait keeps a large whole room; tall portrait restores
             // the reference's generous reel and SPIN proportions.
             float tall=Mathf.Clamp01((height-628)/160);
-            header.style.height=46;pathbar.style.height=Mathf.Lerp(28,32,tall);
-            grid.style.height=Mathf.Lerp(132,204,tall);
+            header.style.height=43;pathbar.style.height=Mathf.Lerp(24,32,tall);
+            grid.style.height=Mathf.Lerp(120,204,tall);
             spinRow.style.height=Mathf.Lerp(68,96,tall);
-            upgradeRows.style.height=116;
+            upgradeRows.style.height=112;
             SizeRoomStage();
         }
 
@@ -310,7 +321,7 @@ namespace ZeroToMillionaire
             UpdateRewardFlight();
             if (wanderer == null || model == null || heroine == null) return;
             wanderer.Step(Time.unscaledDeltaTime);
-            model.SetHeroinePosition(wanderer.Position);
+            session.SetHeroinePosition(wanderer.Position);
             UpdateHeroine();
         }
         void UpdateHeroine()
@@ -378,7 +389,7 @@ namespace ZeroToMillionaire
                 roomTicks.Add(tick);
             }
             int[] marks={0,1000,10000,100000,1000000};
-            for(int i=0;i<5;i++)pathbar.Q<VisualElement>("milestone-dot-"+i).style.backgroundColor=s.cash>=marks[i]?PixelUi.Hex(0xffb13b):Cream;
+            for(int i=0;i<5;i++){var marker=pathbar.Q<VisualElement>("milestone-dot-"+i);if(s.cash>=marks[i])marker.AddToClassList("reached");else marker.RemoveFromClassList("reached");marker.MarkDirtyRepaint();}
             DrawRoom(s);DrawQuest(s);
             int[] pool=model.ActivePool;for(int i=0;i<cells.Length;i++)SetCell(i,s.spins>0?s.lastGrid[i]:pool[i%pool.Length]);
             ApplySafeArea();
@@ -460,10 +471,12 @@ namespace ZeroToMillionaire
         }
         IEnumerator SpinRoutine()
         {
-            var before=model.Snapshot;SpinResult result;
-            if(!model.TrySpin(random,out result))yield break;
-            // Commit rewards and their exact grid before any cosmetic frames.
-            if(!Persist()){model=new GameModel(before);Refresh();ShowToast("SAVE FAILED - TRY AGAIN");yield break;}
+            SpinResult result;
+            if(!session.TryBeginSpin(out result)){
+                saveNotice=session.Notice;if(!string.IsNullOrEmpty(session.Error))ShowToast("SAVE FAILED - TRY AGAIN");
+                Refresh();yield break;
+            }
+            saveNotice=session.Notice;
             spinning = true; Refresh();
             int[] pool = result.Pool;
             for (int frame = 0; frame < 6; frame++)
@@ -471,31 +484,32 @@ namespace ZeroToMillionaire
                 for (int i = 0; i < 15; i++) SetCell(i, pool[random.Next(pool.Length)]);
                 yield return new WaitForSecondsRealtime(0.055f);
             }
-            spinning = false; spinReadyAt = Time.unscaledTime + 0.12f; Refresh();
+            session.FinishSpinPresentation();spinning = false; spinReadyAt = Time.unscaledTime + 0.12f; Refresh();
             int collected=0;foreach(int value in result.Fragments)collected+=value;
             ShowToast("+"+result.Payout+" CASH"+(collected>0?"  ·  +"+collected+" PARTS":""));StartRewardFlight(result);
         }
         void Buy(int index)
         {
-            if(spinning)return;var before=model.Snapshot;if(!model.TryBuy(index))return;
-            if(!Persist()){model=new GameModel(before);Refresh();ShowToast("SAVE FAILED - TRY AGAIN");return;}
+            if(!session.TryPurchase(index)){saveNotice=session.Notice;if(!string.IsNullOrEmpty(session.Error))ShowToast("SAVE FAILED - TRY AGAIN");return;}
+            saveNotice=session.Notice;
             rewardPending=false;rewardFly.style.display=DisplayStyle.None;
             ShowToast(model.Complete?"8/8 DONE - ROOM COMPLETE":"TASK "+model.PurchasedCount+"/8 DONE - INSTALLED");
             page = model.Complete ? 3 : model.PurchasedCount / 2;
             Refresh();
         }
-        void Recover() { if(spinning)return;var before=model.Snapshot;if(!model.GrantRecovery())return;if(!Persist()){model=new GameModel(before);Refresh();ShowToast("SAVE FAILED - TRY AGAIN");return;}ShowToast("FREE RECOVERY SPIN");Refresh(); }
-        bool Persist() { string error;bool saved=saves.Save(model.Snapshot, out error);saveNotice=saved?"Saved locally · offline":error;return saved; }
+        void Recover()
+        {
+            if(!session.TryRecover()){saveNotice=session.Notice;if(!string.IsNullOrEmpty(session.Error))ShowToast("SAVE FAILED - TRY AGAIN");return;}
+            saveNotice=session.Notice;ShowToast("FREE RECOVERY SPIN");Refresh();
+        }
+        bool Persist(){bool saved=session.Save();saveNotice=session.Notice;return saved;}
         void ShowReset() { if (spinning) return; settings.style.display=DisplayStyle.None; main.SetEnabled(false); confirmation.style.display = DisplayStyle.Flex; confirmation.BringToFront(); }
         void HideReset() { confirmation.style.display = DisplayStyle.None; main.SetEnabled(true); }
         void ResetConfirmed()
         {
             if (spinning) return;
-            var fresh = new GameModel(); string error;
-            // A confirmed reset is committed twice so the backup also contains the reset.
-            if (!saves.Save(fresh.Snapshot, out error) || !saves.Save(fresh.Snapshot, out error))
-            { statusLabel.text = error; HideReset(); return; }
-            model = fresh; page = 0; saveNotice = "Room reset · 3 free spins";
+            if(!session.TryReset()){saveNotice=session.Notice;statusLabel.text=session.Error;HideReset();return;}
+            page=0;saveNotice=session.Notice;
             wanderer = new RoomWanderer(new FloorPoint(1.85f, 1.45f), new SeededRandom(Environment.TickCount)); drawnRoom = -1;
             HideReset(); Refresh(); ShowToast("3 FREE SPINS · A FRESH START");
         }
@@ -503,7 +517,7 @@ namespace ZeroToMillionaire
         void OnApplicationQuit() { if (model != null) Persist(); }
 #if UNITY_EDITOR
         public void SetQaState(PlayerState state, int upgradePage)
-        { HideReset();HideSettings();HideToast();rewardPending=false;rewardFly.style.display=DisplayStyle.None;PixelUi.SetPressed(spinButton,false);random=new SeededRandom(57);model = new GameModel(state); wanderer = new RoomWanderer(new FloorPoint(state.heroineU, state.heroineV), new SeededRandom(57)); drawnRoom = -1; page = upgradePage; spinning = false; statusLabel.text = ""; Refresh(); }
+        { HideReset();HideSettings();HideToast();rewardPending=false;rewardFly.style.display=DisplayStyle.None;PixelUi.SetPressed(spinButton,false);random=new SeededRandom(57);session=new GameSession(saves,new SeededRandom(57),state); wanderer = new RoomWanderer(new FloorPoint(state.heroineU, state.heroineV), new SeededRandom(57)); drawnRoom = -1; page = upgradePage; spinning = false; statusLabel.text = ""; Refresh(); }
         public void QaClick(string name)
         {
             var button=root.Q<Button>(name);if(button==null||!button.enabledInHierarchy)return;
@@ -516,7 +530,7 @@ namespace ZeroToMillionaire
         public FloorPoint QaFeet { get { return wanderer.Position; } }
         public bool QaWalking { get { return wanderer.Walking; } }
         public int QaAnimationPhase { get { return heroine == null ? -1 : heroine.Phase; } }
-        public void QaStepWalk(float seconds) { wanderer.Step(seconds); model.SetHeroinePosition(wanderer.Position); UpdateHeroine(); }
+        public void QaStepWalk(float seconds) { wanderer.Step(seconds); session.SetHeroinePosition(wanderer.Position); UpdateHeroine(); }
         public void QaSave() { Persist(); }
         public void QaBeginSpin() { BeginSpin(); }
         public bool QaSpinning { get { return spinning; } }

@@ -1,87 +1,38 @@
-# ZERO TO MILLIONAIRE - playable v0.2
+# ZERO TO MILLIONAIRE - desktop prototype v0.3
 
-Offline portrait single-player prototype. One fixed 3x3m room progresses through
-8 modest repairs/items. No ads, payments, login, publication or room expansion.
-All graphics were newly generated for this project from the six approved refs.
-
-SPIN shows 5x3 symbols. Each item icon credits ONLY its own fragment counter.
-Cash icons pay +2; base payout is12, matching vertical triples add10. Paid spins
-cost5; start with3 free spins. Free recovery grants1 spin only below5 cash with
-no allowance. BUY needs BOTH the item's fragments and cash, plus the preceding
-upgrade. It deducts once, then applies the visible change. Arrows show all8 rows.
-
-The pool starts with cash, broken floor, cracked wall, door and window. Purchased
-icons leave it. Surface repair replaces cracked wall with wallpaper; wallpaper
-introduces mattress. Mattress enables lamp, then lamp enables stool. Owned rows
-use repaired door/window and dressed mattress variants. Unspent progress stays.
-Prices total488 cash, goals98 fragments; 1000 simulations complete in18-28 spins,
-median23/p9525. Economy.cs is tunable; this is prototype pacing.
-
-The adult heroine picks reachable floor destinations, accelerates, slows and
-pauses. Generated neutral front/back art becomes a 2D rig: separate legs swing
-oppositely with small lift, continuously driven by distance. Head/pelvis retain
-their view, whole rig mirrors for leftward travel; idle feet are planted. Draft
-stride sheets were rejected as a finished walk cycle. This is procedural limb
-animation, not24 distinct generated frames. Furniture/door footprints reserve
-safe placement zones before purchase, so items never spawn through the heroine.
-The same metre geometry projects feet and controls depth order. Mattress along
-left wall, lamp by its head, stool nearby; door/window and centre passage clear.
+Offline portrait single-player Unity prototype. One fixed 3x3m (9m2) room starts wrecked and empty, then gains eight modest repairs/items: floor patches, surfaces, cheap wallpaper, door, window, mattress, lamp and stool. There is no room expansion, login, ads, payment or network requirement. All reusable art was generated separately for this project from the six approved references.
 
 ## Run
 
-Use Unity6000.3.21f1; open Assets/Scenes/Level1.unity and press Play.
-Installed editor: X:\Programs\Unity\6000.3.21f1\Editor\Unity.exe.
-Windows: Builds/Windows-v0.2/ZeroToMillionaire.exe with companion files.
-Android: Builds/Android/zero-to-millionaire-v0.2.apk, ARM64, Android8/API26+.
-Prior v0.1 APK is preserved. For already authorized USB debugging:
+Open Builds/Windows-v0.3/ZeroToMillionaire.exe, keeping its companion folders beside it. Canonical project: X:/Projects/ZERO-TO-MILLIONAIRE. The latest Windows build is already open on the connected computer. To edit, open the project with installed Unity6000.3.21f1 at X:/Programs/Unity/6000.3.21f1/Editor/Unity.exe; load Assets/Scenes/Level1.unity and press Play.
 
-```powershell
-& 'X:\Programs\Unity\6000.3.21f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools\adb.exe' install -r '.\Builds\Android\zero-to-millionaire-v0.2.apk'
-```
+## Play and balance
 
-No phone was connected; physical Android/touch/battery tests remain unrun.
-See VERIFICATION.md for actual editor/build coverage and Evidence for renders.
+SPIN shows a 5x3 grid. There is one active task and one locked NEXT task. Every visible current-item symbol gives one part for that task; cash symbols pay +2, every spin pays base12, and matching vertical triples add10. Once the part goal is met, extra item rolls become visible cash. If both resources are ready, install before spinning again. Manual BUY & INSTALL requires both the task's parts and cash, deducts once and applies the visible repair/item. Completion8/8 ends collection.
 
-For split delivery, place zero-to-millionaire-android-v0.2.zip.001 and .002 in
-the same directory, open .001 with 7-Zip and extract. The extracted APK is
-byte-for-byte identical to the signed build. No APK conversion or merging needed.
+Paid spins cost5. Three free starter spins and explicit free recovery below5cash with no allowance prevent deadlock. Prices total488cash; goals total98parts. Economy.cs holds tunable values. Across1000 seeded simulations completion takes14-21spins, median17/p9518. These values support a short playable prototype; reference picture balances are illustrative.
 
-```powershell
-& 'C:\Program Files\7-Zip\7z.exe' x '.\zero-to-millionaire-android-v0.2.zip.001' '-o.\ZERO-TO-MILLIONAIRE-Android'
-```
+The adult heroine walks continuously between reachable destinations with grounded feet and reserved furniture/door clearance. Neutral front/back sprites are cut into separate limb pieces and animated procedurally; this is not24 hand-painted walk frames. Room surfaces, character, furniture, symbols and live controls remain separate editable assets.
 
-Build from the extracted project with the installed Android module:
+## Save and reset
 
-```powershell
-& 'X:\Programs\Unity\6000.3.21f1\Editor\Unity.exe' -batchmode -nographics -projectPath $PWD.Path -executeMethod ZeroToMillionaire.Editor.BuildPrototype.Android -quit -logFile "$PWD\Evidence\android-build.log"
-```
+The existing local filename level1-v1.json is retained, now schema3. Windows saves in %USERPROFILE%/AppData/LocalLow/PrototypeWorkspace/ZERO TO MILLIONAIRE. Migration preserves legacy cash, ownership, allowances and all excess parts. Actions commit before cosmetic animation; failed writes preserve the prior live state. Invalid primary data selects a validated backup. RESET in MENU needs confirmation. Do not downgrade a schema3 save into old builds.
 
-## Saves and source
+The fresh launch preserved87cash/9spins/2owned. The user then actively progressed to120cash/18spins/7owned. A forced close was avoided. When the user had already closed the player, the unchanged build was reopened. Live gameplay changed resource/quest fields before the after-load observation, so exact player-relaunch progress equality remains unverified. No save was reset or restored by the assistant. Independent disk/relaunch and failure tests passed.
 
-Existing level1-v1.json filename is retained, internal schema2. Migration keeps
-v1 cash, purchases, ALL unspent fragments, spins and recovery allowance. Walking
-feet position saves too. Actions/pause/quit commit locally; corrupt primary falls
-back to validated backup. RESET asks confirmation and rewrites primary/backup.
-Downgrading to v0.1 after a v2 save is not supported.
+## Verification and limits
 
-```powershell
-dotnet run --project Checks/Checks.csproj -- Evidence/checks-tmp
-```
+Final code passed34,586 economy assertions,1000 full simulated levels,432,000 walking samples and52 offline session checks. Fresh actual Unity control callbacks completed all8purchases in16spins and checked repeated taps, save-before-cosmetics, recovery, menu and reset confirmation/cancellation. Portrait UI was rendered at360x640,360x800 and480x960. See VERIFICATION.md and Evidence/runtime-v0.3-qa.txt.
 
-Source ZIP includes production PNGs, code, six references, screenshots/GIF and
-identity/crop receipts. Raw generated atlases remain local and in Library IDs
-listed in ASSET_MANIFEST.md; needed only to rerun cropping, not to play/build.
+All six approved refs were inspected as actual pixels. Evidence/v0.3-six-reference-review.png pairs matched room stages. The heroine scale was corrected uniformly without changing collision footprints. Remaining visual differences: the generated room is steeper than the references; neutral walking poses and licensed Pixelify font are approximate. The finite active/NEXT task panel is the gameplay adaptation.
 
-## Unity MCP
+Android packaging is deferred by the desktop instruction. Installed SDK/NDK/JDK and earlier signed v0.1/v0.2 APKs remain unchanged. No physical Android device, emulator, touch or battery test is claimed. There is no fresh v0.3 APK.
 
-Official unity@unity-agent-plugin0.1.8-beta installed. Official Unity CLI
-1.0.0-beta.12 lives outside Unity's disposable Temp at sibling
-unity-mcp-tools/bin/unity.exe. Local com.unity.pipeline0.8.0-exp.1 installed;
-its runtime server is disabled in builds. No Assistant/cloud package, sign-in,
-new agreement, credential grant or sandbox network-policy change used.
+## Source and local tooling
 
-Codex stdio server unity-zero-to-millionaire is pinned to this project.
-Initialize,160 live tools and a harmless build-settings read were verified.
-Native tools in an existing chat need a session reload; Tools/verify_unity_mcp.py
-can verify the standard protocol now. CLI binaries and global config backups
-are outside the source archive. MCP receipts contain no instance-auth tokens.
+Run local model/session checks:
+dotnet run --project Checks/Checks.csproj --no-restore -- Evidence/checks-tmp
+
+Unity build method: ZeroToMillionaire.Editor.BuildPrototype.Windows. Keep build/cache TEMP and TMP under this project's Temp. Tools/package_project_v03.py makes the current source archive; do not run old Tools/package_project.py, which targets the old v0.2 archive.
+
+The official Unity CLI1.0.0-beta.12 and project-pinned MCP use .tooling/unity-cli/bin/unity.exe with com.unity.pipeline0.8.0-exp.1. Runtime pipeline is disabled in builds. Tools/verify_unity_mcp.py verifies the standard local protocol. Private helpers, cache, credentials, user saves and build binaries are excluded from Git/source ZIP. This is a local repository with no remote or push.

@@ -1,55 +1,17 @@
-# Offline architecture review — migration checkpoint
+# Offline architecture - verified desktop checkpoint
 
-The backend is local game code and storage. There is no server or network service.
+This project has no backend service. The application boundary is GameSession, with injected IStateStore and reward randomness. GameModel owns the finite eight-task domain rules; SaveStore owns bounded local JSON, raw schema validation, migration and atomic primary/backup persistence. GameView owns input, UI, movement and cosmetic animation.
 
-## Current boundaries
+Implemented and reproduced fixes:
+- Reject malformed schema3 quest records before normalization. Duplicate, unknown, wrong-case, missing and invalid-enum IDs select the valid backup. Missing JSON arrays are no longer invented by constructor defaults.
+- Publish a candidate only after its save succeeds. The spin result is committed before cosmetics; a presentation lease rejects repeat spin and purchase input.
+- If reset commits its primary but its second backup write fails, keep the committed fresh live state and retry backup later.
+- Check cash overflow using the net transaction in a wider intermediate.
 
-- Core/Economy.cs: typed Symbol/ReelSymbol enums, immutable upgrade definitions,
-  stable saved IDs, costs/goals and active task/pool rules.
-- Core/GameModel.cs: validated state, finite quest progression, cash/part
-  transactions, repeated-buy guards, migrations and snapshotted spin pool/grid.
-  Core has no Unity dependency and runs in the .NET check executable.
-- Core/SaveStore.cs: codec boundary, bounded local JSON, flush + atomic replace,
-  backup recovery and version migration.
-- Runtime/GameView.cs: live UI, room art, input, cosmetic spin/reward flight and
-  movement presentation. It currently also coordinates save and rollback.
+Final code passed 34,586 economy assertions, 1,000 complete seeded levels, 432,000 walking samples and 52 targeted offline session checks, including an actual interrupted disk write and concurrent purchase taps. The fresh Unity run also passed the full actual UI callback flow: 16 spins, eight purchases, menu, reset cancellation/confirmation and recovery. This is editor-rendered/automated input evidence, not a physical Android device test.
 
-The X copy passed existing 34,586 economy assertions / 1,000 complete seeded
-levels and 432,000 walking samples. Exact source/asset hashes matched before
-tooling changes. The latest rendered quest run remains the prior successful
-17-spin/8-purchase UI evidence; this checkpoint does not claim a new UI rebuild.
+All six approved references were inspected as actual pixels. Six matched 360x640 room stages and 360x800/480x960 live states were rendered. The neutral heroine now uses a uniform 212-unit canvas: source opaque height166 gives approximately100 pixels in the short viewport, matching the reference's approximately100-pixel adult figure. Foot pivot and all collision footprints are unchanged. Short-screen room size is280 square layout units; cash milestones now have connected octagonal markers.
 
-## Concrete next changes
+The independent generated room art remains steeper than the references (near-square opaque bounds versus their flatter composition). The neutral walking pose and licensed Pixelify font also differ from the generated reference. The finite active/NEXT task panel is the approved gameplay adaptation. Separate art layers, sprites and item symbols remain editable; the prototype is not a flattened screenshot.
 
-1. Extract the repeated mutate/save/rollback code for spin, BUY and recovery from
-   GameView into one small offline session, with an injectable save interface.
-   This makes save-failure, close/reload and repeated input tests independent of
-   Unity. Keep domain rules in GameModel and cosmetics in GameView.
-
-2. Check persisted schema3 quest-ID array shape before canonical migration.
-   Currently Migrate rebuilds quest records before IsValid checks them. A malformed
-   raw record list can therefore be normalized rather than selecting the valid
-   backup. Reproduce with a disk fixture, reject duplicates/unknown/missing IDs,
-   and still derive readiness from balances while preserving legacy owned stock.
-
-3. Test reset when its second save fails. Current GameView checks two saves in one
-   condition; a first committed reset followed by failure can leave the live model
-   describing the old state. Define the primary-commit outcome explicitly without
-   inventing a distributed transaction system.
-
-4. Check the cash overflow boundary against the net transaction. Current spin
-   validation uses gross payout before subtracting the bet; valid near-limit net
-   values may be rejected. Use a wider intermediate and a targeted numeric test.
-
-These are inspection findings, not all reproduced failures yet. No speculative
-layers, additional currencies, hosted API or anti-cheat system are proposed.
-
-## Next verification boundary
-
-Implement those small changes on X, then rerun migration/resource gates/repeated
-taps, save-failure/relaunch/mid-spin/reset/recovery, full finite UI playthrough and
-movement clearance. Compare actual live empty/collecting/ready/completed,
-pressed/disabled/menu states to all6 references at matched resolution; measure
-room/heroine scale, fonts, spacing and button depth. Return the requested visual
-checkpoint before rebuilding and opening the final Windows portrait player.
-Android packaging is deferred; installed Android capability is retained.
+Current evidence: Evidence/unity-model-checks.txt, runtime-v0.3-qa.txt, unity-ui-v0.3-final-qa.log and v0.3-six-reference-review.png. The final Windows rebuild succeeded and the responding player is open. Launch kept87cash/9spins/2owned; the user has since actively advanced. A forced close was avoided; once the prior player was already closed, the unchanged build was reopened. Subsequent live input changed the state before comparison, so exact desktop-relaunch progress equality is unverified. No reset or old-save restoration was performed by the assistant. See windows-v0.3-startup.json and windows-v0.3-closeout.json. Android packaging is deferred; installed Android tooling and previous APKs are preserved.

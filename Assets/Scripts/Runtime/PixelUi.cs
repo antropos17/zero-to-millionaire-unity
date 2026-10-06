@@ -8,6 +8,16 @@ namespace ZeroToMillionaire
     {
         public enum Finish { Cream, Forest, Slot, Rust, Grey, Owned, Title }
         public static Color Hex(uint rgb) { return new Color32((byte)(rgb >> 16),(byte)(rgb >> 8),(byte)rgb,255); }
+        public static void CashMarker(VisualElement element)
+        {
+            element.style.backgroundColor=Color.clear;
+            element.generateVisualContent+=ctx=>{
+                var p=ctx.painter2D;var rect=new Rect(0,0,element.layout.width,element.layout.height);
+                bool reached=element.ClassListContains("reached");
+                Polygon(p,rect,4,reached?Hex(0x142c28):Hex(0x777168));
+                Polygon(p,Inset(rect,2),2,reached?Hex(0xffb13b):Hex(0xf9edd9));
+            };
+        }
         public static void Skin(VisualElement element, Finish finish)
         {
             element.style.backgroundColor=Color.clear;

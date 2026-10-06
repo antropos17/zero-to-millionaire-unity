@@ -35,7 +35,10 @@ namespace ZeroToMillionaire.Editor
             (360,640,0,0,"v0.3-quest-buy-ready-360x640"), (360,640,0,0,"v0.3-quest-spin-pressed-360x640"),
             (360,640,0,0,"v0.3-quest-menu-360x640"), (360,640,0,0,"v0.3-quest-reset-confirmation-360x640"),
             (360,640,0,0,"v0.3-quest-progress-360x640"), (360,640,0,0,"v0.3-quest-cash-needed-360x640"),
-            (360,640,1,0,"v0.3-quest-after-buy-360x640")
+            (360,640,1,0,"v0.3-quest-after-buy-360x640"),
+            (360,640,1,0,"v0.3-ref-patches-360x640"),(360,640,2,0,"v0.3-ref-surfaces-360x640"),
+            (360,640,3,1,"v0.3-ref-wallpaper-360x640"),(360,640,6,2,"v0.3-ref-mattress-360x640"),
+            (360,640,8,3,"v0.3-ref-complete-360x640")
         };
         static CaptureQA() { EditorApplication.update += Update; }
         public static void Start()

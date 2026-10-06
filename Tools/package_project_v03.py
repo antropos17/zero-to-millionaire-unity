@@ -11,12 +11,12 @@ def include(path):
     if path.name=='update_ui_v03.py':return False # disposable one-shot migration, not a rebuild tool
     if rel.parts[0]=='Evidence':
         if path.suffix in {'.png','.gif'}:
-            return (('v0.3' in path.name and 'first-' not in path.name and 'diagnostic' not in path.name)
-                    or path.name in {'v0.2-start-360x640.png','item-symbols-v0.2.png'})
+            return (('v0.3-quest-' in path.name or 'v0.3-ref-' in path.name) and 'diagnostic' not in path.name
+                    or path.name in {'windows-v0.3-final-window.png','v0.3-six-reference-review.png','v0.3-playthrough-complete-360x640.png','v0.3-spin-busy-360x640.png'})
         return ('v0.3' in path.name or path.name.startswith('unity-mcp-') or path.name=='unity-model-checks.txt')
     return True
 with zipfile.ZipFile(zip_path,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
-    for name in ['AGENTS.md','PROJECT_BRIEF.md','ASSET_MANIFEST.md','README.md','VERIFICATION.md','.gitignore']:
+    for name in ['AGENTS.md','PROJECT_BRIEF.md','ASSET_MANIFEST.md','README.md','VERIFICATION.md','PROJECT_HANDOFF.md','ARCHITECTURE_REVIEW.md','.gitignore','.gitattributes']:
         p=root/name
         if p.exists():z.write(p,'zero-to-millionaire-first-playable/'+name)
     for folder in ['Assets','Packages','ProjectSettings','Checks','Tools','Evidence','references']:
@@ -27,7 +27,7 @@ with zipfile.ZipFile(zip_path,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
 with zipfile.ZipFile(zip_path) as z:
     assert z.testzip() is None
     names=z.namelist();pre='zero-to-millionaire-first-playable/'
-    for n in ['Assets/Scenes/Level1.unity','Assets/Scripts/Runtime/GameView.cs','Assets/Scripts/Runtime/PixelUi.cs','Assets/Resources/Fonts/OFL.txt','Evidence/runtime-v0.3-qa.txt','Evidence/windows-v0.3-startup.json']:
+    for n in ['Assets/Scenes/Level1.unity','Assets/Scripts/Core/GameSession.cs','Assets/Editor/SessionChecks.cs','PROJECT_HANDOFF.md','ARCHITECTURE_REVIEW.md','Assets/Scripts/Runtime/GameView.cs','Assets/Scripts/Runtime/PixelUi.cs','Assets/Resources/Fonts/OFL.txt','Evidence/runtime-v0.3-qa.txt','Evidence/windows-v0.3-startup.json']:
         assert pre+n in names,n
     assert len([n for n in names if n.startswith(pre+'references/') and n.endswith('.png')])==6
     assert all('\\' not in n for n in names)

@@ -114,10 +114,11 @@ namespace ZeroToMillionaire
                     if (symbol == (int)ReelSymbol.Cash) payout += 2;
                 }
                 // Validate the complete transaction before changing any balance.
-                if (state.cash > int.MaxValue - payout || state.spins == int.MaxValue) return false;
+                long nextCash=(long)state.cash-cost+payout;
+                if(nextCash<0||nextCash>int.MaxValue||state.spins==int.MaxValue)return false;
                 for (int i = 0; i < gains.Length; i++) if (state.fragments[i] > int.MaxValue - gains[i]) return false;
                 if (state.freeSpins > 0) state.freeSpins--;
-                state.cash = state.cash - cost + payout;
+                state.cash = (int)nextCash;
                 state.spins++;
                 for (int i = 0; i < gains.Length; i++) state.fragments[i] += gains[i];
                 state.lastGrid = grid;
@@ -148,29 +149,43 @@ namespace ZeroToMillionaire
             }
         }
 
-        public static bool IsValid(PlayerState s, out string reason)
+        public static bool IsValid(PlayerState s,out string reason)
         {
-            reason = "Invalid or unsupported save";
-            if (s == null || s.version != Economy.SaveVersion || s.cash < 0 || s.freeSpins < 0 ||
-                s.freeSpins > Economy.StarterFreeSpins || s.spins < 0 || s.recoveries < 0 ||
-                s.fragments == null || s.fragments.Length != Economy.SymbolCount ||
-                s.purchased == null || s.purchased.Length != Economy.SymbolCount ||
-                s.lastGrid == null || s.lastGrid.Length != Economy.Columns * Economy.Rows ||
-                !RoomGeometry.IsFree(new FloorPoint(s.heroineU, s.heroineV))) return false;
-            for (int i = 0; i < Economy.SymbolCount; i++)
-            {
-                if (s.fragments[i] < 0) return false;
+            if(!IsPersistedValid(s,out reason))return false;
+            if(s.version!=Economy.SaveVersion){reason="Save requires migration";return false;}
+            return true;
+        }
+
+        // Check raw persisted shape BEFORE deriving current quest statuses.
+        public static bool IsPersistedValid(PlayerState s,out string reason)
+        {
+            reason="Invalid or unsupported save";
+            if(s==null||s.version<1||s.version>Economy.SaveVersion||s.cash<0||
+                s.freeSpins<0||s.freeSpins>Economy.StarterFreeSpins||s.spins<0||s.recoveries<0||
+                s.fragments==null||s.fragments.Length!=Economy.SymbolCount||
+                s.purchased==null||s.purchased.Length!=Economy.SymbolCount||
+                s.lastGrid==null||s.lastGrid.Length!=Economy.Columns*Economy.Rows)return false;
+            if(s.version>1&&!RoomGeometry.IsFree(new FloorPoint(s.heroineU,s.heroineV)))return false;
+            foreach(int part in s.fragments)if(part<0)return false;
+            int iconCount=s.version==1?5:Economy.ReelSymbolCount;
+            foreach(int icon in s.lastGrid)if(icon<0||icon>=iconCount)return false;
+            if(s.version==Economy.SaveVersion){
+                if(s.quests==null||s.quests.Length!=Economy.SymbolCount){reason="Missing quest records";return false;}
+                var ids=new System.Collections.Generic.HashSet<string>(StringComparer.Ordinal);
+                foreach(var quest in s.quests){
+                    if(quest==null||string.IsNullOrEmpty(quest.id)||!ids.Add(quest.id)||
+                        !Enum.IsDefined(typeof(QuestStatus),quest.status)||
+                        Array.Find(Economy.Upgrades,d=>d.Id==quest.id)==null){
+                        reason="Invalid or duplicate quest ID";return false;
+                    }
+                }
             }
-            if(s.quests==null||s.quests.Length!=Economy.SymbolCount)return false;
-            var ids=new System.Collections.Generic.HashSet<string>();
-            foreach(var quest in s.quests)if(quest==null||!ids.Add(quest.id)||!Enum.IsDefined(typeof(QuestStatus),quest.status)||Array.Find(Economy.Upgrades,d=>d.Id==quest.id)==null)return false;
-            foreach (int symbol in s.lastGrid) if (symbol < 0 || symbol >= Economy.ReelSymbolCount) return false;
-            reason = ""; return true;
+            reason="";return true;
         }
 
         public static PlayerState Migrate(PlayerState source)
         {
-            if(source==null||source.version<1||source.version>Economy.SaveVersion)return source;
+            string reason;if(!IsPersistedValid(source,out reason))return source;
             // v1 counters already belonged to individual upgrades. Preserve every
             // unspent fragment, purchase, cash balance and starter/recovery allowance.
             if (source.fragments == null || source.fragments.Length!=Economy.SymbolCount||source.purchased == null||source.purchased.Length!=Economy.SymbolCount || source.lastGrid == null) return source;

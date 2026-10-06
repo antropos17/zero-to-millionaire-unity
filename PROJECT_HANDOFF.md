@@ -38,38 +38,16 @@ All SIX approved refs are in references/, inspected and copied by exact hash:
 - modest finish: libfile_c42c06e8a880819188661f4787c30cbf
 Identity maps, art provenance and older deliverables are retained.
 
-## Verification and remaining work
+## Final desktop checkpoint
 
-Current quest code: 34,586 model assertions / 1,000 completed seeds (14–21 spins,
-median17); 432,000 navigation samples. Live Editor UI flow17spins/8buys,
-migration, resource gates, repeated taps, save-before-cosmetics, reset/recovery,
-three portrait sizes and reward feedback passed. Editor-only performance is
-7.18ms median/39.69ms p95; no physical-phone or emulator claim.
+Fresh v0.3 Windows build succeeded and is open/responding at Builds/Windows-v0.3/ZeroToMillionaire.exe (PID24084, title ZERO TO MILLIONAIRE). EXE SHA25648efab523aa684c653bd1254a6962d3410127b5c02dc1310f6f16f4810666556. Initial launch preserved87cash/9spins/2owned. At closeout the user had actively reached120cash/18spins/7owned; preserve their current state, never restore an older observation. A forced close was avoided. After the user had already closed the player, the unchanged build was reopened (PID13084). Live gameplay changed fields before the after-load observation, so exact player-relaunch resource equality is unverified; preserve current state and never restore an old snapshot.
 
-Windows-v0.3/ZeroToMillionaire.exe was built BEFORE depth/quest changes.
-Android v0.2 and old source/splits remain immutable. Final v0.3 builds are pending.
+Final checks:34,586 economy assertions/1000 completed seeds14-21spins median17;432,000 navigation samples;52 targeted offline session checks. Fresh rendered UI callback run completed16spins/8buys, with resource/repeat gates, save-before-cosmetics, menu, reset-cancel/confirm and free recovery. Three portrait sizes and all six matched reference stages were rendered. Actual Editor timing is recorded in Evidence/runtime-v0.3-qa.txt; it is not an Android benchmark.
 
-Next bounded slices: extract save/rollback orchestration from GameView into a
-small testable offline session; validate persisted stable-ID shapes before
-canonical migration; inspect reset/save-failure and overflow edges. Recheck UI
-against all6refs at matched size and report measurable scale/font/spacing/state
-differences. Return visual/regression checkpoint, then final Windows executable and source.
-Latest owner instruction prioritizes desktop; Android builds/splits are deferred.
-Keep the Android toolchain and immutable old APKs; do not delete capability.
+Offline GameSession now injects IStateStore and randomness, commits candidates before publishing and holds a cosmetic spin input lease. Raw schema3 identity/shape validation precedes normalization; invalid primary falls back to backup. A reset primary commit remains fresh when its backup update fails. Net cash overflow uses a wider intermediate. See ARCHITECTURE_REVIEW.md for reproduced checks and honest visual differences.
 
-Commands from project root:
-dotnet run --project Checks/Checks.csproj --no-restore -- Evidence/checks-tmp
-python Tools/verify_unity_mcp.py get_build_settings
-Unity batch build methods: ZeroToMillionaire.Editor.BuildPrototype.Windows
-and .Android; final QA: ZeroToMillionaire.Editor.CaptureQA.Start with
-ZTM_QA_SAVE_DIR set to X:\Projects\ZERO-TO-MILLIONAIRE\Evidence\qa-save-v0.3.
-Direct every new build/cache TEMP/TMP to this project's Temp directory.
-Never run old Tools/package_project.py: it overwrites the v0.2 archive.
+Code is unchanged since the fresh QA/build; do not rebuild or repeat the broad loop solely for delivery. Android v0.1/v0.2 files and tooling are preserved; current Android packaging is deferred.
 
-Final acceptance: source and intended clean local Git on X, documented offline
-architecture, full finite level, both-resource and repeated-tap guards, migration,
-save/relaunch/closing midspin and confirmed reset, free recovery, randomized
-movement clearance, actual live UI playthrough,3portrait sizes, visible responding
-Windows player, verified source and confirmed Library IDs. Android packaging is
-deferred by the latest desktop instruction. Preserve user progress and distinguish device/editor tests.
-This file is a durable context summary; it does not claim chat compaction.
+Run/edit paths and gameplay: README.md. Durable evidence: Evidence/windows-v0.3-startup.json, windows-v0.3-closeout.json, unity-model-checks.txt, runtime-v0.3-qa.txt, windows-v0.3-final-window.png and v0.3-six-reference-review.png. Library IDs and source archive hashes are stored locally in Deliverables/library-delivery.json.
+
+Keep only intended source, Unity .meta, docs, references and bounded QA evidence in local Git. Keep existing identity/signing configuration. Never push, publish, add monetization, reset user progress, remove the old C copy or delete prior builds/graphics. This file summarizes project state; it does not claim chat compaction.

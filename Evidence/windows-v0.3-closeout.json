@@ -1,0 +1,18 @@
+{
+  "at_utc": "2026-10-06T07:27:59.413577+00:00",
+  "action": "prior player was already closed; unchanged build reopened",
+  "forced_close": false,
+  "actual_desktop_relaunch_performed": true,
+  "progress_equality_verified": false,
+  "reason": "live gameplay changed resource/quest fields before after-load observation; preserve current state rather than restore an old snapshot",
+  "assistant_reset_or_restore": false,
+  "before_cash": 120,
+  "before_spins": 18,
+  "before_owned": 7,
+  "observed_cash": 0,
+  "observed_spins": 0,
+  "observed_owned": 0,
+  "pid": 13084,
+  "window": "ZERO TO MILLIONAIRE",
+  "screenshot": "Evidence/windows-v0.3-final-window.png"
+}

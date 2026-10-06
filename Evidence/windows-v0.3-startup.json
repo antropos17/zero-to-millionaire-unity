@@ -1,0 +1,33 @@
+{
+  "exe": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\Builds\\Windows-v0.3\\ZeroToMillionaire.exe",
+  "sha256": "48EFAB523AA684C653BD1254A6962D3410127B5C02DC1310F6F16F4810666556",
+  "pid": 24084,
+  "responding": true,
+  "window": "ZERO TO MILLIONAIRE",
+  "beforeCash": 87,
+  "afterCash": 87,
+  "beforeSpins": 9,
+  "afterSpins": 9,
+  "beforeOwned": [
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "afterOwned": [
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "opened": "2026-10-06T11:20:28.0440050+04:00",
+  "screenshot": "Evidence/windows-v0.3-final-window.png"
+}

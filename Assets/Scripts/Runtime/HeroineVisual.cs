@@ -7,6 +7,7 @@ namespace ZeroToMillionaire
     // follow distance continuously, keeping the head, pelvis and facing stable.
     public sealed class HeroineVisual
     {
+        public const float CanvasHeight=212f,CanvasWidth=CanvasHeight*2f/3f;
         public readonly VisualElement Root;
         public int Phase { get; private set; }
         readonly Image upper = new Image { scaleMode = ScaleMode.StretchToFill };
@@ -20,7 +21,7 @@ namespace ZeroToMillionaire
         {
             Root = new VisualElement { name = "walking-heroine", pickingMode = PickingMode.Ignore };
             Root.style.position = Position.Absolute;
-            Root.style.width = Length.Percent(108f / 512 * 100); Root.style.height = Length.Percent(162f / 512 * 100);
+            Root.style.width = Length.Percent(CanvasWidth / 512 * 100); Root.style.height = Length.Percent(CanvasHeight / 512 * 100);
             for (int view = 0; view < 2; view++)
             {
                 string name = view == 0 ? "front" : "back";
@@ -47,8 +48,8 @@ namespace ZeroToMillionaire
         {
             float dx = (delta.U - delta.V) * 68, dy = (delta.U + delta.V) * 100f / 3;
             if (walking && Mathf.Abs(dx) + Mathf.Abs(dy) > 0.0001f) { back = dy < 0; left = dx < 0; }
-            Root.style.left = Length.Percent((RoomGeometry.PixelX(feet) - 54) / 512 * 100);
-            Root.style.top = Length.Percent((RoomGeometry.PixelY(feet) - 178f / 192 * 162) / 512 * 100);
+            Root.style.left = Length.Percent((RoomGeometry.PixelX(feet) - CanvasWidth/2) / 512 * 100);
+            Root.style.top = Length.Percent((RoomGeometry.PixelY(feet) - 178f / 192 * CanvasHeight) / 512 * 100);
             Root.style.scale = new Scale(new Vector3(left ? -1 : 1, 1, 1));
             int view = back ? 1 : 0;
             Phase = walking ? Mathf.FloorToInt(distance / 0.72f * 4) % 4 : -1;

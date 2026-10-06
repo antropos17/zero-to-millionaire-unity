@@ -161,6 +161,74 @@ PASS v0.3-quest-after-buy-360x640 single compact next preview
 PASS v0.3-quest-after-buy-360x640 install touch target fits
 PASS v0.3-quest-after-buy-360x640 active task stays above reels
 PASS v0.3-quest-after-buy-360x640 visible overall task completion
+PASS v0.3-ref-patches-360x640 spin fits viewport
+PASS v0.3-ref-patches-360x640 44-unit menu fits viewport
+PASS v0.3-ref-patches-360x640 stable 5x3 grid
+PASS v0.3-ref-patches-360x640 reset modal visibility correct
+PASS v0.3-ref-patches-360x640 room aspect preserved
+PASS v0.3-ref-patches-360x640 visible primary button child caption
+PASS v0.3-ref-patches-360x640 actual Pixelify font bound
+PASS v0.3-ref-patches-360x640 exactly current finite task shown
+PASS v0.3-ref-patches-360x640 only one install control
+PASS v0.3-ref-patches-360x640 exact capped task display preserves saved surplus
+PASS v0.3-ref-patches-360x640 cash available and required remain explicit
+PASS v0.3-ref-patches-360x640 single compact next preview
+PASS v0.3-ref-patches-360x640 install touch target fits
+PASS v0.3-ref-patches-360x640 active task stays above reels
+PASS v0.3-ref-patches-360x640 visible overall task completion
+PASS v0.3-ref-surfaces-360x640 spin fits viewport
+PASS v0.3-ref-surfaces-360x640 44-unit menu fits viewport
+PASS v0.3-ref-surfaces-360x640 stable 5x3 grid
+PASS v0.3-ref-surfaces-360x640 reset modal visibility correct
+PASS v0.3-ref-surfaces-360x640 room aspect preserved
+PASS v0.3-ref-surfaces-360x640 visible primary button child caption
+PASS v0.3-ref-surfaces-360x640 actual Pixelify font bound
+PASS v0.3-ref-surfaces-360x640 exactly current finite task shown
+PASS v0.3-ref-surfaces-360x640 only one install control
+PASS v0.3-ref-surfaces-360x640 exact capped task display preserves saved surplus
+PASS v0.3-ref-surfaces-360x640 cash available and required remain explicit
+PASS v0.3-ref-surfaces-360x640 single compact next preview
+PASS v0.3-ref-surfaces-360x640 install touch target fits
+PASS v0.3-ref-surfaces-360x640 active task stays above reels
+PASS v0.3-ref-surfaces-360x640 visible overall task completion
+PASS v0.3-ref-wallpaper-360x640 spin fits viewport
+PASS v0.3-ref-wallpaper-360x640 44-unit menu fits viewport
+PASS v0.3-ref-wallpaper-360x640 stable 5x3 grid
+PASS v0.3-ref-wallpaper-360x640 reset modal visibility correct
+PASS v0.3-ref-wallpaper-360x640 room aspect preserved
+PASS v0.3-ref-wallpaper-360x640 visible primary button child caption
+PASS v0.3-ref-wallpaper-360x640 actual Pixelify font bound
+PASS v0.3-ref-wallpaper-360x640 exactly current finite task shown
+PASS v0.3-ref-wallpaper-360x640 only one install control
+PASS v0.3-ref-wallpaper-360x640 exact capped task display preserves saved surplus
+PASS v0.3-ref-wallpaper-360x640 cash available and required remain explicit
+PASS v0.3-ref-wallpaper-360x640 single compact next preview
+PASS v0.3-ref-wallpaper-360x640 install touch target fits
+PASS v0.3-ref-wallpaper-360x640 active task stays above reels
+PASS v0.3-ref-wallpaper-360x640 visible overall task completion
+PASS v0.3-ref-mattress-360x640 spin fits viewport
+PASS v0.3-ref-mattress-360x640 44-unit menu fits viewport
+PASS v0.3-ref-mattress-360x640 stable 5x3 grid
+PASS v0.3-ref-mattress-360x640 reset modal visibility correct
+PASS v0.3-ref-mattress-360x640 room aspect preserved
+PASS v0.3-ref-mattress-360x640 visible primary button child caption
+PASS v0.3-ref-mattress-360x640 actual Pixelify font bound
+PASS v0.3-ref-mattress-360x640 exactly current finite task shown
+PASS v0.3-ref-mattress-360x640 only one install control
+PASS v0.3-ref-mattress-360x640 exact capped task display preserves saved surplus
+PASS v0.3-ref-mattress-360x640 cash available and required remain explicit
+PASS v0.3-ref-mattress-360x640 single compact next preview
+PASS v0.3-ref-mattress-360x640 install touch target fits
+PASS v0.3-ref-mattress-360x640 active task stays above reels
+PASS v0.3-ref-mattress-360x640 visible overall task completion
+PASS v0.3-ref-complete-360x640 spin fits viewport
+PASS v0.3-ref-complete-360x640 44-unit menu fits viewport
+PASS v0.3-ref-complete-360x640 stable 5x3 grid
+PASS v0.3-ref-complete-360x640 reset modal visibility correct
+PASS v0.3-ref-complete-360x640 room aspect preserved
+PASS v0.3-ref-complete-360x640 visible primary button child caption
+PASS v0.3-ref-complete-360x640 actual Pixelify font bound
+PASS v0.3-ref-complete-360x640 visible overall task completion
 PASS spin rewards saved before cosmetic reel animation; relaunch cannot lose or double charge
 PASS install blocked during unresolved reel animation
 PASS runtime spin coroutine commits cash/fragments once
@@ -273,7 +341,7 @@ PASS actual editor game updates move heroine over time
 PASS actual visible gait visits four alternating cutout phases
 PASS walking feet position survives disk reload
 Actual rendered demo: 100 frames; 11,9s; travelled 2,11m.
-Editor frame-time sample median_ms=7,18 p95_ms=39,69; no device benchmark.
+Editor frame-time sample median_ms=8,90 p95_ms=50,67; no device benchmark.
 Coverage: editor runtime rendered to texture, direct UI handlers; no physical touch/device test.
 PASS live UI flow advances without stalling
 PASS live full-level pacing bound
@@ -298,57 +366,56 @@ PASS live UI spin commits once 4
 PASS live UI flow advances without stalling
 PASS live full-level pacing bound
 PASS live UI spin commits once 5
-PASS live UI flow advances without stalling
-PASS live full-level pacing bound
-PASS live UI spin commits once 6
 PASS live UI enables dual-resource BUY 2
 PASS live repeated BUY commits once 2
 PASS purchase and next stable quest committed before visuals 2
 PASS live UI flow advances without stalling
 PASS live full-level pacing bound
-PASS live UI spin commits once 7
 PASS live UI flow advances without stalling
 PASS live full-level pacing bound
-PASS live UI spin commits once 8
+PASS live UI spin commits once 6
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 7
 PASS live UI enables dual-resource BUY 3
 PASS live repeated BUY commits once 3
 PASS purchase and next stable quest committed before visuals 3
 PASS live UI flow advances without stalling
 PASS live full-level pacing bound
-PASS live UI spin commits once 9
+PASS live UI spin commits once 8
 PASS live UI flow advances without stalling
 PASS live full-level pacing bound
-PASS live UI spin commits once 10
+PASS live UI spin commits once 9
 PASS live UI enables dual-resource BUY 4
 PASS live repeated BUY commits once 4
 PASS purchase and next stable quest committed before visuals 4
+PASS live UI flow advances without stalling
+PASS live full-level pacing bound
+PASS live UI spin commits once 10
 PASS live UI flow advances without stalling
 PASS live full-level pacing bound
 PASS live UI spin commits once 11
 PASS live UI flow advances without stalling
 PASS live full-level pacing bound
 PASS live UI spin commits once 12
-PASS live UI flow advances without stalling
-PASS live full-level pacing bound
-PASS live UI spin commits once 13
 PASS live UI enables dual-resource BUY 5
 PASS live repeated BUY commits once 5
 PASS purchase and next stable quest committed before visuals 5
 PASS live UI flow advances without stalling
 PASS live full-level pacing bound
-PASS live UI spin commits once 14
+PASS live UI spin commits once 13
 PASS live UI flow advances without stalling
 PASS live full-level pacing bound
-PASS live UI spin commits once 15
+PASS live UI spin commits once 14
 PASS live UI enables dual-resource BUY 6
 PASS live repeated BUY commits once 6
 PASS purchase and next stable quest committed before visuals 6
 PASS live UI flow advances without stalling
 PASS live full-level pacing bound
-PASS live UI spin commits once 16
+PASS live UI spin commits once 15
 PASS live UI flow advances without stalling
 PASS live full-level pacing bound
-PASS live UI spin commits once 17
+PASS live UI spin commits once 16
 PASS live UI enables dual-resource BUY 7
 PASS live repeated BUY commits once 7
 PASS purchase and next stable quest committed before visuals 7
@@ -359,4 +426,4 @@ PASS settings RESET opens confirmation
 PASS actual KEEP ROOM cancellation preserves completion and cash
 PASS actual confirmed reset starts fresh
 PASS actual zero-cash recovery control grants and spins once
-Actual UI callback level flow: 17 spins, 8 buys; menu, reset-cancel, confirmed-reset and recovery passed.
+Actual UI callback level flow: 16 spins, 8 buys; menu, reset-cancel, confirmed-reset and recovery passed.
