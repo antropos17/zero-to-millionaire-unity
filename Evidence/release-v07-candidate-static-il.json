@@ -1,0 +1,12 @@
+{
+  "source": "dd74c983dcb22eaa7a03b54027dfa3b3aefe8926",
+  "scope": "Mono.Cecil static clean Release IL; no native/input claim",
+  "gameViewPresent": true,
+  "qaMethods": [],
+  "automatedHarnessTypes": [],
+  "readOnlyObserverPresent": true,
+  "assemblySHA256": "CB9CDEBE084ECF310BDB6E878042E3F67135D79787291037FD0578F8DE726BF5",
+  "buildOptions": "None",
+  "auditDefine": false,
+  "result": "PASS"
+}

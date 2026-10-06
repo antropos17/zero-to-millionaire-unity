@@ -1,0 +1,14 @@
+{
+  "before": "785be6ebbcbaee012786e88d3acf7b67c45ddddea1faf0d87de67083a5d2cfbc",
+  "after": "785be6ebbcbaee012786e88d3acf7b67c45ddddea1faf0d87de67083a5d2cfbc",
+  "unchanged": true,
+  "private_test_pid": 14724,
+  "os_input_sent": false,
+  "interaction_blocker": "Owned private window was not foreground; guard stopped before keyboard/mouse actions",
+  "native_frames": 18967,
+  "samples": 12000,
+  "draw_counter_nonzero": 18965,
+  "median_ms": 4.165600000000325,
+  "p95_ms": 5.4213999999994655,
+  "scope": "bounded native read-only render observations; interactive controls/relaunch not verified"
+}

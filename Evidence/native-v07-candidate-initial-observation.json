@@ -1,0 +1,10 @@
+{
+  "scope": "Subset transcribed from the initial read-only observer result read before shutdown; unfocused private Player, not an interactive performance test",
+  "first_frame": 1,
+  "last_frame": 632,
+  "samples": 632,
+  "draw_counter_nonzero": 630,
+  "seconds": 3.0080743,
+  "median_ms": 4.166,
+  "p95_ms": 5.7336
+}

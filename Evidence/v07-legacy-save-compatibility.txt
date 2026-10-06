@@ -1,0 +1,1 @@
+PASS existing private v0.6 schema5 save -> final codec/model -> disk save/reload; cash=170 spins=15 owned=2 allResourceCountersPreserved=True; Editor, not native relaunch

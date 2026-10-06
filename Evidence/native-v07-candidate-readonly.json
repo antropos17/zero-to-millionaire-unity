@@ -1,0 +1,138 @@
+{
+    "development": false,
+    "qaHooksPresent": false,
+    "automatedHarnessPresent": false,
+    "profileVerified": true,
+    "recoveryRequired": false,
+    "recoveryVisible": false,
+    "actualSavePath": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\native-v07-candidate\\save\\level1-v1.json",
+    "unity": "6000.3.21f1",
+    "graphicsApi": "Direct3D11",
+    "questTitle": "ПОСТАВИТЬ ТАБУРЕТ",
+    "questStatus": "ЗАДАНИЕ 8/8 • НУЖНЫ ФР.",
+    "dialogueText": "",
+    "dialogueVisible": false,
+    "tutorialStep": -1,
+    "taskCashPrice": 355,
+    "taskFragmentGoal": 70,
+    "firstFrame": 1,
+    "lastFrame": 18968,
+    "samples": 12000,
+    "width": 480,
+    "height": 960,
+    "owned": 7,
+    "activeQuest": 7,
+    "drawCounterNonzero": 18965,
+    "seconds": 79.56959699999999,
+    "medianMs": 4.165600000000325,
+    "p95Ms": 5.4213999999994659,
+    "p99Ms": 6.2536000000008589,
+    "maxMs": 242.13720000000019,
+    "distance": 16.81703758239746,
+    "complete": false,
+    "spinEnabled": true,
+    "buyEnabled": false,
+    "state": {
+        "version": 5,
+        "cash": 355,
+        "freeSpins": 0,
+        "spins": 42,
+        "recoveries": 0,
+        "heroineU": 2.342020034790039,
+        "heroineV": 1.757446527481079,
+        "fragments": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            69
+        ],
+        "purchased": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false
+        ],
+        "lastGrid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "quests": [
+            {
+                "id": "floor-patches",
+                "status": 3,
+                "cashPrice": 60,
+                "fragmentGoal": 20
+            },
+            {
+                "id": "surface-repair",
+                "status": 3,
+                "cashPrice": 115,
+                "fragmentGoal": 30
+            },
+            {
+                "id": "cheap-wallpaper",
+                "status": 3,
+                "cashPrice": 155,
+                "fragmentGoal": 38
+            },
+            {
+                "id": "door-repair",
+                "status": 3,
+                "cashPrice": 195,
+                "fragmentGoal": 44
+            },
+            {
+                "id": "window-repair",
+                "status": 3,
+                "cashPrice": 235,
+                "fragmentGoal": 50
+            },
+            {
+                "id": "first-mattress",
+                "status": 3,
+                "cashPrice": 300,
+                "fragmentGoal": 58
+            },
+            {
+                "id": "small-lamp",
+                "status": 3,
+                "cashPrice": 315,
+                "fragmentGoal": 62
+            },
+            {
+                "id": "wooden-stool",
+                "status": 1,
+                "cashPrice": 355,
+                "fragmentGoal": 70
+            }
+        ],
+        "tutorial": {
+            "version": 1,
+            "step": 0,
+            "storySeenMask": 7,
+            "completed": true,
+            "skipped": false
+        }
+    }
+}

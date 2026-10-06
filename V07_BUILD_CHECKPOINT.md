@@ -1,0 +1,19 @@
+# Windows v0.7 bounded build / validation checkpoint
+
+Game source commit:dd74c983dcb22eaa7a03b54027dfa3b3aefe8926. Candidate executable: X:/Projects/ZERO-TO-MILLIONAIRE/Builds/Windows-v0.7-candidate-1/ZeroToMillionaire.exe. This separate candidate preserves Windows-v0.6-final and the default user profile.
+
+Build succeeded:Unity6000.3.21f1,Windows64,BuildOptions.None,no extra audit define,app version0.7.0,104602222 bytes,36.028s,BuildReport GUID2e8a06664d1244b6b7d05853db57be4e. Static Mono.Cecil and actual native observer both confirm no GameView QA methods or automated harness types. The existing private-profile read-only observer remains; it cannot dispatch input or purchase/reset/recover. Release Assembly-CSharp.dll SHA256:CB9CDEBE084ECF310BDB6E878042E3F67135D79787291037FD0578F8DE726BF5. Every candidate file is recorded in release-v07-candidate-folder-hashes.json.
+
+The independent review observations were reproduced and fixed before this build. Replay now focuses Next and restores MENU after close. Tab traversal is performed once through NavigationMove Next/Previous, supporting paired KeyDown+navigation and navigation-only events. Corrected reproduction passed; final UI suite passed1790 assertions at all3 sizes, including dialogue Enter/Space, target sizes, restoration, held keys, write failure/rollback and scene recreation. All24 critical tests passed again. See V07_REVIEW_FIXES.md and final v07-reviewed-after-* images. Core/economy/schema and layout geometry stayed unchanged; prior full-level/model/migration and2624 layout checks retain their documented scope.
+
+Save compatibility:an existing private v0.6 schema5 save was COPIED to a new private directory, loaded with final codec/model, saved and reloaded. Cash170,spins15,owned2,free spins,all fragment counters,purchased flags and tutorial-story progress were preserved. This is an Editor disk-roundtrip check; native relaunch remains unrun. The actual user save was checked only by hash; it remained785be6ebbcbaee012786e88d3acf7b67c45ddddea1faf0d87de67083a5d2cfbc before/after native testing.
+
+## Actual native evidence and blocker
+
+The Release candidate launched as private PID14724, verified its private save path and rendered actual480x960 Direct3D11 pixels. The initial3.008s observer snapshot recorded632 frames,630 nonzero draw-counter samples,median4.166ms andp955.734ms. The private Player continued rendering in the background until closed; shutdown report captured12000 interval samples and18967 advancing frames. This was unfocused read-only observation, not a claim of interactive frame rate or physical input parity. The screenshot shows the correct7/8 modest room and69/70 stool task at355 cash.
+
+The focus guard stopped because the owned private window was NOT foreground. No OS mouse or keyboard input was sent. No guard was weakened or retried after this stop. Only the identity-verified private Player was closed via WM_CLOSE; its OnApplicationQuit observer logged completion, and the process no longer remained. Its exit-code query was unavailable, so no exit-code0 assertion is made. A known ComputeBuffer disposal warning still appears on shutdown and is not suppressed.
+
+Blocked/unrun:physical keyboard and pointer actions, native final purchase/full completion, native save relaunch/reset confirmation, extracted-build execution. Editor/model checks cover the logic but are clearly separated. Android export/device testing remains deferred.
+
+As requested, this is returned BEFORE final packaging because a native interaction blocker arose. Complete source/assets and runnable Windows archives,extraction verification and<=15000000-byte splits remain the next slice. No full final archives were produced in this bounded step. No default-profile game session was launched,reset,closed or given automated input. No purchases,ads,payments,installs,publication,external push or new timer.
