@@ -71,8 +71,8 @@ namespace ZeroToMillionaire
             Application.targetFrameRate = 60;
             Screen.orientation = ScreenOrientation.Portrait;
             random = new SeededRandom(unchecked(Environment.TickCount));
-            string saveDirectory = Application.persistentDataPath;
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            string saveDirectory = RuntimePrivateProfile.Resolve(Application.persistentDataPath);
+#if UNITY_EDITOR || DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT
             string qaDirectory = Environment.GetEnvironmentVariable("ZTM_QA_SAVE_DIR");
             if (!string.IsNullOrEmpty(qaDirectory)) saveDirectory = qaDirectory;
 #endif
@@ -327,7 +327,7 @@ namespace ZeroToMillionaire
             if (toast != null && Time.unscaledTime > toastUntil) HideToast();
             UpdateRewardFlight();
             if (wanderer == null || model == null || heroine == null) return;
-            #if UNITY_EDITOR || DEVELOPMENT_BUILD
+            #if UNITY_EDITOR || DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT
             using(NativeMetrics.Navigation.Auto())
 #endif
             {if(heroine.HoldWalk)wanderer.HoldForTurn();else wanderer.Step(Time.unscaledDeltaTime);}
@@ -336,7 +336,7 @@ namespace ZeroToMillionaire
         }
         void UpdateHeroine()
         {
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
+#if UNITY_EDITOR || DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT
             using(NativeMetrics.Pose.Auto())
 #endif
             {
@@ -394,7 +394,7 @@ namespace ZeroToMillionaire
 
         void Refresh()
         {
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
+#if UNITY_EDITOR || DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT
             using(NativeMetrics.Refresh.Auto())
 #endif
             {
@@ -424,7 +424,7 @@ namespace ZeroToMillionaire
         }
         void DrawQuest(PlayerState s)
         {
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
+#if UNITY_EDITOR || DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT
             using(NativeMetrics.Quest.Auto())
 #endif
             {
@@ -502,7 +502,7 @@ namespace ZeroToMillionaire
         }
         void SetCell(int i, int symbol)
         {
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
+#if UNITY_EDITOR || DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT
             using(NativeMetrics.Cell.Auto())
 #endif
             {
@@ -573,7 +573,7 @@ namespace ZeroToMillionaire
             if (ownedPanel != null) { Destroy(ownedPanel); ownedPanel = null; }
         }
         void OnApplicationQuit() { if (model != null) Persist(); }
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
+#if UNITY_EDITOR || DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT
         public void SetQaState(PlayerState state, int upgradePage)
         { HideReset();HideSettings();HideToast();rewardPending=false;rewardFly.style.display=DisplayStyle.None;PixelUi.SetPressed(spinButton,false);random=new SeededRandom(57);session=new GameSession(saves,new SeededRandom(57),state); wanderer = new RoomWanderer(new FloorPoint(state.heroineU, state.heroineV), new SeededRandom(57)); drawnRoom = -1; page = upgradePage; spinning = false; statusLabel.text = ""; Refresh(); }
         public void QaClick(string name)

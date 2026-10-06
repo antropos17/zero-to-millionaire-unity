@@ -25,9 +25,13 @@ namespace ZeroToMillionaire
             element.style.borderTopLeftRadius=element.style.borderTopRightRadius=element.style.borderBottomLeftRadius=element.style.borderBottomRightRadius=0;
             element.generateVisualContent += context => Draw(context,element,finish);
             element.RegisterCallback<GeometryChangedEvent>(_=>{UpdateCaption(element);element.MarkDirtyRepaint();});
-            element.RegisterCallback<PointerDownEvent>(_=>SetPressed(element,true));
+            element.RegisterCallback<PointerDownEvent>(_=>SetPressed(element,true),TrickleDown.TrickleDown);
             element.RegisterCallback<PointerUpEvent>(_=>SetPressed(element,false));
             element.RegisterCallback<PointerLeaveEvent>(_=>SetPressed(element,false));
+            element.RegisterCallback<PointerCancelEvent>(_=>SetPressed(element,false),TrickleDown.TrickleDown);
+            element.RegisterCallback<PointerCaptureOutEvent>(_=>SetPressed(element,false),TrickleDown.TrickleDown);
+            element.RegisterCallback<BlurEvent>(_=>SetPressed(element,false));
+            element.RegisterCallback<DetachFromPanelEvent>(_=>SetPressed(element,false));
         }
         static float Depth(VisualElement element)
         {return element is Button?(element.name=="spin"||element.name=="recovery"?10:4):2;}

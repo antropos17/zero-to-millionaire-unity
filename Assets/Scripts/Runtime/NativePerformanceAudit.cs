@@ -1,4 +1,4 @@
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
+#if UNITY_EDITOR || DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT
 using Unity.Profiling;
 using System;
 using System.Collections;
@@ -25,11 +25,11 @@ namespace ZeroToMillionaire
     }
 }
 #endif
-#if DEVELOPMENT_BUILD && !UNITY_EDITOR
+#if (DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT) && !UNITY_EDITOR
 namespace ZeroToMillionaire
 {
     // Opt-in, local Development Player audit. All fixtures/save writes live
-    // in a unique private directory; release builds contain no audit code.
+    // in a unique private directory; ordinary Release builds exclude this workload; a separately named Release audit twin opts in.
     public sealed class NativePerformanceAudit:MonoBehaviour
     {
         sealed class Metric {public string Name,Unit;public ProfilerRecorder Recorder;}

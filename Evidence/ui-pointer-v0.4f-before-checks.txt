@@ -1,0 +1,19 @@
+PASS SPIN down does not commit
+FAIL SPIN pointer down moves face5 over fixed base10
+PASS cancel releases raised face
+PASS cancel commits no spin
+PASS leave releases face
+PASS drag-off/cancel commits no spin
+PASS pointer down/up fires SPIN exactly once
+PASS pointer up releases face
+PASS extra pointer up/rapid click cannot double spin
+FAIL BUY pointer down moves face2
+PASS BUY down does not install
+PASS BUY cancel releases face
+PASS BUY cancel preserves resources
+PASS BUY pointer up installs and debits exactly once
+PASS pointer MENU opens
+PASS pointer reset requires confirmation
+PASS pointer reset cancel preserves installed room and cash
+SOURCE synthetic UI Toolkit Event.GetPooled/SendEvent in private Editor; no Windows SendInput/human pointer.
+CHECKS 17 FAILURES 2
