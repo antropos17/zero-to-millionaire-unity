@@ -38,7 +38,7 @@ namespace ZeroToMillionaire
             public string unity,os,cpu,gpu,graphicsApi,gpuDriver,savePath,persistentPath;
             public string counterTiming="ProfilerRecorder.LastValue is the completed preceding frame; wall interval uses Stopwatch timestamps. CSV frame labels the preceding frame.";
             public string input="UIDocument NavigationSubmitEvent callbacks, repeated attempts; no physical touch or hardware input claim.";
-            public string workload="5s warm,10s idle walk,20s seeded continuous spin/manual purchase,5s ready final quest,10s completed walk,10s portrait resize360x640 then540x1080.";
+            public string workload="5s warm,10s idle walk,95s actual seeded progression until all8 manual purchases (no completion fixture),5s verified complete/reload,10s completed walk,10s portrait resize360x640 then540x1080.";
             public string sourceCommit,startedUtc;
             public int cpuCount,ramMb,width,height,targetFrameRate,vsync,originalVsync,originalTarget,quality,firstFrame,lastFrame,sampleCount,spins,purchases,repeatChecks;
             public bool development,traceRequested,traceStarted,traceStopped,finished,privateProfileVerified,fullCompletion,reloadVerified,resizeFit,feetClear;
@@ -105,7 +105,7 @@ namespace ZeroToMillionaire
             {
                 var d=ProfilerRecorderHandle.GetDescription(handle);
                 bool uiMarker=d.Name.StartsWith("UIR.",StringComparison.Ordinal)||d.Name.StartsWith("UIElements.",StringComparison.Ordinal);
-                bool select=wanted.Contains(d.Name)||(uiMarker&&metrics.Count<55);
+                bool select=wanted.Contains(d.Name)||(uiMarker&&metrics.Count<130);
                 if(select)
                 {
                     var rec=ProfilerRecorder.StartNew(d.Category,d.Name,1,ProfilerRecorderOptions.StartImmediately|
@@ -118,7 +118,7 @@ namespace ZeroToMillionaire
             File.WriteAllText(Path.Combine(output,"counter-catalog.csv"),catalog.ToString());
         }
         static string Csv(string s){return "\""+s.Replace("\"","\"\"")+"\"";}
-        int Phase(double t){return t<5?0:t<15?1:t<35?2:t<40?3:t<50?4:5;}
+        int Phase(double t){return t<5?0:t<15?1:t<110?2:t<115?3:t<125?4:5;}
         void LateUpdate()
         {
             if(info==null||info.finished)return;
@@ -142,13 +142,13 @@ namespace ZeroToMillionaire
                 if(traceStarted&&!traceStopped&&t>=25){Profiler.enabled=false;Profiler.enableBinaryLog=false;traceStopped=true;}
                 if(phase==2&&t>=nextAction&&!view.QaSpinning)
                 {
-                    nextAction=t+.60;
+                    nextAction=t+.60;view.QaClick("tutorial-next");
                     int active=view.Model.ActiveQuest;
                     if(active>=0&&view.Model.CanBuy(active))
                     {
                         int owned=view.Model.PurchasedCount;int cash=view.Model.Snapshot.cash;
                         view.QaClick("buy-"+active);view.QaBuy(active);
-                        if(view.Model.PurchasedCount!=owned+1||view.Model.Snapshot.cash!=cash-Economy.Upgrades[active].CashPrice)
+                        if(view.Model.PurchasedCount!=owned+1||view.Model.Snapshot.cash!=cash-view.Model.Definition(active).CashPrice)
                             throw new InvalidOperationException("Repeated purchase overdraw");
                         info.purchases++;info.repeatChecks++;
                     }
@@ -163,31 +163,30 @@ namespace ZeroToMillionaire
                 if(phase==3&&!readySet)
                 {
                     if(view.QaSpinning)return;
-                    var s=new PlayerState{cash=1000,freeSpins=0};for(int i=0;i<7;i++)s.purchased[i]=true;
-                    s.fragments[7]=Economy.Upgrades[7].FragmentGoal;view.SetQaState(s,3);view.QaSave();readySet=true;
+                    if(!view.Model.Complete||info.purchases!=8)throw new InvalidOperationException("Actual full level failed to complete");
+                    view.QaSave();readySet=true;
                 }
-                if(phase==3&&t>=37&&!readyShot){ScreenCapture.CaptureScreenshot(Path.Combine(output,"native-ready.png"));readyShot=true;}
+                if(phase==3&&t>=112&&!readyShot){ScreenCapture.CaptureScreenshot(Path.Combine(output,"native-full-level.png"));readyShot=true;}
                 if(phase==4&&!completeBuy)
                 {
-                    int cash=view.Model.Snapshot.cash;view.QaClick("buy-7");view.QaBuy(7);
-                    if(!view.Model.Complete||view.Model.Snapshot.cash!=cash-Economy.Upgrades[7].CashPrice)throw new InvalidOperationException("Final double-buy");
+                    if(!view.Model.Complete||info.purchases!=8)throw new InvalidOperationException("Actual final completion");
                     string notice;var loaded=new GameModel(new SaveStore(savePath,new UnityStateCodec()).Load(out notice));
                     info.reloadVerified=loaded.Complete&&loaded.Snapshot.cash==view.Model.Snapshot.cash;
                     if(!info.reloadVerified)throw new InvalidOperationException("Native private reload");
-                    info.repeatChecks++;info.fullCompletion=true;completeBuy=true;
+                    info.fullCompletion=true;completeBuy=true;
                 }
-                if(phase==4&&t>=43&&!completeShot){ScreenCapture.CaptureScreenshot(Path.Combine(output,"native-complete.png"));completeShot=true;}
+                if(phase==4&&t>=118&&!completeShot){ScreenCapture.CaptureScreenshot(Path.Combine(output,"native-complete.png"));completeShot=true;}
                 if(phase==5&&!secondResize)
                 {
-                    if(t<55&&Screen.width!=360)Screen.SetResolution(360,640,FullScreenMode.Windowed);
-                    if(t>=55){Screen.SetResolution(540,1080,FullScreenMode.Windowed);secondResize=true;}
+                    if(t<130&&Screen.width!=360)Screen.SetResolution(360,640,FullScreenMode.Windowed);
+                    if(t>=130){Screen.SetResolution(540,1080,FullScreenMode.Windowed);secondResize=true;}
                 }
-                if(phase==5&&((t>52&&t<54)||t>57))
+                if(phase==5&&((t>127&&t<129)||t>132))
                 {
                     var spin=ui.Q<Button>("spin");info.resizeFit&=spin!=null&&spin.worldBound.yMax<=ui.worldBound.yMax+1;
                 }
                 previousPhase=current;
-                if(t>=60)Finish(null);
+                if(t>=135)Finish(null);
             }
             catch(Exception e){Finish(e.ToString());}
         }

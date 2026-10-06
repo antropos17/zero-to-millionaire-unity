@@ -1,0 +1,24 @@
+PASS SPIN down does not commit
+PASS SPIN pointer down moves face5 over fixed base10
+PASS cancel releases raised face
+PASS cancel commits no spin
+PASS leave releases face
+PASS drag-off/cancel commits no spin
+PASS capture loss releases face
+PASS focus blur releases face
+PASS pointer down/up fires SPIN exactly once
+PASS pointer up releases face
+PASS extra pointer up/rapid click cannot double spin
+PASS BUY pointer down moves face2
+PASS BUY down does not install
+PASS BUY cancel releases face
+PASS BUY cancel preserves resources
+BUY fixture ready=True enabled=True cash=1000 parts=20
+OBSERVED actual BUY clicked callback
+BUY result owned=1 cash=940 spinning=False
+PASS BUY pointer up installs and debits exactly once
+PASS pointer MENU opens
+PASS pointer reset requires confirmation
+PASS pointer reset cancel preserves installed room and cash
+SOURCE synthetic UI Toolkit Event.GetPooled/SendEvent in private Editor; no Windows SendInput/human pointer.
+CHECKS 19 FAILURES 0

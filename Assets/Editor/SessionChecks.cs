@@ -28,7 +28,8 @@ namespace ZeroToMillionaire
         public static string Run(IStateCodec codec,string directory)
         {
             assertions=0;string error,notice,reason;SpinResult spin;
-            var initial=new PlayerState();
+            // Old active-task economics remain compatible across schema4 migration.
+            var initial=new PlayerState{version=4};
             var store=new MemoryStore();var app=new GameSession(store,new ConstantRandom(),initial);
             var before=app.Model.Snapshot;store.FailCall=1;
             Check(!app.TryBeginSpin(out spin)&&spin==null,"failed spin has no displayed result");

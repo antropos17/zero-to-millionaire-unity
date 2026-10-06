@@ -12,7 +12,7 @@ if True:
   frame_rows=[r for r in rows if int(r['phase'])==phase]
   assert sum(int(r['Draw Calls Count [Count]'])>0 for r in frame_rows)>len(frame_rows)*.90, 'No actual rendered draw calls: phase'+str(phase)
  from PIL import Image
- for name in ['native-ready.png','native-complete.png']:
+ for name in ['native-full-level.png','native-complete.png']:
   image=Image.open(folder/name).convert('RGB')
   assert len(image.getcolors(1000000))>100, 'Black/non-game screenshot'
 assert all(int(rows[i+1]['frame'])==int(rows[i]['frame'])+1 for i in range(len(rows)-1))
@@ -22,7 +22,7 @@ def pct(vals,p):
  return vals[low]+(vals[hi]-vals[low])*(rank-low)
 def stats(vals):
  return dict(n=len(vals),mean=statistics.fmean(vals),median=statistics.median(vals),p95=pct(vals,.95),p99=pct(vals,.99),max=max(vals),min=min(vals))
-phases={1:'idle_walk',2:'progression_spins_buys',3:'ready_final_task',4:'completed_walk',5:'resize_portraits'}
+phases={1:'idle_walk',2:'progression_spins_buys',3:'verified_actual_completion',4:'completed_walk',5:'resize_portraits'}
 result={'run':label,'manifest':manifest,'phases':{},'notes':[
  'Release audit twin (BuildOptions.None plus explicit ZTM_RELEASE_AUDIT), Mono/D3D11, target60/vSync0; not the clean candidate binary.',
  'Stopwatch intervals are end-to-end frame intervals; they include scheduling, limiter waits and instrumentation.',
@@ -47,14 +47,14 @@ for phase,name in phases.items():
   data['metrics'][key]=sm
  result['phases'][name]=data
 evidence=root/'Evidence'
-(evidence/f'release-v0.4f-{label}-summary.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
-for name in ['native-frames.csv','counter-catalog.csv','native-manifest.json','native-ready.png','native-complete.png']:
+(evidence/f'release-v0.5-{label}-summary.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
+for name in ['native-frames.csv','counter-catalog.csv','native-manifest.json','native-full-level.png','native-complete.png']:
  src=folder/name
- if src.exists():shutil.copyfile(src,evidence/f'release-v0.4f-{label}-{name}')
+ if src.exists():shutil.copyfile(src,evidence/f'release-v0.5-{label}-{name}')
 traces=[]
 for p in folder.glob('progression-profiler*'):
  traces.append({'path':str(p),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
-if traces:(evidence/f'release-v0.4f-{label}-trace.json').write_text(json.dumps(traces,indent=2),encoding='utf-8')
+if traces:(evidence/f'release-v0.5-{label}-trace.json').write_text(json.dumps(traces,indent=2),encoding='utf-8')
 for name,data in result['phases'].items():
  print(name,data['frames'],'wall_ms',dict((k,round(data['frame_intervals_ms'][k],3)) for k in ['median','p95','p99','max']),'stutters',data['over33_333ms'],data['over50ms'])
  for key,value in data['metrics'].items():

@@ -7,7 +7,8 @@ namespace ZeroToMillionaire
     {
         public string id;
         public QuestStatus status;
-        public QuestRecord Clone(){return new QuestRecord{id=id,status=status};}
+        public int cashPrice,fragmentGoal;
+        public QuestRecord Clone(){return new QuestRecord{id=id,status=status,cashPrice=cashPrice,fragmentGoal=fragmentGoal};}
     }
     [Serializable]
     public sealed class PlayerState
@@ -22,12 +23,13 @@ namespace ZeroToMillionaire
         public bool[] purchased = new bool[Economy.SymbolCount];
         public int[] lastGrid = new int[Economy.Columns * Economy.Rows];
         public QuestRecord[] quests;
+        public TutorialState tutorial=new TutorialState();
         public PlayerState(){quests=Economy.QuestRecords(this);}
         public PlayerState Clone()
         {
             var copy=new PlayerState { version = version, cash = cash, freeSpins = freeSpins, spins = spins,
                 recoveries = recoveries, heroineU = heroineU, heroineV = heroineV, fragments = (int[])fragments.Clone(),
-                purchased = (bool[])purchased.Clone(), lastGrid = (int[])lastGrid.Clone() };
+                purchased = (bool[])purchased.Clone(), lastGrid = (int[])lastGrid.Clone(),tutorial=tutorial==null?null:tutorial.Clone() };
             if(quests==null)copy.quests=null;
             else{copy.quests=new QuestRecord[quests.Length];for(int i=0;i<quests.Length;i++)copy.quests[i]=quests[i]==null?null:quests[i].Clone();}
             return copy;
@@ -64,6 +66,8 @@ namespace ZeroToMillionaire
         public int ActiveQuest { get { lock(gate)return Economy.ActiveQuest(state); } }
         public int NextQuest { get { lock(gate)return Economy.NextQuest(state); } }
         public QuestStatus QuestState(int index){lock(gate)return state.quests[index].status;}
+        public UpgradeDefinition Definition(int index){lock(gate)return Economy.For(state,index);}
+        public void SetTutorial(TutorialState value){if(!TutorialPolicy.Valid(value))throw new ArgumentException("Invalid tutorial state");lock(gate)state.tutorial=value.Clone();}
         public bool CanSpin { get { lock (gate) {int current=Economy.ActiveQuest(state);return current>=0&&!CanBuyUnsafe(current)&&(state.freeSpins > 0 || state.cash >= Economy.SpinCost);} } }
         public bool CanRecover { get { lock (gate) return Economy.ActiveQuest(state)>=0&&state.freeSpins == 0 && state.cash < Economy.SpinCost; } }
         public int[] ActivePool { get { lock (gate) return Economy.ActivePool(state); } }
@@ -97,13 +101,15 @@ namespace ZeroToMillionaire
                     int symbol = pool[choice];
                     grid[i] = symbol;
                     if (symbol != (int)ReelSymbol.Cash) {
-                        int index=symbol-1,remaining=Math.Max(0,Economy.Upgrades[index].FragmentGoal-state.fragments[index]);
+                        int index=symbol-1,remaining=Math.Max(0,Economy.For(state,index).FragmentGoal-state.fragments[index]);
                         // Keep one visible icon == one part. Extra rolls become cash,
                         // so a finite task never creates useless surplus.
                         if(gains[index]>=remaining){symbol=(int)ReelSymbol.Cash;grid[i]=symbol;}
                         else gains[index]++;
                     }
                 }
+                // Every collecting spin displays at least one matching icon; no hidden reward.
+                if(pool.Length>1&&gains[current]==0){grid[grid.Length-1]=(int)Economy.Upgrades[current].FragmentSymbol;gains[current]=1;}
                 int triples = 0;
                 for (int x = 0; x < Economy.Columns; x++)
                     if (grid[x] == grid[x + Economy.Columns] && grid[x] == grid[x + 2 * Economy.Columns]) triples++;
@@ -132,7 +138,7 @@ namespace ZeroToMillionaire
         {
             if (index < 0 || index >= Economy.Upgrades.Length || state.purchased[index]) return false;
             if(index!=Economy.ActiveQuest(state))return false;
-            UpgradeDefinition d = Economy.Upgrades[index];
+            UpgradeDefinition d = Economy.For(state,index);
             return state.cash >= d.CashPrice && state.fragments[index] >= d.FragmentGoal;
         }
         public bool CanBuy(int index) { lock (gate) return CanBuyUnsafe(index); }
@@ -141,7 +147,7 @@ namespace ZeroToMillionaire
             lock (gate)
             {
                 if (!CanBuyUnsafe(index)) return false;
-                UpgradeDefinition d = Economy.Upgrades[index];
+                UpgradeDefinition d = Economy.For(state,index);
                 state.cash -= d.CashPrice; state.fragments[index] -= d.FragmentGoal;
                 state.purchased[index] = true;
                 state.quests=Economy.QuestRecords(state);
@@ -180,6 +186,10 @@ namespace ZeroToMillionaire
                     }
                 }
             }
+            if(s.version>=5){
+                if(!TutorialPolicy.Valid(s.tutorial)){reason="Invalid tutorial state";return false;}
+                foreach(var q in s.quests){int i=Array.FindIndex(Economy.Upgrades,d=>d.Id==q.id);if(!Economy.ValidRequirements(i,q.cashPrice,q.fragmentGoal)){reason="Invalid stored task requirements";return false;}}
+            }
             reason="";return true;
         }
 
@@ -203,6 +213,13 @@ namespace ZeroToMillionaire
                 }
             }
             if(source.version>1&&source.version<4){var feet=RoomGeometry.ProjectLegacyFeet(new FloorPoint(migrated.heroineU,migrated.heroineV));migrated.heroineU=feet.U;migrated.heroineV=feet.V;}
+            if(source.version<5){
+                int active=Economy.ActiveQuest(migrated);var records=new QuestRecord[8];
+                for(int i=0;i<8;i++){var d=i==active?Economy.LegacyUpgrades[i]:Economy.Upgrades[i];records[i]=new QuestRecord{id=d.Id,cashPrice=d.CashPrice,fragmentGoal=d.FragmentGoal};}
+                migrated.quests=records;
+                bool experienced=source.spins>0||source.cash>0||source.recoveries>0||Array.Exists(source.fragments,p=>p>0)||Array.Exists(migrated.purchased,p=>p);
+                migrated.tutorial=new TutorialState{completed=experienced,storySeenMask=TutorialPolicy.MetMilestones(migrated)};
+            }
             migrated.version = Economy.SaveVersion;
             migrated.quests=Economy.QuestRecords(migrated);
             return migrated;

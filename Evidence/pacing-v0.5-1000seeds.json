@@ -1,0 +1,67 @@
+{
+    "seeds": 1000,
+    "min": 49,
+    "max": 60,
+    "p50": 53,
+    "p95": 57,
+    "mean": 53.333,
+    "tasks": [
+        {
+            "task": 0,
+            "min": 2,
+            "max": 5,
+            "p50": 3,
+            "p95": 4
+        },
+        {
+            "task": 1,
+            "min": 3,
+            "max": 6,
+            "p50": 4,
+            "p95": 5
+        },
+        {
+            "task": 2,
+            "min": 4,
+            "max": 8,
+            "p50": 5,
+            "p95": 6
+        },
+        {
+            "task": 3,
+            "min": 5,
+            "max": 9,
+            "p50": 6,
+            "p95": 7
+        },
+        {
+            "task": 4,
+            "min": 5,
+            "max": 9,
+            "p50": 7,
+            "p95": 8
+        },
+        {
+            "task": 5,
+            "min": 6,
+            "max": 11,
+            "p50": 8,
+            "p95": 10
+        },
+        {
+            "task": 6,
+            "min": 7,
+            "max": 11,
+            "p50": 9,
+            "p95": 10
+        },
+        {
+            "task": 7,
+            "min": 8,
+            "max": 13,
+            "p50": 10,
+            "p95": 11
+        }
+    ],
+    "assumptions": "Spin counts are simulated; no guaranteed playtime. At4..6seconds/accepted spin plus reading/manual buys, typical total is an estimate only."
+}

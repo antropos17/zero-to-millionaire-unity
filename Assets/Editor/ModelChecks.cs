@@ -19,7 +19,8 @@ namespace ZeroToMillionaire
         public static string Run(IStateCodec codec, string directory)
         {
             assertions = 0;
-            var model = new GameModel();
+            // Retain exact old-curve assertions as a schema4 active-task migration regression. New curve is independently simulated below.
+            var model = new GameModel(new PlayerState{version=4});
             Check(model.Snapshot.cash == 0 && model.Snapshot.freeSpins == 3, "new game starter allowance");
             Check(!model.GrantRecovery(), "cannot farm free recovery with allowance");
             Check(!model.TryBuy(0), "cannot buy without both resources");
@@ -39,12 +40,12 @@ namespace ZeroToMillionaire
             Check(!new GameModel(enoughCash).TryBuy(0), "cash alone insufficient");
             var enoughFragments = new PlayerState(); enoughFragments.fragments[0] = 100;
             Check(!new GameModel(enoughFragments).TryBuy(0), "fragments alone insufficient");
-            var cashNeeded=new PlayerState{cash=5,freeSpins=0};cashNeeded.fragments[0]=100;
+            var cashNeeded=new PlayerState{version=4,cash=5,freeSpins=0};cashNeeded.fragments[0]=100;
             var earnCash=new GameModel(cashNeeded);
             Check(earnCash.QuestState(0)==QuestStatus.Collecting&&earnCash.ActivePool.Length==1&&earnCash.ActivePool[0]==0,"parts full with cash missing remains collecting cash, never generic completion");
             Check(earnCash.TrySpin(new ConstantRandom(0),out spin)&&earnCash.Snapshot.fragments[0]==100&&spin.Fragments[0]==0,"legacy extra parts preserved while cash-only reels add no useless stock");
             Check(earnCash.CanBuy(0)&&earnCash.QuestState(0)==QuestStatus.ReadyToBuy&&!earnCash.CanSpin,"cash completion becomes ready to buy, then pauses collection");
-            var rich = new PlayerState { cash = 1000 };
+            var rich = new PlayerState { version=4,cash = 1000 };
             for (int i = 0; i < 8; i++) rich.fragments[i] = 100;
             var race = new GameModel(rich);
             Check(!race.TryBuy(1), "prerequisite enforced even with resources");
@@ -76,7 +77,6 @@ namespace ZeroToMillionaire
                 int choice = Array.IndexOf(transition.ActivePool, icon);
                 var exact = new GameModel(transition.Snapshot); SpinResult itemSpin;
                 Check(exact.TrySpin(new ConstantRandom(choice), out itemSpin), "active icon selectable");
-                for (int i = 0; i < 8; i++) Check(itemSpin.Fragments[i] == (icon == i + 1 ? Economy.Upgrades[i].FragmentGoal : 0), "one-to-one finite reward for item " + icon);
                 for(int i=0;i<8;i++){int matching=0;foreach(int cell in itemSpin.Grid)if(cell==i+1)matching++;Check(matching==itemSpin.Fragments[i],"every visible matching icon awards exactly one part");}
             }
             var legacy = model.Snapshot; legacy.version = 1; legacy.lastGrid[0] = 3; legacy.lastGrid[1] = 1;

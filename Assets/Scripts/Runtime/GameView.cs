@@ -11,13 +11,13 @@ namespace ZeroToMillionaire
     {
         public string Encode(PlayerState state) { return JsonUtility.ToJson(state, true); }
         [Serializable] sealed class RawShape
-        {public int version;public int[] fragments,lastGrid;public bool[] purchased;public QuestRecord[] quests;}
+        {public int version;public int[] fragments,lastGrid;public bool[] purchased;public QuestRecord[] quests;public TutorialState tutorial;}
         public PlayerState Decode(string text)
         {
             var state=JsonUtility.FromJson<PlayerState>(text);var raw=JsonUtility.FromJson<RawShape>(text);
             if(state==null||raw==null)return null;
             state.version=raw.version;state.fragments=raw.fragments;state.purchased=raw.purchased;
-            state.lastGrid=raw.lastGrid;state.quests=raw.quests;return state;
+            state.lastGrid=raw.lastGrid;state.quests=raw.quests;state.tutorial=raw.tutorial;return state;
         }
     }
 
@@ -31,6 +31,7 @@ namespace ZeroToMillionaire
         private GameModel model { get {return session.Model;} }
         private SaveStore saves;
         private PanelSettings ownedPanel;
+        private DialoguePresenter dialogue;
         private IRandomSource random;
         private VisualElement root, room, upgradeRows, confirmation, main;
         private VisualElement roomStage;
@@ -92,6 +93,7 @@ namespace ZeroToMillionaire
             root = doc.rootVisualElement;
             page = model.Complete ? 3 : model.PurchasedCount / 2;
             BuildUI();
+            dialogue=new DialoguePresenter(session,root,room,()=>spinning||rewardPending||rewardFly.style.display==DisplayStyle.Flex,Refresh);
             Refresh();
         }
 
@@ -237,6 +239,7 @@ namespace ZeroToMillionaire
             settings=Modal("settings");settings.Add(Text("MY ROOM",23,PixelUi.Hex(0xffc472)));
             saveLabel=Text("Saved locally",13,Cream);settings.Add(saveLabel);
             settings.Add(Text("Finish 8 tasks in this same room. Only the current task earns parts: 1 matching icon = 1 part. When parts are full, reels earn cash. BUY & INSTALL uses both.\n\nBET is 5. Spins give 12 base cash plus cash icons and triples. Starter and recovery spins are free.",14,Cream));
+            var replay=Action("Повторить обучение",()=>{HideSettings();dialogue.Replay();},Forest);replay.name="tutorial-replay";replay.style.marginTop=8;settings.Add(replay);
             var reset=Action("RESET ROOM",ShowReset,Rust);reset.name="reset";reset.style.marginTop=14;settings.Add(reset);
             var close=Action("BACK TO ROOM",HideSettings,Forest);close.name="close-settings";close.style.marginTop=8;settings.Add(close);
             settings.style.display=DisplayStyle.None;root.Add(settings);
@@ -326,6 +329,7 @@ namespace ZeroToMillionaire
         {
             if (toast != null && Time.unscaledTime > toastUntil) HideToast();
             UpdateRewardFlight();
+            if(dialogue!=null)dialogue.Tick();
             if (wanderer == null || model == null || heroine == null) return;
             #if UNITY_EDITOR || DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT
             using(NativeMetrics.Navigation.Auto())
@@ -404,8 +408,8 @@ namespace ZeroToMillionaire
             saveLabel.text=saveNotice;betLabel.text=s.freeSpins>0||model.CanRecover?"0":"5";
             freeLabel.text=spinning?"RESOLVING":model.Complete?"ALL TASKS DONE":model.ActiveQuest>=0&&model.CanBuy(model.ActiveQuest)?"INSTALL TASK":s.freeSpins>0?"FREE SPINS "+s.freeSpins:model.CanRecover?"FREE RECOVERY":"FIXED BET";
             if(model.Complete)betLabel.text="0";
-            spinButton.SetEnabled(!spinning&&model.CanSpin);ButtonText(spinButton,model.Complete?"COMPLETE":spinning?"...":"SPIN",model.Complete?26:45);
-            ButtonText(menuButton,"MENU",10);ButtonText(recoveryButton,"FREE SPIN",24);
+            spinButton.SetEnabled(!spinning&&model.CanSpin);ButtonText(spinButton,model.Complete?"ГОТОВО":spinning?"...":"СПИН",model.Complete?26:45);
+            ButtonText(menuButton,"МЕНЮ",10);ButtonText(recoveryButton,"БЕСПЛАТНО",22);
             spinButton.style.display=model.CanRecover?DisplayStyle.None:DisplayStyle.Flex;
             recoveryButton.style.display=model.CanRecover?DisplayStyle.Flex:DisplayStyle.None;recoveryButton.SetEnabled(!spinning);
             roomProgress.text="ROOM "+model.PurchasedCount+"/8 DONE";roomTicks.Clear();
@@ -432,7 +436,7 @@ namespace ZeroToMillionaire
             int currentParts=index<0?0:s.fragments[index];
             if(index==drawnQuest&&s.cash==drawnQuestCash&&currentParts==drawnQuestParts&&nextIndex==drawnQuestNext){
                 if(index>=0){
-                    var cachedDefinition=Economy.Upgrades[index];bool cachedReady=model.CanBuy(index);
+                    var cachedDefinition=model.Definition(index);bool cachedReady=model.CanBuy(index);
                     string cachedNeed=spinning?"RESOLVING SPIN":cachedReady?"READY TO INSTALL":currentParts>=cachedDefinition.FragmentGoal?"NEED CASH":s.cash>=cachedDefinition.CashPrice?"COLLECT PARTS":"PARTS + CASH";
                     upgradeRows.Q<Label>("quest-status").text="TASK "+(index+1)+"/8  -  "+cachedNeed;
                     upgradeRows.Q<Button>("buy-"+index).SetEnabled(!spinning&&cachedReady);
@@ -448,7 +452,7 @@ namespace ZeroToMillionaire
                 var end=Text("A small room of your own.",13,Forest);end.style.height=21;end.style.unityTextAlign=TextAnchor.MiddleCenter;upgradeRows.Add(end);
                 var nextDone=Text("NO MORE TASKS",11,Forest);nextDone.name="next-quest";nextDone.style.unityTextAlign=TextAnchor.MiddleCenter;upgradeRows.Add(nextDone);return;
             }
-            var d=Economy.Upgrades[index];bool partsFull=s.fragments[index]>=d.FragmentGoal,cashFull=s.cash>=d.CashPrice,ready=model.CanBuy(index);
+            var d=model.Definition(index);bool partsFull=s.fragments[index]>=d.FragmentGoal,cashFull=s.cash>=d.CashPrice,ready=model.CanBuy(index);
             var row=new VisualElement{name="active-quest"};Row(row);row.style.height=74;row.style.flexShrink=0;
             var well=Box("quest-item-well",PixelUi.Hex(0xc9a77c));well.style.width=48;well.style.height=55;well.style.marginRight=5;
             well.Add(Icon(reelTextures[index+1],47));row.Add(well);
@@ -468,13 +472,13 @@ namespace ZeroToMillionaire
             var cashTrack=Box("cash-progress-track",Sand);cashTrack.style.height=7;cashTrack.style.flexGrow=1;cashTrack.style.marginLeft=2;
             var cashFill=Box("cash-progress-fill",cashFull?PixelUi.Hex(0x477650):PixelUi.Hex(0xf6ad38));cashFill.style.width=Length.Percent(Mathf.Clamp01((float)s.cash/d.CashPrice)*100);cashFill.style.height=Length.Percent(100);cashTrack.Add(cashFill);cash.Add(cashTrack);
             var cashCount=Text(s.cash+"/"+d.CashPrice,12,Forest);cashCount.name="cash-count";cashCount.style.width=70;cashCount.style.unityTextAlign=TextAnchor.MiddleRight;cash.Add(cashCount);info.Add(cash);row.Add(info);
-            var buy=Action("BUY &\nINSTALL",()=>Buy(index),ready?Rust:Color.gray);buy.name="buy-"+index;
+            var buy=Action("КУПИТЬ",()=>Buy(index),ready?Rust:Color.gray);buy.name="buy-"+index;
             buy.style.width=77;buy.style.height=48;buy.style.flexShrink=0;buy.style.paddingLeft=buy.style.paddingRight=2;
             var caption=buy.Q<Label>("button-caption");caption.style.fontSize=12;caption.style.whiteSpace=WhiteSpace.Normal;
             buy.SetEnabled(!spinning&&ready);row.Add(buy);upgradeRows.Add(row);
             var preview=new VisualElement{name="next-quest"};Row(preview);preview.style.height=24;
             preview.style.borderTopWidth=1;preview.style.borderTopColor=Sand;
-            if(nextIndex>=0){preview.Add(Icon(reelTextures[nextIndex+1],21));var nextTitle=Text("NEXT: "+Economy.Upgrades[nextIndex].ActionTitle.ToUpperInvariant(),12,Forest);nextTitle.style.flexGrow=1;preview.Add(nextTitle);preview.Add(Text("LOCKED",10,Forest));}
+            if(nextIndex>=0){preview.Add(Icon(reelTextures[nextIndex+1],21));var nextTitle=Text("NEXT: "+model.Definition(nextIndex).ActionTitle.ToUpperInvariant(),12,Forest);nextTitle.style.flexGrow=1;preview.Add(nextTitle);preview.Add(Text("LOCKED",10,Forest));}
             else{var final=Text("FINAL TASK - FINISH YOUR ROOM",11,Forest);preview.Add(final);}
             upgradeRows.Add(preview);
 
@@ -560,7 +564,7 @@ namespace ZeroToMillionaire
         {
             if (spinning) return;
             if(!session.TryReset()){saveNotice=session.Notice;statusLabel.text=session.Error;HideReset();return;}
-            page=0;saveNotice=session.Notice;
+            page=0;saveNotice=session.Notice;dialogue.ResetUi();drawnQuest=-2;
             wanderer = new RoomWanderer(new FloorPoint(1.85f, 1.45f), new SeededRandom(Environment.TickCount)); drawnRoom = -1;
             HideReset(); Refresh(); ShowToast("3 FREE SPINS · A FRESH START");
         }
@@ -575,7 +579,7 @@ namespace ZeroToMillionaire
         void OnApplicationQuit() { if (model != null) Persist(); }
 #if UNITY_EDITOR || DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT
         public void SetQaState(PlayerState state, int upgradePage)
-        { HideReset();HideSettings();HideToast();rewardPending=false;rewardFly.style.display=DisplayStyle.None;PixelUi.SetPressed(spinButton,false);random=new SeededRandom(57);session=new GameSession(saves,new SeededRandom(57),state); wanderer = new RoomWanderer(new FloorPoint(state.heroineU, state.heroineV), new SeededRandom(57)); drawnRoom = -1; page = upgradePage; spinning = false; statusLabel.text = ""; Refresh(); }
+        { HideReset();HideSettings();HideToast();rewardPending=false;rewardFly.style.display=DisplayStyle.None;PixelUi.SetPressed(spinButton,false);random=new SeededRandom(57);session=new GameSession(saves,new SeededRandom(57),state); if(dialogue!=null){dialogue.Dispose();dialogue=new DialoguePresenter(session,root,room,()=>spinning||rewardPending||rewardFly.style.display==DisplayStyle.Flex,Refresh);} wanderer = new RoomWanderer(new FloorPoint(state.heroineU, state.heroineV), new SeededRandom(57)); drawnRoom = -1; drawnQuest=-2; page = upgradePage; spinning = false; statusLabel.text = ""; Refresh(); }
         public void QaClick(string name)
         {
             var button=root.Q<Button>(name);if(button==null||!button.enabledInHierarchy)return;

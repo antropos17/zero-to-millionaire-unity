@@ -16,7 +16,7 @@ namespace ZeroToMillionaire.Editor
    if(EditorApplication.isPlaying)throw new InvalidOperationException("Stop own Playmode first");
    if(tag!="before"&&tag!="fixed")throw new ArgumentException("Audit tag");
    report.Clear();phase=warm=checks=failures=0;view=null;texture=null;spin=null;
-   Environment.SetEnvironmentVariable("ZTM_QA_SAVE_DIR",Path.Combine(Root,".tooling","pointer-synthetic-v0.4f-"+tag,"save"));
+   Environment.SetEnvironmentVariable("ZTM_QA_SAVE_DIR",Path.Combine(Root,".tooling","pointer-synthetic-v0.5-"+tag,"save"));
    SessionState.SetString(Tag,tag);SessionState.SetBool(Active,true);UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Assets/Scenes/Level1.unity");EditorApplication.EnterPlaymode();
   }
   static void Check(bool condition,string label){checks++;if(!condition)failures++;report.AppendLine((condition?"PASS ":"FAIL ")+label);}
@@ -45,7 +45,7 @@ namespace ZeroToMillionaire.Editor
      Click(spin);Check(view.Model.Snapshot.spins==1,"pointer down/up fires SPIN exactly once");Check(PixelUi.FaceTravel(spin)==0,"pointer up releases face");
      Up(spin);Click(spin);Check(view.Model.Snapshot.spins==1,"extra pointer up/rapid click cannot double spin");phase=3;
     }else if(phase==3){
-     if(view.QaSpinning)return;var state=new PlayerState{cash=1000,freeSpins=0};state.fragments[0]=8;view.SetQaState(state,0);warm=0;phase=4;
+     if(view.QaSpinning)return;var state=new PlayerState{cash=1000,freeSpins=0};state.fragments[0]=Economy.Upgrades[0].FragmentGoal;view.SetQaState(state,0);warm=0;phase=4;
     }else if(phase==4){
      if(++warm<30)return;var buy=ui.Q<Button>("buy-0");Down(buy);Check(PixelUi.FaceTravel(buy)==2,"BUY pointer down moves face2");Check(view.Model.PurchasedCount==0,"BUY down does not install");
      Cancel(buy);Check(PixelUi.FaceTravel(buy)==0,"BUY cancel releases face");Check(view.Model.PurchasedCount==0,"BUY cancel preserves resources");
@@ -54,20 +54,20 @@ namespace ZeroToMillionaire.Editor
      if(++warm<4)return;var buy=ui.Q<Button>("buy-0");buy.clicked+=()=>report.AppendLine("OBSERVED actual BUY clicked callback");Down(buy);phase=7;
     }else if(phase==7){
      var buy=ui.Q<Button>("buy-0");Up(buy);Up(buy);report.AppendLine("BUY result owned="+view.Model.PurchasedCount+" cash="+view.Model.Snapshot.cash+" spinning="+view.QaSpinning);
-     Check(view.Model.PurchasedCount==1&&view.Model.Snapshot.cash==982,"BUY pointer up installs and debits exactly once");phase=5;warm=0;
+     Check(view.Model.PurchasedCount==1&&view.Model.Snapshot.cash==940,"BUY pointer up installs and debits exactly once");phase=5;warm=0;
     }else if(phase==5){
      if(++warm<20)return;Click(ui.Q<Button>("menu"));Check(ui.Q<VisualElement>("settings").resolvedStyle.display!=DisplayStyle.None,"pointer MENU opens");
      Click(ui.Q<Button>("reset"));Check(ui.Q<VisualElement>("reset-confirmation").resolvedStyle.display!=DisplayStyle.None,"pointer reset requires confirmation");
-     Click(ui.Q<Button>("keep-room"));Check(view.Model.PurchasedCount==1&&view.Model.Snapshot.cash==982,"pointer reset cancel preserves installed room and cash");
+     Click(ui.Q<Button>("keep-room"));Check(view.Model.PurchasedCount==1&&view.Model.Snapshot.cash==940,"pointer reset cancel preserves installed room and cash");
      report.AppendLine("SOURCE synthetic UI Toolkit Event.GetPooled/SendEvent in private Editor; no Windows SendInput/human pointer.");
      Finish();
     }
    }catch(Exception e){report.AppendLine("ERROR "+e);failures++;Debug.LogException(e);Finish();}
   }
-  static void Capture(string name){var old=RenderTexture.active;RenderTexture.active=texture;var image=new Texture2D(texture.width,texture.height,TextureFormat.RGBA32,false);image.ReadPixels(new Rect(0,0,texture.width,texture.height),0,0);image.Apply();File.WriteAllBytes(Path.Combine(Root,"Evidence","ui-pointer-v0.4f-"+SessionState.GetString(Tag,"")+"-"+name+".png"),image.EncodeToPNG());UnityEngine.Object.Destroy(image);RenderTexture.active=old;}
+  static void Capture(string name){var old=RenderTexture.active;RenderTexture.active=texture;var image=new Texture2D(texture.width,texture.height,TextureFormat.RGBA32,false);image.ReadPixels(new Rect(0,0,texture.width,texture.height),0,0);image.Apply();File.WriteAllBytes(Path.Combine(Root,"Evidence","ui-pointer-v0.5-"+SessionState.GetString(Tag,"")+"-"+name+".png"),image.EncodeToPNG());UnityEngine.Object.Destroy(image);RenderTexture.active=old;}
   static void Finish(){
    SessionState.SetBool(Active,false);report.AppendLine("CHECKS "+checks+" FAILURES "+failures);
-   File.WriteAllText(Path.Combine(Root,"Evidence","ui-pointer-v0.4f-"+SessionState.GetString(Tag,"")+"-checks.txt"),report.ToString());
+   File.WriteAllText(Path.Combine(Root,"Evidence","ui-pointer-v0.5-"+SessionState.GetString(Tag,"")+"-checks.txt"),report.ToString());
    if(texture!=null){if(view!=null)view.GetComponent<UIDocument>().panelSettings.targetTexture=null;texture.Release();UnityEngine.Object.Destroy(texture);texture=null;}
    EditorApplication.ExitPlaymode();Debug.Log("ZTM_POINTER_SYNTHETIC_FINISHED "+failures);
   }

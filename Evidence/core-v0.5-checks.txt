@@ -1,0 +1,4 @@
+PASS 107769 economy assertions; 1000 complete levels; spins min=49 median=53 p95=57 max=60; simulation_ms=660
+PASS walking: 432000 random motion samples, 1394 destinations, 1876,2m; walls/furniture/door clear; stall integration and no teleport
+PASS 52 offline session checks; raw IDs/shape, interruption/rollback, concurrent taps, relaunch, reset backup and net overflow
+PASS 21106 layout assertions; 5664 valid legacy gridpoints, 1567 projected; max_relocation_m=0,491; schema2/3->current keeps balances/owned/parts; reload/idempotence/raw rejection and planted hold

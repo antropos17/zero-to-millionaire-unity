@@ -27,8 +27,8 @@ namespace ZeroToMillionaire
         public const int Columns = 5, Rows = 3, SymbolCount = 8;
         public const int ReelSymbolCount = 9;
         public const int SpinCost = 5, BasePayout = 12, TripleBonus = 10, StarterFreeSpins = 3;
-        public const int SaveVersion = 4;
-        public static readonly UpgradeDefinition[] Upgrades = {
+        public const int SaveVersion = 5;
+        public static readonly UpgradeDefinition[] LegacyUpgrades = {
             new UpgradeDefinition(Symbol.Patches, "floor-patches", "Patch the floor", "Floor patches", 18, 8, "Fill the worst holes in the floor."),
             new UpgradeDefinition(Symbol.Surfaces, "surface-repair", "Repair the walls", "Repair surfaces", 55, 12, "Restore the floor and damaged walls."),
             new UpgradeDefinition(Symbol.Wallpaper, "cheap-wallpaper", "Paper the walls", "Cheap wallpaper", 80, 14, "Add simple wallpaper to the same walls."),
@@ -39,6 +39,17 @@ namespace ZeroToMillionaire
             new UpgradeDefinition(Symbol.Stool, "wooden-stool", "Place the stool", "Wooden stool", 45, 12, "One simple seat. Level 1 is complete.")
         };
 
+        public static readonly UpgradeDefinition[] Upgrades = SlowCurve();
+        static UpgradeDefinition[] SlowCurve(){
+            int[] parts={20,30,38,44,50,58,62,70},cash={60,115,155,195,235,300,315,355};
+            var values=new UpgradeDefinition[8];for(int i=0;i<8;i++){var d=LegacyUpgrades[i];values[i]=new UpgradeDefinition(d.Symbol,d.Id,d.ActionTitle,d.Title,cash[i],parts[i],d.Description);}return values;
+        }
+        public static UpgradeDefinition For(PlayerState s,int index){
+            var d=Upgrades[index];if(s.quests!=null)foreach(var q in s.quests)if(q!=null&&q.id==d.Id&&q.cashPrice>0&&q.fragmentGoal>0)
+                return q.cashPrice==LegacyUpgrades[index].CashPrice&&q.fragmentGoal==LegacyUpgrades[index].FragmentGoal?LegacyUpgrades[index]:d;
+            return s.version<5?LegacyUpgrades[index]:d;
+        }
+        public static bool ValidRequirements(int index,int cash,int parts){return (cash==Upgrades[index].CashPrice&&parts==Upgrades[index].FragmentGoal)||(cash==LegacyUpgrades[index].CashPrice&&parts==LegacyUpgrades[index].FragmentGoal);}
         public static int ActiveQuest(PlayerState s)
         {for(int i=0;i<SymbolCount;i++)if(!s.purchased[i])return i;return -1;}
         public static int NextQuest(PlayerState s)
@@ -46,9 +57,9 @@ namespace ZeroToMillionaire
         public static QuestRecord[] QuestRecords(PlayerState s)
         {
             var records=new QuestRecord[SymbolCount];int current=ActiveQuest(s);
-            for(int i=0;i<SymbolCount;i++)records[i]=new QuestRecord{ id=Upgrades[i].Id,
+            for(int i=0;i<SymbolCount;i++){var rule=For(s,i);records[i]=new QuestRecord{ id=Upgrades[i].Id,cashPrice=rule.CashPrice,fragmentGoal=rule.FragmentGoal,
                 status=s.purchased[i]?QuestStatus.Completed:i!=current?QuestStatus.Locked:
-                    s.fragments[i]>=Upgrades[i].FragmentGoal&&s.cash>=Upgrades[i].CashPrice?QuestStatus.ReadyToBuy:QuestStatus.Collecting};
+                    s.fragments[i]>=rule.FragmentGoal&&s.cash>=rule.CashPrice?QuestStatus.ReadyToBuy:QuestStatus.Collecting};}
             return records;
         }
 
@@ -56,7 +67,7 @@ namespace ZeroToMillionaire
         {
             var pool = new System.Collections.Generic.List<int> { (int)ReelSymbol.Cash };
             int current=ActiveQuest(s);
-            if(current>=0&&s.fragments[current]<Upgrades[current].FragmentGoal)pool.Add((int)Upgrades[current].FragmentSymbol);
+            if(current>=0&&s.fragments[current]<For(s,current).FragmentGoal)pool.Add((int)Upgrades[current].FragmentSymbol);
             return pool.ToArray();
         }
     }

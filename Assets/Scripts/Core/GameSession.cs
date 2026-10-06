@@ -33,7 +33,7 @@ namespace ZeroToMillionaire
                 if(!store.Save(candidate,out error)){Error=error;Notice=error;return false;}
             }catch(IOException e){Error="Save failed: "+e.GetType().Name;Notice=Error;return false;}
             catch(UnauthorizedAccessException e){Error="Save failed: "+e.GetType().Name;Notice=Error;return false;}
-            Error="";Notice="Saved locally · offline";return true;
+            Error="";Notice="Saved locally Â· offline";return true;
         }
         bool Publish(GameModel candidate)
         {
@@ -79,6 +79,7 @@ namespace ZeroToMillionaire
                 return true;
             }
         }
+        public bool TrySetTutorial(TutorialState tutorial){lock(gate){var candidate=new GameModel(model.Snapshot);candidate.SetTutorial(tutorial);return Publish(candidate);}}
         public bool Save(){lock(gate)return Write(model.Snapshot);}
         public void SetHeroinePosition(FloorPoint feet){lock(gate)model.SetHeroinePosition(feet);}
     }
