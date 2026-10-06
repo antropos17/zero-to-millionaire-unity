@@ -1,0 +1,31 @@
+PASS settled phase caption=ПРОПУСТИТЬ status=ЗАДАНИЕ 1/8 • НАГРАДА
+PASS settled action caption fits
+CAPTURE settled-reward frame=70
+PASS real spin created exact pending reward
+PASS confirmed fast reset clears old reward fly and pending flag
+PASS reset changes only authorized fresh-state resources
+CAPTURE fast-reset frame=127
+PASS final manual purchase debit once
+PASS purchased room remains unobstructed after actual reveal
+PASS hold does not consume queued story
+CAPTURE purchase-room-hold frame=157
+PASS queued story opens after presentation hold
+PASS story unseen until explicit dismissal
+CAPTURE queued-story frame=199
+PASS explicit story dismissal persists
+PASS calm fixture selected
+PASS calm installation has brief unobstructed hold
+PASS calm queued story opens without loss
+PASS exact 360x640 ready BUY twenty of twenty
+CAPTURE ready-20-of-20 frame=242
+PASS maximum legacy balance/current final cost fits 2147483647/355
+CAPTURE large-cash-current-cost frame=247
+PASS largest permitted old-curve price preserved
+PASS maximum legacy cash/cost fits text=2147483647/110 needs=103 has=112
+CAPTURE legacy-max-cash-cost frame=252
+PASS introduction visible
+PASS actual dialogue body thirteen pixels
+CAPTURE dialogue-type frame=258
+PASS actual menu help regular fourteen pixels
+CAPTURE menu-type frame=263
+RESULT PASS; real Editor offscreen render; prepared fixtures and synthetic callbacks; no physical/OS input

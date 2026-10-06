@@ -7,7 +7,7 @@ PASS tutorial-skip touch target44
 PASS speech text fits measured=47 available=65
 PASS existing heroine portrait reused
 PASS raised spin retained
-CAPTURE initial frame=19 size=360x640
+CAPTURE initial frame=18 size=360x640
 PASS dialogue visible
 PASS bubble horizontal bounds
 PASS dialogue avoids reels
@@ -27,11 +27,11 @@ PASS tutorial-skip touch target44
 PASS speech text fits measured=46,5 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
-CAPTURE initial frame=63 size=480x960
+CAPTURE initial frame=62 size=480x960
 PASS NEXT grants no resources
 PASS first next invites spin
 PASS spin highlight present
-CAPTURE spin-invitation frame=70 size=480x960
+CAPTURE spin-invitation frame=68 size=480x960
 PASS repeated spin commits once
 PASS dialogue visible
 PASS bubble horizontal bounds
@@ -43,7 +43,7 @@ PASS speech text fits measured=46,5 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
 PASS after spin explains separate meters
-CAPTURE contextual-meters frame=153 size=480x960
+CAPTURE contextual-meters frame=151 size=480x960
 PASS waits for both resources after meter explanation
 PASS dialogue visible
 PASS bubble horizontal bounds
@@ -62,7 +62,7 @@ PASS speech text fits measured=46,5 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
 PASS ready buy instruction requires both
-CAPTURE ready-first-buy frame=443 size=480x960
+CAPTURE ready-first-buy frame=438 size=480x960
 PASS actual manual buy once
 PASS first purchase advances dialogue
 PASS dialogue visible
@@ -74,7 +74,7 @@ PASS tutorial-skip touch target44
 PASS speech text fits measured=30,75 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
-CAPTURE first-repair frame=465 size=480x960
+CAPTURE first-repair frame=490 size=480x960
 PASS tutorial completion persisted
 PASS dialogue/save resources survive reload
 PASS skip saves without rewards
@@ -136,7 +136,7 @@ PASS replay cannot reopen saved intro
 PASS menu does not consume pending story
 PASS menu pauses dialogue
 PASS Russian menu fits viewport
-CAPTURE menu frame=614 size=480x960
+CAPTURE menu frame=638 size=480x960
 PASS dialogue visible
 PASS bubble horizontal bounds
 PASS dialogue avoids reels
@@ -147,7 +147,7 @@ PASS speech text fits measured=46,5 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
 PASS story is not seen before dismissal
-CAPTURE milestone-surfaces frame=636 size=480x960
+CAPTURE milestone-surfaces frame=660 size=480x960
 PASS dialogue visible
 PASS bubble horizontal bounds
 PASS dialogue avoids reels
@@ -170,10 +170,10 @@ PASS speech text fits measured=30,75 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
 PASS final story waits for dismissal
-CAPTURE milestone-complete frame=701 size=480x960
+CAPTURE milestone-complete frame=724 size=480x960
 PASS final dismissal acknowledges backlog once
 PASS reset cancel preserves complete
 PASS confirmed reset returns fresh
 PASS reset clears volatile story and restores introduction
-PASS real advancing runtime frames=721
-RESULT PASS elapsed=12,37; Editor UI callbacks; no physical input
+PASS real advancing runtime frames=745
+RESULT PASS elapsed=12,79; Editor UI callbacks; no physical input

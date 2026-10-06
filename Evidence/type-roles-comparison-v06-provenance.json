@@ -1,0 +1,20 @@
+[
+  {
+    "role": "dialogue",
+    "before_source_commit": "f69ae158279596c981a4008b97cc05eaa4a8d987",
+    "before_image": "type-v06-before-dialogue-360x640.png",
+    "after_image": "review-v06-after-dialogue-type-360x640.png",
+    "source": "Authentic actual Editor captures; before bytes exported from Git unchanged; prepared intro fixture; no OS input",
+    "comparison": "type-dialogue-comparison-v06.png",
+    "sha256": "68bb00891cdd51cc26f0f0eea0fb3b3e17881666075d87feab1ff76fefe91fb8"
+  },
+  {
+    "role": "menu",
+    "before_source_commit": "f69ae158279596c981a4008b97cc05eaa4a8d987",
+    "before_image": "type-v06-before-menu-360x640.png",
+    "after_image": "review-v06-after-menu-type-360x640.png",
+    "source": "Authentic actual Editor captures; before bytes exported from Git unchanged; prepared intro fixture; no OS input",
+    "comparison": "type-menu-comparison-v06.png",
+    "sha256": "084022a6639dc61bf4ec3a4679310df55e22dce80cd09f8b8610a2db8ed05a61"
+  }
+]

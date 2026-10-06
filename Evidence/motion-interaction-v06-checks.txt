@@ -17,8 +17,15 @@ PASS preference changes no game resources
 PASS expanded menu remains on compact portrait
 PASS calm mode creates no moving strips
 PASS calm spin resolves within short presentation
+PASS late input fixture remains eligible for another spin
+PASS late post-result taps obey cooldown while spin button is enabled
 PASS queued menu test starts an actual fresh spin
 PASS same-frame menu/skip request is retained before coroutine first frame
 PASS menu request during spin skips and opens after lease
 PASS queued menu preserves committed spin
+PASS settled skip fixture commits one real spin
+PASS settled skip uses accurate action label
+PASS thirty settled SKIP taps preserve exact cash parts and grid
+PASS settled skip finishes promptly with no second final-board award
+PASS skipped count-up lands on committed cash total
 SOURCE actual Editor frames; synthetic callbacks; private save; no physical input
