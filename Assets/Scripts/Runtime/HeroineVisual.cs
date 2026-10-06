@@ -11,11 +11,15 @@ namespace ZeroToMillionaire
         const float PixelScale=CanvasHeight/192;
         public readonly VisualElement Root;
         public int Phase {get;private set;}
-        readonly Image upper=new Image{scaleMode=ScaleMode.StretchToFill,pickingMode=PickingMode.Ignore};
+        readonly UpperBodyRig upper=new UpperBodyRig();
         readonly Texture2D[] body=new Texture2D[2],leftTextures=new Texture2D[2],rightTextures=new Texture2D[2],neutralTextures=new Texture2D[2];
         readonly Leg[] legs={new Leg(58),new Leg(76)};
         Vector2 heading=new Vector2(1,.35f).normalized;
-        float strength,faceWait;bool back,left;
+        float strength,faceWait,turnTime;bool back,left,turning,turnSwitched,pendingBack,pendingLeft;
+        public bool HoldWalk=>turning;
+        public int TurnCount{get;private set;}
+        public float LeftArmAngle=>upper.LeftAngle;public float RightArmAngle=>upper.RightAngle;
+        public float ArmJointGap=>upper.JointGap;
         sealed class Leg
         {
             public readonly float X;
@@ -44,38 +48,42 @@ namespace ZeroToMillionaire
                 Root.Add(leg.Shadow);
             }
             foreach(var leg in legs){Root.Add(leg.Thigh);Root.Add(leg.Shin);}
-            Root.Add(upper);upper.style.position=Position.Absolute;upper.style.left=0;upper.style.top=0;upper.style.width=Length.Percent(100);upper.style.height=Length.Percent(112f/192*100);
-            upper.sourceRect=new Rect(0,0,128,112);
-            upper.style.transformOrigin=new TransformOrigin(Length.Percent(50),Length.Percent(107f/112*100),0);
+            Root.Add(upper.Root);
+            Root.style.transformOrigin=new TransformOrigin(Length.Percent(67f/128*100),Length.Percent(178f/192*100),0);
         }
         Vector2 ToWorld(Vector2 source,FloorPoint feet)
-        {return new Vector2(RoomGeometry.PixelX(feet)+(left?-1:1)*(source.x-64)*PixelScale,RoomGeometry.PixelY(feet)+(source.y-178)*PixelScale);}
+        {return new Vector2(RoomGeometry.PixelX(feet)+((left?134-source.x:source.x)-64)*PixelScale,RoomGeometry.PixelY(feet)+(source.y-178)*PixelScale);}
         Vector2 ToSource(Vector2 world,FloorPoint feet)
-        {return new Vector2(64+(left?-1:1)*(world.x-RoomGeometry.PixelX(feet))/PixelScale,178+(world.y-RoomGeometry.PixelY(feet))/PixelScale);}
+        {return new Vector2(left?70-(world.x-RoomGeometry.PixelX(feet))/PixelScale:64+(world.x-RoomGeometry.PixelX(feet))/PixelScale,178+(world.y-RoomGeometry.PixelY(feet))/PixelScale);}
         public void SetPose(FloorPoint feet,FloorPoint delta,bool walking,float distance)
         {
             float dt=Mathf.Clamp(Time.unscaledDeltaTime,0,.1f);
-            strength=Mathf.MoveTowards(strength,walking?1:0,dt*4);
+            strength=Mathf.MoveTowards(strength,walking&&!turning?1:0,dt*4);
             Vector2 move=new Vector2((delta.U-delta.V)*68,(delta.U+delta.V)*100f/3);
             if(walking&&move.sqrMagnitude>.00001f)heading=Vector2.Lerp(heading,move.normalized,1-Mathf.Exp(-dt*12)).normalized;
             float cycle=Mathf.Repeat(distance/.72f,1);
             bool wantedBack=heading.y<-.22f?true:heading.y>.22f?false:back;
             bool wantedLeft=heading.x<-.14f?true:heading.x>.14f?false:left;
-            if(wantedBack!=back||wantedLeft!=left){
-                faceWait+=dt;
-                if(strength<.2f||Mathf.Abs(Mathf.Sin(cycle*Mathf.PI*2))<.25f||faceWait>.18f){
-                    back=wantedBack;left=wantedLeft;faceWait=0;foreach(var leg in legs)leg.Initialized=false;
-                }
-            }else faceWait=0;
+            if(!turning){
+                if(wantedBack!=back||wantedLeft!=left){faceWait+=dt;
+                    if(strength<.2f||Mathf.Abs(Mathf.Sin(cycle*Mathf.PI*2))<.25f||faceWait>.22f){turning=true;turnTime=0;turnSwitched=false;pendingBack=wantedBack;pendingLeft=wantedLeft;faceWait=0;TurnCount++;}
+                }else faceWait=0;
+            }
+            if(turning){turnTime+=dt;
+                if(!turnSwitched&&turnTime>=.20f){back=pendingBack;left=pendingLeft;turnSwitched=true;foreach(var leg in legs)leg.Initialized=false;}
+                if(turnTime>=.36f){turning=false;turnTime=0;}
+            }
             Root.style.left=Length.Percent((RoomGeometry.PixelX(feet)-CanvasWidth/2)/512*100);
             Root.style.top=Length.Percent((RoomGeometry.PixelY(feet)-178f/192*CanvasHeight)/512*100);
             Root.style.scale=new Scale(new Vector3(left?-1:1,1,1));
-            int view=back?1:0;upper.image=body[view];upper.sourceRect=new Rect(0,0,128,112);
+            int view=back?1:0;
             float gait=cycle*Mathf.PI*2;
             float bob=Mathf.Sin(gait*2)*.5f*strength+Mathf.Sin(Time.unscaledTime*1.7f)*.3f*(1-strength);
-            float unit=Root.resolvedStyle.height/192;
-            upper.style.translate=new Translate(Mathf.Sin(gait)*.3f*strength*unit,-bob*unit,0);
-            upper.style.rotate=new Rotate(new Angle(heading.x*(left?-1:1)*1.25f*strength,AngleUnit.Degree));
+            float turn=turning?Mathf.Sin(Mathf.Clamp01(turnTime/.36f)*Mathf.PI):0;
+            int headView=turning&&turnTime>=.10f?(pendingBack?1:0):view;
+            bool headMirror=turning&&turnTime>=.10f&&pendingLeft!=left;
+            float lean=heading.x*(left?-1:1)*1.25f*strength+(pendingLeft?-1:1)*turn*1.5f;
+            upper.Pose(view,headView,gait,strength,bob,lean,(pendingLeft?-1:1)*turn*2.5f,headMirror);
             Phase=walking?Mathf.FloorToInt(cycle*4):-1;
             for(int i=0;i<2;i++)DrawLeg(legs[i],i,feet,Mathf.Repeat(cycle+i*.5f,1),view);
         }

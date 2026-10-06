@@ -165,11 +165,11 @@ namespace ZeroToMillionaire
                 s.fragments==null||s.fragments.Length!=Economy.SymbolCount||
                 s.purchased==null||s.purchased.Length!=Economy.SymbolCount||
                 s.lastGrid==null||s.lastGrid.Length!=Economy.Columns*Economy.Rows)return false;
-            if(s.version>1&&!RoomGeometry.IsFree(new FloorPoint(s.heroineU,s.heroineV)))return false;
+            if(s.version>1&&!RoomGeometry.IsFreeForSave(new FloorPoint(s.heroineU,s.heroineV),s.version))return false;
             foreach(int part in s.fragments)if(part<0)return false;
             int iconCount=s.version==1?5:Economy.ReelSymbolCount;
             foreach(int icon in s.lastGrid)if(icon<0||icon>=iconCount)return false;
-            if(s.version==Economy.SaveVersion){
+            if(s.version>=3){
                 if(s.quests==null||s.quests.Length!=Economy.SymbolCount){reason="Missing quest records";return false;}
                 var ids=new System.Collections.Generic.HashSet<string>(StringComparer.Ordinal);
                 foreach(var quest in s.quests){
@@ -197,11 +197,12 @@ namespace ZeroToMillionaire
                         source.lastGrid[i] == 3 ? (int)ReelSymbol.Mattress : (int)ReelSymbol.Cash;
                 migrated.heroineU = 1.85f; migrated.heroineV = 1.45f;
             }
-            if(source.version==Economy.SaveVersion&&source.quests!=null){
+            if(source.version>=3&&source.quests!=null){
                 foreach(var quest in source.quests)if(quest!=null&&quest.status==QuestStatus.Completed){
                     int index=Array.FindIndex(Economy.Upgrades,d=>d.Id==quest.id);if(index>=0)migrated.purchased[index]=true;
                 }
             }
+            if(source.version>1&&source.version<4){var feet=RoomGeometry.ProjectLegacyFeet(new FloorPoint(migrated.heroineU,migrated.heroineV));migrated.heroineU=feet.U;migrated.heroineV=feet.V;}
             migrated.version = Economy.SaveVersion;
             migrated.quests=Economy.QuestRecords(migrated);
             return migrated;

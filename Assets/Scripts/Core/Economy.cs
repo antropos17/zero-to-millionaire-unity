@@ -27,7 +27,7 @@ namespace ZeroToMillionaire
         public const int Columns = 5, Rows = 3, SymbolCount = 8;
         public const int ReelSymbolCount = 9;
         public const int SpinCost = 5, BasePayout = 12, TripleBonus = 10, StarterFreeSpins = 3;
-        public const int SaveVersion = 3;
+        public const int SaveVersion = 4;
         public static readonly UpgradeDefinition[] Upgrades = {
             new UpgradeDefinition(Symbol.Patches, "floor-patches", "Patch the floor", "Floor patches", 18, 8, "Fill the worst holes in the floor."),
             new UpgradeDefinition(Symbol.Surfaces, "surface-repair", "Repair the walls", "Repair surfaces", 55, 12, "Restore the floor and damaged walls."),

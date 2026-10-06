@@ -82,7 +82,7 @@ namespace ZeroToMillionaire
             var legacy = model.Snapshot; legacy.version = 1; legacy.lastGrid[0] = 3; legacy.lastGrid[1] = 1;
             legacy.fragments[4] = 57;
             var migrated = new GameModel(legacy).Snapshot;
-            Check(migrated.version == 3 && migrated.cash == legacy.cash && migrated.fragments[4] == 57 &&
+            Check(migrated.version == Economy.SaveVersion && migrated.cash == legacy.cash && migrated.fragments[4] == 57 &&
                   migrated.fragments[0] == legacy.fragments[0] && migrated.purchased[0] &&
                   migrated.freeSpins == legacy.freeSpins && migrated.lastGrid[0] == (int)ReelSymbol.Mattress,
                   "v1 migration preserves all balances, progress and purchases without minting fragments");
@@ -117,7 +117,7 @@ namespace ZeroToMillionaire
             var loaded = new GameModel(store.Load(out notice));
             Check(loaded.Snapshot.cash == model.Snapshot.cash && loaded.Snapshot.purchased[0] && loaded.Snapshot.fragments[1] == 0, "new model reload preserves exact purchase/resources");
             File.WriteAllText(path, codec.Encode(legacy));
-            Check(store.Load(out notice).version == 3 && store.Load(out notice).fragments[4] == 57 && notice.Length > 0, "legacy disk save migrates on load");
+            Check(store.Load(out notice).version == Economy.SaveVersion && store.Load(out notice).fragments[4] == 57 && notice.Length > 0, "legacy disk save migrates on load");
             Check(store.Save(kept,out error)&&new GameModel(store.Load(out notice)).ActiveQuest==0,"out-of-order migrated quest state survives disk reload");
             var completedState=rich.Clone();for(int i=0;i<8;i++)completedState.purchased[i]=true;
             var completed=new GameModel(completedState);
@@ -154,7 +154,7 @@ namespace ZeroToMillionaire
             string sessions=SessionChecks.Run(codec,directory);
             return "PASS " + assertions + " economy assertions; 1000 complete levels; spins min=" + runs[0] +
                 " median=" + runs[500] + " p95=" + runs[950] + " max=" + runs[999] +
-                "; simulation_ms=" + watch.ElapsedMilliseconds + "\n" + walking+"\n"+sessions;
+                "; simulation_ms=" + watch.ElapsedMilliseconds + "\n" + walking+"\n"+sessions+"\n"+LayoutMigrationChecks.Run(codec,directory);
         }
     }
 }

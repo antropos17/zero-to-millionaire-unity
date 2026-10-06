@@ -1,0 +1,79 @@
+{
+  "schema": 4,
+  "before": {
+    "captured": 144,
+    "first_frame": 1,
+    "last_frame": 621,
+    "seconds": 12.0,
+    "distance_m": 2.107
+  },
+  "after": {
+    "captured": 144,
+    "first_frame": 1,
+    "last_frame": 602,
+    "seconds": 12.0,
+    "distance_m": 2.457,
+    "turning_seen": true,
+    "arm_angle_bins": 101,
+    "max_joint_gap_ui_units": 0.6777
+  },
+  "encoded": [
+    {
+      "name": "motion-v0.4c-full-before-after.gif",
+      "decoded_frames": 144,
+      "duration_ms": 12000
+    },
+    {
+      "name": "motion-v0.4c-closeup-before-after.gif",
+      "decoded_frames": 144,
+      "duration_ms": 12000
+    }
+  ],
+  "source_parts": 10,
+  "art": "existing approved neutral RGB pixels, alpha cutouts; exact rest reconstruction; no new art required",
+  "stool": {
+    "old_anchor": [
+      1.23,
+      2.45
+    ],
+    "new_anchor": [
+      1.9,
+      2.3
+    ],
+    "opaque_overlap_pixels_before": 665,
+    "opaque_overlap_pixels_after": 0
+  },
+  "tests": {
+    "economy": 34586,
+    "navigation": 432000,
+    "sessions": 52,
+    "layout": 20998,
+    "legacy_grid_points": 5628,
+    "relocated_points": 1531,
+    "max_relocation_m": 0.491,
+    "ui_layout": 848
+  },
+  "limitations": [
+    "two source facing views; discrete image changes softened by .36s stationary turn and head lead",
+    "Editor captured12Hz, not nativePlayer performance/physicaltouch",
+    "before/after use different stool reserves and turn timing; same seed does not mean identical route",
+    "new schema4 must not share a live profile concurrently with oldv0.3 Player; nativeprofiling uses isolated DEVELOPMENT_BUILD save env"
+  ],
+  "deliverables": [
+    {
+      "name": "motion-v0.4c-full-before-after.gif",
+      "bytes": 24373490,
+      "sha256": "09f74d05724767f9afbec18f3556a169f543b6ff4e2363c89b6dcaaf6856f257"
+    },
+    {
+      "name": "motion-v0.4c-closeup-before-after.gif",
+      "bytes": 21931116,
+      "sha256": "65292693dcb7ed863cf006ac84356ee6e2b2758e61710a92b5bed0a80bf83a9f"
+    },
+    {
+      "name": "ui-v0.4c-state-copy.png",
+      "bytes": 278188,
+      "sha256": "02d48008fbff99f91c767ac400ce86cfb18d6bd33f2e8861fe559b4fb8843d97"
+    }
+  ]
+}

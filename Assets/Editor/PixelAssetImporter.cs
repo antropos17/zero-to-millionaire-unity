@@ -10,6 +10,7 @@ namespace ZeroToMillionaire.Editor
             if (!assetPath.StartsWith("Assets/Resources/Art/")) return;
             var importer = (TextureImporter)assetImporter;
             importer.textureType = TextureImporterType.Default;
+            importer.textureShape = TextureImporterShape.Texture2D;
             importer.alphaIsTransparency = true;
             importer.filterMode = FilterMode.Point;
             importer.mipmapEnabled = false;

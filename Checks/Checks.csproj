@@ -9,6 +9,7 @@
     <Compile Include="../Assets/Editor/ModelChecks.cs" />
     <Compile Include="../Assets/Editor/NavigationChecks.cs" />
     <Compile Include="../Assets/Editor/SessionChecks.cs" />
+    <Compile Include="../Assets/Editor/LayoutMigrationChecks.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
 </Project>

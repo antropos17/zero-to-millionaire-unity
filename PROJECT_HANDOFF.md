@@ -121,3 +121,58 @@ New Library verified IDs: compact libfile_444f808987b481919535a5cfd8f7ed69;
 tall libfile_5aaacdece308819199ade7294c1c3fee; rewards
 libfile_ca9c488e58388191ad285f981dd3b87f; current runtimeGIF
 libfile_64e549ca1cc08191b60fe4aba934c545. Native metadata verified.
+
+
+## Bounded motion/save checkpoint v0.4c (2026-10-06)
+
+10 aligned128x192 source cutouts (front/back torso, upperarms and forearms)
+are inArt/animation/*-rig-*.png. Rest reconstruction is pixelexact; forearms
+have no blue trousers. SourceRGB unchanged; parent needs no new art batch.
+UpperBodyRig counter-swings upperarms5.5degrees max with restrained elbow
+response. Far arm behind torso/near arm infront, stable shoulder/elbow pivots.
+Turn pauses walking.36s, head leads at.10s/body switches at.20s; sourceviews
+remain discrete. Mirror pivot67 sits between support legs. Toe masks preserved.
+
+New2:3 PNGs initially autoimported asCubemap despite Default texturetype;
+actualrender exposed missingupperbody. Fixed PixelAssetImporter to force
+TextureImporterShape.Texture2D, reimported all10; Resources/directload prove2D.
+Rig now rejects missing textures and MotionAudit checks6 renderedimages.
+Final actual screenshot/clip shows complete body; ignore earlier bad private
+frames, which were replaced before delivery. No nativePlayer validation yet.
+
+Stool moved to(1.9,2.3), raw reserve1.75..2.05/2.15..2.45. Bed/stool opaque
+silhouette overlap eliminated. Save schema4 validates v2/v3 against previous
+reserve, then deterministically projects only blocked feet to nearest free
+point. Maximum policy.75m; tested maximum.491m,5628oldvalid gridpoints,1531
+relocated. Cash/parts/owned/free/recovery/spins and stablequests preserved;
+raw invalid IDs/NaN/out-of-room remain rejected; reload and idempotence pass.
+User save never reset or rewritten byQA; allfixtures use privateX profiles.
+Do not run oldv0.3 and new schema4 Players together against the same save.
+
+READY/INSTALL TASK copy now reads RESOLVING during pendingreels; after8/8
+expiredtoasts default to YOUR ROOM IS COMPLETE. UI Current() captures new
+ui-v0.4c filenames; prior Library identities preserved.848UI assertions,
+34586economy,432000nav,52session,20998layoutmigration assertions pass.
+Motion before/after12s480x960 with actual advancing framecounts, armphase,
+turnseen and jointgap checks. Encoded GIF frames/durations are separately
+recorded in motion-v0.4c-checkpoint.json. This is Editor diagnostic capture,
+not PlayerFPS/realhardwaretouch. UIcallback clip includes SPIN/manualBUY.
+
+Next slice: measured nativeDevelopmentPlayer profiling in a newbuilddir,
+with ZTM_QA_SAVE_DIR explicitly set toX/.tooling/perf-qa-save (now enabled
+only forEDITOR orDEVELOPMENT_BUILD). Keep oldPlayer46276/userprofile intact.
+Capture actualProfiler trace plus steadywalking and burstspin/purchase samples;
+report framepercentiles, allocation spikes, paint/animation/navigation costs
+and memory with source/evidence. Fix measured bottlenecks only. Do not enable
+runtimeMCP/network inrelease. Final regression/build reserved13:15..14:05UTC.
+
+v0.4c Library delivery (all metadata verified):
+- Full actual runtime comparison: libfile_d9d203b3a0848191a875420f5f77f44f
+- Tracked arm/leg close comparison: libfile_34d459fe4fdc8191bdf54bbe7c43a6e3
+- Busy/completed UI state copy: libfile_44b4c59fa62c8191be9186736e2ec95f
+Both GIFs decode144frames/12000ms; source144captures each. Before actual
+frameCount1..621,after1..602. After101armphasebins, jointgapmax0.6777units.
+Current SPIN/manualBUY clip132captures,11.002s,frameCount78..628,2.193m;
+repeatedspin/buy,reload,completedhint,resetcancel/confirm passed privately.
+Existing v0.3 Player46276 kept responding and brought foreground on owner
+request 10:09UTC. No fresh native build or native Profiler result this slice.

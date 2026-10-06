@@ -1,0 +1,75 @@
+PASS SPIN fits 360x640
+PASS MENU target44
+PASS 5x3 remains stable
+PASS task above reels
+PASS room aspect preserved
+BOUNDS 360x640
+room (x:10.00, y:73.00, width:340.00, height:212.00) font=14
+upgrades (x:10.00, y:285.00, width:340.00, height:104.00) font=14
+reels (x:10.00, y:417.00, width:340.00, height:144.00) font=14
+feedback-lane (x:10.00, y:392.00, width:340.00, height:22.00) font=14
+cash-count (x:194.00, y:346.00, width:70.00, height:15.00) font=12
+quest-title (x:68.00, y:305.00, width:196.00, height:20.00) font=15
+quest-status (x:68.00, y:291.00, width:196.00, height:14.00) font=11
+next-quest (x:15.00, y:364.00, width:330.00, height:24.00) font=14
+spin (x:125.00, y:566.00, width:225.00, height:68.00) font=45
+symbol0 (x:26.00, y:426.00, width:44.00, height:37.00)
+symbol1 (x:92.00, y:426.00, width:44.00, height:37.00)
+symbol2 (x:158.00, y:426.00, width:44.00, height:37.00)
+symbol3 (x:224.00, y:426.00, width:44.00, height:37.00)
+symbol4 (x:290.00, y:426.00, width:44.00, height:37.00)
+symbol5 (x:26.00, y:471.00, width:44.00, height:36.00)
+symbol6 (x:92.00, y:471.00, width:44.00, height:36.00)
+symbol7 (x:158.00, y:471.00, width:44.00, height:36.00)
+symbol8 (x:224.00, y:471.00, width:44.00, height:36.00)
+PASS actual SPIN callback started
+PASS busy ready state explains disabledBUY
+PASS busy betstate avoids INSTALL TASK
+PASS BUY rejected while spinning
+PASS matching last-part spin reaches manual BUY readiness
+PASS part reward contained in reserved lane
+PASS reward avoids heroine/room
+PASS reward avoids task artwork
+PASS cash counter readable minimum12
+PASS SPIN fits 480x960
+PASS MENU target44
+PASS 5x3 remains stable
+PASS task above reels
+PASS room aspect preserved
+BOUNDS 480x960
+room (x:9.75, y:77.25, width:340.50, height:243.75) font=14
+upgrades (x:9.75, y:321.00, width:340.50, height:103.50) font=14
+reels (x:9.75, y:453.00, width:340.50, height:174.00) font=14
+feedback-lane (x:9.75, y:427.50, width:340.50, height:22.50) font=14
+cash-count (x:194.25, y:382.50, width:69.75, height:15.00) font=12
+quest-title (x:68.25, y:341.25, width:195.75, height:20.25) font=15
+quest-status (x:68.25, y:327.75, width:195.75, height:13.50) font=11
+next-quest (x:15.00, y:400.50, width:330.00, height:24.00) font=14
+spin (x:124.50, y:632.25, width:225.75, height:81.75) font=45
+symbol0 (x:26.25, y:463.50, width:43.50, height:43.50)
+symbol1 (x:92.25, y:463.50, width:43.50, height:43.50)
+symbol2 (x:158.25, y:463.50, width:43.50, height:43.50)
+symbol3 (x:224.25, y:463.50, width:43.50, height:43.50)
+symbol4 (x:290.25, y:463.50, width:43.50, height:43.50)
+symbol5 (x:26.25, y:517.50, width:43.50, height:44.25)
+symbol6 (x:92.25, y:517.50, width:43.50, height:44.25)
+symbol7 (x:158.25, y:517.50, width:43.50, height:44.25)
+symbol8 (x:224.25, y:517.50, width:43.50, height:44.25)
+PASS actual SPIN callback started
+PASS busy ready state explains disabledBUY
+PASS busy betstate avoids INSTALL TASK
+PASS BUY rejected while spinning
+PASS matching last-part spin reaches manual BUY readiness
+PASS part reward contained in reserved lane
+PASS reward avoids heroine/room
+PASS reward avoids task artwork
+PASS cash counter readable minimum12
+PASS raised SPIN press5 over base10
+PASS repeated SPIN commits once
+PASS last task ready from real spin
+PASS manual BUY callback completes exactly once
+PASS installation reload preserves cash and complete room
+PASS real advancing walk + press/reel/manual-install clip
+PASS completed idle message replaces buying tutorial
+PASS reset cancel preserves completion
+PASS confirmed reset works in isolated profile

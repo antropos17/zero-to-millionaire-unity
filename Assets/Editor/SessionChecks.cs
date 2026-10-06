@@ -110,7 +110,7 @@ namespace ZeroToMillionaire
             var legacy=good.Clone();legacy.version=2;legacy.quests=null;legacy.purchased[6]=true;legacy.fragments[0]=91;
             File.WriteAllText(path,codec.Encode(legacy));resumed=new GameSession(disk,new ConstantRandom());
             Check(resumed.Model.Snapshot.fragments[0]==91&&resumed.Model.Snapshot.fragments[1]==44&&resumed.Model.Snapshot.purchased[6]&&resumed.Model.ActiveQuest==1,"legacy surplus and out-of-order ownership preserved by session reload");
-            Check(resumed.Save()&&new GameSession(disk,new ConstantRandom()).Model.Snapshot.version==3,"migrated stable records commit and reload");
+            Check(resumed.Save()&&new GameSession(disk,new ConstantRandom()).Model.Snapshot.version==Economy.SaveVersion,"migrated stable records commit and reload");
 
             var nearLimit=new GameModel(new PlayerState{cash=int.MaxValue-26,freeSpins=0});
             Check(nearLimit.TrySpin(new SequenceRandom(),out spin)&&nearLimit.Snapshot.cash==int.MaxValue-3,"valid near-limit NET cash accepted");

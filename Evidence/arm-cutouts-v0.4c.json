@@ -1,0 +1,207 @@
+{
+  "parts": [
+    {
+      "name": "front-rig-torso.png",
+      "canvas": [
+        128,
+        192
+      ],
+      "source": "front-idle.png",
+      "source_sha256": "2c1c3138cf7013c8cd6ecc2d1ad69f6be89663a4cafefd09cbe110a1f4ca5bc8",
+      "editing": "source-only alpha cutout, no new RGB pixels",
+      "opaque_joint_overlap_rows": {
+        "shoulder": [
+          55,
+          56
+        ],
+        "elbow": [
+          87,
+          88
+        ]
+      }
+    },
+    {
+      "name": "front-rig-upper-left.png",
+      "canvas": [
+        128,
+        192
+      ],
+      "source": "front-idle.png",
+      "source_sha256": "2c1c3138cf7013c8cd6ecc2d1ad69f6be89663a4cafefd09cbe110a1f4ca5bc8",
+      "editing": "source-only alpha cutout, no new RGB pixels",
+      "opaque_joint_overlap_rows": {
+        "shoulder": [
+          55,
+          56
+        ],
+        "elbow": [
+          87,
+          88
+        ]
+      }
+    },
+    {
+      "name": "front-rig-fore-left.png",
+      "canvas": [
+        128,
+        192
+      ],
+      "source": "front-idle.png",
+      "source_sha256": "2c1c3138cf7013c8cd6ecc2d1ad69f6be89663a4cafefd09cbe110a1f4ca5bc8",
+      "editing": "source-only alpha cutout, no new RGB pixels",
+      "opaque_joint_overlap_rows": {
+        "shoulder": [
+          55,
+          56
+        ],
+        "elbow": [
+          87,
+          88
+        ]
+      }
+    },
+    {
+      "name": "front-rig-upper-right.png",
+      "canvas": [
+        128,
+        192
+      ],
+      "source": "front-idle.png",
+      "source_sha256": "2c1c3138cf7013c8cd6ecc2d1ad69f6be89663a4cafefd09cbe110a1f4ca5bc8",
+      "editing": "source-only alpha cutout, no new RGB pixels",
+      "opaque_joint_overlap_rows": {
+        "shoulder": [
+          55,
+          56
+        ],
+        "elbow": [
+          87,
+          88
+        ]
+      }
+    },
+    {
+      "name": "front-rig-fore-right.png",
+      "canvas": [
+        128,
+        192
+      ],
+      "source": "front-idle.png",
+      "source_sha256": "2c1c3138cf7013c8cd6ecc2d1ad69f6be89663a4cafefd09cbe110a1f4ca5bc8",
+      "editing": "source-only alpha cutout, no new RGB pixels",
+      "opaque_joint_overlap_rows": {
+        "shoulder": [
+          55,
+          56
+        ],
+        "elbow": [
+          87,
+          88
+        ]
+      }
+    },
+    {
+      "name": "back-rig-torso.png",
+      "canvas": [
+        128,
+        192
+      ],
+      "source": "back-idle.png",
+      "source_sha256": "ba8cd7db7877d814c2313e6d400bdd73b43a2d9efe5f5ed9f3e60f20a9ddcd6f",
+      "editing": "source-only alpha cutout, no new RGB pixels",
+      "opaque_joint_overlap_rows": {
+        "shoulder": [
+          55,
+          56
+        ],
+        "elbow": [
+          87,
+          88
+        ]
+      }
+    },
+    {
+      "name": "back-rig-upper-left.png",
+      "canvas": [
+        128,
+        192
+      ],
+      "source": "back-idle.png",
+      "source_sha256": "ba8cd7db7877d814c2313e6d400bdd73b43a2d9efe5f5ed9f3e60f20a9ddcd6f",
+      "editing": "source-only alpha cutout, no new RGB pixels",
+      "opaque_joint_overlap_rows": {
+        "shoulder": [
+          55,
+          56
+        ],
+        "elbow": [
+          87,
+          88
+        ]
+      }
+    },
+    {
+      "name": "back-rig-fore-left.png",
+      "canvas": [
+        128,
+        192
+      ],
+      "source": "back-idle.png",
+      "source_sha256": "ba8cd7db7877d814c2313e6d400bdd73b43a2d9efe5f5ed9f3e60f20a9ddcd6f",
+      "editing": "source-only alpha cutout, no new RGB pixels",
+      "opaque_joint_overlap_rows": {
+        "shoulder": [
+          55,
+          56
+        ],
+        "elbow": [
+          87,
+          88
+        ]
+      }
+    },
+    {
+      "name": "back-rig-upper-right.png",
+      "canvas": [
+        128,
+        192
+      ],
+      "source": "back-idle.png",
+      "source_sha256": "ba8cd7db7877d814c2313e6d400bdd73b43a2d9efe5f5ed9f3e60f20a9ddcd6f",
+      "editing": "source-only alpha cutout, no new RGB pixels",
+      "opaque_joint_overlap_rows": {
+        "shoulder": [
+          55,
+          56
+        ],
+        "elbow": [
+          87,
+          88
+        ]
+      }
+    },
+    {
+      "name": "back-rig-fore-right.png",
+      "canvas": [
+        128,
+        192
+      ],
+      "source": "back-idle.png",
+      "source_sha256": "ba8cd7db7877d814c2313e6d400bdd73b43a2d9efe5f5ed9f3e60f20a9ddcd6f",
+      "editing": "source-only alpha cutout, no new RGB pixels",
+      "opaque_joint_overlap_rows": {
+        "shoulder": [
+          55,
+          56
+        ],
+        "elbow": [
+          87,
+          88
+        ]
+      }
+    }
+  ],
+  "rest_reconstruction_pixel_exact": true,
+  "forearms_contain_no_blue_trouser_pixels": true,
+  "source": "approved neutral reference asset; no new art required"
+}

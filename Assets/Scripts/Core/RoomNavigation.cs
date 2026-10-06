@@ -29,21 +29,38 @@ namespace ZeroToMillionaire
     public static class RoomGeometry
     {
         public const float Metres = 3f, FootRadius = 0.34f;
+        public const float MaximumLegacyRelocation=0.75f;
+        public static readonly FloorPoint StoolAnchor=new FloorPoint(1.90f,2.30f);
         // Reserve placement zones before purchase too: buying furniture never
         // spawns it through an occupant or forces an abrupt relocation.
         public static readonly FloorObstacle[] Obstacles = {
             new FloorObstacle("Door swing", 1.75f, 0f, 2.90f, 0.70f),
             new FloorObstacle("Mattress", 0.08f, 0.95f, 0.85f, 2.68f),
             new FloorObstacle("Lamp base", 0.28f, 0.35f, 0.55f, 0.65f),
-            new FloorObstacle("Stool", 1.08f, 2.30f, 1.38f, 2.60f)
+            new FloorObstacle("Stool", 1.75f, 2.15f, 2.05f, 2.45f)
         };
+        // Schema1..3 used the original stool reserve. Validate that layout
+        // before migrating coordinates; never discard otherwise valid progress.
+        static readonly FloorObstacle[] LegacyObstacles={
+            new FloorObstacle("Door swing",1.75f,0f,2.90f,.70f),new FloorObstacle("Mattress",.08f,.95f,.85f,2.68f),
+            new FloorObstacle("Lamp base",.28f,.35f,.55f,.65f),new FloorObstacle("Stool",1.08f,2.30f,1.38f,2.60f)};
+        public static bool IsFreeForSave(FloorPoint p,int schema){return IsFreeIn(p,schema<4?LegacyObstacles:Obstacles);}
+        public static FloorPoint ProjectLegacyFeet(FloorPoint point){
+            if(!IsFreeForSave(point,3))throw new ArgumentException("Invalid legacy feet");if(IsFree(point))return point;
+            var xs=new List<float>{point.U,FootRadius,Metres-FootRadius};var ys=new List<float>{point.V,FootRadius,Metres-FootRadius};
+            foreach(var obstacle in Obstacles){xs.Add(Math.Max(FootRadius,obstacle.U0-FootRadius-.001f));xs.Add(Math.Min(Metres-FootRadius,obstacle.U1+FootRadius+.001f));ys.Add(Math.Max(FootRadius,obstacle.V0-FootRadius-.001f));ys.Add(Math.Min(Metres-FootRadius,obstacle.V1+FootRadius+.001f));}
+            FloorPoint best=point;float bestDistance=float.MaxValue;
+            foreach(float x in xs)foreach(float y in ys){var candidate=new FloorPoint(x,y);if(!IsFree(candidate))continue;float distance=FloorPoint.Distance(point,candidate);if(distance<bestDistance-0.000001f||(Math.Abs(distance-bestDistance)<0.000001f&&(x<best.U||(x==best.U&&y<best.V)))){best=candidate;bestDistance=distance;}}
+            if(bestDistance>MaximumLegacyRelocation)throw new InvalidOperationException("Legacy relocation exceeded bounded policy");return best;
+        }
         public static float PixelX(FloorPoint p) { return 256 + (p.U - p.V) * 68; }
         public static float PixelY(FloorPoint p) { return 260 + (p.U + p.V) * (100f / 3); }
-        public static bool IsFree(FloorPoint p)
+        public static bool IsFree(FloorPoint p){return IsFreeIn(p,Obstacles);}
+        static bool IsFreeIn(FloorPoint p,FloorObstacle[] obstacles)
         {
             if (float.IsNaN(p.U) || float.IsNaN(p.V) || float.IsInfinity(p.U) || float.IsInfinity(p.V) ||
                 p.U < FootRadius || p.V < FootRadius || p.U > Metres - FootRadius || p.V > Metres - FootRadius) return false;
-            foreach (var obstacle in Obstacles) if (obstacle.Contains(p, FootRadius)) return false;
+            foreach (var obstacle in obstacles) if (obstacle.Contains(p, FootRadius)) return false;
             return true;
         }
         public static bool SegmentFree(FloorPoint from, FloorPoint to)
@@ -148,6 +165,7 @@ namespace ZeroToMillionaire
             if (!RoomGeometry.IsFree(feet)) throw new ArgumentException("Feet must be on clear floor");
             Position = feet; random = source;
         }
+        public void HoldForTurn(){Delta=new FloorPoint(0,0);speed=0;}
         public void Step(float seconds)
         {
             if (float.IsNaN(seconds) || seconds <= 0) return;

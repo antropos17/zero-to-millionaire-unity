@@ -70,7 +70,7 @@ namespace ZeroToMillionaire
             Screen.orientation = ScreenOrientation.Portrait;
             random = new SeededRandom(unchecked(Environment.TickCount));
             string saveDirectory = Application.persistentDataPath;
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             string qaDirectory = Environment.GetEnvironmentVariable("ZTM_QA_SAVE_DIR");
             if (!string.IsNullOrEmpty(qaDirectory)) saveDirectory = qaDirectory;
 #endif
@@ -200,7 +200,7 @@ namespace ZeroToMillionaire
             upgradeRows.style.paddingLeft=5;upgradeRows.style.paddingRight=5;upgradeRows.style.paddingTop=5;
             upgradeRows.style.marginBottom=3;main.Add(upgradeRows);
             feedbackLane=Frame("feedback-lane",PixelUi.Finish.Cream);feedbackLane.style.height=22;feedbackLane.style.flexShrink=0;feedbackLane.style.marginBottom=3;main.Add(feedbackLane);
-            feedbackHint=Text("1 ICON = 1 PART  |  BUY USES PARTS + CASH",10,Forest);feedbackHint.style.height=22;feedbackHint.style.unityTextAlign=TextAnchor.MiddleCenter;feedbackLane.Add(feedbackHint);
+            feedbackHint=Text("1 ICON = 1 PART  |  BUY USES PARTS + CASH",10,Forest);feedbackHint.name="feedback-hint";feedbackHint.style.height=22;feedbackHint.style.unityTextAlign=TextAnchor.MiddleCenter;feedbackLane.Add(feedbackHint);
             grid=Frame("reels",PixelUi.Finish.Forest);grid.style.flexShrink=0;grid.style.paddingLeft=5;grid.style.paddingRight=5;
             grid.style.paddingTop=5;grid.style.paddingBottom=5;grid.style.marginBottom=5;
             for(int y=0;y<3;y++){
@@ -219,7 +219,7 @@ namespace ZeroToMillionaire
             var betTitle=Text("BET",16,Cream);betTitle.style.unityTextAlign=TextAnchor.MiddleCenter;betTitle.style.height=22;bet.Add(betTitle);
             var value=new VisualElement();Row(value);value.style.justifyContent=Justify.Center;value.style.height=30;
             value.Add(Icon(reelTextures[0],30));betLabel=Text("5",24,Cream);betLabel.style.marginLeft=5;value.Add(betLabel);bet.Add(value);
-            freeLabel=Text("",12,PixelUi.Hex(0xffce76));freeLabel.style.unityTextAlign=TextAnchor.MiddleCenter;freeLabel.style.flexGrow=1;bet.Add(freeLabel);spinRow.Add(bet);
+            freeLabel=Text("",12,PixelUi.Hex(0xffce76));freeLabel.name="bet-state";freeLabel.style.unityTextAlign=TextAnchor.MiddleCenter;freeLabel.style.flexGrow=1;bet.Add(freeLabel);spinRow.Add(bet);
             var actionArea=new VisualElement();actionArea.style.flexGrow=1;actionArea.style.height=Length.Percent(100);
             spinButton=Action("SPIN",BeginSpin,Rust);spinButton.name="spin";spinButton.style.height=Length.Percent(100);spinButton.style.fontSize=45;
             recoveryButton=Action("FREE SPIN",()=>{Recover();BeginSpin();},Rust);recoveryButton.name="recovery";recoveryButton.style.height=Length.Percent(100);recoveryButton.style.fontSize=27;
@@ -294,7 +294,7 @@ namespace ZeroToMillionaire
                 // Floor footprints and render anchors share one metre-based layout.
                 if (s.purchased[5]) AddFurniture(model.Complete ? "mattress-dressed" : "mattress", new FloorPoint(0.47f, 1.82f), 164, 0.98f);
                 if (s.purchased[6]) AddFurniture("lamp", new FloorPoint(0.36f, 0.56f), 38, 0.98f);
-                if (s.purchased[7]) AddFurniture("stool", new FloorPoint(1.23f, 2.45f), 45, 0.97f);
+                if (s.purchased[7]) AddFurniture("stool", RoomGeometry.StoolAnchor, 45, 0.97f);
                 heroine = new HeroineVisual(); roomStage.Add(heroine.Root);
                 UpdateHeroine();
             }
@@ -325,7 +325,7 @@ namespace ZeroToMillionaire
             if (toast != null && Time.unscaledTime > toastUntil) HideToast();
             UpdateRewardFlight();
             if (wanderer == null || model == null || heroine == null) return;
-            wanderer.Step(Time.unscaledDeltaTime);
+            if(heroine.HoldWalk)wanderer.HoldForTurn();else wanderer.Step(Time.unscaledDeltaTime);
             session.SetHeroinePosition(wanderer.Position);
             UpdateHeroine();
         }
@@ -379,9 +379,10 @@ namespace ZeroToMillionaire
         void Refresh()
         {
             PlayerState s=model.Snapshot;
+            feedbackHint.text=model.Complete?"YOUR ROOM IS COMPLETE":"1 ICON = 1 PART  |  BUY USES PARTS + CASH";
             cashLabel.text=s.cash.ToString();cashLabel.style.fontSize=s.cash.ToString().Length>6?16:26;
             saveLabel.text=saveNotice;betLabel.text=s.freeSpins>0||model.CanRecover?"0":"5";
-            freeLabel.text=model.Complete?"ALL TASKS DONE":model.ActiveQuest>=0&&model.CanBuy(model.ActiveQuest)?"INSTALL TASK":s.freeSpins>0?"FREE SPINS "+s.freeSpins:model.CanRecover?"FREE RECOVERY":"FIXED BET";
+            freeLabel.text=spinning?"RESOLVING":model.Complete?"ALL TASKS DONE":model.ActiveQuest>=0&&model.CanBuy(model.ActiveQuest)?"INSTALL TASK":s.freeSpins>0?"FREE SPINS "+s.freeSpins:model.CanRecover?"FREE RECOVERY":"FIXED BET";
             if(model.Complete)betLabel.text="0";
             spinButton.SetEnabled(!spinning&&model.CanSpin);ButtonText(spinButton,model.Complete?"COMPLETE":spinning?"...":"SPIN",model.Complete?26:45);
             ButtonText(menuButton,"MENU",10);ButtonText(recoveryButton,"FREE SPIN",24);
@@ -414,7 +415,7 @@ namespace ZeroToMillionaire
             var well=Box("quest-item-well",PixelUi.Hex(0xc9a77c));well.style.width=48;well.style.height=55;well.style.marginRight=5;
             well.Add(Icon(reelTextures[index+1],47));row.Add(well);
             var info=new VisualElement();info.style.flexGrow=1;info.style.flexBasis=0;info.style.marginRight=4;
-            string need=ready?"READY TO INSTALL":partsFull?"NEED CASH":cashFull?"COLLECT PARTS":"PARTS + CASH";
+            string need=spinning?"RESOLVING SPIN":ready?"READY TO INSTALL":partsFull?"NEED CASH":cashFull?"COLLECT PARTS":"PARTS + CASH";
             var eyebrow=Text("TASK "+(index+1)+"/8  -  "+need,11,Forest);eyebrow.name="quest-status";eyebrow.style.height=14;eyebrow.style.whiteSpace=WhiteSpace.NoWrap;info.Add(eyebrow);
             var titleLabel=Text(d.ActionTitle.ToUpperInvariant(),15,Forest);titleLabel.name="quest-title";titleLabel.style.height=20;titleLabel.style.whiteSpace=WhiteSpace.NoWrap;info.Add(titleLabel);
             var parts=new VisualElement();Row(parts);parts.style.height=19;
@@ -531,6 +532,10 @@ namespace ZeroToMillionaire
         }
         public void QaPressedSpin(){PixelUi.SetPressed(spinButton,true);}
         public void QaReleaseSpin(){PixelUi.SetPressed(spinButton,false);}
+        public float QaLeftArmAngle=>heroine==null?0:heroine.LeftArmAngle;
+        public float QaRightArmAngle=>heroine==null?0:heroine.RightArmAngle;
+        public float QaArmJointGap=>heroine==null?0:heroine.ArmJointGap;
+        public bool QaTurning=>heroine!=null&&heroine.HoldWalk;
         public FloorPoint QaFeet { get { return wanderer.Position; } }
         public bool QaWalking { get { return wanderer.Walking; } }
         public int QaAnimationPhase { get { return heroine == null ? -1 : heroine.Phase; } }
