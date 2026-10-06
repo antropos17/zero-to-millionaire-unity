@@ -4,9 +4,9 @@ namespace ZeroToMillionaire.Editor {
   const string Key="ZTM_POLISH_BUILD_V06";static double readyAfter;
   static string Root=>Directory.GetParent(Application.dataPath).FullName;
   static PolishBuildV06(){EditorApplication.update+=Tick;}
-  public static string Start(bool web,string source){
+  public static string Start(bool web,string source,string label="safety"){
    if(EditorApplication.isPlaying||SessionState.GetBool(Key,false))throw new Exception("Editor busy");if(string.IsNullOrEmpty(source)||source.Length!=40)throw new Exception("Record immutable source commit");
-   string folder=web?"WebGL-QA-v0.6-safety":"Windows-v0.6-safety";if(Directory.Exists(Path.Combine(Root,"Builds",folder)))throw new Exception("Immutable output exists");
+   if(label!="safety"&&label!="motion-checkpoint")throw new Exception("Unknown immutable build label");string folder=web?"WebGL-QA-v0.6-safety":"Windows-v0.6-"+label;if(Directory.Exists(Path.Combine(Root,"Builds",folder)))throw new Exception("Immutable output exists");
    SessionState.SetString(Key+"folder",folder);SessionState.SetString(Key+"source",source);SessionState.SetBool(Key+"web",web);
    SessionState.SetInt(Key+"target",(int)EditorUserBuildSettings.activeBuildTarget);SessionState.SetInt(Key+"width",PlayerSettings.defaultScreenWidth);SessionState.SetInt(Key+"height",PlayerSettings.defaultScreenHeight);
    SessionState.SetInt(Key+"compression",(int)PlayerSettings.WebGL.compressionFormat);SessionState.SetBool(Key+"fallback",PlayerSettings.WebGL.decompressionFallback);SessionState.SetInt(Key+"phase",0);SessionState.SetBool(Key,true);

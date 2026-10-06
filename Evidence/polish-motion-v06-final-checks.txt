@@ -1,0 +1,6 @@
+PASS real spin callback commits once
+PASS committed spin reaches final purchase
+PASS manual installation debits once
+PASS advancing actual frames, whole interaction captured
+frame0=1 finalFrame=527 captures=175 seconds=9,001
+SOURCE Editor rendered target; synthetic UI callbacks, prepared final-task fixture; no physical/OS input

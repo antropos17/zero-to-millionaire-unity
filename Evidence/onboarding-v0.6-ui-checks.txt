@@ -4,7 +4,7 @@ PASS dialogue avoids reels
 PASS dialogue avoids quest meters
 PASS tutorial-next touch target44
 PASS tutorial-skip touch target44
-PASS speech text fits measured=29 available=65
+PASS speech text fits measured=47 available=65
 PASS existing heroine portrait reused
 PASS raised spin retained
 CAPTURE initial frame=19 size=360x640
@@ -14,24 +14,24 @@ PASS dialogue avoids reels
 PASS dialogue avoids quest meters
 PASS tutorial-next touch target44
 PASS tutorial-skip touch target44
-PASS speech text fits measured=29 available=65
+PASS speech text fits measured=47 available=65
 PASS existing heroine portrait reused
 PASS raised spin retained
-CAPTURE initial frame=42 size=360x800
+CAPTURE initial frame=41 size=360x800
 PASS dialogue visible
 PASS bubble horizontal bounds
 PASS dialogue avoids reels
 PASS dialogue avoids quest meters
 PASS tutorial-next touch target44
 PASS tutorial-skip touch target44
-PASS speech text fits measured=29,25 available=64,5
+PASS speech text fits measured=46,5 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
-CAPTURE initial frame=64 size=480x960
+CAPTURE initial frame=63 size=480x960
 PASS NEXT grants no resources
 PASS first next invites spin
 PASS spin highlight present
-CAPTURE spin-invitation frame=69 size=480x960
+CAPTURE spin-invitation frame=70 size=480x960
 PASS repeated spin commits once
 PASS dialogue visible
 PASS bubble horizontal bounds
@@ -39,18 +39,18 @@ PASS dialogue avoids reels
 PASS dialogue avoids quest meters
 PASS tutorial-next touch target44
 PASS tutorial-skip touch target44
-PASS speech text fits measured=43,5 available=64,5
+PASS speech text fits measured=46,5 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
 PASS after spin explains separate meters
-CAPTURE contextual-meters frame=174 size=480x960
+CAPTURE contextual-meters frame=153 size=480x960
 PASS waits for both resources after meter explanation
 PASS dialogue visible
 PASS bubble horizontal bounds
 PASS dialogue avoids reels
 PASS dialogue avoids quest meters
 PASS tutorial-skip touch target44
-PASS speech text fits measured=43,5 available=64,5
+PASS speech text fits measured=46,5 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
 PASS dialogue visible
@@ -58,11 +58,11 @@ PASS bubble horizontal bounds
 PASS dialogue avoids reels
 PASS dialogue avoids quest meters
 PASS tutorial-skip touch target44
-PASS speech text fits measured=29,25 available=64,5
+PASS speech text fits measured=46,5 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
 PASS ready buy instruction requires both
-CAPTURE ready-first-buy frame=387 size=480x960
+CAPTURE ready-first-buy frame=443 size=480x960
 PASS actual manual buy once
 PASS first purchase advances dialogue
 PASS dialogue visible
@@ -71,10 +71,10 @@ PASS dialogue avoids reels
 PASS dialogue avoids quest meters
 PASS tutorial-next touch target44
 PASS tutorial-skip touch target44
-PASS speech text fits measured=29,25 available=64,5
+PASS speech text fits measured=30,75 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
-CAPTURE first-repair frame=409 size=480x960
+CAPTURE first-repair frame=465 size=480x960
 PASS tutorial completion persisted
 PASS dialogue/save resources survive reload
 PASS skip saves without rewards
@@ -84,7 +84,7 @@ PASS dialogue avoids reels
 PASS dialogue avoids quest meters
 PASS tutorial-next touch target44
 PASS tutorial-skip touch target44
-PASS speech text fits measured=29,25 available=64,5
+PASS speech text fits measured=46,5 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
 PASS help replay no resource changes step0
@@ -95,7 +95,7 @@ PASS dialogue avoids reels
 PASS dialogue avoids quest meters
 PASS tutorial-next touch target44
 PASS tutorial-skip touch target44
-PASS speech text fits measured=43,5 available=64,5
+PASS speech text fits measured=46,5 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
 PASS help replay no resource changes step1
@@ -106,7 +106,7 @@ PASS dialogue avoids reels
 PASS dialogue avoids quest meters
 PASS tutorial-next touch target44
 PASS tutorial-skip touch target44
-PASS speech text fits measured=43,5 available=64,5
+PASS speech text fits measured=46,5 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
 PASS help replay no resource changes step2
@@ -117,7 +117,7 @@ PASS dialogue avoids reels
 PASS dialogue avoids quest meters
 PASS tutorial-next touch target44
 PASS tutorial-skip touch target44
-PASS speech text fits measured=29,25 available=64,5
+PASS speech text fits measured=30,75 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
 PASS help replay no resource changes step3
@@ -128,7 +128,7 @@ PASS dialogue avoids reels
 PASS dialogue avoids quest meters
 PASS tutorial-next touch target44
 PASS tutorial-skip touch target44
-PASS speech text fits measured=29,25 available=64,5
+PASS speech text fits measured=30,75 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
 PASS help replay no resource changes step4
@@ -136,25 +136,25 @@ PASS replay cannot reopen saved intro
 PASS menu does not consume pending story
 PASS menu pauses dialogue
 PASS Russian menu fits viewport
-CAPTURE menu frame=558 size=480x960
+CAPTURE menu frame=614 size=480x960
 PASS dialogue visible
 PASS bubble horizontal bounds
 PASS dialogue avoids reels
 PASS dialogue avoids quest meters
 PASS tutorial-next touch target44
 PASS tutorial-skip touch target44
-PASS speech text fits measured=29,25 available=64,5
+PASS speech text fits measured=46,5 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
 PASS story is not seen before dismissal
-CAPTURE milestone-surfaces frame=580 size=480x960
+CAPTURE milestone-surfaces frame=636 size=480x960
 PASS dialogue visible
 PASS bubble horizontal bounds
 PASS dialogue avoids reels
 PASS dialogue avoids quest meters
 PASS tutorial-next touch target44
 PASS tutorial-skip touch target44
-PASS speech text fits measured=29,25 available=64,5
+PASS speech text fits measured=46,5 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
 PASS undismissed story survives reload fixture
@@ -166,14 +166,14 @@ PASS dialogue avoids reels
 PASS dialogue avoids quest meters
 PASS tutorial-next touch target44
 PASS tutorial-skip touch target44
-PASS speech text fits measured=29,25 available=64,5
+PASS speech text fits measured=30,75 available=64,5
 PASS existing heroine portrait reused
 PASS raised spin retained
 PASS final story waits for dismissal
-CAPTURE milestone-complete frame=645 size=480x960
+CAPTURE milestone-complete frame=701 size=480x960
 PASS final dismissal acknowledges backlog once
 PASS reset cancel preserves complete
 PASS confirmed reset returns fresh
 PASS reset clears volatile story and restores introduction
-PASS real advancing runtime frames=666
-RESULT PASS elapsed=11,41; Editor UI callbacks; no physical input
+PASS real advancing runtime frames=721
+RESULT PASS elapsed=12,37; Editor UI callbacks; no physical input

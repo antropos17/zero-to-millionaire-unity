@@ -1,0 +1,24 @@
+PASS press starts at previous raised face
+PASS rendered face reaches five pixel press after easing
+PASS rendered face returns after release
+PASS normal spin commits before cosmetics
+PASS committed result meets both purchase criteria
+PASS mid-animation disk reload retains exact committed cash parts grid
+PASS purchase blocked throughout presentation lease
+PASS normal motion actually enters travel phase
+PASS thirty repeated STOP taps grant no extra roll or resources
+PASS STOP finishes presentation promptly
+PASS skip preserves exact result
+PASS post-stop same-frame taps respect cooldown
+PASS purchase after lease debits once
+PASS calm preference toggles
+PASS calm preference survives reload
+PASS preference changes no game resources
+PASS expanded menu remains on compact portrait
+PASS calm mode creates no moving strips
+PASS calm spin resolves within short presentation
+PASS queued menu test starts an actual fresh spin
+PASS same-frame menu/skip request is retained before coroutine first frame
+PASS menu request during spin skips and opens after lease
+PASS queued menu preserves committed spin
+SOURCE actual Editor frames; synthetic callbacks; private save; no physical input

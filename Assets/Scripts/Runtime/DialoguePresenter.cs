@@ -14,13 +14,13 @@ namespace ZeroToMillionaire
    title=Text("Маленькими шагами",11);title.name="dialogue-title";title.style.height=15;bubble.Add(title);
    var line=new VisualElement();line.style.flexDirection=FlexDirection.Row;line.style.flexGrow=1;
    var avatar=new Image{image=Resources.Load<Texture2D>("Art/animation/front-idle"),uv=new Rect(38f/128,130f/192,58f/128,58f/192),scaleMode=ScaleMode.ScaleToFit,pickingMode=PickingMode.Ignore,name="dialogue-portrait"};avatar.style.width=36;avatar.style.height=43;avatar.style.flexShrink=0;avatar.style.marginRight=5;line.Add(avatar);
-   words=Text("",12);words.name="dialogue-text";words.style.flexGrow=1;words.style.flexShrink=1;words.style.whiteSpace=WhiteSpace.Normal;words.style.unityTextAlign=TextAnchor.MiddleLeft;line.Add(words);bubble.Add(line);
+   words=Text("",13);words.name="dialogue-text";words.style.flexGrow=1;words.style.flexShrink=1;words.style.whiteSpace=WhiteSpace.Normal;words.style.unityTextAlign=TextAnchor.MiddleLeft;line.Add(words);bubble.Add(line);
    var actions=new VisualElement();actions.style.flexDirection=FlexDirection.Row;actions.style.height=44;actions.style.flexShrink=0;
    next=Button("Далее",Advance,"tutorial-next");next.style.width=62;next.style.marginRight=4;actions.Add(next);
    skip=Button("Пропустить обучение",Skip,"tutorial-skip");skip.style.flexGrow=1;actions.Add(skip);bubble.Add(actions);room.Add(bubble);bubble.style.display=DisplayStyle.None;
   }
   static Label Text(string text,int size){var font=Resources.Load<Font>("Fonts/PixelifySans");var l=new Label(text);l.style.unityFont=font;l.style.unityFontDefinition=FontDefinition.FromFont(font);l.style.fontSize=size;l.style.color=Forest;l.style.marginTop=l.style.marginBottom=l.style.marginLeft=l.style.marginRight=0;l.style.paddingTop=l.style.paddingBottom=l.style.paddingLeft=l.style.paddingRight=0;return l;}
-  static Button Button(string text,Action action,string name){var b=new Button(action){name=name};PixelUi.Skin(b,PixelUi.Finish.Forest);b.style.height=44;b.style.marginLeft=b.style.marginRight=b.style.marginTop=b.style.marginBottom=0;b.style.paddingLeft=b.style.paddingRight=2;var l=Text(text,10);l.name="button-caption";l.style.color=Cream;l.style.unityTextAlign=TextAnchor.MiddleCenter;l.style.flexGrow=1;l.pickingMode=PickingMode.Ignore;b.Add(l);return b;}
+  static Button Button(string text,Action action,string name){var b=new Button(action){name=name};PixelUi.Skin(b,PixelUi.Finish.Forest);b.style.height=44;b.style.marginLeft=b.style.marginRight=b.style.marginTop=b.style.marginBottom=0;b.style.paddingLeft=b.style.paddingRight=2;var l=Text(text,11);l.name="button-caption";l.style.color=Cream;l.style.unityTextAlign=TextAnchor.MiddleCenter;l.style.flexGrow=1;l.pickingMode=PickingMode.Ignore;b.Add(l);return b;}
   void Caption(Button b,string text){b.Q<Label>("button-caption").text=text;}
   public void ResetUi(){replay=story=-1;lastMode=-99;nextCheck=0;if(ring!=null){ring.RemoveFromHierarchy();ring=null;}bubble.style.display=DisplayStyle.None;}
   public void Dispose(){ResetUi();bubble.RemoveFromHierarchy();}

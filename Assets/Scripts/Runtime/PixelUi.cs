@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -6,6 +7,10 @@ namespace ZeroToMillionaire
     // Live scalable pixel bevels. Geometry is painted behind real UI controls.
     public static class PixelUi
     {
+        public static bool ReducedMotion;
+        sealed class PressState { public float from,to,started,duration;public IVisualElementScheduledItem item; }
+        static readonly ConditionalWeakTable<VisualElement,PressState> Presses=new ConditionalWeakTable<VisualElement,PressState>();
+        public static float RenderedFaceTravel(VisualElement element){if(!(element is Button)||!element.enabledInHierarchy)return 0;float target=FaceTravel(element);if(ReducedMotion||!Presses.TryGetValue(element,out var state))return target;float t=Mathf.Clamp01((Time.unscaledTime-state.started)/Mathf.Max(.001f,state.duration));return Mathf.Lerp(state.from,state.to,1-Mathf.Pow(1-t,3));}
         public enum Finish { Cream, Forest, Slot, Rust, Grey, Owned, Title }
         public static Color Hex(uint rgb) { return new Color32((byte)(rgb >> 16),(byte)(rgb >> 8),(byte)rgb,255); }
         public static void CashMarker(VisualElement element)
@@ -37,16 +42,21 @@ namespace ZeroToMillionaire
         {return element is Button?(element.name=="spin"||element.name=="recovery"?10:4):2;}
         public static void SetPressed(VisualElement element,bool pressed)
         {
+            float current=RenderedFaceTravel(element);
             if(pressed)element.AddToClassList("pressed");else element.RemoveFromClassList("pressed");
+            if(element is Button){var state=Presses.GetValue(element,_=>new PressState());state.item?.Pause();state.from=current;state.to=FaceTravel(element);state.started=Time.unscaledTime;state.duration=pressed?.08f:.12f;
+                if(!ReducedMotion&&element.panel!=null&&Mathf.Abs(state.from-state.to)>.01f)state.item=element.schedule.Execute(()=>{UpdateCaption(element);element.MarkDirtyRepaint();if(Time.unscaledTime-state.started>=state.duration)state.item?.Pause();}).Every(16);
+            }
             UpdateCaption(element);element.MarkDirtyRepaint();
         }
         static void UpdateCaption(VisualElement element)
         {
             if(!(element is Button))return;
             var caption=element.Q<Label>("button-caption");if(caption==null)return;
-            float depth=Depth(element),press=element.ClassListContains("pressed")&&element.enabledInHierarchy?depth/2:0;
+            float depth=Depth(element),press=RenderedFaceTravel(element);
             caption.style.translate=new Translate(0,-depth/2+press,0);
         }
+        // Logical target; RenderedFaceTravel reports the eased geometry used by skin and caption.
         public static float FaceTravel(VisualElement element)
         {return element.ClassListContains("pressed")&&element.enabledInHierarchy?Depth(element)/2:0;}
         static void Polygon(Painter2D p,Rect r,float corner,Color color)
@@ -78,12 +88,12 @@ namespace ZeroToMillionaire
             Polygon(p,Inset(r,1),corner-1,edge);
             Polygon(p,Inset(r,3),corner-2,inner);
             Rect front=Inset(r,4);
-            if(kind==Finish.Owned||kind==Finish.Grey||kind==Finish.Forest){front.height-=Depth(element);front.y+=pressed?Depth(element)/2:0;}
+            if(kind==Finish.Owned||kind==Finish.Grey||kind==Finish.Forest){front.height-=Depth(element);front.y+=RenderedFaceTravel(element);}
             Polygon(p,front,Mathf.Max(1,corner-3),face);
         }
         static void DrawRust(Painter2D p,Rect r,VisualElement element,bool disabled,bool pressed)
         {
-            float depth=Depth(element),travel=pressed?depth/2:0,corner=element.name=="spin"||element.name=="recovery"?8:5;
+            float depth=Depth(element),travel=RenderedFaceTravel(element),corner=element.name=="spin"||element.name=="recovery"?8:5;
             // Fixed extruded base and bottom shadow occupy the full hit rectangle.
             Polygon(p,new Rect(0,2,r.width,r.height-2),corner,disabled?Hex(0x454440):Hex(0x302017));
             Polygon(p,new Rect(2,4,r.width-4,r.height-6),corner-1,disabled?Hex(0x64635c):Hex(0x6e2b18));

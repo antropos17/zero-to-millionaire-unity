@@ -33,6 +33,7 @@ namespace ZeroToMillionaire
         private PanelSettings ownedPanel;
         private DialoguePresenter dialogue;
         private IRandomSource random;
+        private ReelMotion reelMotion;private PixelEffects effects;private PresentationPreferences presentation;private PlayerState spinDisplay;private bool pendingMenu;private Button motionToggle;
         private VisualElement root, room, upgradeRows, confirmation, main;
         private VisualElement roomStage;
         private Label cashLabel, statusLabel, roomLabel, pageLabel, saveLabel;
@@ -77,6 +78,7 @@ namespace ZeroToMillionaire
             string qaDirectory = Environment.GetEnvironmentVariable("ZTM_QA_SAVE_DIR");
             if (!string.IsNullOrEmpty(qaDirectory)) saveDirectory = qaDirectory;
 #endif
+            presentation=new PresentationPreferences(saveDirectory);PixelUi.ReducedMotion=presentation.ReducedMotion;
             saves = new SaveStore(Path.Combine(saveDirectory, "level1-v1.json"), new UnityStateCodec());
             string notice;
             session=new GameSession(saves,new SeededRandom(unchecked(Environment.TickCount+31)));notice=session.Notice;
@@ -92,8 +94,8 @@ namespace ZeroToMillionaire
             doc.panelSettings = panel;
             root = doc.rootVisualElement;
             page = model.Complete ? 3 : model.PurchasedCount / 2;
-            BuildUI();
-            dialogue=new DialoguePresenter(session,root,room,()=>spinning||rewardPending||rewardFly.style.display==DisplayStyle.Flex||ModalOpen,OnDialogueChanged);
+            BuildUI();reelMotion=new ReelMotion(cells,reelTextures);effects=new PixelEffects(root);
+            dialogue=new DialoguePresenter(session,root,room,()=>spinning||rewardPending||rewardFly.style.display==DisplayStyle.Flex||ModalOpen||effects.Revealing,OnDialogueChanged);
             Refresh();
         }
 
@@ -204,7 +206,7 @@ namespace ZeroToMillionaire
             upgradeRows.style.paddingLeft=5;upgradeRows.style.paddingRight=5;upgradeRows.style.paddingTop=5;
             upgradeRows.style.marginBottom=3;main.Add(upgradeRows);
             feedbackLane=Frame("feedback-lane",PixelUi.Finish.Cream);feedbackLane.style.height=22;feedbackLane.style.flexShrink=0;feedbackLane.style.marginBottom=3;main.Add(feedbackLane);
-            feedbackHint=Text(RussianUi.RewardHint,10,Forest);feedbackHint.name="feedback-hint";feedbackHint.style.height=22;feedbackHint.style.unityTextAlign=TextAnchor.MiddleCenter;feedbackLane.Add(feedbackHint);
+            feedbackHint=Text(RussianUi.RewardHint,11,Forest);feedbackHint.name="feedback-hint";feedbackHint.style.height=22;feedbackHint.style.unityTextAlign=TextAnchor.MiddleCenter;feedbackLane.Add(feedbackHint);
             grid=Frame("reels",PixelUi.Finish.Forest);grid.style.flexShrink=0;grid.style.paddingLeft=5;grid.style.paddingRight=5;
             grid.style.paddingTop=5;grid.style.paddingBottom=5;grid.style.marginBottom=5;
             for(int y=0;y<3;y++){
@@ -212,7 +214,7 @@ namespace ZeroToMillionaire
                 for(int x=0;x<5;x++){
                     var cell=Frame("cell-"+(y*5+x),PixelUi.Finish.Slot);cell.style.flexGrow=1;cell.style.flexBasis=0;
                     cell.style.height=Length.Percent(100);cell.style.alignItems=Align.Center;cell.style.justifyContent=Justify.Center;cell.style.marginLeft=1;cell.style.marginRight=1;cell.style.marginTop=1;cell.style.marginBottom=1;
-                    cell.style.paddingLeft=4;cell.style.paddingRight=4;cell.style.paddingTop=4;cell.style.paddingBottom=4;
+                    cell.style.overflow=Overflow.Hidden;cell.style.paddingLeft=4;cell.style.paddingRight=4;cell.style.paddingTop=4;cell.style.paddingBottom=4;
                     var image=new Image {scaleMode=ScaleMode.ScaleToFit,name="symbol",pickingMode=PickingMode.Ignore};
                     image.style.width=Length.Percent(100);image.style.height=Length.Percent(100);image.style.maxWidth=44;image.style.maxHeight=44;cells[y*5+x]=image;cell.Add(image);line.Add(cell);
                 }grid.Add(line);
@@ -238,8 +240,9 @@ namespace ZeroToMillionaire
             rewardFly.style.display=DisplayStyle.None;feedbackLane.Add(rewardFly);
             settings=Modal("settings");settings.Add(Text("МОЯ КОМНАТА",23,PixelUi.Hex(0xffc472)));
             saveLabel=Text("Прогресс хранится на устройстве",13,Cream);settings.Add(saveLabel);
-            settings.Add(Text(RussianUi.Help,14,Cream));
+            var help=Text(RussianUi.Help,14,Cream);help.name="menu-help";help.style.unityFontStyleAndWeight=FontStyle.Normal;settings.Add(help);
             var replay=Action("Повторить обучение",()=>{HideSettings();dialogue.Replay();},Forest);replay.name="tutorial-replay";replay.style.marginTop=8;settings.Add(replay);
+            motionToggle=Action(presentation.ReducedMotion?"АНИМАЦИЯ: СПОКОЙНАЯ":"АНИМАЦИЯ: ПОЛНАЯ",ToggleMotion,Forest);motionToggle.name="motion-toggle";motionToggle.style.marginTop=8;motionToggle.Q<Label>("button-caption").style.fontSize=14;settings.Add(motionToggle);
             var reset=Action("НАЧАТЬ ЗАНОВО",ShowReset,Rust);reset.name="reset";reset.style.marginTop=14;settings.Add(reset);
             var close=Action("ВЕРНУТЬСЯ В КОМНАТУ",HideSettings,Forest);close.name="close-settings";close.style.marginTop=8;settings.Add(close);
             settings.style.display=DisplayStyle.None;root.Add(settings);
@@ -266,9 +269,10 @@ namespace ZeroToMillionaire
         bool ModalOpen=>settings.style.display==DisplayStyle.Flex||confirmation.style.display==DisplayStyle.Flex||saveRecovery.style.display==DisplayStyle.Flex;
         void OnDialogueChanged(){saveNotice=session.Notice;Refresh();if(!string.IsNullOrEmpty(session.Error))ShowToast("НЕ СОХРАНЕНО — ПОВТОРИТЕ");}
         void RetryLoad(){if(!session.TryReload()){saveNotice=session.Notice;saveRecovery.Q<Button>("retry-load").Q<Label>("button-caption").text="НЕ ПРОЧИТАНО. ПОВТОРИТЬ";return;}saveRecovery.style.display=DisplayStyle.None;main.SetEnabled(true);dialogue.ResetUi();drawnQuest=-2;drawnRoom=-1;var s=model.Snapshot;wanderer=new RoomWanderer(new FloorPoint(s.heroineU,s.heroineV),new SeededRandom(Environment.TickCount));saveNotice=session.Notice;Refresh();}
-        void ShowSettings(){if(spinning||session.RecoveryRequired)return;HideToast();main.SetEnabled(false);settings.style.display=DisplayStyle.Flex;settings.BringToFront();}
+        void ToggleMotion(){if(!presentation.Toggle()){ShowToast("НАСТРОЙКА НЕ СОХРАНЕНА");return;}PixelUi.ReducedMotion=presentation.ReducedMotion;ButtonText(motionToggle,presentation.ReducedMotion?"АНИМАЦИЯ: СПОКОЙНАЯ":"АНИМАЦИЯ: ПОЛНАЯ",14);effects.Clear();}
+        void ShowSettings(){if(session.RecoveryRequired)return;if(spinning){pendingMenu=true;reelMotion.Skip();return;}HideToast();main.SetEnabled(false);settings.style.display=DisplayStyle.Flex;settings.BringToFront();}
         void HideSettings(){settings.style.display=DisplayStyle.None;main.SetEnabled(true);}
-        void ShowToast(string text){statusLabel.text=text;statusLabel.style.marginLeft=0;toastUntil=Time.unscaledTime+2;feedbackHint.style.display=DisplayStyle.None;toast.style.display=DisplayStyle.Flex;toast.BringToFront();}
+        void ShowToast(string text){statusLabel.text=text;statusLabel.style.marginLeft=rewardPending||rewardFly.style.display==DisplayStyle.Flex?94:0;toastUntil=Time.unscaledTime+2;feedbackHint.style.display=DisplayStyle.None;toast.style.display=DisplayStyle.Flex;toast.BringToFront();}
         void HideToast(){toast.style.display=DisplayStyle.None;feedbackHint.style.display=DisplayStyle.Flex;}
         void ApplySafeArea()
         {
@@ -337,7 +341,7 @@ namespace ZeroToMillionaire
         void Update()
         {
             if (toast != null && Time.unscaledTime > toastUntil) HideToast();
-            UpdateRewardFlight();
+            UpdateRewardFlight();if(effects!=null)effects.Tick();
             if(dialogue!=null)dialogue.Tick();
             if (wanderer == null || model == null || heroine == null) return;
             #if UNITY_EDITOR || DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT
@@ -411,14 +415,14 @@ namespace ZeroToMillionaire
             using(NativeMetrics.Refresh.Auto())
 #endif
             {
-            PlayerState s=model.Snapshot;
+            PlayerState s=spinDisplay??model.Snapshot;
             if(session.RecoveryRequired){main.SetEnabled(false);if(confirmation.style.display!=DisplayStyle.Flex){saveRecovery.style.display=DisplayStyle.Flex;saveRecovery.BringToFront();}}
             feedbackHint.text=model.Complete?"ВАША КОМНАТА ГОТОВА":RussianUi.RewardHint;
             cashLabel.text=s.cash.ToString();cashLabel.style.fontSize=s.cash.ToString().Length>6?16:26;
             saveLabel.text=RussianUi.SaveNotice(saveNotice,!string.IsNullOrEmpty(session.Error));betLabel.text=s.freeSpins>0||model.CanRecover?"0":"5";
             freeLabel.text=spinning?"КРУТИТСЯ":model.Complete?"ВСЁ ГОТОВО":model.ActiveQuest>=0&&model.CanBuy(model.ActiveQuest)?"МОЖНО КУПИТЬ":s.freeSpins>0?"БЕСПЛАТНО: "+s.freeSpins:model.CanRecover?"БЕСПЛАТНО":"ЦЕНА СПИНА";
             if(model.Complete)betLabel.text="0";
-            spinButton.SetEnabled(!spinning&&model.CanSpin);ButtonText(spinButton,model.Complete?"ГОТОВО":spinning?"...":"СПИН",model.Complete?26:45);
+            spinButton.SetEnabled(spinning||model.CanSpin);ButtonText(spinButton,model.Complete?"ГОТОВО":spinning?"СТОП":"СПИН",spinning?32:model.Complete?26:45);
             ButtonText(menuButton,"МЕНЮ",10);ButtonText(recoveryButton,"БЕСПЛАТНО",22);
             spinButton.style.display=model.CanRecover?DisplayStyle.None:DisplayStyle.Flex;
             recoveryButton.style.display=model.CanRecover?DisplayStyle.Flex:DisplayStyle.None;recoveryButton.SetEnabled(!spinning);
@@ -506,13 +510,13 @@ namespace ZeroToMillionaire
             if(rewardFly==null)return;
             if(rewardPending){rewardPending=false;rewardStarted=Time.unscaledTime;rewardFly.style.display=DisplayStyle.Flex;rewardFly.BringToFront();}
             if(rewardFly.style.display==DisplayStyle.None)return;
-            float t=(Time.unscaledTime-rewardStarted)/1.25f;
+            float t=(Time.unscaledTime-rewardStarted)/(presentation.ReducedMotion?.45f:1.25f);
             var track=root.Q<VisualElement>("progress-track-"+rewardQuest);
             if(t>=1){rewardFly.style.display=DisplayStyle.None;if(track!=null)track.style.opacity=1;return;}
             // Rewards remain in their own lane. Only the destination progress
             // bar pulses; neither the room nor the task illustration is covered.
-            rewardFly.style.left=2+5*Mathf.Sin(Mathf.Clamp01(t*2)*Mathf.PI);rewardFly.style.top=0;
-            if(track!=null)track.style.opacity=.65f+.35f*Mathf.Abs(Mathf.Cos(t*Mathf.PI*3));
+            rewardFly.style.left=presentation.ReducedMotion?2:2+5*Mathf.Sin(Mathf.Clamp01(t*2)*Mathf.PI);rewardFly.style.top=0;
+            if(track!=null)track.style.opacity=presentation.ReducedMotion?1:.65f+.35f*Mathf.Abs(Mathf.Cos(t*Mathf.PI*3));
         }
         void SetCell(int i, int symbol)
         {
@@ -532,35 +536,32 @@ namespace ZeroToMillionaire
         }
         void BeginSpin()
         {
-            if (spinning || Time.unscaledTime < spinReadyAt || !model.CanSpin) return;
+            if(spinning){reelMotion.Skip();return;}
+            if(Time.unscaledTime<spinReadyAt||!model.CanSpin||session.RecoveryRequired)return;
             StartCoroutine(SpinRoutine());
         }
         IEnumerator SpinRoutine()
         {
-            SpinResult result;
-            if(!session.TryBeginSpin(out result)){
-                saveNotice=session.Notice;if(!string.IsNullOrEmpty(session.Error))ShowToast("НЕ СОХРАНЕНО — ПОВТОРИТЕ");
-                Refresh();yield break;
-            }
-            saveNotice=session.Notice;
-            spinning = true; Refresh();
-            int[] pool = result.Pool;
-            for (int frame = 0; frame < 6; frame++)
-            {
-                for (int i = 0; i < 15; i++) SetCell(i, pool[random.Next(pool.Length)]);
-                yield return new WaitForSecondsRealtime(0.055f);
-            }
-            session.FinishSpinPresentation();spinning = false; spinReadyAt = Time.unscaledTime + 0.12f; Refresh();
-            ShowToast("+"+result.Payout+" "+RussianUi.Coins(result.Payout));StartRewardFlight(result);
+            PlayerState before=model.Snapshot;SpinResult result;
+            if(!session.TryBeginSpin(out result)){saveNotice=session.Notice;if(!string.IsNullOrEmpty(session.Error))ShowToast("НЕ СОХРАНЕНО — ПОВТОРИТЕ");Refresh();yield break;}
+            saveNotice=session.Notice;spinning=true;spinDisplay=before;spinDisplay.cash-=result.Cost;spinDisplay.freeSpins=model.Snapshot.freeSpins;Refresh();
+            int fromCash=spinDisplay.cash,toCash=model.Snapshot.cash;
+            yield return reelMotion.Play(result,presentation.ReducedMotion,
+                ()=>{spinDisplay=null;Refresh();cashLabel.text=fromCash.ToString();ShowToast("+"+result.Payout+" "+RussianUi.Coins(result.Payout));StartRewardFlight(result);for(int i=0;i<15;i++)if(result.Grid[i]>0&&result.Fragments[result.Grid[i]-1]>0){effects.Reward(cells[i],root.Q<VisualElement>("progress-track-"+(result.Grid[i]-1)),presentation.ReducedMotion);break;}},
+                t=>{long value=(long)fromCash+(long)Math.Round(((long)toCash-fromCash)*t);cashLabel.text=value.ToString();});
+            session.FinishSpinPresentation();spinning=false;spinDisplay=null;spinReadyAt=Time.unscaledTime+.18f;Refresh();ShowToast("+"+result.Payout+" "+RussianUi.Coins(result.Payout));
+            if(pendingMenu){pendingMenu=false;ShowSettings();}
         }
         void Buy(int index)
         {
+            Texture2D oldBackground=roomStage?.Q<Image>()?.image as Texture2D;
             if(!session.TryPurchase(index)){saveNotice=session.Notice;if(!string.IsNullOrEmpty(session.Error))ShowToast("НЕ СОХРАНЕНО — ПОВТОРИТЕ");return;}
             saveNotice=session.Notice;
             rewardPending=false;rewardFly.style.display=DisplayStyle.None;
             ShowToast(model.Complete?"8/8 — КОМНАТА ГОТОВА":"ЗАДАНИЕ "+model.PurchasedCount+"/8 — ГОТОВО");
             page = model.Complete ? 3 : model.PurchasedCount / 2;
-            Refresh();
+            Refresh();string target=index<3?(index==0?"patches":index==1?"surfaces":"wallpaper"):index==3?"door-overlay":index==4?"window-overlay":index==5?"mattress":index==6?"lamp":"stool";
+            var item=roomStage.Query<Image>().Where(image=>image.image!=null&&image.image.name==target).First();effects.Reveal(item,index<3?oldBackground:null,roomStage,presentation.ReducedMotion);
         }
         void Recover()
         {
@@ -584,12 +585,13 @@ namespace ZeroToMillionaire
             // This runtime panel belongs to this view, rather than a shared project asset.
             var document = GetComponent<UIDocument>();
             if (document != null) document.panelSettings = null;
+            reelMotion?.Clear();effects?.Dispose();
             if (ownedPanel != null) { Destroy(ownedPanel); ownedPanel = null; }
         }
         void OnApplicationQuit() { if (model != null) Persist(); }
 #if UNITY_EDITOR || DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT
         public void SetQaState(PlayerState state, int upgradePage)
-        { HideReset();HideSettings();HideToast();rewardPending=false;rewardFly.style.display=DisplayStyle.None;PixelUi.SetPressed(spinButton,false);random=new SeededRandom(57);session=new GameSession(saves,new SeededRandom(57),state); if(dialogue!=null){dialogue.Dispose();dialogue=new DialoguePresenter(session,root,room,()=>spinning||rewardPending||rewardFly.style.display==DisplayStyle.Flex||ModalOpen,OnDialogueChanged);} wanderer = new RoomWanderer(new FloorPoint(state.heroineU, state.heroineV), new SeededRandom(57)); drawnRoom = -1; drawnQuest=-2; page = upgradePage; spinning = false; statusLabel.text = ""; Refresh(); }
+        { reelMotion?.Clear();effects?.Clear();spinDisplay=null;pendingMenu=false;HideReset();HideSettings();HideToast();rewardPending=false;rewardFly.style.display=DisplayStyle.None;PixelUi.SetPressed(spinButton,false);random=new SeededRandom(57);session=new GameSession(saves,new SeededRandom(57),state); if(dialogue!=null){dialogue.Dispose();dialogue=new DialoguePresenter(session,root,room,()=>spinning||rewardPending||rewardFly.style.display==DisplayStyle.Flex||ModalOpen||effects.Revealing,OnDialogueChanged);} wanderer = new RoomWanderer(new FloorPoint(state.heroineU, state.heroineV), new SeededRandom(57)); drawnRoom = -1; drawnQuest=-2; page = upgradePage; spinning = false; statusLabel.text = ""; Refresh(); }
         public void QaClick(string name)
         {
             var button=root.Q<Button>(name);if(button==null||!button.enabledInHierarchy)return;
@@ -609,6 +611,7 @@ namespace ZeroToMillionaire
         public void QaStepWalk(float seconds) { wanderer.Step(seconds); session.SetHeroinePosition(wanderer.Position); UpdateHeroine(); }
         public void QaSave() { Persist(); }
         public void QaBeginSpin() { BeginSpin(); }
+        public string QaReelPhase=>reelMotion==null?"idle":reelMotion.Phase;
         public bool QaSpinning { get { return spinning; } }
         public void QaBuy(int index) { Buy(index); }
         public void QaShowReset() { ShowReset(); }
