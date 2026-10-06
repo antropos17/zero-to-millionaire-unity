@@ -1,0 +1,26 @@
+
+7-Zip 24.09 (x64) : Copyright (c) 1999-2024 Igor Pavlov : 2024-11-29
+
+Scanning the drive for archives:
+1 file, 15000000 bytes (15 MiB)
+
+Extracting archive: X:\PROJECTS\ZERO-TO-MILLIONAIRE\Deliverables\zero-to-millionaire-complete-source-v0.7.zip.001
+--
+Path = X:\PROJECTS\ZERO-TO-MILLIONAIRE\Deliverables\zero-to-millionaire-complete-source-v0.7.zip.001
+Type = Split
+Physical Size = 15000000
+Volumes = 2
+Total Physical Size = 22118811
+----
+Path = zero-to-millionaire-complete-source-v0.7.zip
+Size = 22118811
+--
+Path = zero-to-millionaire-complete-source-v0.7.zip
+Type = zip
+Physical Size = 22118811
+
+Everything is Ok
+
+Files: 471
+Size:       23117174
+Compressed: 22118811
