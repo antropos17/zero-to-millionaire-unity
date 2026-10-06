@@ -1,0 +1,26 @@
+
+7-Zip 24.09 (x64) : Copyright (c) 1999-2024 Igor Pavlov : 2024-11-29
+
+Scanning the drive for archives:
+1 file, 15000000 bytes (15 MiB)
+
+Extracting archive: X:\PROJECTS\ZERO-TO-MILLIONAIRE\Deliverables\zero-to-millionaire-first-playable-source-v0.5.zip.001
+--
+Path = X:\PROJECTS\ZERO-TO-MILLIONAIRE\Deliverables\zero-to-millionaire-first-playable-source-v0.5.zip.001
+Type = Split
+Physical Size = 15000000
+Volumes = 3
+Total Physical Size = 31679877
+----
+Path = zero-to-millionaire-first-playable-source-v0.5.zip
+Size = 31679877
+--
+Path = zero-to-millionaire-first-playable-source-v0.5.zip
+Type = zip
+Physical Size = 31679877
+
+Everything is Ok
+
+Files: 358
+Size:       33561863
+Compressed: 31679877
