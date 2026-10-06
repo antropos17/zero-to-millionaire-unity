@@ -216,3 +216,6 @@ expanded6.387MiB; no leakfreedom claim. NATIVE_RELIABILITY_AUDIT.md and compact
 Evidence/native-v0.4e-* CSV/JSON include scope/timing/active-desktop limitations.
 Soak predates lifetimefix; finalcode has targeted native lifetime/UIregression.
 Art/rig frozen. Final release/delivery remains13:15..14:05UTC; Androiddeferred.
+Slice5 source commit e0e4c602a5b93f6d1e2828279ea3df9fca9214d9; clean source.
+Library reliability-v0.4e-evidence.zip ID libfile_21f26cbb303c8191a7e88a9de5db4403,
+341291bytes; metadata verified; SHA256 8CC07C67790E86AC1AEF8F99F5813A58BD7ABFD104524E8373570CF3D24EBC9E.
