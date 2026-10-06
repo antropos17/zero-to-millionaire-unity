@@ -1,0 +1,108 @@
+{
+    "development": false,
+    "qaHooksPresent": false,
+    "automatedHarnessPresent": false,
+    "profileVerified": true,
+    "actualSavePath": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\release-clean-v0.4f-complete\\save\\level1-v1.json",
+    "unity": "6000.3.21f1",
+    "graphicsApi": "Direct3D11",
+    "questTitle": "",
+    "questStatus": "",
+    "firstFrame": 1,
+    "lastFrame": 19365,
+    "samples": 12000,
+    "width": 480,
+    "height": 960,
+    "owned": 8,
+    "activeQuest": -1,
+    "drawCounterNonzero": 19362,
+    "seconds": 81.496674,
+    "medianMs": 4.168400000001071,
+    "p95Ms": 5.5882000000018199,
+    "p99Ms": 6.2667999999987959,
+    "maxMs": 631.9613999999998,
+    "distance": 17.083539962768556,
+    "complete": true,
+    "spinEnabled": false,
+    "buyEnabled": false,
+    "state": {
+        "version": 4,
+        "cash": 955,
+        "freeSpins": 0,
+        "spins": 0,
+        "recoveries": 0,
+        "heroineU": 2.525408983230591,
+        "heroineV": 1.1722347736358643,
+        "fragments": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "purchased": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "lastGrid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "quests": [
+            {
+                "id": "floor-patches",
+                "status": 3
+            },
+            {
+                "id": "surface-repair",
+                "status": 3
+            },
+            {
+                "id": "cheap-wallpaper",
+                "status": 3
+            },
+            {
+                "id": "door-repair",
+                "status": 3
+            },
+            {
+                "id": "window-repair",
+                "status": 3
+            },
+            {
+                "id": "first-mattress",
+                "status": 3
+            },
+            {
+                "id": "small-lamp",
+                "status": 3
+            },
+            {
+                "id": "wooden-stool",
+                "status": 3
+            }
+        ]
+    }
+}

@@ -219,3 +219,5 @@ Art/rig frozen. Final release/delivery remains13:15..14:05UTC; Androiddeferred.
 Slice5 source commit e0e4c602a5b93f6d1e2828279ea3df9fca9214d9; clean source.
 Library reliability-v0.4e-evidence.zip ID libfile_21f26cbb303c8191a7e88a9de5db4403,
 341291bytes; metadata verified; SHA256 8CC07C67790E86AC1AEF8F99F5813A58BD7ABFD104524E8373570CF3D24EBC9E.
+
+Slice6 baseline: source ca4e19ec8aa70bf1670bb0b5a1c80cc178ad1f03; clean Release Windows-rc-v0.4f and separate instrumented Release audit twin built with None. Exact clean binary QA/hooks absent, private frame/render/walk/completion/relaunch proven; Twin16spins/8buys/25guards. UTF9passed, synthetic pointer19passed; proved down-face feedback fixed. ComputeBuffer warning remains at shutdown. See NATIVE_RELEASE_VALIDATION.md. New authorized onboarding/story/slow curve proposed in ONBOARDING_PACING_PROPOSAL.md; implement next, codefreeze13:15, final14:05.

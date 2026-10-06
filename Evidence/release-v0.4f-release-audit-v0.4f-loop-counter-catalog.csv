@@ -1,0 +1,17 @@
+category,name,unit,selected
+"Render","Gfx.WaitForPresentOnGfxThread",TimeNanoseconds,True
+"Internal","Main Thread",TimeNanoseconds,True
+"PlayerLoop","PlayerLoop",TimeNanoseconds,True
+"VSync","WaitForTargetFPS",TimeNanoseconds,True
+"Memory","System Used Memory",Bytes,True
+"Memory","Total Used Memory",Bytes,True
+"Memory","Total Reserved Memory",Bytes,True
+"Memory","GC Used Memory",Bytes,True
+"Memory","GC Reserved Memory",Bytes,True
+"Render","Batches Count",Count,True
+"Render","Draw Calls Count",Count,True
+"Render","Vertices Count",Count,True
+"Render","CPU Total Frame Time",TimeNanoseconds,True
+"Render","CPU Main Thread Frame Time",TimeNanoseconds,True
+"Render","CPU Render Thread Frame Time",TimeNanoseconds,True
+"Render","GPU Frame Time",TimeNanoseconds,True

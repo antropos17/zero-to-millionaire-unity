@@ -1,0 +1,15 @@
+{
+  "resources_preserved": true,
+  "checked_fields": [
+    "version",
+    "cash",
+    "freeSpins",
+    "spins",
+    "recoveries",
+    "fragments",
+    "purchased",
+    "lastGrid",
+    "quests"
+  ],
+  "complete": true
+}

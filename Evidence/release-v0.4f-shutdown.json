@@ -1,0 +1,54 @@
+{
+  "reload": {
+    "computeBufferWarnings": 0,
+    "exceptions": [],
+    "tail": [
+      "<RI> Initializing input.",
+      "",
+      "<RI> Input initialized.",
+      "",
+      "UnloadTime: 0.689700 ms",
+      "ZTM_PRIVATE_PROFILE X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\release-clean-v0.4f-complete\\save",
+      "ZTM_RELEASE_READONLY frameCount=40300; no observer input dispatch."
+    ]
+  },
+  "complete": {
+    "computeBufferWarnings": 1,
+    "exceptions": [],
+    "tail": [
+      "ZTM_RELEASE_READONLY frameCount=19365; no observer input dispatch.",
+      "[Physics::Module] Cleanup current backend.",
+      "[Physics::Module] Id: 0xf2b8ea05",
+      "Input System module state changed to: ShutdownInProgress.",
+      "Input System polling thread exited.",
+      "Input System module state changed to: Shutdown.",
+      "GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer."
+    ]
+  },
+  "fresh": {
+    "computeBufferWarnings": 1,
+    "exceptions": [],
+    "tail": [
+      "ZTM_RELEASE_READONLY frameCount=7872; no observer input dispatch.",
+      "[Physics::Module] Cleanup current backend.",
+      "[Physics::Module] Id: 0xf2b8ea05",
+      "Input System module state changed to: ShutdownInProgress.",
+      "Input System polling thread exited.",
+      "Input System module state changed to: Shutdown.",
+      "GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer."
+    ]
+  },
+  "audit": {
+    "computeBufferWarnings": 1,
+    "exceptions": [],
+    "tail": [
+      "ZTM_NATIVE_AUDIT_FINISHED PASS",
+      "[Physics::Module] Cleanup current backend.",
+      "[Physics::Module] Id: 0xf2b8ea05",
+      "Input System module state changed to: ShutdownInProgress.",
+      "Input System polling thread exited.",
+      "Input System module state changed to: Shutdown.",
+      "GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer."
+    ]
+  }
+}
