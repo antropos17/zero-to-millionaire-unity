@@ -1,0 +1,7 @@
+paired KeyDown+NavigationMove Next original target expected=motion-toggle actual=motion-toggle
+navigation-only Previous expected=tutorial-replay actual=tutorial-replay
+navigation-only Next modal wrap expected=motion-toggle actual=motion-toggle
+navigation-only Next modal wrap expected=reset actual=reset
+navigation-only Next modal wrap expected=close-settings actual=close-settings
+navigation-only Next modal wrap expected=tutorial-replay actual=tutorial-replay
+RESULT PASS failures=0; synthetic events, no OS keyboard claim

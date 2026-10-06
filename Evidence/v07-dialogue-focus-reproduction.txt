@@ -1,0 +1,3 @@
+dialogueVisible=Flex focused=menu next=True
+afterEnter settings=Flex focus=tutorial-replay dialogueText=Пока здесь неуютно, но всё можно исправить понемногу. Начнём с пола.
+Synthetic UITK events; no OS input

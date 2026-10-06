@@ -6,10 +6,10 @@ namespace ZeroToMillionaire
  public sealed class DialoguePresenter
  {
   readonly GameSession session;readonly VisualElement ui,room,bubble;readonly Label words,title;readonly Button next,skip;
-  readonly Func<bool> busy;readonly Action changed;VisualElement ring;int replay=-1,story=-1,storyMask,lastMode=-99;float nextCheck;
+  readonly UiInputCoordinator input;bool focusReplayNext;readonly Func<bool> busy;readonly Action changed;VisualElement ring;int replay=-1,story=-1,storyMask,lastMode=-99;float nextCheck;
   static readonly Color Cream=new Color32(249,237,217,255),Forest=new Color32(20,44,40,255),Rust=new Color32(186,75,45,255);
   public DialoguePresenter(GameSession session,VisualElement root,VisualElement room,Func<bool> busy,Action changed){
-   this.session=session;ui=root;this.room=room;this.busy=busy;this.changed=changed;
+   this.session=session;input=UiInputCoordinator.ForRoot(root);ui=root;this.room=room;this.busy=busy;this.changed=changed;
    bubble=new VisualElement{name="heroine-dialogue"};PixelUi.Skin(bubble,PixelUi.Finish.Cream);bubble.style.position=Position.Absolute;bubble.style.left=2;bubble.style.right=48;bubble.style.top=42;bubble.style.height=150;bubble.style.paddingLeft=bubble.style.paddingRight=8;bubble.style.paddingTop=5;bubble.style.paddingBottom=6;
    title=Text("Маленькими шагами",UiTypography.Meta);title.name="dialogue-title";title.style.height=16;bubble.Add(title);
    var line=new VisualElement();line.style.flexDirection=FlexDirection.Row;line.style.flexGrow=1;
@@ -22,16 +22,16 @@ namespace ZeroToMillionaire
   static Label Text(string text,int size){var l=new Label(text);UiTypography.Apply(l,size,Forest,false);l.style.marginTop=l.style.marginBottom=l.style.marginLeft=l.style.marginRight=0;l.style.paddingTop=l.style.paddingBottom=l.style.paddingLeft=l.style.paddingRight=0;return l;}
   static Button Button(string text,Action action,string name){Button b=null;b=new Button(()=>{if(!UiInputCoordinator.CanActivate(b))return;UiInputCoordinator.NoteAction(b);action();}){name=name};PixelUi.Skin(b,PixelUi.Finish.Forest);b.style.height=45;b.style.minHeight=45;b.style.minWidth=45;b.style.flexShrink=0;b.style.marginLeft=b.style.marginRight=b.style.marginTop=b.style.marginBottom=0;b.style.paddingLeft=b.style.paddingRight=2;var l=Text(text,12);l.name="button-caption";l.style.color=Cream;l.style.unityTextAlign=TextAnchor.MiddleCenter;l.style.flexGrow=1;l.pickingMode=PickingMode.Ignore;b.Add(l);return b;}
   void Caption(Button b,string text){b.Q<Label>("button-caption").text=text;}
-  public void ResetUi(){replay=story=-1;lastMode=-99;nextCheck=0;if(ring!=null){ring.RemoveFromHierarchy();ring=null;}bubble.style.display=DisplayStyle.None;}
+  public void ResetUi(){focusReplayNext=false;replay=story=-1;lastMode=-99;nextCheck=0;if(ring!=null){ring.RemoveFromHierarchy();ring=null;}bubble.style.display=DisplayStyle.None;}
   public void Dispose(){ResetUi();bubble.RemoveFromHierarchy();}
-  public void Replay(){replay=0;story=-1;lastMode=-99;nextCheck=0;Tick();}
+  public void Replay(){focusReplayNext=true;replay=0;story=-1;lastMode=-99;nextCheck=0;Tick();}
   void Advance(){
-   if(replay>=0){if(++replay>4)replay=-1;lastMode=-99;nextCheck=0;Tick();return;}
+   if(replay>=0){if(++replay>4){replay=-1;input?.FocusAfterLayout(ui.Q<Button>("menu"));}else focusReplayNext=true;lastMode=-99;nextCheck=0;Tick();return;}
    if(story>=0){DismissStory();return;}
    var s=session.Model.Snapshot;if(TutorialPolicy.CanNext(s)){bool saved=session.TrySetTutorial(TutorialPolicy.Advance(s));changed();if(saved){lastMode=-99;nextCheck=0;Tick();}}
   }
   void Skip(){
-   if(replay>=0){replay=-1;lastMode=-99;nextCheck=0;Tick();return;}if(story>=0){DismissStory();return;}
+   if(replay>=0){replay=-1;focusReplayNext=false;input?.FocusAfterLayout(ui.Q<Button>("menu"));lastMode=-99;nextCheck=0;Tick();return;}if(story>=0){DismissStory();return;}
    var s=session.Model.Snapshot;bool saved=session.TrySetTutorial(TutorialPolicy.Skip(s));changed();if(saved){lastMode=-99;nextCheck=0;Tick();}
   }
   void DismissStory(){var state=session.Model.Snapshot.tutorial.Clone();state.storySeenMask|=storyMask;bool saved=session.TrySetTutorial(state);changed();if(saved){story=-1;storyMask=0;lastMode=-99;nextCheck=0;Tick();}}
@@ -54,6 +54,7 @@ namespace ZeroToMillionaire
    if(story<0&&mode>=0&&(ring==null||ring.parent!=HighlightTarget(step)||ring.panel!=ui.panel))Highlight(step);
     if(lastMode!=mode){title.text=replay>=0?"Обучение — без наград":story>=0?"Наша комната":"Маленькими шагами";
     words.text=story>=0?TutorialPolicy.Stories[story]:replay==3?"Когда хватает монет и фрагментов, улучшение можно купить вручную.":TutorialPolicy.Steps[step];Highlight(story>=0?-1:step);lastMode=mode;}
+    if(focusReplayNext&&replay>=0){focusReplayNext=false;input?.FocusAfterLayout(next);}
   }
  }
 }

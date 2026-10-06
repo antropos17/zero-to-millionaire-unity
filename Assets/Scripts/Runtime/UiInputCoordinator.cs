@@ -15,6 +15,7 @@ namespace ZeroToMillionaire
         VisualElement modal, restoreTarget;
         Action cancel;
         bool submitConsumed, disposed;
+        int focusRequest;
         Button pressedButton;
 
         public UiInputCoordinator(VisualElement root)
@@ -24,6 +25,7 @@ namespace ZeroToMillionaire
             root.RegisterCallback<KeyDownEvent>(KeyDown, TrickleDown.TrickleDown);
             root.RegisterCallback<KeyUpEvent>(KeyUp, TrickleDown.TrickleDown);
             root.RegisterCallback<NavigationSubmitEvent>(Submit, TrickleDown.TrickleDown);
+            root.RegisterCallback<NavigationMoveEvent>(NavigationMove, TrickleDown.TrickleDown);
             root.RegisterCallback<PointerDownEvent>(PointerDown, TrickleDown.TrickleDown);
         }
 
@@ -41,20 +43,29 @@ namespace ZeroToMillionaire
                 if (Owners.TryGetValue(item, out var owner)) { if (owner.heldKeys.Count != 0) owner.submitConsumed = true; break; }
         }
 
+        internal static UiInputCoordinator ForRoot(VisualElement root) => Owners.TryGetValue(root, out var owner) ? owner : null;
+        public void FocusAfterLayout(Button target)
+        {
+            int request = ++focusRequest;
+            root.schedule.Execute(() => { if (!disposed && request == focusRequest && modal == null && CanActivate(target)) target.Focus(); });
+        }
+
         public void Open(VisualElement window, Button first, Action cancelAction, VisualElement restore)
         {
+            int request = ++focusRequest;
             modal = window; cancel = cancelAction; restoreTarget = restore;
             ReleasePressed();
-            window.schedule.Execute(() => { if (!disposed && modal == window && CanActivate(first)) first.Focus(); });
+            window.schedule.Execute(() => { if (!disposed && request == focusRequest && modal == window && CanActivate(first)) first.Focus(); });
         }
         public void Close(VisualElement window, bool restore = true)
         {
             if (modal != window) return;
+            int request = ++focusRequest;
             var target = restoreTarget;
             modal = restoreTarget = null; cancel = null;
             ReleasePressed();
             if (restore && target != null)
-                root.schedule.Execute(() => { if (!disposed && modal == null && target.enabledInHierarchy && IsShown(target)) target.Focus(); });
+                root.schedule.Execute(() => { if (!disposed && request == focusRequest && modal == null && target.enabledInHierarchy && IsShown(target)) target.Focus(); });
         }
         bool InScope(VisualElement target) => modal == null || target == modal || modal.Contains(target);
         static Button ButtonFor(VisualElement target)
@@ -74,13 +85,8 @@ namespace ZeroToMillionaire
             if (evt.keyCode == KeyCode.Tab)
             {
                 evt.StopImmediatePropagation();
-                var candidates = (modal ?? root).Query<Button>().ToList();
-                candidates.RemoveAll(b => !b.focusable || b.tabIndex < 0 || !CanActivate(b));
-                if (candidates.Count == 0) return;
-                var focused = root.panel.focusController.focusedElement as VisualElement;
-                int index = candidates.IndexOf(ButtonFor(focused));
-                index = index < 0 ? (evt.shiftKey ? candidates.Count - 1 : 0) : (index + (evt.shiftKey ? -1 : 1) + candidates.Count) % candidates.Count;
-                candidates[index].Focus();
+                // Runtime InputForUI also emits NavigationMove Next/Previous for Tab.
+                // Traverse on that event only, so one physical press advances once.
                 return;
             }
             if (!ActivationKey(evt.keyCode)) return;
@@ -88,6 +94,19 @@ namespace ZeroToMillionaire
             if (heldKeys.Count == 1) submitConsumed = false;
             pressedButton = ButtonFor(root.panel.focusController.focusedElement as VisualElement);
             if (CanActivate(pressedButton) && InScope(pressedButton)) PixelUi.SetPressed(pressedButton, true);
+        }
+        void NavigationMove(NavigationMoveEvent evt)
+        {
+            if (evt.direction != NavigationMoveEvent.Direction.Next && evt.direction != NavigationMoveEvent.Direction.Previous) return;
+            evt.StopImmediatePropagation();
+            var candidates = (modal ?? root).Query<Button>().ToList();
+            candidates.RemoveAll(b => !b.focusable || b.tabIndex < 0 || !CanActivate(b));
+            if (candidates.Count == 0) return;
+            bool previous = evt.direction == NavigationMoveEvent.Direction.Previous;
+            var focused = root.panel.focusController.focusedElement as VisualElement;
+            int index = candidates.IndexOf(ButtonFor(focused));
+            index = index < 0 ? (previous ? candidates.Count - 1 : 0) : (index + (previous ? -1 : 1) + candidates.Count) % candidates.Count;
+            candidates[index].Focus();
         }
         void KeyUp(KeyUpEvent evt)
         {
@@ -113,6 +132,7 @@ namespace ZeroToMillionaire
             root.UnregisterCallback<KeyDownEvent>(KeyDown, TrickleDown.TrickleDown);
             root.UnregisterCallback<KeyUpEvent>(KeyUp, TrickleDown.TrickleDown);
             root.UnregisterCallback<NavigationSubmitEvent>(Submit, TrickleDown.TrickleDown);
+            root.UnregisterCallback<NavigationMoveEvent>(NavigationMove, TrickleDown.TrickleDown);
             root.UnregisterCallback<PointerDownEvent>(PointerDown, TrickleDown.TrickleDown);
         }
     }

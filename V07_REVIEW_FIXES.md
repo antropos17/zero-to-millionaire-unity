@@ -1,0 +1,12 @@
+# Concrete v0.7 review fixes
+
+Independent review found no high-priority domain/save regression. Two input issues were subsequently reproduced in isolated Editor documents:
+
+1. Replay opened with MENU focused; synthetic Enter reopened settings. Replay now requests focus on Next after layout, invalidates the older scheduled MENU restoration, and restores MENU when closed. The guide remains nonmodal; deliberate Tab/pointer navigation to the room still works.
+2. Paired KeyDown(Tab) plus NavigationMove(Next), targeting the original focused element, advanced twice. KeyDown now consumes Tab without traversal; Next/Previous navigation events own the single traversal and modal wrapping. Navigation-only events are covered too. See Unity's [runtime input processor source](https://github.com/Unity-Technologies/UnityCsReference/blob/master/Modules/UIElements/Core/GameObjects/DefaultEventSystem.InputForUIProcessor.cs) and [navigation event documentation](https://docs.unity3d.com/6000.3/Documentation/Manual/UIE-Navigation-Events.html). The installed Unity6000.3 API signatures and actual reproduction were checked; synthetic checks are not physical keyboard parity.
+
+Before reproductions remain immutable in Evidence/v07-dialogue-focus-reproduction.txt and v07-navigation-reproduction.txt. Corrected paired/navigation-only reproduction passed; final full UI suite passed1790 assertions,347 advancing frames,78.13s, including dialogue targets, Enter/Space, restoration and scene recreation. Final screenshots use v07-reviewed-after-*; earlier ab8c11c screenshots and Library review artifacts remain preserved. All24 critical EditMode regressions passed again.
+
+Only UiInputCoordinator and DialoguePresenter runtime code changed after ab8c11c. Geometry, font, palette, domain, schema, SaveStore, GameSession, scenes, packages and PNG art are unchanged. Earlier2624 layout assertions and core/full-level checks therefore retain their stated scope. No QA input touched the default user profile.
+
+Windows candidate is built separately with BuildOptions.None, no extra audit defines and app version0.7.0; ordinary company/product/save identity stays the same. Native checks use an explicit private profile, owned-process/window identity, Default desktop, focus and external-input guards; they stop if those checks fail. These statements describe the intended build/check procedure; actual results are recorded separately.
