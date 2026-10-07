@@ -12,6 +12,15 @@ namespace ZeroToMillionaire.Tests
    public PlayerState Load(out string notice){notice="";return Data.Clone();}
    public bool Save(PlayerState state,out string error){Writes++;error=Fail?"Simulated interrupted write":"";if(Fail)return false;Data=state.Clone();return true;}
   }
+  [TestCase(false)][TestCase(true)]public void CurrentStakeCannotClearAnEarlierFailedCommit(bool purchase){
+   var data=new PlayerState{cash=200};if(purchase)data.fragments[0]=20;data.quests=Economy.QuestRecords(data);
+   var store=new MemoryStore{Fail=true,Data=data};var session=new GameSession(store,new ItemRandom());
+   Assert.IsFalse(purchase?session.TryPurchase(0):session.TryBeginSpin(out _));
+   string error=session.Error,notice=session.Notice;int writes=store.Writes;
+   Assert.IsTrue(session.TrySelectStake(1));Assert.AreEqual(writes,store.Writes);Assert.AreEqual(error,session.Error);Assert.AreEqual(notice,session.Notice);
+   Assert.IsFalse(session.TrySelectStake(3));Assert.AreEqual(1,session.Model.SelectedStake);Assert.IsNotEmpty(session.Error);
+   store.Fail=false;Assert.IsTrue(session.TrySelectStake(3));Assert.AreEqual(3,session.Model.SelectedStake);Assert.IsEmpty(session.Error);
+  }
   [TestCase(1000,0,false)][TestCase(0,100,false)][TestCase(60,20,true)]
   public void PurchaseRequiresBothBalances(int cash,int parts,bool allowed){
    var s=new PlayerState{cash=cash};s.fragments[0]=parts;var m=new GameModel(s);

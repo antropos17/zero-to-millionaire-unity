@@ -80,8 +80,9 @@ namespace ZeroToMillionaire
         void SelectStake(int value)
         {
             if (!StakeOpen || spinning) return;
+            bool changed = value != model.SelectedStake;
             if (!session.TrySelectStake(value)) { UpdateSaveStatus(); stakeBalance.text = "Could not save this stake. Please retry."; return; }
-            UpdateSaveStatus(true); HideStakes(); Refresh();
+            UpdateSaveStatus(changed); HideStakes(); Refresh();
             ShowToast(value + "x STAKE · " + (5 * value) + " COINS");
         }
         void ShowShop()
@@ -132,7 +133,7 @@ namespace ZeroToMillionaire
                 UiTypography.Apply(benefit, UiTypography.Body, Forest, false); benefit.style.marginTop = 4; benefit.style.marginBottom = 6; card.Add(benefit);
                 if (!owned && !current)
                 {
-                    var unlock = Text("Unlock after " + EnglishUi.QuestTitle(active) + ".", UiTypography.Meta, Forest); unlock.name = "shop-unlock-" + index; unlock.style.marginBottom = 4; card.Add(unlock);
+                    var unlock = Text("Complete earlier tasks first.", UiTypography.Meta, Forest); unlock.name = "shop-unlock-" + index; unlock.style.marginBottom = 4; card.Add(unlock);
                 }
                 string caption = owned ? "INSTALLED" : !current ? "LOCKED" : ready ? "BUY & INSTALL" : s.fragments[index] < d.FragmentGoal && s.cash < d.CashPrice ? "NEED COINS + PARTS" : s.fragments[index] < d.FragmentGoal ? "NEED PARTS" : "NEED COINS";
                 var buy = Action(caption, () => BuyFromShop(index), ready ? Rust : Color.gray); buy.name = "shop-buy-" + index;

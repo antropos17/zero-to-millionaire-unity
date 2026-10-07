@@ -63,9 +63,10 @@ namespace ZeroToMillionaire
         public bool TrySelectStake(int value)
         {
             lock(gate){
-                Error="";
                 if(presentingSpin || RecoveryRequired || !Economy.ValidStake(value)) return false;
+                // A no-op is not a disk commit and must retain an earlier save failure.
                 if(model.SelectedStake == value) return true;
+                Error="";
                 var candidate=new GameModel(model.Snapshot);
                 return candidate.TrySelectStake(value) && Publish(candidate);
             }

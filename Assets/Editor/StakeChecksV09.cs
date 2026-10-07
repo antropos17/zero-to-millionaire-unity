@@ -67,6 +67,19 @@ namespace ZeroToMillionaire
             var failed = new Store { State = Collecting(1), Fail = true }; var failedSession = new GameSession(failed, new Pattern());
             Check(!failedSession.TrySelectStake(3) && failedSession.Model.SelectedStake == 1, "Failed preference commit preserves selection");
             Check(!failedSession.TrySelectStake(0) && !failedSession.TrySelectStake(4), "Undefined selection rejected");
+            // A selected stake is a no-op, never evidence that an earlier failed write succeeded.
+            foreach (bool purchase in new[] { false, true }) {
+                var statusStore = new Store { State = Collecting(1), Fail = true };
+                if(purchase){statusStore.State.fragments[0]=20;statusStore.State.quests=Economy.QuestRecords(statusStore.State);}
+                var statusSession=new GameSession(statusStore,new Pattern());
+                Check(purchase ? !statusSession.TryPurchase(0) : !statusSession.TryBeginSpin(out _),"Initial purchase/spin commit fails");
+                string failure=statusSession.Error, failedNotice=statusSession.Notice;int writes=statusStore.Writes;
+                Check(failure.Length>0 && statusSession.TrySelectStake(1),"Current stake no-op remains accepted");
+                Check(statusStore.Writes==writes && statusSession.Error==failure && statusSession.Notice==failedNotice,"No-op retains persistent failure and performs no write");
+                Check(!statusSession.TrySelectStake(3) && statusSession.Model.SelectedStake==1 && statusSession.Error.Length>0,"Different stake failed write retains prior committed selection");
+                statusStore.Fail=false;
+                Check(statusSession.TrySelectStake(3) && statusSession.Model.SelectedStake==3 && statusSession.Error=="" && statusSession.Notice.StartsWith("Saved locally"),"Successful different stake clears error after actual commit");
+            }
             var low = new GameModel(Collecting(3, 0));
             Check(low.CanRecover && low.GrantRecovery() && !low.GrantRecovery(), "High selected stake retains bounded free recovery");
             Check(low.TrySpin(new Pattern(), out var recovered) && recovered.RewardMultiplier == 1 && recovered.Cost == 0, "Recovery uses fair1x reward");

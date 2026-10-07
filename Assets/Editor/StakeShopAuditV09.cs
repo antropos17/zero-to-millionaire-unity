@@ -14,11 +14,11 @@ namespace ZeroToMillionaire.Editor
         static GameView view; static RenderTexture target;
         static int phase, scenario, warm, assertions, frame0;
         static double started, at;
-        static PlayerState before;
+        static PlayerState before; static FileStream failedWriteLease;
         static readonly StringBuilder Log = new StringBuilder();
         static readonly int[] Widths = {320,360,360,480}, Heights = {640,640,800,960};
         static string Root => Directory.GetParent(Application.dataPath).FullName;
-        static string SaveDir => Path.Combine(Root, ".tooling", "v09-ui-checks-2", "save");
+        static string SaveDir => Path.Combine(Root, ".tooling", "v09-ui-checks-4", "save");
         static VisualElement UI => view.GetComponent<UIDocument>().rootVisualElement;
         static string Focused => (UI.panel.focusController.focusedElement as VisualElement)?.name ?? "<none>";
         static GameSession Session => (GameSession)typeof(GameView).GetField("session", BindingFlags.Instance|BindingFlags.NonPublic).GetValue(view);
@@ -52,7 +52,7 @@ namespace ZeroToMillionaire.Editor
         {
             var old=RenderTexture.active;RenderTexture.active=target;var t=new Texture2D(target.width,target.height,TextureFormat.RGBA32,false);
             t.ReadPixels(new Rect(0,0,target.width,target.height),0,0);t.Apply();
-            File.WriteAllBytes(Path.Combine(Root,"Evidence","v09-qa2-"+name+"-"+(scenario>=4?"calm":"full")+"-"+target.width+"x"+target.height+".png"),t.EncodeToPNG());
+            File.WriteAllBytes(Path.Combine(Root,"Evidence","v09-qa4-"+name+"-"+(scenario>=4?"calm":"full")+"-"+target.width+"x"+target.height+".png"),t.EncodeToPNG());
             UnityEngine.Object.Destroy(t);RenderTexture.active=old;
         }
         static void Submit(Button button) { using(var e=NavigationSubmitEvent.GetPooled()){e.target=button;button.SendEvent(e);} }
@@ -121,6 +121,68 @@ namespace ZeroToMillionaire.Editor
                 {
                     Check(view.Model.SelectedStake==1&&Disk().stakeMultiplier==1,"stake selection saved through real UI callback/Unity JSON");
                     Check(UI.Q<Button>("spin").enabledInHierarchy&&Focused=="bet-panel","lower affordable stake and trigger focus restored");
+                    before=view.Model.Snapshot;
+                    failedWriteLease=new FileStream(Path.Combine(SaveDir,"level1-v1.json.tmp"),FileMode.OpenOrCreate,FileAccess.Write,FileShare.None);
+                    view.QaClick("spin");
+                    Check(Session.Error.Length>0&&SameResources(before,view.Model.Snapshot),"actual failed spin preserves committed resources");
+                    view.QaClick("bet-panel");At(12);
+                }
+                else if(phase==12&&Warm())
+                {
+                    string error=Session.Error,notice=Session.Notice;Tap(UI.Q<Button>("stake-1"));
+                    Check(Session.Error==error&&Session.Notice==notice&&SameResources(before,view.Model.Snapshot),"current stake no-op keeps failed-write status and performs no transaction");
+                    view.QaClick("menu");At(13);
+                }
+                else if(phase==13&&Warm())
+                {
+                    Check(UI.Q<Label>("save-status").text.Contains("Could not save"),"displayed persistent failure survives current-stake no-op");
+                    Bounds(UI.Q<Label>("save-status"));Capture("stake-noop-save-failure");
+                    view.QaClick("close-settings");view.QaClick("bet-panel");At(14);
+                }
+                else if(phase==14&&Warm())
+                {
+                    Tap(UI.Q<Button>("stake-3"));
+                    Check(Session.Error.Length>0&&view.Model.SelectedStake==1&&UI.Q<VisualElement>("stake-overlay").style.display==DisplayStyle.Flex,"different stake failed commit keeps old choice/modal");
+                    Check(SameResources(before,view.Model.Snapshot),"failed different-stake write changes no resource");
+                    failedWriteLease.Dispose();failedWriteLease=null;At(15);
+                }
+                else if(phase==15&&Warm())
+                {
+                    Tap(UI.Q<Button>("stake-3"));
+                    Check(Session.Error==""&&view.Model.SelectedStake==3&&Disk().stakeMultiplier==3,"actual successful different stake clears failure after commit");
+                    view.QaClick("menu");At(16);
+                }
+                else if(phase==16&&Warm())
+                {
+                    Check(!UI.Q<Label>("save-status").text.Contains("Could not"),"only committed selection clears visible failure");
+                    view.QaClick("close-settings");
+                    var legacy=Fixture(80,0);legacy.version=5;legacy.stakeMultiplier=0;
+                    File.WriteAllText(Path.Combine(SaveDir,"level1-v1.json"),new UnityStateCodec().Encode(legacy));
+                    Check(Session.TryReload(),"private legacy profile reloaded for backup-failure display");
+                    typeof(GameView).GetMethod("Refresh",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(view,null);
+                    string snapshotRoot=Path.Combine(SaveDir,"level1-v1.json.pre-schema6");
+                    if(Directory.Exists(snapshotRoot)){
+                        string history=Path.Combine(SaveDir,"private-snapshot-history-"+scenario);
+                        string scope=Path.GetFullPath(SaveDir)+Path.DirectorySeparatorChar;
+                        Check(Path.GetFullPath(snapshotRoot).StartsWith(scope,StringComparison.OrdinalIgnoreCase)&&Path.GetFullPath(history).StartsWith(scope,StringComparison.OrdinalIgnoreCase),"private snapshot relocation stays in owned audit save root");
+                        Directory.Move(snapshotRoot,history);
+                    }
+                    File.WriteAllText(snapshotRoot,"private backup blocker");
+                    view.QaClick("bet-panel");At(17);
+                }
+                else if(phase==17&&Warm())
+                {
+                    before=view.Model.Snapshot;Tap(UI.Q<Button>("stake-3"));
+                    Check(Session.Error==SaveStore.MigrationSnapshotError&&SameResources(before,view.Model.Snapshot),"required migration backup failure blocks real UI preference commit");
+                    view.QaClick("close-stakes");view.QaClick("menu");At(18);
+                }
+                else if(phase==18&&Warm())
+                {
+                    Check(UI.Q<Label>("save-status").text=="Could not protect the old save. No changes saved.","migration-copy failure shown explicitly in menu");
+                    Bounds(UI.Q<Label>("save-status"));Capture("migration-backup-failure");
+                    view.QaClick("close-settings");
+                    File.Move(Path.Combine(SaveDir,"level1-v1.json.pre-schema6"),Path.Combine(SaveDir,"private-backup-blocker-"+scenario));
+                    Check(Session.TrySelectStake(3),"private migration-copy retry actually commits");
                     Set(Fixture(60,20));view.QaClick("shop");At(4);
                 }
                 else if(phase==4&&Warm())
@@ -129,6 +191,7 @@ namespace ZeroToMillionaire.Editor
                     Check(Focused=="close-shop","shop focus safe close");
                     Check(shop.Query<VisualElement>().Where(x=>x.name!=null&&x.name.StartsWith("shop-item-")).ToList().Count==8,"eight catalog entries");
                     for(int i=0;i<8;i++){Check(shop.Q<Image>("shop-icon-"+i).image!=null,"exact existing item icon"+i);Check(shop.Q<Button>("shop-buy-"+i).enabledInHierarchy==(i==0),"shop current-only both-resource gate"+i);Check(shop.Q<Label>("shop-benefit-"+i).text.Contains(view.Model.Definition(i).Description),"room improvement preview"+i);}
+                    for(int i=1;i<8;i++)Check(shop.Q<Label>("shop-unlock-"+i).text=="Complete earlier tasks first.","accurate prerequisite for each locked future task"+i);
                     Press(KeyCode.Tab);Check(Focused=="shop-buy-0","shop Tab reaches current purchase");Press(KeyCode.Tab,true);Check(Focused=="close-shop","shop ShiftTab wraps within modal");
                     Bounds(shop.Q<Button>("shop-buy-0"));before=view.Model.Snapshot;Submit(UI.Q<Button>("spin"));Check(SameResources(before,view.Model.Snapshot),"shop no background transaction");Capture("shop-ready");
                     var retired=shop.Q<Button>("shop-buy-0");Tap(retired);for(int i=0;i<30;i++)Submit(retired);At(5);
@@ -186,8 +249,9 @@ namespace ZeroToMillionaire.Editor
         }
         static void Finish(bool pass)
         {
+            failedWriteLease?.Dispose();failedWriteLease=null;
             SessionState.SetBool(Key,false);Log.AppendLine("RESULT "+(pass?"PASS":"FAIL")+" assertions="+assertions+" runtimeFrames="+(Time.frameCount-frame0)+" elapsed="+(EditorApplication.timeSinceStartup-started).ToString("F2")+"; actual offscreen Editor pixels/Unity JSON; synthetic UITK pointer/navigation/key events; no OS input");
-            File.WriteAllText(Path.Combine(Root,"Evidence","v09-ui-checks-2.txt"),Log.ToString());
+            File.WriteAllText(Path.Combine(Root,"Evidence","v09-ui-checks-4.txt"),Log.ToString());
             if(target!=null){if(view!=null)view.GetComponent<UIDocument>().panelSettings.targetTexture=null;target.Release();UnityEngine.Object.Destroy(target);}
             EditorApplication.ExitPlaymode();EditorApplication.delayCall+=()=>EditorApplication.Exit(pass?0:1);
         }

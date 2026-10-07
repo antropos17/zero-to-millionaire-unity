@@ -1,5 +1,8 @@
 using System;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
+
 namespace ZeroToMillionaire
 {
     public interface IStateCodec { string Encode(PlayerState state); PlayerState Decode(string text); }
@@ -11,8 +14,10 @@ namespace ZeroToMillionaire
     public sealed class SaveStore : IRecoverableStateStore
     {
         public const string RecoveryNotice = "Local save needs recovery; original files preserved.";
+        public const string MigrationSnapshotError = "Could not protect the old save. No changes were saved.";
         readonly string path; readonly IStateCodec codec;
         public bool RecoveryRequired { get; private set; }
+        public string PreMigrationSnapshotPath { get; private set; }
         public SaveStore(string filePath, IStateCodec stateCodec) { path = filePath; codec = stateCodec; }
         public bool Save(PlayerState state, out string error) {
             error = "";
@@ -21,6 +26,7 @@ namespace ZeroToMillionaire
             if (!GameModel.IsValid(state, out reason)) { error = reason; return false; }
             string temp = path + ".tmp";
             try {
+                if (!PreserveBeforeMigration(out error)) return false;
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
                 using (var stream = new FileStream(temp, FileMode.Create, FileAccess.Write, FileShare.None))
                 using (var writer = new StreamWriter(stream)) { writer.Write(codec.Encode(state)); writer.Flush(); stream.Flush(true); }
@@ -29,6 +35,67 @@ namespace ZeroToMillionaire
             } catch (Exception e) when (e is IOException || e is UnauthorizedAccessException || e is ArgumentException || e is NotSupportedException) {
                 error = "Save failed: " + e.GetType().Name; return false;
             } finally { try { if (File.Exists(temp)) File.Delete(temp); } catch (IOException) { } catch (UnauthorizedAccessException) { } }
+        }
+
+        // Capture the exact on-disk byte streams before replacing either live file.
+        // Content-addressed schema directories are nonrotating and never overwritten.
+        // This cannot prevent a previously loaded old executable from writing later.
+        bool PreserveBeforeMigration(out string error) {
+            error = "";
+            try {
+                PlayerState old; bool migrated, unsupported; byte[] sourceBytes; int sourceVersion;
+                bool primarySource = TryRead(path, out old, out migrated, out unsupported, out sourceBytes, out sourceVersion);
+                if (primarySource && !migrated) return true;
+                if (unsupported) return true;
+                if (!primarySource && !TryRead(path + ".bak", out old, out migrated, out unsupported, out sourceBytes, out sourceVersion)) {
+                    return true;
+                }
+                if (!migrated) return true;
+                byte[] primary = ReadOriginal(path), backup = ReadOriginal(path + ".bak");
+                if (!Equal(sourceBytes, primarySource ? primary : backup)) throw new IOException("Migration source changed");
+                string fingerprint;
+                using (var buffer = new MemoryStream()) {
+                    using (var writer = new BinaryWriter(buffer, Encoding.UTF8, true)) {
+                        writer.Write(sourceVersion);
+                        foreach (var bytes in new[] { primary, backup }) { writer.Write(bytes == null ? -1 : bytes.Length); if (bytes != null) writer.Write(bytes); }
+                    }
+                    using (var hash = SHA256.Create()) fingerprint = BitConverter.ToString(hash.ComputeHash(buffer.ToArray())).Replace("-", "").ToLowerInvariant();
+                }
+                string directory = Path.Combine(path + ".pre-schema" + Economy.SaveVersion, "v" + sourceVersion + "-" + fingerprint);
+                Directory.CreateDirectory(directory);
+                PreserveFile(Path.Combine(directory, "primary.json"), primary);
+                PreserveFile(Path.Combine(directory, "backup.json"), backup);
+                string manifest = "snapshot-v1\nschema=" + sourceVersion + "\nsource=" + (primarySource ? "primary" : "backup") +
+                    "\nprimary=" + (primary == null ? "absent" : "present") + "\nbackup=" + (backup == null ? "absent" : "present") + "\nfingerprint=" + fingerprint + "\n";
+                PreserveFile(Path.Combine(directory, "snapshot.txt"), Encoding.UTF8.GetBytes(manifest));
+                PreMigrationSnapshotPath = directory;
+                return true;
+            } catch (Exception e) when (e is IOException || e is UnauthorizedAccessException || e is ArgumentException || e is NotSupportedException || e is CryptographicException) {
+                error = MigrationSnapshotError; return false;
+            }
+        }
+        static byte[] ReadOriginal(string source) {
+            if (!Present(source)) return null;
+            // Saves are bounded; refuse to migrate if an original cannot be safely copied.
+            if (new FileInfo(source).Length > 64 * 1024) throw new IOException("Original save exceeds size limit");
+            return File.ReadAllBytes(source);
+        }
+        static bool Equal(byte[] a, byte[] b) {
+            if (a == null || b == null) return a == b;
+            if (a.Length != b.Length) return false;
+            for (int i = 0; i < a.Length; i++) if (a[i] != b[i]) return false;
+            return true;
+        }
+        static void PreserveFile(string destination, byte[] bytes) {
+            if (Present(destination)) {
+                if (bytes == null || !Equal(File.ReadAllBytes(destination), bytes)) throw new IOException("Existing snapshot differs");
+                return;
+            }
+            if (bytes == null) return;
+            using (var stream = new FileStream(destination, FileMode.CreateNew, FileAccess.Write, FileShare.None)) {
+                stream.Write(bytes, 0, bytes.Length); stream.Flush(true);
+            }
+            if (!Equal(File.ReadAllBytes(destination), bytes)) throw new IOException("Snapshot verification failed");
         }
         // File.Exists hides access errors. Only a proved absent primary AND backup is a fresh profile.
         static bool Present(string source) {
@@ -49,10 +116,17 @@ namespace ZeroToMillionaire
         }
         PlayerState Block(out string notice) { RecoveryRequired = true; notice = RecoveryNotice; return new PlayerState(); }
         bool TryRead(string source, out PlayerState state, out bool migrated, out bool unsupported) {
-            state = null; migrated = unsupported = false;
+            byte[] bytes; int version;
+            return TryRead(source, out state, out migrated, out unsupported, out bytes, out version);
+        }
+        bool TryRead(string source, out PlayerState state, out bool migrated, out bool unsupported, out byte[] bytes, out int version) {
+            state = null; migrated = unsupported = false; bytes = null; version = 0;
             try {
                 if (!Present(source) || new FileInfo(source).Length > 64 * 1024) return false;
-                state = codec.Decode(File.ReadAllText(source));
+                bytes = File.ReadAllBytes(source);
+                using (var stream = new MemoryStream(bytes))
+                using (var reader = new StreamReader(stream, Encoding.UTF8, true)) state = codec.Decode(reader.ReadToEnd());
+                version = state == null ? 0 : state.version;
                 if (state != null && state.version > Economy.SaveVersion) { unsupported = true; return false; }
                 string reason; if (!GameModel.IsPersistedValid(state, out reason)) return false;
                 migrated = state != null && state.version < Economy.SaveVersion;

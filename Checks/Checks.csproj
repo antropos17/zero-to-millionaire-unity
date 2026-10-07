@@ -11,6 +11,7 @@
     <Compile Include="../Assets/Editor/SessionChecks.cs" />
     <Compile Include="../Assets/Editor/LayoutMigrationChecks.cs" />
     <Compile Include="../Assets/Editor/StakeChecksV09.cs" />
+    <Compile Include="../Assets/Editor/MigrationSnapshotChecksV09.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
 </Project>
