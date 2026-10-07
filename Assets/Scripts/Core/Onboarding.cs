@@ -7,16 +7,16 @@ namespace ZeroToMillionaire
  }
  public static class TutorialPolicy{
   public static readonly string[] Steps={
-   "Пока здесь неуютно, но всё можно исправить понемногу. Начнём с пола.",
-   "Здесь можно получить игровые монеты и фрагменты вещей. Попробуем один спин.",
-   "Для покупки нужны и монеты, и фрагменты именно этой вещи. Посмотрим, сколько уже собрано.",
-   "На ремонт пола всего хватает. Нажми «Купить», когда будешь готов.",
-   "Уже лучше! Следующая задача уже появилась. Двигайся в своём темпе."};
+   "It is rough in here, but we can fix it little by little. Let us start with the floor.",
+   "Spins give coins and parts for the current upgrade. Try your first free spin.",
+   "Every upgrade needs BOTH coins and matching parts. Check the two progress bars below.",
+   "You have enough to patch the floor. Press BUY whenever you are ready.",
+   "That is better! Your next task is ready. Keep going at your own pace."};
   public static readonly string[] Stories={
-   "У комнаты появилась основа. Теперь легче представить, какой она станет.",
-   "Теперь комната выглядит совсем иначе. Осталось устроить место для отдыха.",
-   "Теперь есть где отдохнуть и почитать при свете. Ещё табурет, и всё будет на своих местах.",
-   "Девять квадратных метров стали уютным домом. Спасибо за помощь."};
+   "The floor and walls feel solid again. Now I can picture what this room could become.",
+   "What a difference! The room is ready. Next, I need somewhere to rest.",
+   "A place to sleep and a little light. One simple stool will finish our small room.",
+   "Nine square metres have become a cosy home. Thank you for helping me."};
   public static bool Valid(TutorialState t){return t!=null&&t.version==1&&t.step>=0&&t.step<=4&&t.storySeenMask>=0&&t.storySeenMask<=15;}
   public static int Step(PlayerState s){
    if(s.tutorial.completed||s.tutorial.skipped)return -1;if(s.purchased[0])return 4;

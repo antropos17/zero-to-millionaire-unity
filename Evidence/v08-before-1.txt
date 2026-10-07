@@ -1,0 +1,2 @@
+spin count=1 cash=126 parts=11
+PASS graphics-enabled Editor capture; real UITK pointer spin and explicit manual buy; no OS input; isolated fixture save

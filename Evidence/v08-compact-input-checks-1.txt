@@ -1,0 +1,257 @@
+PASS 44-unit target menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS caption does not intercept menu
+PASS 44-unit target spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS caption does not intercept spin
+PASS coins gate
+PASS direct purchase cannot bypass coins
+PASS parts gate
+PASS direct purchase cannot bypass parts
+PASS 44-unit target tutorial-replay
+PASS edge/centre hit tutorial-replay
+PASS edge/centre hit tutorial-replay
+PASS edge/centre hit tutorial-replay
+PASS edge/centre hit tutorial-replay
+PASS edge/centre hit tutorial-replay
+PASS caption does not intercept tutorial-replay
+PASS 44-unit target motion-toggle
+PASS edge/centre hit motion-toggle
+PASS edge/centre hit motion-toggle
+PASS edge/centre hit motion-toggle
+PASS edge/centre hit motion-toggle
+PASS edge/centre hit motion-toggle
+PASS caption does not intercept motion-toggle
+PASS 44-unit target reset
+PASS edge/centre hit reset
+PASS edge/centre hit reset
+PASS edge/centre hit reset
+PASS edge/centre hit reset
+PASS edge/centre hit reset
+PASS caption does not intercept reset
+PASS 44-unit target close-settings
+PASS edge/centre hit close-settings
+PASS edge/centre hit close-settings
+PASS edge/centre hit close-settings
+PASS edge/centre hit close-settings
+PASS edge/centre hit close-settings
+PASS caption does not intercept close-settings
+PASS menu initial focus
+PASS paired Tab advances once
+PASS modal blocks underlying submit
+PASS modal restores trigger
+PASS replay initial focus
+PASS 44-unit target menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS caption does not intercept menu
+PASS 44-unit target tutorial-next
+PASS edge/centre hit tutorial-next
+PASS edge/centre hit tutorial-next
+PASS edge/centre hit tutorial-next
+PASS edge/centre hit tutorial-next
+PASS edge/centre hit tutorial-next
+PASS caption does not intercept tutorial-next
+PASS 44-unit target tutorial-skip
+PASS edge/centre hit tutorial-skip
+PASS edge/centre hit tutorial-skip
+PASS edge/centre hit tutorial-skip
+PASS edge/centre hit tutorial-skip
+PASS edge/centre hit tutorial-skip
+PASS caption does not intercept tutorial-skip
+PASS 44-unit target spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS caption does not intercept spin
+PASS replay paired Tab advances once
+PASS replay dismissal restores trigger
+PASS 44-unit target menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS caption does not intercept menu
+PASS 44-unit target spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS caption does not intercept spin
+PASS coins gate
+PASS direct purchase cannot bypass coins
+PASS parts gate
+PASS direct purchase cannot bypass parts
+PASS 44-unit target tutorial-replay
+PASS edge/centre hit tutorial-replay
+PASS edge/centre hit tutorial-replay
+PASS edge/centre hit tutorial-replay
+PASS edge/centre hit tutorial-replay
+PASS edge/centre hit tutorial-replay
+PASS caption does not intercept tutorial-replay
+PASS 44-unit target motion-toggle
+PASS edge/centre hit motion-toggle
+PASS edge/centre hit motion-toggle
+PASS edge/centre hit motion-toggle
+PASS edge/centre hit motion-toggle
+PASS edge/centre hit motion-toggle
+PASS caption does not intercept motion-toggle
+PASS 44-unit target reset
+PASS edge/centre hit reset
+PASS edge/centre hit reset
+PASS edge/centre hit reset
+PASS edge/centre hit reset
+PASS edge/centre hit reset
+PASS caption does not intercept reset
+PASS 44-unit target close-settings
+PASS edge/centre hit close-settings
+PASS edge/centre hit close-settings
+PASS edge/centre hit close-settings
+PASS edge/centre hit close-settings
+PASS edge/centre hit close-settings
+PASS caption does not intercept close-settings
+PASS menu initial focus
+PASS paired Tab advances once
+PASS modal blocks underlying submit
+PASS modal restores trigger
+PASS replay initial focus
+PASS 44-unit target menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS caption does not intercept menu
+PASS 44-unit target tutorial-next
+PASS edge/centre hit tutorial-next
+PASS edge/centre hit tutorial-next
+PASS edge/centre hit tutorial-next
+PASS edge/centre hit tutorial-next
+PASS edge/centre hit tutorial-next
+PASS caption does not intercept tutorial-next
+PASS 44-unit target tutorial-skip
+PASS edge/centre hit tutorial-skip
+PASS edge/centre hit tutorial-skip
+PASS edge/centre hit tutorial-skip
+PASS edge/centre hit tutorial-skip
+PASS edge/centre hit tutorial-skip
+PASS caption does not intercept tutorial-skip
+PASS 44-unit target spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS caption does not intercept spin
+PASS replay paired Tab advances once
+PASS replay dismissal restores trigger
+PASS 44-unit target menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS caption does not intercept menu
+PASS 44-unit target spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS caption does not intercept spin
+PASS coins gate
+PASS direct purchase cannot bypass coins
+PASS parts gate
+PASS direct purchase cannot bypass parts
+PASS 44-unit target tutorial-replay
+PASS edge/centre hit tutorial-replay
+PASS edge/centre hit tutorial-replay
+PASS edge/centre hit tutorial-replay
+PASS edge/centre hit tutorial-replay
+PASS edge/centre hit tutorial-replay
+PASS caption does not intercept tutorial-replay
+PASS 44-unit target motion-toggle
+PASS edge/centre hit motion-toggle
+PASS edge/centre hit motion-toggle
+PASS edge/centre hit motion-toggle
+PASS edge/centre hit motion-toggle
+PASS edge/centre hit motion-toggle
+PASS caption does not intercept motion-toggle
+PASS 44-unit target reset
+PASS edge/centre hit reset
+PASS edge/centre hit reset
+PASS edge/centre hit reset
+PASS edge/centre hit reset
+PASS edge/centre hit reset
+PASS caption does not intercept reset
+PASS 44-unit target close-settings
+PASS edge/centre hit close-settings
+PASS edge/centre hit close-settings
+PASS edge/centre hit close-settings
+PASS edge/centre hit close-settings
+PASS edge/centre hit close-settings
+PASS caption does not intercept close-settings
+PASS menu initial focus
+PASS paired Tab advances once
+PASS modal blocks underlying submit
+PASS modal restores trigger
+PASS replay initial focus
+PASS 44-unit target menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS edge/centre hit menu
+PASS caption does not intercept menu
+PASS 44-unit target tutorial-next
+PASS edge/centre hit tutorial-next
+PASS edge/centre hit tutorial-next
+PASS edge/centre hit tutorial-next
+PASS edge/centre hit tutorial-next
+PASS edge/centre hit tutorial-next
+PASS caption does not intercept tutorial-next
+PASS 44-unit target tutorial-skip
+PASS edge/centre hit tutorial-skip
+PASS edge/centre hit tutorial-skip
+PASS edge/centre hit tutorial-skip
+PASS edge/centre hit tutorial-skip
+PASS edge/centre hit tutorial-skip
+PASS caption does not intercept tutorial-skip
+PASS 44-unit target spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS edge/centre hit spin
+PASS caption does not intercept spin
+PASS replay paired Tab advances once
+PASS replay dismissal restores trigger
+PASS held submit commits one spin before cosmetics
+PASS held submit remains consumed after presentation
+PASS new key after existing cooldown commits once
+PASS held purchase failure writes once
+PASS failed purchase rolls back resources
+PASS truthful English rejected-write status
+PASS actual panel pick buy-0
+PASS pointer retry installs once and detached repeats cannot overdraw
+PASS successful retry clears English error status
+PASS safe reset initial focus
+PASS reset cancellation retains room
+PASS confirmed reset has free starter state
+PASS late hidden confirmation remains inert
+RESULT PASS checks=256; three actual portrait layouts; real UITK paired navigation/panel pick/pointer/held submit; runtime-clock waits; private profile; no OS input

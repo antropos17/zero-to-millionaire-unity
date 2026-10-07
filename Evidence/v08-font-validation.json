@@ -1,0 +1,38 @@
+[
+  {
+    "file": "ZTMReadable-Regular.ttf",
+    "bytes": 414128,
+    "sha256": "9e8edef1bcce8dfdd7e6cf3656ffc54b08bcae12eac4486c76be799b37c64acf",
+    "tabular_digit_advances": [
+      1824,
+      1824,
+      1824,
+      1824,
+      1824,
+      1824,
+      1824,
+      1824,
+      1824,
+      1824
+    ],
+    "missing_english_glyphs": []
+  },
+  {
+    "file": "ZTMReadable-Semibold.ttf",
+    "bytes": 430112,
+    "sha256": "559351392be752e5fb7fbbf52348837e5d524a09dc82761c3bff53991bb8c3b5",
+    "tabular_digit_advances": [
+      1888,
+      1888,
+      1888,
+      1888,
+      1888,
+      1888,
+      1888,
+      1888,
+      1888,
+      1888
+    ],
+    "missing_english_glyphs": []
+  }
+]

@@ -1,0 +1,1 @@
+INCONCLUSIVE: overlapping EditMode runner cleanup and first Playmode entry caused a SceneManager exception. Critical tests passed 24/24. Runtime assertions are rerun in a clean owned Editor. User game untouched.

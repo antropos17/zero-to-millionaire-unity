@@ -46,7 +46,7 @@ namespace ZeroToMillionaire
                 yield return null;
             }
             for(int i=0;i<15;i++)Land(i);Phase="match";finalBoard();
-            if(!skip&&!reduced){Emphasize(result);float matchStart=Time.unscaledTime;while(!skip&&Time.unscaledTime-matchStart<.30f)yield return null;}
+            if(!skip&&!reduced){Emphasize(result);float matchStart=Time.unscaledTime;while(!skip&&Time.unscaledTime-matchStart<.30f){MatchFrame(Mathf.Clamp01((Time.unscaledTime-matchStart)/.30f));yield return null;}}
             RemoveHighlights();Phase="reward";
             float rewardStart=Time.unscaledTime,duration=reduced?.16f:.60f;
             while(!skip&&Time.unscaledTime-rewardStart<duration){float t=Mathf.Clamp01((Time.unscaledTime-rewardStart)/duration);rewardProgress(1-Mathf.Pow(1-t,3));yield return null;}
@@ -65,7 +65,8 @@ namespace ZeroToMillionaire
             int column=i%5;bool triple=result.Grid[column]==result.Grid[column+5]&&result.Grid[column]==result.Grid[column+10];bool fragment=result.Grid[i]>0&&result.Fragments[result.Grid[i]-1]>0;
             if(!triple&&!fragment)continue;var glow=new VisualElement{name="reel-match-"+i,pickingMode=PickingMode.Ignore};glow.style.position=Position.Absolute;glow.style.left=glow.style.right=3;glow.style.top=glow.style.bottom=3;glow.style.borderLeftWidth=glow.style.borderRightWidth=glow.style.borderTopWidth=glow.style.borderBottomWidth=2;var color=triple?PixelUi.Hex(0xffb758):PixelUi.Hex(0xd7e6ba);glow.style.borderLeftColor=glow.style.borderRightColor=glow.style.borderTopColor=glow.style.borderBottomColor=color;originals[i].parent.Add(glow);highlights[i]=glow;
         }}
-        void RemoveHighlights(){for(int i=0;i<15;i++){highlights[i]?.RemoveFromHierarchy();highlights[i]=null;}}
+        void MatchFrame(float t){float lift=Mathf.Sin(t*Mathf.PI);for(int i=0;i<15;i++)if(highlights[i]!=null){originals[i].style.translate=new Translate(0,-3*lift,0);originals[i].style.scale=new Scale(new Vector3(1+.08f*lift,1+.08f*lift,1));}}
+        void RemoveHighlights(){for(int i=0;i<15;i++){highlights[i]?.RemoveFromHierarchy();highlights[i]=null;originals[i].style.translate=new Translate(0,0,0);originals[i].style.scale=new Scale(Vector3.one);}}
         public void Clear(){RemoveHighlights();for(int i=0;i<15;i++){strips[i]?.RemoveFromHierarchy();strips[i]=null;originals[i].style.visibility=Visibility.Visible;}Active=false;Phase="idle";}
     }
 }

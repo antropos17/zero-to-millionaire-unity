@@ -10,7 +10,7 @@ namespace ZeroToMillionaire
         public static bool ReducedMotion;
         sealed class PressState { public float from,to,started,duration;public IVisualElementScheduledItem item; }
         static readonly ConditionalWeakTable<VisualElement,PressState> Presses=new ConditionalWeakTable<VisualElement,PressState>();
-        public static float RenderedFaceTravel(VisualElement element){if(!(element is Button)||!element.enabledInHierarchy)return 0;float target=FaceTravel(element);if(ReducedMotion||!Presses.TryGetValue(element,out var state))return target;float t=Mathf.Clamp01((Time.unscaledTime-state.started)/Mathf.Max(.001f,state.duration));return Mathf.Lerp(state.from,state.to,1-Mathf.Pow(1-t,3));}
+        public static float RenderedFaceTravel(VisualElement element){if(!(element is Button)||!element.enabledInHierarchy)return 0;float target=FaceTravel(element);if(ReducedMotion||!Presses.TryGetValue(element,out var state))return target;float t=Mathf.Clamp01((Time.unscaledTime-state.started)/Mathf.Max(.001f,state.duration));float u=t-1;float eased=state.to>state.from?1-Mathf.Pow(1-t,3):1+2.5f*u*u*u+1.5f*u*u;return Mathf.LerpUnclamped(state.from,state.to,eased);}
         public enum Finish { Cream, Forest, Slot, Rust, Grey, Owned, Title }
         public static Color Hex(uint rgb) { return new Color32((byte)(rgb >> 16),(byte)(rgb >> 8),(byte)rgb,255); }
         public static void CashMarker(VisualElement element)
@@ -51,7 +51,7 @@ namespace ZeroToMillionaire
         {
             float current=RenderedFaceTravel(element);
             if(pressed)element.AddToClassList("pressed");else element.RemoveFromClassList("pressed");
-            if(element is Button){var state=Presses.GetValue(element,_=>new PressState());state.item?.Pause();state.from=current;state.to=FaceTravel(element);state.started=Time.unscaledTime;state.duration=pressed?.08f:.12f;
+            if(element is Button){var state=Presses.GetValue(element,_=>new PressState());state.item?.Pause();state.from=current;state.to=FaceTravel(element);state.started=Time.unscaledTime;state.duration=pressed?.08f:.20f;
                 if(!ReducedMotion&&element.panel!=null&&Mathf.Abs(state.from-state.to)>.01f)state.item=element.schedule.Execute(()=>{UpdateCaption(element);element.MarkDirtyRepaint();if(Time.unscaledTime-state.started>=state.duration)state.item?.Pause();}).Every(16);
             }
             UpdateCaption(element);element.MarkDirtyRepaint();

@@ -1,0 +1,10 @@
+PURCHASE 1 spins=3 cash=96
+PURCHASE 2 spins=7 cash=99
+PURCHASE 3 spins=13 cash=170
+PURCHASE 4 spins=20 cash=216
+PURCHASE 5 spins=27 cash=170
+PURCHASE 6 spins=35 cash=130
+PURCHASE 7 spins=43 cash=87
+PURCHASE 8 spins=52 cash=35
+PASS checks=456909 completeSpins=52 manualBuys=8 storyDismissals=4 runtimeFrames=7763
+RESULT PASS; fresh real load, no fixture setter; Editor actual offscreen render; UI callbacks synthetic; no OS/native input

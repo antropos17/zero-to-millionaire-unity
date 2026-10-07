@@ -1,0 +1,45 @@
+[
+  {
+    "file": "v08-spin-before-after.gif",
+    "bytes": 6703482,
+    "sha256": "816df20c508624b01b3bfe2f41c2e31fbe118093cabde4e86467a0427ff1489c",
+    "frames": 71,
+    "before_frames": 70,
+    "after_frames": 71,
+    "source": "Actual Unity offscreen captures at approximately 20 fps; side-by-side composition only; no generated/tweened game frames. Last source frame held if lengths differ."
+  },
+  {
+    "file": "v08-repair-before-after.gif",
+    "bytes": 2234673,
+    "sha256": "3021491a9fb30336a0b437d174df56a3c9a5e55ccae149895f8bff9c95a8d839",
+    "frames": 23,
+    "before_frames": 23,
+    "after_frames": 22,
+    "source": "Actual Unity offscreen captures at approximately 20 fps; side-by-side composition only; no generated/tweened game frames. Last source frame held if lengths differ."
+  },
+  {
+    "file": "v08-room-before-after.png",
+    "bytes": 159148,
+    "sha256": "9a1a397c5e6ca8e47547d2b0572e90fe55790768acc814941f4d8afdcc675fbb"
+  },
+  {
+    "file": "v08-menu-before-after.png",
+    "bytes": 143357,
+    "sha256": "8b4871381cd5501f3d1feeca66922a8b88f1b51c10532e29596d97d315b46910"
+  },
+  {
+    "file": "v08-tutorial-before-after.png",
+    "bytes": 124724,
+    "sha256": "7f9376750dc72299734cd668619095ff885b355e0e5dca43024ba9847fe73eb3"
+  },
+  {
+    "file": "v08-ready-before-after.png",
+    "bytes": 152885,
+    "sha256": "10b3a1ba2cd636f8e2420b4932bba77200dc854791d9c95435098cdd4bda2bb9"
+  },
+  {
+    "file": "v08-installed-before-after.png",
+    "bytes": 160390,
+    "sha256": "6203b821bbf38f69624f693eeea008447e97ed2299f937f0060803650bb69146"
+  }
+]

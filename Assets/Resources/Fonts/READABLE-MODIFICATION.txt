@@ -1,0 +1,26 @@
+ZTM Readable v0.8, derived from the OFL-licensed Inter fonts already supplied
+with Unity 6000.3.21f1. No software or system fonts were installed.
+Original copyright and complete SIL OFL 1.1 are in INTER-OFL.txt.
+Official project: https://rsms.me/inter/
+Changes: renamed family to ZTM Readable; mapped U+0030..U+0039 to the existing
+tnum glyphs so runtime UI counters have fixed-width digits without relying on
+unsupported CSS font-feature settings. Letter outlines and metrics unchanged.
+Regular and SemiBold are separate real font resources. Pixelify remains only
+for the game's pixel wordmark. Body, dialogue, controls and counters use the
+clearer face. No claim of endorsement by the original authors.
+[
+  {
+    "source_file": "X:\\Programs\\Unity\\6000.3.21f1\\Editor\\Data\\Resources\\Fonts\\Inter-Regular.ttf",
+    "source_sha256": "fc87daef80ebd62ca64506a7bcb999172fcb57f2ab3b022899da2f23fe3cb46c",
+    "output": "ZTMReadable-Regular.ttf",
+    "output_sha256": "9e8edef1bcce8dfdd7e6cf3656ffc54b08bcae12eac4486c76be799b37c64acf",
+    "tabular_advance": 1824
+  },
+  {
+    "source_file": "X:\\Programs\\Unity\\6000.3.21f1\\Editor\\Data\\Resources\\Fonts\\Inter-SemiBold.ttf",
+    "source_sha256": "f20a40a8443df2e20a547d31187fb747d32263854a19496e41d88f4204082caa",
+    "output": "ZTMReadable-Semibold.ttf",
+    "output_sha256": "559351392be752e5fb7fbbf52348837e5d524a09dc82761c3bff53991bb8c3b5",
+    "tabular_advance": 1888
+  }
+]

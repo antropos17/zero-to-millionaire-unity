@@ -1,0 +1,20 @@
+[
+  {
+    "file": "v08-spin-before-after.gif",
+    "source_frames": 71,
+    "encoded_frames": 71,
+    "duration_ms": 3550,
+    "identical_frames_may_be_combined_by_gif_encoder": true,
+    "sha256": "816df20c508624b01b3bfe2f41c2e31fbe118093cabde4e86467a0427ff1489c",
+    "decoded_all_frames": true
+  },
+  {
+    "file": "v08-repair-before-after.gif",
+    "source_frames": 23,
+    "encoded_frames": 22,
+    "duration_ms": 1150,
+    "identical_frames_may_be_combined_by_gif_encoder": true,
+    "sha256": "3021491a9fb30336a0b437d174df56a3c9a5e55ccae149895f8bff9c95a8d839",
+    "decoded_all_frames": true
+  }
+]

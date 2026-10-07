@@ -51,7 +51,7 @@ namespace ZeroToMillionaire
         private string saveError = "";
         private float toastUntil;
         private bool spinning;
-        private string saveNotice = "Прогресс хранится на устройстве";
+        private string saveNotice = "Saved on this computer · offline";
         private float spinReadyAt;
 
         public GameModel Model { get { return model; } }
@@ -152,12 +152,12 @@ namespace ZeroToMillionaire
             title.style.height=Length.Percent(100);title.style.marginRight=10;title.style.paddingLeft=6;
             var first=Text("ZERO TO",16,Cream);first.style.height=18;first.style.marginTop=3;
             var second=Text("MILLIONAIRE",20,PixelUi.Hex(0xffb758));second.style.height=22;
-            title.Add(first);title.Add(second);header.Add(title);
+            UiTypography.Brand(first);UiTypography.Brand(second);title.Add(first);title.Add(second);header.Add(title);
             var bank=Frame("cash-panel",PixelUi.Finish.Forest);Row(bank);bank.style.flexGrow=1;bank.style.flexBasis=0;
             bank.style.height=Length.Percent(100);bank.style.paddingLeft=7;bank.style.paddingRight=7;
             bank.Add(Icon(reelTextures[0],35));
             var bankInfo=new VisualElement();bankInfo.style.flexGrow=1;
-            var cashTitle=Text("МОНЕТЫ",13,Cream);cashTitle.style.height=15;bankInfo.Add(cashTitle);
+            var cashTitle=Text("COINS",13,Cream);cashTitle.style.height=15;bankInfo.Add(cashTitle);
             cashLabel=Text("0",26,Cream);cashLabel.name="cash-total";cashLabel.style.height=27;cashLabel.style.unityTextAlign=TextAnchor.MiddleRight;bankInfo.Add(cashLabel);
             bank.Add(bankInfo);header.Add(bank);main.Add(header);
 
@@ -165,7 +165,7 @@ namespace ZeroToMillionaire
             pathbar.style.justifyContent=Justify.SpaceBetween;pathbar.style.paddingLeft=10;pathbar.style.paddingRight=10;
             var connector=Box("milestone-line",PixelUi.Hex(0x887669));connector.style.position=Position.Absolute;
             connector.style.left=35;connector.style.right=35;connector.style.top=6;connector.style.height=2;pathbar.Add(connector);
-            string[] names={"СТАРТ","1тыс","10тыс","100тыс","1млн"};
+            string[] names={"START","1K","10K","100K","1M"};
             for(int i=0;i<5;i++) {
                 var step=new VisualElement { name="milestone-"+i };step.style.width=50;step.style.alignItems=Align.Center;
                 var dot=new VisualElement{name="milestone-dot-"+i};dot.style.width=13;dot.style.height=13;PixelUi.CashMarker(dot);
@@ -175,14 +175,14 @@ namespace ZeroToMillionaire
 
             room=Box("room",Cream);room.style.flexGrow=1;room.style.flexShrink=1;room.style.minHeight=140;
             room.style.overflow=Overflow.Hidden;room.RegisterCallback<GeometryChangedEvent>(_=>SizeRoomStage());main.Add(room);
-            roomLabel=Text("9м",15,Forest);roomLabel.name="room-area";roomLabel.style.position=Position.Absolute;
+            roomLabel=Text("9m",15,Forest);roomLabel.name="room-area";roomLabel.style.position=Position.Absolute;
             roomLabel.style.right=0;roomLabel.style.top=3;roomLabel.style.width=44;roomLabel.style.height=23;
             roomLabel.style.backgroundColor=Sand;roomLabel.style.unityTextAlign=TextAnchor.MiddleCenter;
             var square=new VisualElement{name="room-area-exponent",pickingMode=PickingMode.Ignore};square.style.position=Position.Absolute;square.style.right=4;square.style.top=2;square.style.width=6;square.style.height=10;
             square.generateVisualContent+=ctx=>{var painter=ctx.painter2D;painter.fillColor=Forest;int[] bits={7,1,7,4,7};for(int y=0;y<5;y++)for(int x=0;x<3;x++)if((bits[y]&(1<<(2-x)))!=0){float sx=x*2,sy=y*2;painter.BeginPath();painter.MoveTo(new Vector2(sx,sy));painter.LineTo(new Vector2(sx+2,sy));painter.LineTo(new Vector2(sx+2,sy+2));painter.LineTo(new Vector2(sx,sy+2));painter.ClosePath();painter.Fill();}};roomLabel.Add(square);room.Add(roomLabel);
-            menuButton=Action("МЕНЮ",ShowSettings,Forest);menuButton.name="menu";menuButton.style.fontSize=10;
+            menuButton=Action("MENU",ShowSettings,Forest);menuButton.name="menu";menuButton.style.fontSize=10;
             menuButton.style.position=Position.Absolute;menuButton.style.right=0;menuButton.style.top=29;menuButton.style.width=44;room.Add(menuButton);
-            roomProgress=Text("КОМНАТА 0/8",12,Forest);roomProgress.name="room-progress";
+            roomProgress=Text("ROOM 0/8",12,Forest);roomProgress.name="room-progress";
             roomProgress.style.position=Position.Absolute;roomProgress.style.left=0;roomProgress.style.top=3;
             roomProgress.style.height=20;roomProgress.style.width=128;roomProgress.style.backgroundColor=Cream;room.Add(roomProgress);
             roomTicks=new VisualElement{name="room-task-ticks"};Row(roomTicks);roomTicks.style.position=Position.Absolute;
@@ -192,7 +192,7 @@ namespace ZeroToMillionaire
             upgradeRows.style.paddingLeft=5;upgradeRows.style.paddingRight=5;upgradeRows.style.paddingTop=5;
             upgradeRows.style.marginBottom=3;main.Add(upgradeRows);
             feedbackLane=Frame("feedback-lane",PixelUi.Finish.Cream);feedbackLane.style.height=22;feedbackLane.style.flexShrink=0;feedbackLane.style.marginBottom=3;main.Add(feedbackLane);
-            feedbackHint=Text(RussianUi.RewardHint,UiTypography.Meta,Forest);feedbackHint.name="feedback-hint";feedbackHint.style.height=22;feedbackHint.style.unityTextAlign=TextAnchor.MiddleCenter;feedbackLane.Add(feedbackHint);
+            feedbackHint=Text(EnglishUi.RewardHint,UiTypography.Meta,Forest);feedbackHint.name="feedback-hint";feedbackHint.style.height=22;feedbackHint.style.unityTextAlign=TextAnchor.MiddleCenter;feedbackLane.Add(feedbackHint);
             grid=Frame("reels",PixelUi.Finish.Forest);grid.style.flexShrink=0;grid.style.paddingLeft=5;grid.style.paddingRight=5;
             grid.style.paddingTop=5;grid.style.paddingBottom=5;grid.style.marginBottom=5;
             for(int y=0;y<3;y++){
@@ -208,13 +208,13 @@ namespace ZeroToMillionaire
 
             spinRow=new VisualElement {name="spin-row"};Row(spinRow);spinRow.style.flexShrink=0;
             var bet=Frame("bet-panel",PixelUi.Finish.Forest);bet.style.width=108;bet.style.height=Length.Percent(100);bet.style.marginRight=7;
-            var betTitle=Text("СТАВКА",16,Cream);betTitle.style.unityTextAlign=TextAnchor.MiddleCenter;betTitle.style.height=22;bet.Add(betTitle);
+            var betTitle=Text("SPIN COST",14,Cream);betTitle.style.unityTextAlign=TextAnchor.MiddleCenter;betTitle.style.height=22;bet.Add(betTitle);
             var value=new VisualElement();Row(value);value.style.justifyContent=Justify.Center;value.style.height=30;
             value.Add(Icon(reelTextures[0],30));betLabel=Text("5",24,Cream);betLabel.style.marginLeft=5;value.Add(betLabel);bet.Add(value);
             freeLabel=Text("",12,PixelUi.Hex(0xffce76));freeLabel.name="bet-state";freeLabel.style.unityTextAlign=TextAnchor.MiddleCenter;freeLabel.style.flexGrow=1;bet.Add(freeLabel);spinRow.Add(bet);
             var actionArea=new VisualElement();actionArea.style.flexGrow=1;actionArea.style.height=Length.Percent(100);
-            spinButton=Action("СПИН",BeginSpin,Rust);spinButton.name="spin";spinButton.style.height=Length.Percent(100);spinButton.style.fontSize=45;
-            recoveryButton=Action("БЕСПЛАТНО",()=>{Recover();BeginSpin();},Rust);recoveryButton.name="recovery";recoveryButton.style.height=Length.Percent(100);recoveryButton.style.fontSize=27;
+            spinButton=Action("SPIN",BeginSpin,Rust);spinButton.name="spin";spinButton.style.height=Length.Percent(100);spinButton.style.fontSize=45;
+            recoveryButton=Action("FREE SPIN",()=>{Recover();BeginSpin();},Rust);recoveryButton.name="recovery";recoveryButton.style.height=Length.Percent(100);recoveryButton.style.fontSize=27;
             actionArea.Add(spinButton);actionArea.Add(recoveryButton);spinRow.Add(actionArea);main.Add(spinRow);
 
             toast=Frame("toast",PixelUi.Finish.Forest);toast.style.position=Position.Absolute;toast.style.left=0;toast.style.right=0;
@@ -224,24 +224,24 @@ namespace ZeroToMillionaire
             rewardFly.style.width=88;rewardFly.style.height=22;rewardFly.style.top=0;rewardFly.pickingMode=PickingMode.Ignore;
             rewardIcon=Icon(reelTextures[1],18);rewardIcon.style.marginLeft=3;rewardAmount=Text("",UiTypography.Meta,Cream);rewardAmount.style.marginLeft=3;rewardFly.Add(rewardIcon);rewardFly.Add(rewardAmount);
             rewardFly.style.display=DisplayStyle.None;feedbackLane.Add(rewardFly);
-            settings=Modal("settings");settings.Add(Text("МОЯ КОМНАТА",23,PixelUi.Hex(0xffc472)));
-            saveLabel=Text("Прогресс хранится на устройстве",UiTypography.Counter,Cream);saveLabel.name="save-status";settings.Add(saveLabel);
-            var help=Text(RussianUi.Help,UiTypography.Body,Cream);help.name="menu-help";help.style.unityFontStyleAndWeight=FontStyle.Normal;settings.Add(help);
-            var replay=Action("Повторить обучение",()=>{HideSettings();dialogue.Replay();},Forest);replay.name="tutorial-replay";replay.style.marginTop=8;settings.Add(replay);
-            motionToggle=Action(presentation.ReducedMotion?"АНИМАЦИЯ: СПОКОЙНАЯ":"АНИМАЦИЯ: ПОЛНАЯ",ToggleMotion,Forest);motionToggle.name="motion-toggle";motionToggle.style.marginTop=8;motionToggle.Q<Label>("button-caption").style.fontSize=14;settings.Add(motionToggle);
-            var reset=Action("НАЧАТЬ ЗАНОВО",ShowReset,Rust);reset.name="reset";reset.style.marginTop=14;settings.Add(reset);
-            var close=Action("ВЕРНУТЬСЯ В КОМНАТУ",HideSettings,Forest);close.name="close-settings";close.style.marginTop=8;settings.Add(close);
+            settings=Modal("settings");settings.Add(Text("MY ROOM",23,PixelUi.Hex(0xffc472)));
+            saveLabel=Text("Saved on this computer · offline",UiTypography.Counter,Cream);saveLabel.name="save-status";settings.Add(saveLabel);
+            var help=Text(EnglishUi.Help,UiTypography.Body,Cream);help.name="menu-help";UiTypography.Apply(help,UiTypography.Body,Cream,false);settings.Add(help);
+            var replay=Action("Replay tutorial",()=>{HideSettings();dialogue.Replay();},Forest);replay.name="tutorial-replay";replay.style.marginTop=8;settings.Add(replay);
+            motionToggle=Action(presentation.ReducedMotion?"ANIMATION: CALM":"ANIMATION: FULL",ToggleMotion,Forest);motionToggle.name="motion-toggle";motionToggle.style.marginTop=8;motionToggle.Q<Label>("button-caption").style.fontSize=14;settings.Add(motionToggle);
+            var reset=Action("START AGAIN",ShowReset,Rust);reset.name="reset";reset.style.marginTop=14;settings.Add(reset);
+            var close=Action("BACK TO ROOM",HideSettings,Forest);close.name="close-settings";close.style.marginTop=8;settings.Add(close);
             settings.style.display=DisplayStyle.None;root.Add(settings);
-            confirmation=Modal("reset-confirmation");confirmation.Add(Text("НАЧАТЬ ЗАНОВО?",22,PixelUi.Hex(0xffc472)));
-            confirmation.Add(Text("Монеты, фрагменты и улучшения будут сброшены. Вы снова получите 3 бесплатных спина.",14,Cream));
+            confirmation=Modal("reset-confirmation");confirmation.Add(Text("START AGAIN?",22,PixelUi.Hex(0xffc472)));
+            confirmation.Add(Text("This resets your coins, parts and upgrades. You will get 3 free spins again.",14,Cream));
             var controls=new VisualElement();Row(controls);controls.style.marginTop=14;
-            var cancel=Action("ОТМЕНА",HideReset,Forest);cancel.name="keep-room";cancel.style.flexGrow=1;cancel.style.marginRight=8;
-            var confirm=Action("СБРОСИТЬ",ResetConfirmed,Rust);confirm.name="confirm-reset";confirm.style.flexGrow=1;
+            var cancel=Action("KEEP ROOM",HideReset,Forest);cancel.name="keep-room";cancel.style.flexGrow=1;cancel.style.marginRight=8;
+            var confirm=Action("RESET",ResetConfirmed,Rust);confirm.name="confirm-reset";confirm.style.flexGrow=1;
             controls.Add(cancel);controls.Add(confirm);confirmation.Add(controls);root.Add(confirmation);confirmation.style.display=DisplayStyle.None;
-            saveRecovery=Modal("save-recovery");saveRecovery.Add(Text("СОХРАНЕНИЕ НЕДОСТУПНО",19,PixelUi.Hex(0xffc472)));
-            saveRecovery.Add(Text("Прогресс пока не удалось прочитать. Исходные файлы сохранены, новые записи заблокированы. Попробуйте загрузить снова. Начало заново возможно только после подтверждения; исходные файлы останутся отдельными копиями.",14,Cream));
-            var retry=Action("ПОВТОРИТЬ ЗАГРУЗКУ",RetryLoad,Forest);retry.name="retry-load";retry.style.marginTop=10;saveRecovery.Add(retry);
-            var fresh=Action("НАЧАТЬ ЗАНОВО",ShowReset,Rust);fresh.name="recovery-reset";fresh.style.marginTop=8;saveRecovery.Add(fresh);
+            saveRecovery=Modal("save-recovery");saveRecovery.Add(Text("SAVE UNAVAILABLE",19,PixelUi.Hex(0xffc472)));
+            saveRecovery.Add(Text("Your progress could not be read. Original files are protected and new saves are paused. Try loading again. Starting over requires confirmation and keeps a copy of the original files.",14,Cream));
+            var retry=Action("RETRY LOAD",RetryLoad,Forest);retry.name="retry-load";retry.style.marginTop=10;saveRecovery.Add(retry);
+            var fresh=Action("START AGAIN",ShowReset,Rust);fresh.name="recovery-reset";fresh.style.marginTop=8;saveRecovery.Add(fresh);
             saveRecovery.style.display=DisplayStyle.None;root.Add(saveRecovery);
             root.RegisterCallback<GeometryChangedEvent>(_=>ApplySafeArea());
         }
@@ -257,12 +257,12 @@ namespace ZeroToMillionaire
             saveNotice=session.Notice;
             if(successful || (session.Notice=="Saved locally · offline" && string.IsNullOrEmpty(session.Error))) saveError="";
             if(!string.IsNullOrEmpty(session.Error)) saveError=session.Error;
-            if(saveLabel!=null){saveLabel.text=RussianUi.SaveNotice(saveNotice,!string.IsNullOrEmpty(saveError));saveLabel.style.color=string.IsNullOrEmpty(saveError)?Cream:PixelUi.Hex(0xffce76);}
+            if(saveLabel!=null){saveLabel.text=EnglishUi.SaveNotice(saveNotice,!string.IsNullOrEmpty(saveError));saveLabel.style.color=string.IsNullOrEmpty(saveError)?Cream:PixelUi.Hex(0xffce76);}
         }
         bool ModalOpen=>settings.style.display==DisplayStyle.Flex||confirmation.style.display==DisplayStyle.Flex||saveRecovery.style.display==DisplayStyle.Flex;
-        void OnDialogueChanged(){saveNotice=session.Notice;Refresh();if(!string.IsNullOrEmpty(session.Error))ShowToast("НЕ СОХРАНЕНО — ПОВТОРИТЕ");}
-        void RetryLoad(){if(!session.TryReload()){UpdateSaveStatus();saveRecovery.Q<Button>("retry-load").Q<Label>("button-caption").text="НЕ ПРОЧИТАНО. ПОВТОРИТЬ";return;}saveRecovery.style.display=DisplayStyle.None;main.SetEnabled(true);input.Close(saveRecovery);UpdateSaveStatus(true);dialogue.ResetUi();drawnQuest=-2;drawnRoom=-1;var s=model.Snapshot;wanderer=new RoomWanderer(new FloorPoint(s.heroineU,s.heroineV),new SeededRandom(Environment.TickCount));Refresh();}
-        void ToggleMotion(){if(!presentation.Toggle()){ShowToast("НАСТРОЙКА НЕ СОХРАНЕНА");return;}PixelUi.ReducedMotion=presentation.ReducedMotion;ButtonText(motionToggle,presentation.ReducedMotion?"АНИМАЦИЯ: СПОКОЙНАЯ":"АНИМАЦИЯ: ПОЛНАЯ",14);effects.Clear();}
+        void OnDialogueChanged(){saveNotice=session.Notice;Refresh();if(!string.IsNullOrEmpty(session.Error))ShowToast("NOT SAVED · PLEASE RETRY");}
+        void RetryLoad(){if(!session.TryReload()){UpdateSaveStatus();saveRecovery.Q<Button>("retry-load").Q<Label>("button-caption").text="LOAD FAILED · RETRY";return;}saveRecovery.style.display=DisplayStyle.None;main.SetEnabled(true);input.Close(saveRecovery);UpdateSaveStatus(true);dialogue.ResetUi();drawnQuest=-2;drawnRoom=-1;var s=model.Snapshot;wanderer=new RoomWanderer(new FloorPoint(s.heroineU,s.heroineV),new SeededRandom(Environment.TickCount));Refresh();}
+        void ToggleMotion(){if(!presentation.Toggle()){ShowToast("SETTING NOT SAVED");return;}PixelUi.ReducedMotion=presentation.ReducedMotion;ButtonText(motionToggle,presentation.ReducedMotion?"ANIMATION: CALM":"ANIMATION: FULL",14);effects.Clear();}
         void ShowSettings(){if(session.RecoveryRequired||confirmation.style.display==DisplayStyle.Flex)return;if(spinning){pendingMenu=true;reelMotion.Skip();return;}HideToast();UpdateSaveStatus();main.SetEnabled(false);settings.style.display=DisplayStyle.Flex;settings.BringToFront();input.Open(settings,settings.Q<Button>("tutorial-replay"),HideSettings,menuButton);}
         void HideSettings(){settings.style.display=DisplayStyle.None;main.SetEnabled(!session.RecoveryRequired);input?.Close(settings);}
         void ShowToast(string text){statusLabel.text=text;statusLabel.style.marginLeft=rewardPending||rewardFly.style.display==DisplayStyle.Flex?94:0;toastUntil=Time.unscaledTime+2;feedbackHint.style.display=DisplayStyle.None;toast.style.display=DisplayStyle.Flex;toast.BringToFront();}
@@ -316,7 +316,7 @@ namespace ZeroToMillionaire
                 placeholder.style.unityTextAlign = TextAnchor.MiddleCenter;
                 placeholder.style.height = Length.Percent(100); Border(placeholder); roomStage.Add(placeholder);
             }
-            roomLabel.text = "9м";
+            roomLabel.text = "9m";
         }
         void AddFurniture(string filename, FloorPoint feet, float width, float pivotY)
         {
@@ -410,16 +410,16 @@ namespace ZeroToMillionaire
             {
             PlayerState s=spinDisplay??model.Snapshot;
             if(session.RecoveryRequired){main.SetEnabled(false);if(confirmation.style.display!=DisplayStyle.Flex&&saveRecovery.style.display!=DisplayStyle.Flex){saveRecovery.style.display=DisplayStyle.Flex;saveRecovery.BringToFront();input.Open(saveRecovery,saveRecovery.Q<Button>("retry-load"),null,menuButton);}}
-            feedbackHint.text=model.Complete?"ВАША КОМНАТА ГОТОВА":RussianUi.RewardHint;
+            feedbackHint.text=model.Complete?"YOUR ROOM IS COMPLETE":EnglishUi.RewardHint;
             cashLabel.text=s.cash.ToString();cashLabel.style.fontSize=s.cash.ToString().Length>6?16:26;
             UpdateSaveStatus();betLabel.text=s.freeSpins>0||model.CanRecover?"0":"5";
-            freeLabel.text=spinning?SpinStatus:model.Complete?"ВСЁ ГОТОВО":model.ActiveQuest>=0&&model.CanBuy(model.ActiveQuest)?"МОЖНО КУПИТЬ":s.freeSpins>0?"БЕСПЛАТНО: "+s.freeSpins:model.CanRecover?"БЕСПЛАТНО":"ЦЕНА СПИНА";
+            freeLabel.text=spinning?SpinStatus:model.Complete?"ALL DONE":model.ActiveQuest>=0&&model.CanBuy(model.ActiveQuest)?"PRESS BUY":s.freeSpins>0?"FREE: "+s.freeSpins:model.CanRecover?"FREE SPIN":"COINS PER SPIN";
             if(model.Complete)betLabel.text="0";
-            spinButton.SetEnabled(spinning||model.CanSpin);ButtonText(spinButton,model.Complete?"ГОТОВО":spinning?(SettledReward?"ПРОПУСТИТЬ":"СТОП"):"СПИН",spinning?(SettledReward?24:32):model.Complete?26:45);
-            ButtonText(menuButton,"МЕНЮ",12);ButtonText(recoveryButton,"БЕСПЛАТНО",22);
+            spinButton.SetEnabled(spinning||model.CanSpin);ButtonText(spinButton,model.Complete?"DONE":spinning?(SettledReward?"SKIP":"STOP"):"SPIN",spinning?(SettledReward?24:32):model.Complete?26:45);
+            ButtonText(menuButton,"MENU",11);ButtonText(recoveryButton,"FREE SPIN",23);
             spinButton.style.display=model.CanRecover?DisplayStyle.None:DisplayStyle.Flex;
             recoveryButton.style.display=model.CanRecover?DisplayStyle.Flex:DisplayStyle.None;recoveryButton.SetEnabled(!spinning);
-            roomProgress.text="КОМНАТА "+model.PurchasedCount+"/8";roomTicks.Clear();
+            roomProgress.text="ROOM "+model.PurchasedCount+"/8";roomTicks.Clear();
             for(int i=0;i<8;i++){
                 var tick=Box("room-task-"+i,s.purchased[i]?PixelUi.Hex(0xf6ad38):Sand);tick.style.flexGrow=1;tick.style.height=10;tick.style.marginRight=2;
                 if(s.purchased[i])tick.generateVisualContent+=ctx=>{var p=ctx.painter2D;p.strokeColor=Forest;p.lineWidth=1.7f;p.BeginPath();p.MoveTo(new Vector2(3,5));p.LineTo(new Vector2(6,8));p.LineTo(new Vector2(10,2));p.Stroke();};
@@ -444,8 +444,8 @@ namespace ZeroToMillionaire
             if(index==drawnQuest&&s.cash==drawnQuestCash&&currentParts==drawnQuestParts&&nextIndex==drawnQuestNext){
                 if(index>=0){
                     var cachedDefinition=model.Definition(index);bool cachedReady=model.CanBuy(index);
-                    string cachedNeed=spinning?SpinStatus:cachedReady?"МОЖНО КУПИТЬ":currentParts>=cachedDefinition.FragmentGoal?"НУЖНЫ МОНЕТЫ":s.cash>=cachedDefinition.CashPrice?"НУЖНЫ ФР.":"ФР. + МОНЕТЫ";
-                    upgradeRows.Q<Label>("quest-status").text="ЗАДАНИЕ "+(index+1)+"/8 • "+cachedNeed;
+                    string cachedNeed=spinning?SpinStatus:cachedReady?"READY":currentParts>=cachedDefinition.FragmentGoal?"NEED COINS":s.cash>=cachedDefinition.CashPrice?"NEED PARTS":"COINS + PARTS";
+                    upgradeRows.Q<Label>("quest-status").text=""+(index+1)+"/8 • "+cachedNeed;
                     upgradeRows.Q<Button>("buy-"+index).SetEnabled(!spinning&&cachedReady);
                 }
                 return;
@@ -453,20 +453,20 @@ namespace ZeroToMillionaire
             drawnQuest=index;drawnQuestCash=s.cash;drawnQuestParts=currentParts;drawnQuestNext=nextIndex;
             upgradeRows.Clear();
             if(index<0){
-                var done=Text("8/8 ЗАДАНИЙ ВЫПОЛНЕНО",14,Forest);done.style.height=21;done.style.unityTextAlign=TextAnchor.MiddleCenter;upgradeRows.Add(done);
+                var done=Text("8/8 UPGRADES COMPLETE",14,Forest);done.style.height=21;done.style.unityTextAlign=TextAnchor.MiddleCenter;upgradeRows.Add(done);
                 completion=Frame("completion",PixelUi.Finish.Forest);completion.style.height=44;
-                var title=Text("КОМНАТА ГОТОВА",23,PixelUi.Hex(0xffbf5c));title.style.flexGrow=1;title.style.unityTextAlign=TextAnchor.MiddleCenter;completion.Add(title);upgradeRows.Add(completion);
-                var end=Text("Маленькая комната, которая стала вашей.",13,Forest);end.style.height=21;end.style.unityTextAlign=TextAnchor.MiddleCenter;upgradeRows.Add(end);
-                var nextDone=Text("УРОВЕНЬ ЗАВЕРШЁН",11,Forest);nextDone.name="next-quest";nextDone.style.unityTextAlign=TextAnchor.MiddleCenter;upgradeRows.Add(nextDone);return;
+                var title=Text("ROOM COMPLETE",21,PixelUi.Hex(0xffbf5c));title.style.flexGrow=1;title.style.unityTextAlign=TextAnchor.MiddleCenter;completion.Add(title);upgradeRows.Add(completion);
+                var end=Text("A small room to call your own.",13,Forest);end.style.height=21;end.style.unityTextAlign=TextAnchor.MiddleCenter;upgradeRows.Add(end);
+                var nextDone=Text("Level complete",11,Forest);nextDone.name="next-quest";nextDone.style.unityTextAlign=TextAnchor.MiddleCenter;upgradeRows.Add(nextDone);return;
             }
             var d=model.Definition(index);bool partsFull=s.fragments[index]>=d.FragmentGoal,cashFull=s.cash>=d.CashPrice,ready=model.CanBuy(index);
             var row=new VisualElement{name="active-quest"};Row(row);row.style.height=74;row.style.flexShrink=0;
             var well=Box("quest-item-well",PixelUi.Hex(0xc9a77c));well.style.width=48;well.style.height=55;well.style.marginRight=5;
             well.Add(Icon(reelTextures[index+1],47));row.Add(well);
             var info=new VisualElement();info.style.flexGrow=1;info.style.flexBasis=0;info.style.marginRight=4;
-            string need=spinning?SpinStatus:ready?"МОЖНО КУПИТЬ":partsFull?"НУЖНЫ МОНЕТЫ":cashFull?"НУЖНЫ ФР.":"ФР. + МОНЕТЫ";
-            var eyebrow=Text("ЗАДАНИЕ "+(index+1)+"/8 • "+need,UiTypography.Meta,Forest);eyebrow.name="quest-status";eyebrow.style.height=14;eyebrow.style.whiteSpace=WhiteSpace.NoWrap;info.Add(eyebrow);
-            var titleLabel=Text(RussianUi.QuestTitle(index),UiTypography.Title,Forest);titleLabel.name="quest-title";titleLabel.style.height=20;titleLabel.style.whiteSpace=WhiteSpace.NoWrap;info.Add(titleLabel);
+            string need=spinning?SpinStatus:ready?"READY":partsFull?"NEED COINS":cashFull?"NEED PARTS":"COINS + PARTS";
+            var eyebrow=Text(""+(index+1)+"/8 • "+need,UiTypography.Meta,Forest);eyebrow.name="quest-status";eyebrow.style.height=14;eyebrow.style.whiteSpace=WhiteSpace.NoWrap;info.Add(eyebrow);
+            var titleLabel=Text(EnglishUi.QuestTitle(index),UiTypography.Title,Forest);titleLabel.name="quest-title";titleLabel.style.height=20;titleLabel.style.whiteSpace=WhiteSpace.NoWrap;info.Add(titleLabel);
             var parts=new VisualElement();Row(parts);parts.style.height=19;
             var partsTrack=new VisualElement{name="progress-track-"+index};Row(partsTrack);partsTrack.style.flexGrow=1;partsTrack.style.height=10;
             for(int block=0;block<d.FragmentGoal;block++){
@@ -478,15 +478,15 @@ namespace ZeroToMillionaire
             var cash=new VisualElement();Row(cash);cash.style.height=19;cash.Add(Icon(reelTextures[0],17));
             var cashTrack=Box("cash-progress-track",Sand);cashTrack.style.height=7;cashTrack.style.flexGrow=1;cashTrack.style.marginLeft=2;
             var cashFill=Box("cash-progress-fill",cashFull?PixelUi.Hex(0x477650):PixelUi.Hex(0xf6ad38));cashFill.style.width=Length.Percent(Mathf.Clamp01((float)s.cash/d.CashPrice)*100);cashFill.style.height=Length.Percent(100);cashTrack.Add(cashFill);cash.Add(cashTrack);
-            var cashCount=Text(s.cash+"/"+d.CashPrice,UiTypography.Counter,Forest);cashCount.name="cash-count";cashCount.style.width=s.cash.ToString().Length>6?112:70;cashCount.style.flexShrink=0;cashCount.style.whiteSpace=WhiteSpace.NoWrap;cashCount.style.unityTextAlign=TextAnchor.MiddleRight;cash.Add(cashCount);info.Add(cash);row.Add(info);
-            var buy=Action("КУПИТЬ",()=>Buy(index),ready?Rust:Color.gray);buy.name="buy-"+index;
+            var cashCount=Text(s.cash+"/"+d.CashPrice,UiTypography.Counter,Forest);cashCount.name="cash-count";cashCount.style.width=s.cash.ToString().Length>6?124:70;cashCount.style.flexShrink=0;cashCount.style.whiteSpace=WhiteSpace.NoWrap;cashCount.style.unityTextAlign=TextAnchor.MiddleRight;cash.Add(cashCount);info.Add(cash);row.Add(info);
+            var buy=Action("BUY",()=>Buy(index),ready?Rust:Color.gray);buy.name="buy-"+index;
             buy.style.width=77;buy.style.height=48;buy.style.flexShrink=0;buy.style.paddingLeft=buy.style.paddingRight=2;
             var caption=buy.Q<Label>("button-caption");caption.style.fontSize=UiTypography.SmallAction;caption.style.whiteSpace=WhiteSpace.Normal;
             buy.SetEnabled(!spinning&&ready);row.Add(buy);upgradeRows.Add(row);
             var preview=new VisualElement{name="next-quest"};Row(preview);preview.style.height=24;
             preview.style.borderTopWidth=1;preview.style.borderTopColor=Sand;
-            if(nextIndex>=0){preview.Add(Icon(reelTextures[nextIndex+1],21));var nextTitle=Text("ДАЛЕЕ: "+RussianUi.QuestTitle(nextIndex),12,Forest);nextTitle.style.flexGrow=1;preview.Add(nextTitle);preview.Add(Text("ЗАКРЫТО",11,Forest));}
-            else{var final=Text("ПОСЛЕДНЕЕ ЗАДАНИЕ ЭТОГО УРОВНЯ",11,Forest);preview.Add(final);}
+            if(nextIndex>=0){preview.Add(Icon(reelTextures[nextIndex+1],21));var nextTitle=Text("NEXT: "+EnglishUi.QuestTitle(nextIndex),12,Forest);nextTitle.style.flexGrow=1;nextTitle.style.marginLeft=4;preview.Add(nextTitle);preview.Add(Text("LOCKED",11,Forest));}
+            else{var final=Text("The final upgrade for this room",11,Forest);preview.Add(final);}
             upgradeRows.Add(preview);
 
             }
@@ -495,7 +495,7 @@ namespace ZeroToMillionaire
         {
             rewardQuest=-1;for(int i=0;i<result.Fragments.Length;i++)if(result.Fragments[i]>0){rewardQuest=i;rewardParts=result.Fragments[i];break;}
             if(rewardQuest<0)return;
-            SymbolVisual.SetTexture(rewardIcon,reelTextures[rewardQuest+1]);rewardAmount.text="+"+rewardParts+" ФР.";rewardPending=true;
+            SymbolVisual.SetTexture(rewardIcon,reelTextures[rewardQuest+1]);rewardAmount.text="+"+rewardParts+" parts";rewardPending=true;
             statusLabel.style.marginLeft=94;
         }
         void UpdateRewardFlight()
@@ -505,11 +505,11 @@ namespace ZeroToMillionaire
             if(rewardFly.style.display==DisplayStyle.None)return;
             float t=(Time.unscaledTime-rewardStarted)/(presentation.ReducedMotion?.45f:1.25f);
             var track=root.Q<VisualElement>("progress-track-"+rewardQuest);
-            if(t>=1){rewardFly.style.display=DisplayStyle.None;if(track!=null)track.style.opacity=1;return;}
+            if(t>=1){rewardFly.style.display=DisplayStyle.None;if(track!=null){track.style.opacity=1;track.style.scale=new Scale(Vector3.one);}return;}
             // Rewards remain in their own lane. Only the destination progress
             // bar pulses; neither the room nor the task illustration is covered.
             rewardFly.style.left=presentation.ReducedMotion?2:2+5*Mathf.Sin(Mathf.Clamp01(t*2)*Mathf.PI);rewardFly.style.top=0;
-            if(track!=null)track.style.opacity=presentation.ReducedMotion?1:.65f+.35f*Mathf.Abs(Mathf.Cos(t*Mathf.PI*3));
+            if(track!=null){track.style.opacity=1;track.style.scale=new Scale(new Vector3(1,presentation.ReducedMotion?1:1+.16f*Mathf.Sin(t*Mathf.PI),1));}
         }
         void SetCell(int i, int symbol)
         {
@@ -528,7 +528,7 @@ namespace ZeroToMillionaire
             }
         }
         bool SettledReward=>reelMotion!=null&&(reelMotion.Phase=="match"||reelMotion.Phase=="reward");
-        string SpinStatus=>SettledReward?"НАГРАДА":"КРУТИТСЯ";
+        string SpinStatus=>SettledReward?"REWARD":"SPINNING";
         void BeginSpin()
         {
             if(ModalOpen)return;
@@ -539,30 +539,30 @@ namespace ZeroToMillionaire
         IEnumerator SpinRoutine()
         {
             PlayerState before=model.Snapshot;SpinResult result;
-            if(!session.TryBeginSpin(out result)){UpdateSaveStatus();if(!string.IsNullOrEmpty(session.Error))ShowToast("НЕ СОХРАНЕНО — ПОВТОРИТЕ");Refresh();yield break;}
+            if(!session.TryBeginSpin(out result)){UpdateSaveStatus();if(!string.IsNullOrEmpty(session.Error))ShowToast("NOT SAVED · PLEASE RETRY");Refresh();yield break;}
             UpdateSaveStatus(true);spinning=true;spinDisplay=before;spinDisplay.cash-=result.Cost;spinDisplay.freeSpins=model.Snapshot.freeSpins;Refresh();
             int fromCash=spinDisplay.cash,toCash=model.Snapshot.cash;
             yield return reelMotion.Play(result,presentation.ReducedMotion,
-                ()=>{spinDisplay=null;Refresh();cashLabel.text=fromCash.ToString();ShowToast("+"+result.Payout+" "+RussianUi.Coins(result.Payout));StartRewardFlight(result);for(int i=0;i<15;i++)if(result.Grid[i]>0&&result.Fragments[result.Grid[i]-1]>0){effects.Reward(cells[i],root.Q<VisualElement>("progress-track-"+(result.Grid[i]-1)),presentation.ReducedMotion);break;}},
+                ()=>{spinDisplay=null;Refresh();cashLabel.text=fromCash.ToString();ShowToast("+"+result.Payout+" "+EnglishUi.Coins(result.Payout));StartRewardFlight(result);for(int i=0;i<15;i++)if(result.Grid[i]>0&&result.Fragments[result.Grid[i]-1]>0){effects.Reward(cells[i],root.Q<VisualElement>("progress-track-"+(result.Grid[i]-1)),presentation.ReducedMotion);break;}},
                 t=>{long value=(long)fromCash+(long)Math.Round(((long)toCash-fromCash)*t);cashLabel.text=value.ToString();});
-            session.FinishSpinPresentation();spinning=false;spinDisplay=null;spinReadyAt=Time.unscaledTime+.18f;Refresh();ShowToast("+"+result.Payout+" "+RussianUi.Coins(result.Payout));
+            session.FinishSpinPresentation();spinning=false;spinDisplay=null;spinReadyAt=Time.unscaledTime+.18f;Refresh();ShowToast("+"+result.Payout+" "+EnglishUi.Coins(result.Payout));
             if(pendingMenu){pendingMenu=false;ShowSettings();}
         }
         void Buy(int index)
         {
             Texture2D oldBackground=roomStage?.Q<Image>()?.image as Texture2D;
-            if(!session.TryPurchase(index)){UpdateSaveStatus();if(!string.IsNullOrEmpty(session.Error))ShowToast("НЕ СОХРАНЕНО — ПОВТОРИТЕ");return;}
+            if(!session.TryPurchase(index)){UpdateSaveStatus();if(!string.IsNullOrEmpty(session.Error))ShowToast("NOT SAVED · PLEASE RETRY");return;}
             UpdateSaveStatus(true);
             rewardPending=false;rewardFly.style.display=DisplayStyle.None;
-            ShowToast(model.Complete?"8/8 — КОМНАТА ГОТОВА":"ЗАДАНИЕ "+model.PurchasedCount+"/8 — ГОТОВО");
+            ShowToast(model.Complete?"8/8 · ROOM COMPLETE":""+model.PurchasedCount+"/8 · INSTALLED");
             page = model.Complete ? 3 : model.PurchasedCount / 2;
             Refresh();string target=index<3?(index==0?"patches":index==1?"surfaces":"wallpaper"):index==3?"door-overlay":index==4?"window-overlay":index==5?"mattress":index==6?"lamp":"stool";
-            var item=roomStage.Query<Image>().Where(image=>image.image!=null&&image.image.name==target).First();effects.Reveal(item,index<3?oldBackground:null,roomStage,presentation.ReducedMotion);
+            var item=roomStage.Query<Image>().Where(image=>image.image!=null&&image.image.name==target).First();effects.Reveal(item,index<3?oldBackground:null,roomStage,presentation.ReducedMotion,index>=5);
         }
         void Recover()
         {
-            if(!session.TryRecover()){UpdateSaveStatus();if(!string.IsNullOrEmpty(session.Error))ShowToast("НЕ СОХРАНЕНО — ПОВТОРИТЕ");return;}
-            UpdateSaveStatus(true);ShowToast("БЕСПЛАТНЫЙ СПИН");Refresh();
+            if(!session.TryRecover()){UpdateSaveStatus();if(!string.IsNullOrEmpty(session.Error))ShowToast("NOT SAVED · PLEASE RETRY");return;}
+            UpdateSaveStatus(true);ShowToast("FREE SPIN");Refresh();
         }
         bool Persist(){bool saved=session.Save();UpdateSaveStatus(saved);return saved;}
         void ShowReset()
@@ -588,12 +588,12 @@ namespace ZeroToMillionaire
         void ResetConfirmed()
         {
             if (spinning||confirmation.style.display!=DisplayStyle.Flex) return;
-            if(!session.TryReset()){UpdateSaveStatus();ShowToast("НЕ СОХРАНЕНО — ПОВТОРИТЕ");HideReset();return;}
+            if(!session.TryReset()){UpdateSaveStatus();ShowToast("NOT SAVED · PLEASE RETRY");HideReset();return;}
             rewardPending=false;rewardQuest=-1;rewardFly.style.display=DisplayStyle.None;
             reelMotion.Clear();effects.Clear();spinDisplay=null;pendingMenu=false;PixelUi.SetPressed(spinButton,false);
             page=0;UpdateSaveStatus(true);dialogue.ResetUi();drawnQuest=-2;
             wanderer = new RoomWanderer(new FloorPoint(1.85f, 1.45f), new SeededRandom(Environment.TickCount)); drawnRoom = -1;
-            CloseReset(true); Refresh(); ShowToast("НОВОЕ НАЧАЛО • 3 БЕСПЛАТНЫХ СПИНА");
+            CloseReset(true); Refresh(); ShowToast("FRESH START · 3 FREE SPINS");
         }
         void OnApplicationFocus(bool focused){if(!focused)input?.ReleaseKeys();}
         void OnApplicationPause(bool paused) { if (paused && model != null) Persist(); }
