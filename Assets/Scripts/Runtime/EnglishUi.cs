@@ -4,7 +4,8 @@ namespace ZeroToMillionaire
     public static class EnglishUi
     {
         public const string RewardHint = "1 matching symbol = 1 part";
-        public const string Help = "Eight upgrades, one small room. Spins give coins and parts for your current task. Extra symbols become coins.\n\nCollect BOTH the parts and coins shown, then press BUY to install the upgrade.\n\nA spin costs 5 coins and gives at least 12. Your first 3 spins are free. If you have fewer than 5 coins, FREE SPIN keeps you going.";
+        public const string StakeRules = "Paid stakes cost 5 / 10 / 15 coins. All coin rewards multiply by 1x / 2x / 3x. Parts stay one per matching icon.\n\nFree starter and recovery spins always cost 0 and give 1x rewards. Choose a lower stake if coins are short.";
+        public const string Help = "Eight upgrades, one small room. Collect BOTH coins and matching parts, then BUY to install. SHOP previews every room improvement and its unlock.\n\nTap STAKE for 1x / 2x / 3x: costs 5 / 10 / 15 coins, coin rewards scale, parts stay 1 per matching icon. Free spins always give 1x rewards. Below 5 coins, FREE SPIN keeps you going.";
         static readonly string[] Titles = {
             "Patch floor", "Repair walls", "Wallpaper", "Repair door",
             "Repair window", "Add mattress", "Add lamp", "Add stool"

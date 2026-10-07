@@ -31,7 +31,7 @@ namespace ZeroToMillionaire.Tests
   [Test]public void Schema3MigrationPreservesAllBalancesAndOutOfOrderOwnership(){
    var s=new PlayerState{version=3,cash=123,spins=9,recoveries=2,heroineU=1.9f,heroineV=2.3f};s.purchased[5]=true;s.fragments[2]=100;s.quests=Economy.QuestRecords(s);
    Assert.IsTrue(GameModel.IsPersistedValid(s,out _));var migrated=GameModel.Migrate(s);
-   Assert.AreEqual(5,migrated.version);Assert.AreEqual(s.cash,migrated.cash);Assert.AreEqual(s.spins,migrated.spins);Assert.AreEqual(s.recoveries,migrated.recoveries);Assert.AreEqual(s.freeSpins,migrated.freeSpins);
+   Assert.AreEqual(Economy.SaveVersion,migrated.version);Assert.AreEqual(s.cash,migrated.cash);Assert.AreEqual(s.spins,migrated.spins);Assert.AreEqual(s.recoveries,migrated.recoveries);Assert.AreEqual(s.freeSpins,migrated.freeSpins);
    CollectionAssert.AreEqual(s.fragments,migrated.fragments);CollectionAssert.AreEqual(s.purchased,migrated.purchased);Assert.IsTrue(RoomGeometry.IsFree(new FloorPoint(migrated.heroineU,migrated.heroineV)));
    Assert.LessOrEqual(FloorPoint.Distance(new FloorPoint(s.heroineU,s.heroineV),new FloorPoint(migrated.heroineU,migrated.heroineV)),.75f);
   }

@@ -60,6 +60,16 @@ namespace ZeroToMillionaire
                 return candidate.TryBuy(index)&&Publish(candidate);
             }
         }
+        public bool TrySelectStake(int value)
+        {
+            lock(gate){
+                Error="";
+                if(presentingSpin || RecoveryRequired || !Economy.ValidStake(value)) return false;
+                if(model.SelectedStake == value) return true;
+                var candidate=new GameModel(model.Snapshot);
+                return candidate.TrySelectStake(value) && Publish(candidate);
+            }
+        }
         public bool TryRecover()
         {
             lock(gate){

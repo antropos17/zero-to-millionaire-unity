@@ -12,6 +12,7 @@ class JsonCodec : IStateCodec
         using(var doc=JsonDocument.Parse(text)){
             var root=doc.RootElement;JsonElement value;
             state.version=root.TryGetProperty("version",out value)?value.GetInt32():0;
+            state.stakeMultiplier=root.TryGetProperty("stakeMultiplier",out value)?value.GetInt32():0;
             if(!root.TryGetProperty("fragments",out value))state.fragments=null;
             if(!root.TryGetProperty("purchased",out value))state.purchased=null;
             if(!root.TryGetProperty("lastGrid",out value))state.lastGrid=null;

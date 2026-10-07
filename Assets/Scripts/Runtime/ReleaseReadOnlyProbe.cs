@@ -38,6 +38,8 @@ namespace ZeroToMillionaire
    draws=ProfilerRecorder.StartNew(ProfilerCategory.Render,"Draw Calls Count",1);
    yield return new WaitForSecondsRealtime(3);yield return new WaitForEndOfFrame();
    ScreenCapture.CaptureScreenshot(Path.Combine(output,"native-first.png"));Write();
+   // Only an explicit project-private QA launch can request its own normal shutdown.
+   if(Array.IndexOf(Environment.GetCommandLineArgs(),"--ztm-private-auto-quit")>=0){yield return new WaitForSecondsRealtime(4);Application.Quit();}
   }
   void LateUpdate(){
    if(info==null)return;double now=Time.realtimeSinceStartupAsDouble;

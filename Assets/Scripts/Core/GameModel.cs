@@ -15,6 +15,7 @@ namespace ZeroToMillionaire
     {
         public int version = Economy.SaveVersion;
         public int cash;
+        public int stakeMultiplier = Economy.MinStake;
         public int freeSpins = Economy.StarterFreeSpins;
         public int spins;
         public int recoveries;
@@ -27,7 +28,7 @@ namespace ZeroToMillionaire
         public PlayerState(){quests=Economy.QuestRecords(this);}
         public PlayerState Clone()
         {
-            var copy=new PlayerState { version = version, cash = cash, freeSpins = freeSpins, spins = spins,
+            var copy=new PlayerState { version = version, cash = cash, stakeMultiplier = stakeMultiplier, freeSpins = freeSpins, spins = spins,
                 recoveries = recoveries, heroineU = heroineU, heroineV = heroineV, fragments = (int[])fragments.Clone(),
                 purchased = (bool[])purchased.Clone(), lastGrid = (int[])lastGrid.Clone(),tutorial=tutorial==null?null:tutorial.Clone() };
             if(quests==null)copy.quests=null;
@@ -39,10 +40,11 @@ namespace ZeroToMillionaire
     public sealed class SpinResult
     {
         public readonly int[] Grid, Fragments, Pool;
-        public readonly int Cost, Payout, Triples;
+        public readonly int Cost, Payout, Triples, SelectedStake, RewardMultiplier;
+        public bool Free => Cost == 0;
         public int NetCash { get { return Payout - Cost; } }
-        public SpinResult(int[] grid, int[] fragments, int[] pool, int cost, int payout, int triples)
-        { Grid = grid; Fragments = fragments; Pool=pool; Cost = cost; Payout = payout; Triples = triples; }
+        public SpinResult(int[] grid, int[] fragments, int[] pool, int cost, int payout, int triples, int selectedStake = 1, int rewardMultiplier = 1)
+        { Grid = grid; Fragments = fragments; Pool=pool; Cost = cost; Payout = payout; Triples = triples; SelectedStake = selectedStake; RewardMultiplier = rewardMultiplier; }
     }
 
     public sealed class GameModel
@@ -68,7 +70,11 @@ namespace ZeroToMillionaire
         public QuestStatus QuestState(int index){lock(gate)return state.quests[index].status;}
         public UpgradeDefinition Definition(int index){lock(gate)return Economy.For(state,index);}
         public void SetTutorial(TutorialState value){if(!TutorialPolicy.Valid(value))throw new ArgumentException("Invalid tutorial state");lock(gate)state.tutorial=value.Clone();}
-        public bool CanSpin { get { lock (gate) {int current=Economy.ActiveQuest(state);return current>=0&&!CanBuyUnsafe(current)&&(state.freeSpins > 0 || state.cash >= Economy.SpinCost);} } }
+        public int SelectedStake { get { lock(gate) return state.stakeMultiplier; } }
+        public int NextRewardMultiplier { get { lock(gate) return state.freeSpins > 0 ? 1 : state.stakeMultiplier; } }
+        public int NextSpinCost { get { lock(gate) return state.freeSpins > 0 ? 0 : Economy.SpinCost * state.stakeMultiplier; } }
+        public bool TrySelectStake(int value) { lock(gate) { if(!Economy.ValidStake(value)) return false; state.stakeMultiplier=value; return true; } }
+        public bool CanSpin { get { lock (gate) {int current=Economy.ActiveQuest(state);return current>=0&&!CanBuyUnsafe(current)&&(state.freeSpins > 0 || state.cash >= Economy.SpinCost * state.stakeMultiplier);} } }
         public bool CanRecover { get { lock (gate) return Economy.ActiveQuest(state)>=0&&state.freeSpins == 0 && state.cash < Economy.SpinCost; } }
         public int[] ActivePool { get { lock (gate) return Economy.ActivePool(state); } }
         public void SetHeroinePosition(FloorPoint feet)
@@ -90,7 +96,7 @@ namespace ZeroToMillionaire
             {
                 result = null;
                 int current=Economy.ActiveQuest(state);
-                if (current<0||CanBuyUnsafe(current)||(state.freeSpins == 0 && state.cash < Economy.SpinCost)) return false;
+                if (current<0||CanBuyUnsafe(current)||(state.freeSpins == 0 && state.cash < Economy.SpinCost * state.stakeMultiplier)) return false;
                 int[] grid = new int[Economy.Columns * Economy.Rows];
                 int[] gains = new int[Economy.SymbolCount];
                 int[] pool = Economy.ActivePool(state);
@@ -113,12 +119,16 @@ namespace ZeroToMillionaire
                 int triples = 0;
                 for (int x = 0; x < Economy.Columns; x++)
                     if (grid[x] == grid[x + Economy.Columns] && grid[x] == grid[x + 2 * Economy.Columns]) triples++;
-                int cost = state.freeSpins > 0 ? 0 : Economy.SpinCost;
+                int selectedStake = state.stakeMultiplier;
+                int rewardMultiplier = state.freeSpins > 0 ? 1 : selectedStake;
+                int cost = state.freeSpins > 0 ? 0 : Economy.SpinCost * selectedStake;
                 int payout = Economy.BasePayout + triples * Economy.TripleBonus;
                 foreach (int symbol in grid)
                 {
                     if (symbol == (int)ReelSymbol.Cash) payout += 2;
                 }
+                payout *= rewardMultiplier;
+                // Parts remain one per matching visible icon at every stake.
                 // Validate the complete transaction before changing any balance.
                 long nextCash=(long)state.cash-cost+payout;
                 if(nextCash<0||nextCash>int.MaxValue||state.spins==int.MaxValue)return false;
@@ -129,7 +139,7 @@ namespace ZeroToMillionaire
                 for (int i = 0; i < gains.Length; i++) state.fragments[i] += gains[i];
                 state.lastGrid = grid;
                 state.quests=Economy.QuestRecords(state);
-                result = new SpinResult((int[])grid.Clone(), gains, (int[])pool.Clone(), cost, payout, triples);
+                result = new SpinResult((int[])grid.Clone(), gains, (int[])pool.Clone(), cost, payout, triples, selectedStake, rewardMultiplier);
                 return true;
             }
         }
@@ -190,6 +200,7 @@ namespace ZeroToMillionaire
                 if(!TutorialPolicy.Valid(s.tutorial)){reason="Invalid tutorial state";return false;}
                 foreach(var q in s.quests){int i=Array.FindIndex(Economy.Upgrades,d=>d.Id==q.id);if(!Economy.ValidRequirements(i,q.cashPrice,q.fragmentGoal)){reason="Invalid stored task requirements";return false;}}
             }
+            if(s.version>=6 && !Economy.ValidStake(s.stakeMultiplier)){reason="Invalid stake selection";return false;}
             reason="";return true;
         }
 
@@ -220,6 +231,7 @@ namespace ZeroToMillionaire
                 bool experienced=source.spins>0||source.cash>0||source.recoveries>0||Array.Exists(source.fragments,p=>p>0)||Array.Exists(migrated.purchased,p=>p);
                 migrated.tutorial=new TutorialState{completed=experienced,storySeenMask=TutorialPolicy.MetMilestones(migrated)};
             }
+            if(source.version < 6) migrated.stakeMultiplier = Economy.MinStake;
             migrated.version = Economy.SaveVersion;
             migrated.quests=Economy.QuestRecords(migrated);
             return migrated;
