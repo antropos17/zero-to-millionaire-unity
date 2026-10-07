@@ -1,0 +1,9 @@
+PASS scenario 0 replay begins visible calm=False
+PASS new entrance is animated only in full mode
+PASS interrupted replay is hidden
+PASS same replay mode resumes visible
+OBSERVED scenario=0 opacity=0,7122219 translationY=0,1429963 runtime=9,410448
+FAIL resumed dialogue is fully opaque and settled
+RESULT FAIL phase=4 scenario=0 System.Exception: resumed dialogue is fully opaque and settled
+  at ZeroToMillionaire.Editor.DialogueEntranceAuditV08.Check (System.Boolean ok, System.String message) [0x00036] in X:\PROJECTS\ZERO-TO-MILLIONAIRE\Assets\Editor\DialogueEntranceAuditV08.cs:9 
+  at ZeroToMillionaire.Editor.DialogueEntranceAuditV08.Tick () [0x003be] in X:\PROJECTS\ZERO-TO-MILLIONAIRE\Assets\Editor\DialogueEntranceAuditV08.cs:16 

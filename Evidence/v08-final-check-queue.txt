@@ -1,0 +1,3 @@
+FAIL System.Exception: Own Editor playing
+  at ZeroToMillionaire.Editor.MotionInteractionAuditV08.Start () [0x00072] in X:\PROJECTS\ZERO-TO-MILLIONAIRE\Assets\Editor\MotionInteractionAuditV08.cs:7 
+  at ZeroToMillionaire.Editor.FinalReleaseChecksV08.Tick () [0x0004f] in X:\PROJECTS\ZERO-TO-MILLIONAIRE\Assets\Editor\FinalReleaseChecksV08.cs:9 

@@ -22,7 +22,9 @@ namespace ZeroToMillionaire
   static Label Text(string text,int size){var l=new Label(text);UiTypography.Apply(l,size,Forest,false);l.style.marginTop=l.style.marginBottom=l.style.marginLeft=l.style.marginRight=0;l.style.paddingTop=l.style.paddingBottom=l.style.paddingLeft=l.style.paddingRight=0;return l;}
   static Button Button(string text,Action action,string name){Button b=null;b=new Button(()=>{if(!UiInputCoordinator.CanActivate(b))return;UiInputCoordinator.NoteAction(b);action();}){name=name};PixelUi.Skin(b,PixelUi.Finish.Forest);b.style.height=45;b.style.minHeight=45;b.style.minWidth=45;b.style.flexShrink=0;b.style.marginLeft=b.style.marginRight=b.style.marginTop=b.style.marginBottom=0;b.style.paddingLeft=b.style.paddingRight=2;var l=Text(text,UiTypography.SmallAction);l.name="button-caption";l.style.color=Cream;l.style.unityTextAlign=TextAnchor.MiddleCenter;l.style.flexGrow=1;l.pickingMode=PickingMode.Ignore;b.Add(l);return b;}
   void Caption(Button b,string text){b.Q<Label>("button-caption").text=text;}
-  public void ResetUi(){entrance?.Pause();bubble.style.opacity=1;bubble.style.translate=new Translate(0,0,0);focusReplayNext=false;replay=story=-1;lastMode=-99;nextCheck=0;if(ring!=null){ring.RemoveFromHierarchy();ring=null;}bubble.style.display=DisplayStyle.None;}
+  void FinishEntrance(){entrance?.Pause();entrance=null;bubble.style.opacity=1;bubble.style.translate=new Translate(0,0,0);}
+  void Hide(){FinishEntrance();bubble.style.display=DisplayStyle.None;}
+  public void ResetUi(){FinishEntrance();focusReplayNext=false;replay=story=-1;lastMode=-99;nextCheck=0;if(ring!=null){ring.RemoveFromHierarchy();ring=null;}bubble.style.display=DisplayStyle.None;}
   public void Dispose(){ResetUi();bubble.RemoveFromHierarchy();}
   public void Replay(){focusReplayNext=true;replay=0;story=-1;lastMode=-99;nextCheck=0;Tick();}
   void Advance(){
@@ -45,11 +47,11 @@ namespace ZeroToMillionaire
   void Enter(){entrance?.Pause();enterAt=Time.unscaledTime;AnimateEntrance();if(!PixelUi.ReducedMotion)entrance=bubble.schedule.Execute(()=>{AnimateEntrance();if(Time.unscaledTime-enterAt>=.16f)entrance?.Pause();}).Every(16);}
   public void Tick(){
    if(Time.unscaledTime<nextCheck)return;nextCheck=Time.unscaledTime+.12f;
-   if(busy()){bubble.style.display=DisplayStyle.None;if(ring!=null)ring.style.display=DisplayStyle.None;return;}
+   if(busy()){Hide();if(ring!=null)ring.style.display=DisplayStyle.None;return;}
    var s=session.Model.Snapshot;int step=replay>=0?replay:TutorialPolicy.Step(s);
    if(step<0&&story<0){int pending=TutorialPolicy.PendingStory(s);if(pending>=0){story=pending;storyMask=TutorialPolicy.MetMilestones(s);}}
    int mode=story>=0?10+story:step;
-   if(mode<0){bubble.style.display=DisplayStyle.None;if(ring!=null){ring.RemoveFromHierarchy();ring=null;}lastMode=-99;return;}
+   if(mode<0){Hide();if(ring!=null){ring.RemoveFromHierarchy();ring=null;}lastMode=-99;return;}
    bubble.style.display=DisplayStyle.Flex;bubble.BringToFront();if(ring!=null)ring.style.display=DisplayStyle.Flex;
    bool canNext=replay>=0||story>=0||TutorialPolicy.CanNext(s);next.style.display=canNext?DisplayStyle.Flex:DisplayStyle.None;
    Caption(next,story>=0||step==4?"Done":"Next");Caption(skip,replay>=0||story>=0?"Close":"Skip tutorial");

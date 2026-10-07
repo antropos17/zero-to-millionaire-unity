@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="24" result="Passed" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-07 03:30:16Z" end-time="2026-10-07 03:30:17Z" duration="0,6321688">
+  <test-suite type="TestSuite" id="1000" name="ZERO TO MILLIONAIRE" fullname="ZERO TO MILLIONAIRE" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-10-07 03:30:16Z" end-time="2026-10-07 03:30:17Z" duration="0.632169" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1034" name="ZeroToMillionaire.CriticalTests.dll" fullname="X:/PROJECTS/ZERO-TO-MILLIONAIRE/Library/ScriptAssemblies/ZeroToMillionaire.CriticalTests.dll" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-10-07 03:30:16Z" end-time="2026-10-07 03:30:17Z" duration="0.532283" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="53988" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1035" name="ZeroToMillionaire" fullname="ZeroToMillionaire" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-10-07 03:30:16Z" end-time="2026-10-07 03:30:17Z" duration="0.531355" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1036" name="Tests" fullname="ZeroToMillionaire.Tests" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.431725" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1005" name="CriticalInvariantTests" fullname="ZeroToMillionaire.Tests.CriticalInvariantTests" classname="ZeroToMillionaire.Tests.CriticalInvariantTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.204873" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1010" name="ConcurrentRepeatedPurchaseCommitsOnce" fullname="ZeroToMillionaire.Tests.CriticalInvariantTests.ConcurrentRepeatedPurchaseCommitsOnce" methodname="ConcurrentRepeatedPurchaseCommitsOnce" classname="ZeroToMillionaire.Tests.CriticalInvariantTests" runstate="Runnable" seed="24704261" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.037856" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="DuplicateQuestIdsCannotBeNormalizedIntoValidProgress" fullname="ZeroToMillionaire.Tests.CriticalInvariantTests.DuplicateQuestIdsCannotBeNormalizedIntoValidProgress" methodname="DuplicateQuestIdsCannotBeNormalizedIntoValidProgress" classname="ZeroToMillionaire.Tests.CriticalInvariantTests" runstate="Runnable" seed="1039658717" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.009284" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="FullLevelFinishesAndStopsCreatingTasks" fullname="ZeroToMillionaire.Tests.CriticalInvariantTests.FullLevelFinishesAndStopsCreatingTasks" methodname="FullLevelFinishesAndStopsCreatingTasks" classname="ZeroToMillionaire.Tests.CriticalInvariantTests" runstate="Runnable" seed="64605389" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.004651" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="PoolMovesFromDamageToWallpaperOnlyAfterPurchases" fullname="ZeroToMillionaire.Tests.CriticalInvariantTests.PoolMovesFromDamageToWallpaperOnlyAfterPurchases" methodname="PoolMovesFromDamageToWallpaperOnlyAfterPurchases" classname="ZeroToMillionaire.Tests.CriticalInvariantTests" runstate="Runnable" seed="2035010176" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.002370" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1009" name="PurchaseRequiresBothBalances" fullname="ZeroToMillionaire.Tests.CriticalInvariantTests.PurchaseRequiresBothBalances" classname="ZeroToMillionaire.Tests.CriticalInvariantTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.016441" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1006" name="PurchaseRequiresBothBalances(1000,0,False)" fullname="ZeroToMillionaire.Tests.CriticalInvariantTests.PurchaseRequiresBothBalances(1000,0,False)" methodname="PurchaseRequiresBothBalances" classname="ZeroToMillionaire.Tests.CriticalInvariantTests" runstate="Runnable" seed="189547037" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.003845" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1007" name="PurchaseRequiresBothBalances(0,100,False)" fullname="ZeroToMillionaire.Tests.CriticalInvariantTests.PurchaseRequiresBothBalances(0,100,False)" methodname="PurchaseRequiresBothBalances" classname="ZeroToMillionaire.Tests.CriticalInvariantTests" runstate="Runnable" seed="1131857415" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.000340" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1008" name="PurchaseRequiresBothBalances(60,20,True)" fullname="ZeroToMillionaire.Tests.CriticalInvariantTests.PurchaseRequiresBothBalances(60,20,True)" methodname="PurchaseRequiresBothBalances" classname="ZeroToMillionaire.Tests.CriticalInvariantTests" runstate="Runnable" seed="1034657900" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.000243" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1014" name="SaveFailureRollsBackSpinAndPurchaseBeforePresentation" fullname="ZeroToMillionaire.Tests.CriticalInvariantTests.SaveFailureRollsBackSpinAndPurchaseBeforePresentation" methodname="SaveFailureRollsBackSpinAndPurchaseBeforePresentation" classname="ZeroToMillionaire.Tests.CriticalInvariantTests" runstate="Runnable" seed="1616337630" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.004830" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="Schema3MigrationPreservesAllBalancesAndOutOfOrderOwnership" fullname="ZeroToMillionaire.Tests.CriticalInvariantTests.Schema3MigrationPreservesAllBalancesAndOutOfOrderOwnership" methodname="Schema3MigrationPreservesAllBalancesAndOutOfOrderOwnership" classname="ZeroToMillionaire.Tests.CriticalInvariantTests" runstate="Runnable" seed="1260584633" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.006627" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1016" name="OnboardingTests" fullname="ZeroToMillionaire.Tests.OnboardingTests" classname="ZeroToMillionaire.Tests.OnboardingTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.012214" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1023" name="AllCashRollStillMakesFiniteVisiblePartProgressWithoutSoftlock" fullname="ZeroToMillionaire.Tests.OnboardingTests.AllCashRollStillMakesFiniteVisiblePartProgressWithoutSoftlock" methodname="AllCashRollStillMakesFiniteVisiblePartProgressWithoutSoftlock" classname="ZeroToMillionaire.Tests.OnboardingTests" runstate="Runnable" seed="1736844742" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.002097" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="DialogueMutationsCannotGrantResourcesAndPersistSkip" fullname="ZeroToMillionaire.Tests.OnboardingTests.DialogueMutationsCannotGrantResourcesAndPersistSkip" methodname="DialogueMutationsCannotGrantResourcesAndPersistSkip" classname="ZeroToMillionaire.Tests.OnboardingTests" runstate="Runnable" seed="931331645" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.002574" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1021" name="ExistingOutOfOrderAndExcessPreservedAndPastStoryViewed" fullname="ZeroToMillionaire.Tests.OnboardingTests.ExistingOutOfOrderAndExcessPreservedAndPastStoryViewed" methodname="ExistingOutOfOrderAndExcessPreservedAndPastStoryViewed" classname="ZeroToMillionaire.Tests.OnboardingTests" runstate="Runnable" seed="577808030" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.001234" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1020" name="ExistingReadyTaskKeepsOldRequirementsAndNoForcedTutorial" fullname="ZeroToMillionaire.Tests.OnboardingTests.ExistingReadyTaskKeepsOldRequirementsAndNoForcedTutorial" methodname="ExistingReadyTaskKeepsOldRequirementsAndNoForcedTutorial" classname="ZeroToMillionaire.Tests.OnboardingTests" runstate="Runnable" seed="2121574608" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.000956" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="FreshNextThenSpinThenMetersResume" fullname="ZeroToMillionaire.Tests.OnboardingTests.FreshNextThenSpinThenMetersResume" methodname="FreshNextThenSpinThenMetersResume" classname="ZeroToMillionaire.Tests.OnboardingTests" runstate="Runnable" seed="977083293" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.000779" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1022" name="MilestonesAreFiniteAndSeenMaskIsIdempotent" fullname="ZeroToMillionaire.Tests.OnboardingTests.MilestonesAreFiniteAndSeenMaskIsIdempotent" methodname="MilestonesAreFiniteAndSeenMaskIsIdempotent" classname="ZeroToMillionaire.Tests.OnboardingTests" runstate="Runnable" seed="1183970708" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.000551" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="ReadyAndCommittedPurchaseSelectRelevantTutorial" fullname="ZeroToMillionaire.Tests.OnboardingTests.ReadyAndCommittedPurchaseSelectRelevantTutorial" methodname="ReadyAndCommittedPurchaseSelectRelevantTutorial" classname="ZeroToMillionaire.Tests.OnboardingTests" runstate="Runnable" seed="613851538" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.000710" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1024" name="SaveRecoveryTests" fullname="ZeroToMillionaire.Tests.SaveRecoveryTests" classname="ZeroToMillionaire.Tests.SaveRecoveryTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.212535" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1032" name="ConfirmedFreshStartArchivesBothOriginalByteStreams" fullname="ZeroToMillionaire.Tests.SaveRecoveryTests.ConfirmedFreshStartArchivesBothOriginalByteStreams" methodname="ConfirmedFreshStartArchivesBothOriginalByteStreams" classname="ZeroToMillionaire.Tests.SaveRecoveryTests" runstate="Runnable" seed="541867365" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.096760" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="FreshStartFailsIfOriginalCannotBePreserved" fullname="ZeroToMillionaire.Tests.SaveRecoveryTests.FreshStartFailsIfOriginalCannotBePreserved" methodname="FreshStartFailsIfOriginalCannotBePreserved" classname="ZeroToMillionaire.Tests.SaveRecoveryTests" runstate="Runnable" seed="1542673994" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.008283" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1031" name="MissingFilesAreAPlayableFreshProfile" fullname="ZeroToMillionaire.Tests.SaveRecoveryTests.MissingFilesAreAPlayableFreshProfile" methodname="MissingFilesAreAPlayableFreshProfile" classname="ZeroToMillionaire.Tests.SaveRecoveryTests" runstate="Runnable" seed="1712587402" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.006172" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1029" name="TransientReadFailureRequiresSuccessfulExplicitReload" fullname="ZeroToMillionaire.Tests.SaveRecoveryTests.TransientReadFailureRequiresSuccessfulExplicitReload" methodname="TransientReadFailureRequiresSuccessfulExplicitReload" classname="ZeroToMillionaire.Tests.SaveRecoveryTests" runstate="Runnable" seed="441973566" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.025670" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1028" name="TwoUnreadableFilesStayIntactAcrossPauseQuitEquivalentSave" fullname="ZeroToMillionaire.Tests.SaveRecoveryTests.TwoUnreadableFilesStayIntactAcrossPauseQuitEquivalentSave" methodname="TwoUnreadableFilesStayIntactAcrossPauseQuitEquivalentSave" classname="ZeroToMillionaire.Tests.SaveRecoveryTests" runstate="Runnable" seed="781291562" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.016591" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1027" name="UnsupportedPrimaryCannotBeOverwrittenEvenWithValidBackup" fullname="ZeroToMillionaire.Tests.SaveRecoveryTests.UnsupportedPrimaryCannotBeOverwrittenEvenWithValidBackup" classname="ZeroToMillionaire.Tests.SaveRecoveryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.026767" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1025" name="UnsupportedPrimaryCannotBeOverwrittenEvenWithValidBackup(False)" fullname="ZeroToMillionaire.Tests.SaveRecoveryTests.UnsupportedPrimaryCannotBeOverwrittenEvenWithValidBackup(False)" methodname="UnsupportedPrimaryCannotBeOverwrittenEvenWithValidBackup" classname="ZeroToMillionaire.Tests.SaveRecoveryTests" runstate="Runnable" seed="1503231737" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.018018" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1026" name="UnsupportedPrimaryCannotBeOverwrittenEvenWithValidBackup(True)" fullname="ZeroToMillionaire.Tests.SaveRecoveryTests.UnsupportedPrimaryCannotBeOverwrittenEvenWithValidBackup(True)" methodname="UnsupportedPrimaryCannotBeOverwrittenEvenWithValidBackup" classname="ZeroToMillionaire.Tests.SaveRecoveryTests" runstate="Runnable" seed="237028384" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.007239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1030" name="ValidBackupStillRecoversExactProgress" fullname="ZeroToMillionaire.Tests.SaveRecoveryTests.ValidBackupStillRecoversExactProgress" methodname="ValidBackupStillRecoversExactProgress" classname="ZeroToMillionaire.Tests.SaveRecoveryTests" runstate="Runnable" seed="699834609" result="Passed" start-time="2026-10-07 03:30:17Z" end-time="2026-10-07 03:30:17Z" duration="0.026167" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/murtu/AppData/LocalLow/PrototypeWorkspace/ZERO TO MILLIONAIRE\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

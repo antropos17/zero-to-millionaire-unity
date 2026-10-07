@@ -1,0 +1,29 @@
+PASS scenario 0 replay begins visible calm=False
+PASS new entrance is animated only in full mode
+PASS interrupted replay is hidden
+PASS same replay mode resumes visible
+OBSERVED scenario=0 opacity=1 translationY=0 runtime=7,973638
+PASS resumed dialogue is fully opaque and settled
+PASS interruption does not create extra spin awards
+PASS scenario 1 replay begins visible calm=False
+PASS new entrance is animated only in full mode
+PASS interrupted replay is hidden
+PASS same replay mode resumes visible
+OBSERVED scenario=1 opacity=1 translationY=0 runtime=11,60662
+PASS resumed dialogue is fully opaque and settled
+PASS interruption does not create extra spin awards
+PASS scenario 2 replay begins visible calm=True
+PASS new entrance is animated only in full mode
+PASS interrupted replay is hidden
+PASS same replay mode resumes visible
+OBSERVED scenario=2 opacity=1 translationY=0 runtime=15,22547
+PASS resumed dialogue is fully opaque and settled
+PASS interruption does not create extra spin awards
+PASS scenario 3 replay begins visible calm=True
+PASS new entrance is animated only in full mode
+PASS interrupted replay is hidden
+PASS same replay mode resumes visible
+OBSERVED scenario=3 opacity=1 translationY=0 runtime=18,85588
+PASS resumed dialogue is fully opaque and settled
+PASS interruption does not create extra spin awards
+RESULT PASS checks=24; actual graphics Editor/UI events; full/calm MENU/SPIN entrance interruption; private save; no OS input

@@ -1,0 +1,385 @@
+PHASE 0 -> 0 wall=0,001 runtime=5,352 frame=1
+PHASE 0 -> 1 wall=0,009 runtime=5,352 frame=1
+PASS target44 menu actual=(x:305.00, y:102.00, width:45.00, height:45.00)
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS caption passes hit menu
+PASS target44 buy-0 actual=(x:268.00, y:303.00, width:77.00, height:48.00)
+PASS target44 spin actual=(x:125.00, y:566.00, width:225.00, height:68.00)
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS caption passes hit spin
+PASS metadata role12
+PASS counter role13
+CAPTURE main 360x640 frame=11
+PHASE 1 -> 2 wall=0,346 runtime=6,548 frame=11
+PASS visible focus state on SPIN
+CAPTURE focused 360x640 frame=30
+PHASE 2 -> 3 wall=0,668 runtime=6,887 frame=30
+PASS menu initial focus
+PASS target44 menu actual=(x:305.00, y:102.00, width:45.00, height:45.00)
+PASS target44 buy-0 actual=(x:268.00, y:303.00, width:77.00, height:48.00)
+PASS target44 spin actual=(x:125.00, y:566.00, width:225.00, height:68.00)
+PASS target44 tutorial-replay actual=(x:31.00, y:403.00, width:298.00, height:45.00)
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS caption passes hit tutorial-replay
+PASS target44 motion-toggle actual=(x:31.00, y:456.00, width:298.00, height:45.00)
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS caption passes hit motion-toggle
+PASS target44 reset actual=(x:31.00, y:515.00, width:298.00, height:45.00)
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS caption passes hit reset
+PASS target44 close-settings actual=(x:31.00, y:568.00, width:298.00, height:45.00)
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS caption passes hit close-settings
+CAPTURE menu 360x640 frame=47
+PASS modal tab motion-toggle
+PASS modal tab reset
+PASS modal tab close-settings
+PASS modal tab tutorial-replay
+PASS paired runtime shift tab
+PASS navigation-only modal wrap next
+PASS navigation-only modal wrap previous
+PASS modal blocks underlying submit
+PHASE 3 -> 4 wall=0,999 runtime=7,202 frame=47
+PASS Escape closes and restores MENU focus
+PASS main tab skips disabled BUY
+PASS main shift tab order
+PHASE 4 -> 5 wall=1,301 runtime=7,533 frame=66
+PASS reset initial focus safe cancel
+PHASE 5 -> 6 wall=1,602 runtime=7,844 frame=84
+PASS reset Escape keeps resources
+PASS reset cancel returns to settings trigger
+PHASE 6 -> 7 wall=1,906 runtime=8,144 frame=102
+PASS replay owns initial dialogue focus
+CAPTURE dialogue 360x640 frame=120
+PASS target44 menu actual=(x:305.00, y:102.00, width:45.00, height:45.00)
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS caption passes hit menu
+PASS target44 tutorial-next actual=(x:20.00, y:214.00, width:62.00, height:45.00)
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS caption passes hit tutorial-next
+PASS target44 tutorial-skip actual=(x:86.00, y:214.00, width:208.00, height:45.00)
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS caption passes hit tutorial-skip
+PASS target44 buy-0 actual=(x:268.00, y:303.00, width:77.00, height:48.00)
+PASS target44 spin actual=(x:125.00, y:566.00, width:225.00, height:68.00)
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS caption passes hit spin
+PASS dialogue Enter advances instead of opening background MENU
+PASS dialogue paired Tab reaches Close
+PASS dialogue Space closes replay
+PASS dialogue role15
+PHASE 7 -> 23 wall=2,224 runtime=8,445 frame=120
+PASS closing replay restores MENU focus
+PHASE 23 -> 0 wall=2,524 runtime=8,763 frame=139
+PHASE 0 -> 1 wall=2,528 runtime=8,763 frame=139
+PASS target44 menu actual=(x:305.00, y:110.00, width:45.00, height:45.00)
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS caption passes hit menu
+PASS target44 buy-0 actual=(x:268.00, y:375.00, width:77.00, height:48.00)
+PASS target44 spin actual=(x:125.00, y:698.00, width:225.00, height:96.00)
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS caption passes hit spin
+PASS metadata role12
+PASS counter role13
+CAPTURE main 360x800 frame=157
+PHASE 1 -> 2 wall=2,848 runtime=9,064 frame=157
+PASS visible focus state on SPIN
+CAPTURE focused 360x800 frame=176
+PHASE 2 -> 3 wall=3,169 runtime=9,386 frame=176
+PASS menu initial focus
+PASS target44 menu actual=(x:305.00, y:110.00, width:45.00, height:45.00)
+PASS target44 buy-0 actual=(x:268.00, y:375.00, width:77.00, height:48.00)
+PASS target44 spin actual=(x:125.00, y:698.00, width:225.00, height:96.00)
+PASS target44 tutorial-replay actual=(x:31.00, y:475.00, width:298.00, height:45.00)
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS caption passes hit tutorial-replay
+PASS target44 motion-toggle actual=(x:31.00, y:528.00, width:298.00, height:45.00)
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS caption passes hit motion-toggle
+PASS target44 reset actual=(x:31.00, y:587.00, width:298.00, height:45.00)
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS caption passes hit reset
+PASS target44 close-settings actual=(x:31.00, y:640.00, width:298.00, height:45.00)
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS caption passes hit close-settings
+CAPTURE menu 360x800 frame=195
+PASS modal tab motion-toggle
+PASS modal tab reset
+PASS modal tab close-settings
+PASS modal tab tutorial-replay
+PASS paired runtime shift tab
+PASS navigation-only modal wrap next
+PASS navigation-only modal wrap previous
+PASS modal blocks underlying submit
+PHASE 3 -> 4 wall=3,489 runtime=9,709 frame=195
+PASS Escape closes and restores MENU focus
+PASS main tab skips disabled BUY
+PASS main shift tab order
+PHASE 4 -> 5 wall=3,791 runtime=10,029 frame=214
+PASS reset initial focus safe cancel
+PHASE 5 -> 6 wall=4,092 runtime=10,328 frame=232
+PASS reset Escape keeps resources
+PASS reset cancel returns to settings trigger
+PHASE 6 -> 7 wall=4,393 runtime=10,631 frame=250
+PASS replay owns initial dialogue focus
+CAPTURE dialogue 360x800 frame=268
+PASS target44 menu actual=(x:305.00, y:110.00, width:45.00, height:45.00)
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS caption passes hit menu
+PASS target44 tutorial-next actual=(x:20.00, y:222.00, width:62.00, height:45.00)
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS caption passes hit tutorial-next
+PASS target44 tutorial-skip actual=(x:86.00, y:222.00, width:208.00, height:45.00)
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS caption passes hit tutorial-skip
+PASS target44 buy-0 actual=(x:268.00, y:375.00, width:77.00, height:48.00)
+PASS target44 spin actual=(x:125.00, y:698.00, width:225.00, height:96.00)
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS caption passes hit spin
+PASS dialogue Enter advances instead of opening background MENU
+PASS dialogue paired Tab reaches Close
+PASS dialogue Space closes replay
+PASS dialogue role15
+PHASE 7 -> 23 wall=4,710 runtime=10,928 frame=268
+PASS closing replay restores MENU focus
+PHASE 23 -> 0 wall=5,012 runtime=11,249 frame=287
+PHASE 0 -> 1 wall=5,016 runtime=11,249 frame=287
+PASS target44 menu actual=(x:305.25, y:105.75, width:45.00, height:45.00)
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS caption passes hit menu
+PASS target44 buy-0 actual=(x:267.75, y:339.00, width:77.25, height:48.00)
+PASS target44 spin actual=(x:124.50, y:632.25, width:225.75, height:81.75)
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS caption passes hit spin
+PASS metadata role12
+PASS counter role13
+CAPTURE main 480x960 frame=305
+PHASE 1 -> 2 wall=5,345 runtime=11,549 frame=305
+PASS visible focus state on SPIN
+CAPTURE focused 480x960 frame=324
+PHASE 2 -> 3 wall=5,678 runtime=11,883 frame=324
+PASS menu initial focus
+PASS target44 menu actual=(x:305.25, y:105.75, width:45.00, height:45.00)
+PASS target44 buy-0 actual=(x:267.75, y:339.00, width:77.25, height:48.00)
+PASS target44 spin actual=(x:124.50, y:632.25, width:225.75, height:81.75)
+PASS target44 tutorial-replay actual=(x:30.75, y:454.50, width:298.50, height:45.00)
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS edge/center pick tutorial-replay
+PASS caption passes hit tutorial-replay
+PASS target44 motion-toggle actual=(x:30.75, y:507.75, width:298.50, height:45.00)
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS edge/center pick motion-toggle
+PASS caption passes hit motion-toggle
+PASS target44 reset actual=(x:30.75, y:567.00, width:298.50, height:45.00)
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS edge/center pick reset
+PASS caption passes hit reset
+PASS target44 close-settings actual=(x:30.75, y:620.25, width:298.50, height:45.00)
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS edge/center pick close-settings
+PASS caption passes hit close-settings
+CAPTURE menu 480x960 frame=343
+PASS modal tab motion-toggle
+PASS modal tab reset
+PASS modal tab close-settings
+PASS modal tab tutorial-replay
+PASS paired runtime shift tab
+PASS navigation-only modal wrap next
+PASS navigation-only modal wrap previous
+PASS modal blocks underlying submit
+PHASE 3 -> 4 wall=6,003 runtime=12,215 frame=343
+PASS Escape closes and restores MENU focus
+PASS main tab skips disabled BUY
+PASS main shift tab order
+PHASE 4 -> 5 wall=6,304 runtime=12,546 frame=362
+PASS reset initial focus safe cancel
+PHASE 5 -> 6 wall=6,604 runtime=12,844 frame=380
+PASS reset Escape keeps resources
+PASS reset cancel returns to settings trigger
+PHASE 6 -> 7 wall=6,906 runtime=13,144 frame=398
+PASS replay owns initial dialogue focus
+CAPTURE dialogue 480x960 frame=416
+PASS target44 menu actual=(x:305.25, y:105.75, width:45.00, height:45.00)
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS edge/center pick menu
+PASS caption passes hit menu
+PASS target44 tutorial-next actual=(x:20.25, y:218.25, width:61.50, height:45.00)
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS edge/center pick tutorial-next
+PASS caption passes hit tutorial-next
+PASS target44 tutorial-skip actual=(x:85.50, y:218.25, width:208.50, height:45.00)
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS edge/center pick tutorial-skip
+PASS caption passes hit tutorial-skip
+PASS target44 buy-0 actual=(x:267.75, y:339.00, width:77.25, height:48.00)
+PASS target44 spin actual=(x:124.50, y:632.25, width:225.75, height:81.75)
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS edge/center pick spin
+PASS caption passes hit spin
+PASS dialogue Enter advances instead of opening background MENU
+PASS dialogue paired Tab reaches Close
+PASS dialogue Space closes replay
+PASS dialogue role15
+PHASE 7 -> 23 wall=7,233 runtime=13,447 frame=416
+PASS closing replay restores MENU focus
+PHASE 23 -> 8 wall=7,538 runtime=13,773 frame=435
+PASS held/repeated purchase submit writes once after failure
+PASS failed purchase rollback
+PHASE 8 -> 9 wall=7,841 runtime=14,074 frame=453
+PASS menu retains truthful rejected-write status
+CAPTURE save-failure-menu 480x960 frame=471
+PASS new successful retry buys once
+PASS late repeated BUY cannot debit or write again
+PHASE 9 -> 10 wall=8,181 runtime=14,373 frame=471
+PASS success clears error status
+PHASE 10 -> 11 wall=8,484 runtime=14,717 frame=487
+PASS pointer pick in menu
+PASS real pointer-event routing opens menu
+PASS pointer modal blocks transaction click-through
+PHASE 11 -> 12 wall=8,813 runtime=15,015 frame=505
+PASS pointer-opened menu restores trigger
+PASS pointer pressed feedback
+PASS pointer cancel releases bevel
+PHASE 12 -> 13 wall=9,162 runtime=15,346 frame=524
+PASS held SPIN first action commits once
+PHASE 13 -> 14 wall=9,472 runtime=15,692 frame=541
+PASS hold regression remains spin eligible
+PASS held key cannot start a second spin after animation
+PHASE 14 -> 140 wall=11,975 runtime=18,206 frame=690
+PASS fresh key press after existing cooldown starts next eligible action
+PHASE 140 -> 15 wall=12,229 runtime=18,471 frame=706
+PASS late hidden confirmation cannot reset again
+PASS confirmed reset fresh balances
+PHASE 15 -> 16 wall=14,286 runtime=20,522 frame=828
+PASS maximum cash full counter fits
+PASS rendered tabular1 and8 widths equal
+CAPTURE max-counter 480x960 frame=846
+PHASE 16 -> 17 wall=14,613 runtime=20,822 frame=846
+CAPTURE font-corpus 480x960 frame=865
+PHASE 17 -> 18 wall=14,936 runtime=21,151 frame=865
+PASS pointer pick in buy-0
+PASS pointer purchase commits one exact debit
+PASS detached old button cannot buy again
+PHASE 18 -> 19 wall=15,241 runtime=21,477 frame=884
+PHASE 19 -> 20 wall=15,488 runtime=21,491 frame=885
+PASS scene recreation attaches enabled UI
+PASS scene recreation action has no duplicate transaction callbacks
+PASS disposed old document action remains inert
+PHASE 20 -> 21 wall=15,791 runtime=22,018 frame=903
+PASS recreated menu retains initial focus
+PASS recreated document Tab advances exactly once
+PHASE 21 -> 22 wall=16,092 runtime=22,335 frame=922
+PASS recreated modal restores trigger
+RESULT PASS assertions=326 runtimeFrames=939 elapsed=16,39; actual Editor offscreen pixels; real UITK pick/PointerDown/Up/Cancel and keyboard/navigation events; all synthetic, no OS pointer or device input
