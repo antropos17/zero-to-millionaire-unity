@@ -1,0 +1,11 @@
+# v0.10 slice1 — independent review fixes
+
+Two review findings are fixed. Optional pending notices now carry an event type and item ID. A committed purchase removes that item's queued Ready notice and hides an already displayed Ready prompt. Dequeue/display also checks Ready against the current active task and both-resource eligibility. The original Ready transition remains an honest past entry in THIS SESSION. Confirmed reset clears the displayed old toast as well as the old queue/history.
+
+Active section tabs and the selected profile badge now use a persistent terracotta skin plus ACTIVE/SELECTED text. These indicators remain visible while keyboard focus is on the name field or another control, independently of hover/focus.
+
+Verification after these changes: all eight portrait/motion scenarios passed, including an actual spin that reaches readiness, opening the menu to hold pending notices, immediate SHOP purchase before the Ready queue drains, repeated retired-button submits, no stale prompt, and exactly one purchase notice/history entry. 76652 event observations/assertions include repeated polling for stale Ready text. The rendered audit had3793frames/66.71s. Source screenshot qa6 shows the corrected compact selected indicators and installed-item notice. .NET and Unity domain regressions passed with209local-profile/notification assertions. Final NUnit replay passed26/26, zero failed/skipped.
+
+The prior fresh-level run reached8/8 in58spins and passed scene reload and reset. That complete-level run preceded these two presentation/notification corrections; the game economy/schema6 and atomic purchase/save behavior are unchanged. The reviewed UI run exercises the corrected notification path with actual committed spin/purchase callbacks. No physical OS/device input was tested.
+
+A Windows Release candidate build is the next independent check. Its build source will be recorded immutably; no v0.10 binary is claimed by this source checkpoint yet. Decor remains blocked by two newly issued, still-valid authorized transfers returningHTTP403. The precise supported route/expiration evidence is in DECOR_TRANSFER_BLOCKER.md. No decor was inspected or integrated, and curtain fit remains unresolved. Android remains deferred.

@@ -269,8 +269,8 @@ namespace ZeroToMillionaire
         void ToggleMotion(){if(!presentation.Toggle()){MotionChanged(false);return;}PixelUi.ReducedMotion=presentation.ReducedMotion;effects.Clear();MotionChanged(true);}
         void ShowSettings(){OpenSection(RoomSection.Settings,menuButton);}
         void HideSettings(){CloseSections();}
-        void ShowToast(string text){statusLabel.text=text;statusLabel.style.marginLeft=rewardPending||rewardFly.style.display==DisplayStyle.Flex?94:0;toastUntil=Time.unscaledTime+2;feedbackHint.style.display=DisplayStyle.None;toast.style.display=DisplayStyle.Flex;toast.BringToFront();}
-        void HideToast(){toast.style.display=DisplayStyle.None;feedbackHint.style.display=DisplayStyle.Flex;}
+        void ShowToast(string text){shownNotice=null;statusLabel.text=text;statusLabel.style.marginLeft=rewardPending||rewardFly.style.display==DisplayStyle.Flex?94:0;toastUntil=Time.unscaledTime+2;feedbackHint.style.display=DisplayStyle.None;toast.style.display=DisplayStyle.Flex;toast.BringToFront();}
+        void HideToast(){shownNotice=null;toast.style.display=DisplayStyle.None;feedbackHint.style.display=DisplayStyle.Flex;}
         void ApplySafeArea()
         {
             float width=root.contentRect.width;if(width<=0)return;
@@ -545,7 +545,7 @@ namespace ZeroToMillionaire
             PlayerState before=model.Snapshot;bool wasReady=model.ActiveQuest>=0&&model.CanBuy(model.ActiveQuest);SpinResult result;
             if(!session.TryBeginSpin(out result)){UpdateSaveStatus();if(!string.IsNullOrEmpty(session.Error))ShowToast("NOT SAVED · PLEASE RETRY");Refresh();yield break;}
             UpdateSaveStatus(true);int gainedParts=0;foreach(int amount in result.Fragments)gainedParts+=amount;Record(SessionEvent.Spin,model.Snapshot.spins,"Spin "+model.Snapshot.spins+" · +"+result.Payout+" coins, +"+gainedParts+" parts");
-            if(!wasReady&&model.ActiveQuest>=0&&model.CanBuy(model.ActiveQuest))Record(SessionEvent.Ready,model.Snapshot.spins,EnglishUi.QuestTitle(model.ActiveQuest)+" ready to buy");
+            if(!wasReady&&model.ActiveQuest>=0&&model.CanBuy(model.ActiveQuest))Record(SessionEvent.Ready,model.Snapshot.spins,EnglishUi.QuestTitle(model.ActiveQuest)+" ready to buy",model.ActiveQuest);
             activeSpin=result;spinning=true;spinDisplay=before;spinDisplay.cash-=result.Cost;spinDisplay.freeSpins=model.Snapshot.freeSpins;Refresh();
             int fromCash=spinDisplay.cash,toCash=model.Snapshot.cash;
             yield return reelMotion.Play(result,presentation.ReducedMotion,
@@ -560,7 +560,7 @@ namespace ZeroToMillionaire
             if(!session.TryPurchase(index)){UpdateSaveStatus();if(!string.IsNullOrEmpty(session.Error))ShowToast("NOT SAVED · PLEASE RETRY");return;}
             UpdateSaveStatus(true);
             rewardPending=false;rewardFly.style.display=DisplayStyle.None;
-            Record(SessionEvent.Purchase,model.PurchasedCount,EnglishUi.QuestTitle(index)+" installed · "+model.PurchasedCount+"/8");
+            Record(SessionEvent.Purchase,model.PurchasedCount,EnglishUi.QuestTitle(index)+" installed · "+model.PurchasedCount+"/8",index);
             if(model.Complete)Record(SessionEvent.Completion,model.PurchasedCount,"8/8 · ROOM COMPLETE");
             page = model.Complete ? 3 : model.PurchasedCount / 2;
             Refresh();string target=index<3?(index==0?"patches":index==1?"surfaces":"wallpaper"):index==3?"door-overlay":index==4?"window-overlay":index==5?"mattress":index==6?"lamp":"stool";
@@ -600,7 +600,7 @@ namespace ZeroToMillionaire
             reelMotion.Clear();effects.Clear();activeSpin=null;spinDisplay=null;pendingMenu=false;PixelUi.SetPressed(spinButton,false);
             page=0;UpdateSaveStatus(true);dialogue.ResetUi();drawnQuest=-2;
             wanderer = new RoomWanderer(new FloorPoint(1.85f, 1.45f), new SeededRandom(Environment.TickCount)); drawnRoom = -1;
-            notifications.Reset(model.Snapshot,localPlayer.Snapshot.revision);CloseSections();CloseReset(true);Refresh();Record(SessionEvent.Reset,1,"Fresh start · 3 free spins");
+            notifications.Reset(model.Snapshot,localPlayer.Snapshot.revision);HideToast();CloseSections();CloseReset(true);Refresh();Record(SessionEvent.Reset,1,"Fresh start · 3 free spins");
         }
         void OnApplicationFocus(bool focused){if(!focused)input?.ReleaseKeys();}
         void OnApplicationPause(bool paused) { if (paused && model != null) Persist(); }

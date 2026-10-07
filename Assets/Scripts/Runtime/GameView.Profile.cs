@@ -22,6 +22,7 @@ namespace ZeroToMillionaire
         float sectionStarted;
         bool sectionEntering;
         long stakeEventId;
+        SessionNotice shownNotice;
         bool SectionsOpen => sections != null && sections.style.display == DisplayStyle.Flex;
 
         void BuildSections()
@@ -37,6 +38,9 @@ namespace ZeroToMillionaire
             {
                 int choice=i;var b=Action(titles[i],()=>SwitchSection((RoomSection)choice),Forest);b.name="section-"+titles[i].ToLowerInvariant();
                 b.style.flexGrow=1;b.style.flexBasis=0;b.style.minWidth=0;b.style.marginRight=i<3?3:0;ButtonText(b,titles[i],11);
+                b.style.flexDirection=FlexDirection.Column;b.style.justifyContent=Justify.Center;
+                var selected=Text("ACTIVE",9,PixelUi.Hex(0xffce76));selected.name="section-active-"+titles[i].ToLowerInvariant();selected.pickingMode=PickingMode.Ignore;selected.style.height=12;selected.style.flexShrink=0;selected.style.unityTextAlign=TextAnchor.MiddleCenter;selected.style.display=DisplayStyle.None;
+                var caption=b.Q<Label>("button-caption");caption.style.height=16;caption.style.flexGrow=0;b.Add(selected);
                 sectionButtons[i]=b;tabs.Add(b);
             }
             sectionsPanel.Add(tabs);
@@ -86,7 +90,9 @@ namespace ZeroToMillionaire
                 b.style.flexDirection=FlexDirection.Column;b.style.justifyContent=Justify.Center;ButtonText(b,captions[i],12);
                 Texture2D texture=Resources.Load<Texture2D>(i==0?"Art/animation/front-idle":"Art/item-symbols/"+avatars[i]);
                 var image=Icon(texture,46);image.name="profile-avatar-image-"+i;if(i==0)image.uv=new Rect(38f/128,130f/192,58f/128,58f/192);
-                image.style.alignSelf=Align.Center;image.pickingMode=PickingMode.Ignore;b.Insert(0,image);avatarButtons[i]=b;badges.Add(b);
+                image.style.alignSelf=Align.Center;image.pickingMode=PickingMode.Ignore;image.style.width=image.style.height=40;b.Insert(0,image);
+                var selected=Text("SELECTED",9,PixelUi.Hex(0xffce76));selected.name="avatar-selected-"+avatars[i];selected.pickingMode=PickingMode.Ignore;selected.style.height=12;selected.style.flexShrink=0;selected.style.unityTextAlign=TextAnchor.MiddleCenter;selected.style.display=DisplayStyle.None;
+                var caption=b.Q<Label>("button-caption");caption.style.height=16;caption.style.flexGrow=0;b.Add(selected);avatarButtons[i]=b;badges.Add(b);
             }
             profile.Add(badges);
             profileStatus=Text("",UiTypography.Counter,PixelUi.Hex(0xffce76));profileStatus.name="profile-status";profileStatus.style.marginBottom=6;profile.Add(profileStatus);
@@ -120,7 +126,7 @@ namespace ZeroToMillionaire
             settings.style.display=target==RoomSection.Settings?DisplayStyle.Flex:DisplayStyle.None;
             profile.style.display=target==RoomSection.Profile?DisplayStyle.Flex:DisplayStyle.None;
             sectionTitle.text=target==RoomSection.Shop?"ROOM SHOP":target==RoomSection.Profile?"LOCAL PROFILE":"SETTINGS";
-            for(int i=0;i<4;i++){sectionButtons[i].style.backgroundColor=i==(int)target?Rust:Forest;sectionButtons[i].tooltip=i==(int)target?"Current section":"Open "+((RoomSection)i).ToString();}
+            for(int i=0;i<4;i++){bool selected=i==(int)target;sectionButtons[i].EnableInClassList("selected",selected);sectionButtons[i].Q<Label>("section-active-"+((RoomSection)i).ToString().ToLowerInvariant()).style.display=selected?DisplayStyle.Flex:DisplayStyle.None;sectionButtons[i].MarkDirtyRepaint();sectionButtons[i].tooltip=selected?"Current section":"Open "+((RoomSection)i).ToString();}
             UpdateSaveStatus();RefreshLocalSettings();RefreshProfile();
             VisualElement first=sections.Q<Button>("close-sections");
             if(target==RoomSection.Shop){RefreshShop();shopList.scrollOffset=Vector2.zero;sectionContent=shopOverlay;}
@@ -138,7 +144,7 @@ namespace ZeroToMillionaire
             if(shown){input?.Close(sections);LoadProfileDraft();main.SetEnabled(!session.RecoveryRequired);}
         }
         void LoadProfileDraft(){if(profileName==null)return;var p=localPlayer.Snapshot;profileName.SetValueWithoutNotify(p.displayName);draftAvatar=p.avatarId;RefreshAvatarChoices();ValidateProfileDraft();}
-        void RefreshAvatarChoices(){for(int i=0;i<3;i++){avatarButtons[i].style.backgroundColor=draftAvatar==avatars[i]?Rust:Forest;avatarButtons[i].tooltip=draftAvatar==avatars[i]?"Selected badge":"Choose "+avatars[i];}}
+        void RefreshAvatarChoices(){for(int i=0;i<3;i++){bool selected=draftAvatar==avatars[i];avatarButtons[i].EnableInClassList("selected",selected);avatarButtons[i].Q<Label>("avatar-selected-"+avatars[i]).style.display=selected?DisplayStyle.Flex:DisplayStyle.None;avatarButtons[i].MarkDirtyRepaint();avatarButtons[i].tooltip=selected?"Selected badge":"Choose "+avatars[i];}}
         void ValidateProfileDraft()
         {
             if(saveProfile==null)return;string name;bool valid=LocalPlayer.NormalizeName(profileName.value,out name);
@@ -187,7 +193,13 @@ namespace ZeroToMillionaire
             activityList.Clear();var entries=notifications.History;activityEmpty.style.display=entries.Length==0?DisplayStyle.Flex:DisplayStyle.None;
             for(int i=entries.Length-1;i>=0;i--){var l=Text(entries[i],UiTypography.Counter,Cream);l.enableRichText=false;l.style.marginBottom=6;UiTypography.Apply(l,UiTypography.Counter,Cream,false);activityList.Add(l);}
         }
-        void Record(SessionEvent channel,long id,string text){if(notifications.Record(notifications.Generation,channel,id,text)&&section==RoomSection.Profile&&SectionsOpen)RefreshProfile();}
+        void Record(SessionEvent channel,long id,string text,int itemId=-1)
+        {
+            if(!notifications.Record(notifications.Generation,channel,id,text,itemId))return;
+            if(channel==SessionEvent.Purchase&&shownNotice!=null&&shownNotice.Event==SessionEvent.Ready&&shownNotice.ItemId==itemId)HideToast();
+            if(section==RoomSection.Profile&&SectionsOpen)RefreshProfile();
+        }
+        bool NoticeCurrent(SessionNotice n)=>n.Event!=SessionEvent.Ready||(n.ItemId==model.ActiveQuest&&model.CanBuy(n.ItemId));
         void SyncCritical()
         {
             if(localPlayer==null)return;
@@ -201,7 +213,9 @@ namespace ZeroToMillionaire
         void TickSections()
         {
             if(sectionEntering){float t=Mathf.Clamp01((Time.unscaledTime-sectionStarted)/.14f);sectionContent.style.opacity=.35f+.65f*t;if(t>=1)sectionEntering=false;}
-            if(notifications.PendingCount>0&&!spinning&&!ModalOpen&&!rewardPending&&rewardFly.style.display==DisplayStyle.None&&!effects.PresentationBusy&&(toast.style.display==DisplayStyle.None||Time.unscaledTime>toastUntil))ShowToast(notifications.Take());
+            if(shownNotice!=null&&!NoticeCurrent(shownNotice))HideToast();
+            if(notifications.PendingCount>0&&!spinning&&!ModalOpen&&!rewardPending&&rewardFly.style.display==DisplayStyle.None&&!effects.PresentationBusy&&(toast.style.display==DisplayStyle.None||Time.unscaledTime>toastUntil))
+            {var notice=notifications.TakeNotice(NoticeCurrent);if(notice!=null){ShowToast(notice.Text);shownNotice=notice;}}
         }
 #if UNITY_EDITOR || DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT
         public LocalPlayer QaLocalPlayer=>localPlayer.Snapshot;

@@ -68,6 +68,15 @@ namespace ZeroToMillionaire
             Check(!events.Record(generation,SessionEvent.Spin,66,"stale callback"),"old generation cannot leak after reset");
             events.RebaseLocal(1);Check(events.Record(events.Generation,SessionEvent.Profile,2,"Saved after local reload"),"local reload rebases revision dedup without inventing history");
             events.SetOptional(true);Check(events.Record(events.Generation,SessionEvent.Reset,1,"Fresh start"),"actual reset can be logged once");Check(events.Take()=="Fresh start"&&events.Take()==null,"queue drains once");
+            var readyQueue=new SessionNotifications();readyQueue.Reset(new PlayerState(),0);int g=readyQueue.Generation;
+            Check(readyQueue.Record(g,SessionEvent.Ready,1,"Floor ready to buy",0),"typed Ready has item context");
+            Check(readyQueue.Record(g,SessionEvent.Purchase,1,"Floor installed",0),"immediate purchase queued once");
+            Check(readyQueue.PendingCount==1&&readyQueue.Take()=="Floor installed"&&readyQueue.Take()==null,"purchase invalidates queued Ready before display");
+            Check(!readyQueue.Record(g,SessionEvent.Purchase,1,"Duplicate install",0),"purchase notice deduplicates repeated callback");
+            Check(readyQueue.History.Length==2,"historical Ready fact and committed purchase remain honest session entries");
+            Check(readyQueue.Record(g,SessionEvent.Ready,2,"Walls ready to buy",1),"another item's Ready can queue");
+            Check(readyQueue.TakeNotice(n=>n.Event!=SessionEvent.Ready||n.ItemId==0)==null,"display validation drops obsolete readiness");
+            Check(!readyQueue.Record(g,SessionEvent.Ready,3,"Missing item"),"Ready without item context rejected");
             return "PASS "+assertions+" local profile/session notification assertions";
         }
     }

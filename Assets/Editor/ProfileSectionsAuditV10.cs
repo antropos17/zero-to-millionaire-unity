@@ -11,7 +11,7 @@ namespace ZeroToMillionaire.Editor
 {
     [InitializeOnLoad] public static class ProfileSectionsAuditV10
     {
-        const string Key="ZTM_PROFILE_SECTIONS_V10_5";
+        const string Key="ZTM_PROFILE_SECTIONS_V10_6";
         static GameView view;static RenderTexture target;static FileStream lease;
         static int phase,scenario,warm,assertions,frames,phaseFrame;static long savedRevision;static int savedSpins;
         static double started,at,previousTick;
@@ -20,7 +20,7 @@ namespace ZeroToMillionaire.Editor
         static readonly StringBuilder Log=new StringBuilder();
         static readonly int[] Widths={320,360,360,480},Heights={640,640,800,960};
         static string Root=>Directory.GetParent(Application.dataPath).FullName;
-        static string SaveDir=>Path.Combine(Root,".tooling","v10-ui-checks-5","save");
+        static string SaveDir=>Path.Combine(Root,".tooling","v10-ui-checks-6","save");
         static VisualElement UI=>view.GetComponent<UIDocument>().rootVisualElement;
         static VisualElement Focus=>UI.panel.focusController.focusedElement as VisualElement;
         static GameSession Session=>(GameSession)typeof(GameView).GetField("session",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(view);
@@ -60,7 +60,7 @@ namespace ZeroToMillionaire.Editor
         static void Capture(string name)
         {
             var old=RenderTexture.active;RenderTexture.active=target;var t=new Texture2D(target.width,target.height,TextureFormat.RGBA32,false);t.ReadPixels(new Rect(0,0,target.width,target.height),0,0);t.Apply();
-            File.WriteAllBytes(Path.Combine(Root,"Evidence","v10-slice1-qa5-"+name+"-"+(scenario>=4?"calm":"full")+"-"+target.width+"x"+target.height+".png"),t.EncodeToPNG());UnityEngine.Object.Destroy(t);RenderTexture.active=old;
+            File.WriteAllBytes(Path.Combine(Root,"Evidence","v10-slice1-qa6-"+name+"-"+(scenario>=4?"calm":"full")+"-"+target.width+"x"+target.height+".png"),t.EncodeToPNG());UnityEngine.Object.Destroy(t);RenderTexture.active=old;
         }
         static void BindTarget()
         {
@@ -83,7 +83,7 @@ namespace ZeroToMillionaire.Editor
                 }
                 else if(phase==1&&Warm())
                 {
-                    Chrome();Check(InFocus(UI.Q<Button>("tutorial-replay")),"settings focus scoped");
+                    Chrome();Check(InFocus(UI.Q<Button>("tutorial-replay")),"settings focus scoped");Check(UI.Q<Button>("section-settings").ClassListContains("selected")&&UI.Q<Label>("section-active-settings").style.display==DisplayStyle.Flex,"persistent selected section independent of focus");
                     var motion=UI.Q<Button>("motion-toggle");motion.Focus();bool originalCalm=view.QaLocalPlayer.Calm;Press(KeyCode.Return);Submit(motion);for(int k=0;k<20;k++){Press(KeyCode.Return);Submit(motion);}Check(view.QaLocalPlayer.Calm!=originalCalm,"held Return changes setting once");
                     typeof(GameView).GetMethod("OnApplicationFocus",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(view,new object[]{false});Press(KeyCode.Return);Submit(motion);Up(KeyCode.Return);Check(view.QaLocalPlayer.Calm==originalCalm,"focus loss releases held activation key");Bounds(UI.Q<Button>("motion-toggle"));Bounds(UI.Q<Button>("notification-toggle"));Capture("settings");Tap(UI.Q<Button>("section-profile"));At(2);
                 }
@@ -98,7 +98,7 @@ namespace ZeroToMillionaire.Editor
                 }
                 else if(phase==3&&Warm())
                 {
-                    Bounds(UI.Q<Button>("save-profile"));Capture("profile-draft");Tap(UI.Q<Button>("save-profile"));savedName="Ирина Zoë";savedRevision=view.QaLocalPlayer.revision;
+                    Bounds(UI.Q<Button>("save-profile"));Check(UI.Q<Button>("avatar-stool").ClassListContains("selected")&&UI.Q<Label>("avatar-selected-stool").style.display==DisplayStyle.Flex,"persistent selected badge independent of focus");Bounds(UI.Q<Label>("avatar-selected-stool"));Capture("profile-draft");Tap(UI.Q<Button>("save-profile"));savedName="Ирина Zoë";savedRevision=view.QaLocalPlayer.revision;
                     Check(view.QaLocalPlayer.displayName==savedName&&view.QaLocalPlayer.avatarId=="stool","explicit profile commit");
                     var disk=new LocalPlayerStore(SaveDir,new UnityLocalPlayerCodec());Check(disk.Snapshot.SameValues(view.QaLocalPlayer),"profile persisted via Unity JSON");
                     lease=new FileStream(Path.Combine(SaveDir,"local-player-v1.json"),FileMode.Open,FileAccess.Read,FileShare.None);
@@ -196,7 +196,31 @@ namespace ZeroToMillionaire.Editor
                 {
                     Capture("local-data-protected");Tap(UI.Q<Button>("retry-local-data"));Check(UI.Q<Button>("motion-toggle").enabledInHierarchy&&view.QaLocalPlayer.displayName==savedName,"local retry restores current known profile after file correction");
                     Check(view.Model.PurchasedCount==1&&view.Model.Snapshot.cash==20,"local retry preserves game resources");Press(KeyCode.Escape);
-                    Log.AppendLine("SCENARIO PASS "+target.width+"x"+target.height+" calm="+(scenario>=4));if(++scenario<8)At(0);else Finish(true);
+                    var local=(LocalPlayerStore)typeof(GameView).GetField("localPlayer",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(view);var prefs=local.Snapshot;prefs.notificationMode="on";Check(local.Save(prefs,out _),"optional notice regression enabled");view.QaNotifications.SetOptional(true);
+                    var near=Fixture();near.fragments[0]=19;near.quests=Economy.QuestRecords(near);view.SetQaState(near,0);view.QaClick("spin");view.QaClick("menu");At(22);
+                }
+                else if(phase==22&&!view.QaSpinning&&Warm())
+                {
+                    Check(view.Model.CanBuy(0)&&Array.FindAll(view.QaNotifications.Pending,n=>n.Event==SessionEvent.Ready&&n.ItemId==0).Length==1,"actual spin queued typed current-item Ready while menu prevents drain");
+                    view.QaClick("section-shop");At(23);
+                }
+                else if(phase==23&&Warm())
+                {
+                    var retired=UI.Q<Button>("shop-buy-0");Tap(retired);for(int k=0;k<20;k++)Submit(retired);
+                    Check(view.Model.PurchasedCount==1,"immediate purchase installs before Ready queue drains");
+                    Check(Array.FindAll(view.QaNotifications.Pending,n=>n.Event==SessionEvent.Ready&&n.ItemId==0).Length==0,"committed purchase invalidates queued Ready");
+                    Check(Array.FindAll(view.QaNotifications.Pending,n=>n.Event==SessionEvent.Purchase&&n.ItemId==0).Length==1,"exactly one typed purchase notice pending");At(24);
+                }
+                else if(phase==24)
+                {
+                    var toast=UI.Q<VisualElement>("toast");var label=toast.Q<Label>();bool visible=toast.style.display==DisplayStyle.Flex;
+                    Check(!visible||!label.text.Contains("ready to buy"),"no stale Ready prompt after installed item");
+                    if(visible&&label.text.Contains("installed"))
+                    {
+                        Check(Array.FindAll(view.QaNotifications.History,s=>s.Contains("installed")).Length==1,"one committed purchase history entry");Capture("ready-invalidated-purchase");
+                        Log.AppendLine("SCENARIO PASS "+target.width+"x"+target.height+" calm="+(scenario>=4));if(++scenario<8)At(0);else Finish(true);
+                    }
+                    else if(EditorApplication.timeSinceStartup-at>8)throw new Exception("Purchase notice not shown after obsolete Ready removal");
                 }
             }
             catch(Exception e){Log.AppendLine("FAIL phase="+phase+" scenario="+scenario+" "+e);Finish(false);}
@@ -205,7 +229,7 @@ namespace ZeroToMillionaire.Editor
         {
             lease?.Dispose();lease=null;SessionState.SetBool(Key,false);Log.AppendLine("RESULT "+(pass?"PASS":"FAIL")+" assertions="+assertions+" runtimeFrames="+(Time.frameCount-frames)+" elapsed="+(EditorApplication.timeSinceStartup-started).ToString("F2")+"; actual offscreen Editor panels; synthetic UITK pointer/key/navigation; private save only; no OS input");
             intervals.Sort();if(intervals.Count>0)Log.AppendLine("Editor tick intervals (including captures/reloads): samples="+intervals.Count+" medianMs="+intervals[intervals.Count/2].ToString("F2")+" p95Ms="+intervals[(int)((intervals.Count-1)*.95)].ToString("F2")+" maxMs="+intervals[intervals.Count-1].ToString("F2")+"; not native/device frame benchmark");
-            File.WriteAllText(Path.Combine(Root,"Evidence","v10-slice1-ui-checks-5.txt"),Log.ToString());
+            File.WriteAllText(Path.Combine(Root,"Evidence","v10-slice1-ui-checks-6.txt"),Log.ToString());
             if(target!=null){if(view!=null)view.GetComponent<UIDocument>().panelSettings.targetTexture=null;target.Release();UnityEngine.Object.Destroy(target);}
             EditorApplication.ExitPlaymode();EditorApplication.delayCall+=()=>EditorApplication.Exit(pass?0:1);
         }

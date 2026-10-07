@@ -77,6 +77,7 @@ namespace ZeroToMillionaire
         static Rect Inset(Rect r,float n) { return new Rect(r.x+n,r.y+n,r.width-2*n,r.height-2*n); }
         static void Draw(MeshGenerationContext context,VisualElement element,Finish requested)
         {
+            if(element is Button&&element.ClassListContains("selected"))requested=Finish.Rust;
             Finish kind=!element.enabledInHierarchy && requested==Finish.Rust?Finish.Grey:requested;
             var p=context.painter2D;Rect r=new Rect(0,0,element.layout.width,element.layout.height);
             bool pressed=element is Button&&element.ClassListContains("pressed")&&element.enabledInHierarchy;
