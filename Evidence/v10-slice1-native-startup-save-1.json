@@ -1,0 +1,51 @@
+{
+  "source_commit": "9df99128385c5c22d1bce5815bb269e1f23df91c",
+  "scope": "actual Release hidden startup/normal-quit/private save; no OS input/render/performance claim",
+  "cases": [
+    {
+      "case": "fresh",
+      "exit_code": 0,
+      "profile_verified": true,
+      "release": true,
+      "qa_hooks_present": false,
+      "automated_harness_present": false,
+      "game_schema": 6,
+      "spins": 0,
+      "owned": 0,
+      "local_file_hash_before": "ABSENT",
+      "local_file_hash_after": "ABSENT",
+      "local_file_preserved": true,
+      "scope": "Hidden native startup/normal quit/private save; read-only in-app observer; no OS input; no native rendering or performance claim"
+    },
+    {
+      "case": "future-local-profile",
+      "exit_code": 0,
+      "profile_verified": true,
+      "release": true,
+      "qa_hooks_present": false,
+      "automated_harness_present": false,
+      "game_schema": 6,
+      "spins": 0,
+      "owned": 0,
+      "local_file_hash_before": "B59CEE24F0EE1BF3A8310965BB72D883482127BB5981082447396ADA1249A376",
+      "local_file_hash_after": "B59CEE24F0EE1BF3A8310965BB72D883482127BB5981082447396ADA1249A376",
+      "local_file_preserved": true,
+      "scope": "Hidden native startup/normal quit/private save; read-only in-app observer; no OS input; no native rendering or performance claim"
+    },
+    {
+      "case": "valid-local-profile",
+      "exit_code": 0,
+      "profile_verified": true,
+      "release": true,
+      "qa_hooks_present": false,
+      "automated_harness_present": false,
+      "game_schema": 6,
+      "spins": 58,
+      "owned": 8,
+      "local_file_hash_before": "EAA0377E32B0FDEAAD21BCA4C1E492463BE456B77596483E1691A0668E08D876",
+      "local_file_hash_after": "EAA0377E32B0FDEAAD21BCA4C1E492463BE456B77596483E1691A0668E08D876",
+      "local_file_preserved": true,
+      "scope": "Hidden native startup/normal quit/private save; read-only in-app observer; no OS input; no native rendering or performance claim"
+    }
+  ]
+}

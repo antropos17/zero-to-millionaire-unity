@@ -1,0 +1,11 @@
+Succeeded
+source=9df99128385c5c22d1bce5815bb269e1f23df91c
+options=None
+auditDefine=False
+bundleVersion=0.10.0
+scope=profile/settings/sections/session-notifications; game schema6; decor pending
+company=PrototypeWorkspace
+product=ZERO TO MILLIONAIRE
+guid=fcec0963d486414cbf971512f138c144
+bytes=105493934
+duration=00:00:20.5309858
