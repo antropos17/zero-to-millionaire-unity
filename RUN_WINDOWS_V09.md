@@ -1,16 +1,25 @@
 # Run ZERO TO MILLIONAIRE v0.9
 
+Close ALL older game versions and Editors using the player profile before the
+FIRST launch of this updated v0.9. Older already-loaded code can overwrite live
+save data. Do not run old and new games against one profile simultaneously.
+
+The updated build protects the exact old primary/backup bytes before a schema1-5
+to schema6 write in `level1-v1.json.pre-schema6/vN-FINGERPRINT/`. This verified
+snapshot never rotates with `.bak`. If reading, classification or copying fails,
+no live save is replaced. If legacy originals change after loading, close and
+reopen the game. Read `V09_MIGRATION_ROLLBACK.md` for safe byte restoration.
+
 Put every Windows split part `.zip.001`, `.zip.002`, `.zip.003` in one folder.
 In 7-Zip choose Extract on `.zip.001`. Run `ZeroToMillionaire.exe` in the complete
 extracted `zero-to-millionaire-windows-v0.9` folder. No installer, administrator,
 network, login, real-money purchase or cashout is part of this game.
 
-Close any older game instance before normally launching v0.9: they use the same
-player save directory. v0.9 reads old saves without erasing progress, defaults
-the new stake choice to1x and upgrades its schema on the next committed action.
-Older releases cannot read a schema6 save; keep immutable old builds but use v0.9
-for continuing upgraded progress. Do not run old and new versions against one
-save simultaneously. No live user save was migrated by QA.
+v0.9 defaults old saves to1x while preserving resources and room ownership.
+Older releases cannot read a schema6 save. Keep immutable old builds and the
+pre-migration snapshot; use updated v0.9 to continue the upgraded progress.
+All automated QA used private profiles. A normal visible game launch was
+subsequently performed at the user's explicit request.
 
 Normal save directory:
 `%USERPROFILE%/AppData/LocalLow/PrototypeWorkspace/ZERO TO MILLIONAIRE/`.
@@ -45,3 +54,6 @@ private read-only screenshot/frame observation; it does not dispatch input or
 economy actions. This flag is inactive for ordinary launches.
 
 APK export and Android/device testing are deferred. No store publication occurred.
+
+Verified local build: `Builds/Windows-v0.9-candidate-3/ZeroToMillionaire.exe`.
+Production build source: `457a13f5ecab649aafb371873b1ba9bb301536fe`.

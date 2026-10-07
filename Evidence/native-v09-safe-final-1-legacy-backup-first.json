@@ -1,0 +1,139 @@
+{
+    "development": false,
+    "qaHooksPresent": false,
+    "automatedHarnessPresent": false,
+    "profileVerified": true,
+    "recoveryRequired": false,
+    "recoveryVisible": false,
+    "actualSavePath": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\native-v09-safe-final-1\\legacy-backup\\save\\level1-v1.json",
+    "unity": "6000.3.21f1",
+    "graphicsApi": "Direct3D11",
+    "questTitle": "Patch floor",
+    "questStatus": "1/8 • READY",
+    "dialogueText": "",
+    "dialogueVisible": false,
+    "tutorialStep": -1,
+    "taskCashPrice": 60,
+    "taskFragmentGoal": 20,
+    "firstFrame": 1,
+    "lastFrame": 21721,
+    "samples": 12000,
+    "width": 360,
+    "height": 800,
+    "owned": 0,
+    "activeQuest": 0,
+    "drawCounterNonzero": 0,
+    "seconds": 7.058193600000001,
+    "medianMs": 0.21979999999999223,
+    "p95Ms": 0.526400000000038,
+    "p99Ms": 2.703799999999923,
+    "maxMs": 181.2737000000002,
+    "distance": 1.4955742359161378,
+    "complete": false,
+    "spinEnabled": false,
+    "buyEnabled": true,
+    "state": {
+        "version": 6,
+        "cash": 180,
+        "stakeMultiplier": 1,
+        "freeSpins": 0,
+        "spins": 6,
+        "recoveries": 0,
+        "heroineU": 1.9460601806640626,
+        "heroineV": 1.6064385175704957,
+        "fragments": [
+            22,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "purchased": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "lastGrid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "quests": [
+            {
+                "id": "floor-patches",
+                "status": 2,
+                "cashPrice": 60,
+                "fragmentGoal": 20
+            },
+            {
+                "id": "surface-repair",
+                "status": 0,
+                "cashPrice": 115,
+                "fragmentGoal": 30
+            },
+            {
+                "id": "cheap-wallpaper",
+                "status": 0,
+                "cashPrice": 155,
+                "fragmentGoal": 38
+            },
+            {
+                "id": "door-repair",
+                "status": 0,
+                "cashPrice": 195,
+                "fragmentGoal": 44
+            },
+            {
+                "id": "window-repair",
+                "status": 0,
+                "cashPrice": 235,
+                "fragmentGoal": 50
+            },
+            {
+                "id": "first-mattress",
+                "status": 0,
+                "cashPrice": 300,
+                "fragmentGoal": 58
+            },
+            {
+                "id": "small-lamp",
+                "status": 0,
+                "cashPrice": 315,
+                "fragmentGoal": 62
+            },
+            {
+                "id": "wooden-stool",
+                "status": 0,
+                "cashPrice": 355,
+                "fragmentGoal": 70
+            }
+        ],
+        "tutorial": {
+            "version": 1,
+            "step": 0,
+            "storySeenMask": 0,
+            "completed": true,
+            "skipped": false
+        }
+    }
+}

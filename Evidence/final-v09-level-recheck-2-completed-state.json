@@ -1,0 +1,104 @@
+{
+    "version": 6,
+    "cash": 243,
+    "stakeMultiplier": 1,
+    "freeSpins": 0,
+    "spins": 56,
+    "recoveries": 0,
+    "heroineU": 2.248225450515747,
+    "heroineV": 1.3562062978744507,
+    "fragments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "purchased": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+    ],
+    "lastGrid": [
+        0,
+        8,
+        0,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "quests": [
+        {
+            "id": "floor-patches",
+            "status": 3,
+            "cashPrice": 60,
+            "fragmentGoal": 20
+        },
+        {
+            "id": "surface-repair",
+            "status": 3,
+            "cashPrice": 115,
+            "fragmentGoal": 30
+        },
+        {
+            "id": "cheap-wallpaper",
+            "status": 3,
+            "cashPrice": 155,
+            "fragmentGoal": 38
+        },
+        {
+            "id": "door-repair",
+            "status": 3,
+            "cashPrice": 195,
+            "fragmentGoal": 44
+        },
+        {
+            "id": "window-repair",
+            "status": 3,
+            "cashPrice": 235,
+            "fragmentGoal": 50
+        },
+        {
+            "id": "first-mattress",
+            "status": 3,
+            "cashPrice": 300,
+            "fragmentGoal": 58
+        },
+        {
+            "id": "small-lamp",
+            "status": 3,
+            "cashPrice": 315,
+            "fragmentGoal": 62
+        },
+        {
+            "id": "wooden-stool",
+            "status": 3,
+            "cashPrice": 355,
+            "fragmentGoal": 70
+        }
+    ],
+    "tutorial": {
+        "version": 1,
+        "step": 0,
+        "storySeenMask": 15,
+        "completed": false,
+        "skipped": true
+    }
+}

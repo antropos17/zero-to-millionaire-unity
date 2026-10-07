@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "productionSource": "457a13f5ecab649aafb371873b1ba9bb301536fe",
+  "reviewedLibraryId": "libfile_6b8a9986d3d48191a2cdd90cda4ee05e",
+  "reviewedVersion": 1,
+  "scope": "Independent targeted review of fail-closed migration, exact recovery exception, no-op save-error retention and shop prerequisite text; confirmed by parent coordinator"
+}

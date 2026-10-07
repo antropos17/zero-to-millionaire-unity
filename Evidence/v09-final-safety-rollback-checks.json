@@ -1,0 +1,16 @@
+{
+  "status": "PASS_SNAPSHOT_WITH_OLD_INSTANCE_PREREQUISITE",
+  "checks": 22,
+  "scope": "Unmodified legacy Core plus final updated Core source; .NET JSON codecs; private fixtures only; no UI/native input",
+  "legacySource": "c9d759eb418f0d107bd9231053646a6c1c4a63f5",
+  "currentBuildSource": "457a13f5ecab649aafb371873b1ba9bb301536fe",
+  "firstRollingBackupVersion": 5,
+  "secondRollingBackupVersion": 6,
+  "durablePreMigrationBackupProvidedByRuntime": true,
+  "newlyStartedOldBlocksSchema6": true,
+  "previouslyLoadedOldWriterCanOverwrite": true,
+  "manualExternalSnapshotUnchanged": true,
+  "manualByteRollbackReadableByLegacyCore": true,
+  "ordinaryUserSaveAccessed": false,
+  "fixtureSha256": "02aa3d938644a88d1abeb0ce55a3d9a2a8b5804998179e7fd060678268b8903d"
+}

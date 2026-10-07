@@ -1,0 +1,16 @@
+{
+  "scope": "User-requested normal visible launch AFTER private automated QA; no input dispatched by executor",
+  "pid": 51356,
+  "openedUtc": "2026-10-07T06:38:19Z",
+  "profile": "ordinary user profile; no --ztm-private-profile option",
+  "diskMigrationObserved": false,
+  "readOnlyCheck": "2026-10-07 after opening, before final packaging",
+  "primarySchema": 5,
+  "backupSchema": 5,
+  "primaryModifiedUtc": "2026-10-07T04:32:06.5827786Z",
+  "backupModifiedUtc": "2026-10-07T04:32:05.0049446Z",
+  "preSchema6SnapshotDirectoryPresent": false,
+  "resourceValuesReadOrExported": false,
+  "userSaveWrittenByExecutor": false,
+  "caveat": "No disk migration at this observation. A later normal user action, pause or quit can commit the normal supported migration. Existing files were not changed by the read-only check."
+}

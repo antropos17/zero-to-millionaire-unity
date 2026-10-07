@@ -1,0 +1,2446 @@
+{
+  "status": "PASS",
+  "sourceCommit": "457a13f5ecab649aafb371873b1ba9bb301536fe",
+  "scope": "Metadata/IL of actual candidate binaries; paired with native runtime snapshot evidence; no physical input",
+  "assemblies": [
+    {
+      "file": "ZeroToMillionaire.Core.dll",
+      "sha256": "5dea938083aea3152a5d7d5561f58f6b9fdc6b129c92a894a6d9b2b17bf8bd05"
+    },
+    {
+      "file": "Assembly-CSharp.dll",
+      "sha256": "bdeadfe3c35d8a4930c5d12b96165542b541d64226a2790849ce99f0546af949"
+    }
+  ],
+  "methods": [
+    {
+      "Type": "SaveStore",
+      "Name": "PreserveBeforeMigration",
+      "IL": [
+        {
+          "Offset": 0,
+          "Op": "ldarg.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 1,
+          "Op": "ldstr",
+          "Operand": ""
+        },
+        {
+          "Offset": 6,
+          "Op": "stind.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 7,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 8,
+          "Op": "ldfld",
+          "Operand": "path"
+        },
+        {
+          "Offset": 13,
+          "Op": "call",
+          "Operand": "SaveStore.ReadOriginal"
+        },
+        {
+          "Offset": 18,
+          "Op": "stloc.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 19,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 20,
+          "Op": "ldfld",
+          "Operand": "path"
+        },
+        {
+          "Offset": 25,
+          "Op": "ldstr",
+          "Operand": ".bak"
+        },
+        {
+          "Offset": 30,
+          "Op": "call",
+          "Operand": "Concat"
+        },
+        {
+          "Offset": 35,
+          "Op": "call",
+          "Operand": "SaveStore.ReadOriginal"
+        },
+        {
+          "Offset": 40,
+          "Op": "stloc.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 41,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 42,
+          "Op": "ldfld",
+          "Operand": "migrationRequired"
+        },
+        {
+          "Offset": 47,
+          "Op": "brfalse.s",
+          "Operand": "115"
+        },
+        {
+          "Offset": 49,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 50,
+          "Op": "ldfld",
+          "Operand": "migrationCaptureFailed"
+        },
+        {
+          "Offset": 55,
+          "Op": "brfalse.s",
+          "Operand": "72"
+        },
+        {
+          "Offset": 57,
+          "Op": "ldarg.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 58,
+          "Op": "ldstr",
+          "Operand": "Could not protect the old save. No changes were saved."
+        },
+        {
+          "Offset": 63,
+          "Op": "stind.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 64,
+          "Op": "ldc.i4.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 65,
+          "Op": "stloc.s",
+          "Operand": "18"
+        },
+        {
+          "Offset": 67,
+          "Op": "leave",
+          "Operand": "832"
+        },
+        {
+          "Offset": 72,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 73,
+          "Op": "ldfld",
+          "Operand": "migrationPrimary"
+        },
+        {
+          "Offset": 78,
+          "Op": "ldloc.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 79,
+          "Op": "call",
+          "Operand": "SaveStore.Equal"
+        },
+        {
+          "Offset": 84,
+          "Op": "brfalse.s",
+          "Operand": "100"
+        },
+        {
+          "Offset": 86,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 87,
+          "Op": "ldfld",
+          "Operand": "migrationBackup"
+        },
+        {
+          "Offset": 92,
+          "Op": "ldloc.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 93,
+          "Op": "call",
+          "Operand": "SaveStore.Equal"
+        },
+        {
+          "Offset": 98,
+          "Op": "brtrue.s",
+          "Operand": "115"
+        },
+        {
+          "Offset": 100,
+          "Op": "ldarg.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 101,
+          "Op": "ldstr",
+          "Operand": "Save changed on disk. Close and reopen the game."
+        },
+        {
+          "Offset": 106,
+          "Op": "stind.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 107,
+          "Op": "ldc.i4.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 108,
+          "Op": "stloc.s",
+          "Operand": "18"
+        },
+        {
+          "Offset": 110,
+          "Op": "leave",
+          "Operand": "832"
+        },
+        {
+          "Offset": 115,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 116,
+          "Op": "ldloc.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 117,
+          "Op": "ldloca.s",
+          "Operand": "2"
+        },
+        {
+          "Offset": 119,
+          "Op": "ldloca.s",
+          "Operand": "3"
+        },
+        {
+          "Offset": 121,
+          "Op": "ldloca.s",
+          "Operand": "5"
+        },
+        {
+          "Offset": 123,
+          "Op": "ldloca.s",
+          "Operand": "7"
+        },
+        {
+          "Offset": 125,
+          "Op": "call",
+          "Operand": "SaveStore.DecodeOriginal"
+        },
+        {
+          "Offset": 130,
+          "Op": "stloc.s",
+          "Operand": "9"
+        },
+        {
+          "Offset": 132,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 133,
+          "Op": "ldloc.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 134,
+          "Op": "ldloca.s",
+          "Operand": "2"
+        },
+        {
+          "Offset": 136,
+          "Op": "ldloca.s",
+          "Operand": "4"
+        },
+        {
+          "Offset": 138,
+          "Op": "ldloca.s",
+          "Operand": "6"
+        },
+        {
+          "Offset": 140,
+          "Op": "ldloca.s",
+          "Operand": "8"
+        },
+        {
+          "Offset": 142,
+          "Op": "call",
+          "Operand": "SaveStore.DecodeOriginal"
+        },
+        {
+          "Offset": 147,
+          "Op": "stloc.s",
+          "Operand": "10"
+        },
+        {
+          "Offset": 149,
+          "Op": "ldloc.s",
+          "Operand": "9"
+        },
+        {
+          "Offset": 151,
+          "Op": "brfalse.s",
+          "Operand": "172"
+        },
+        {
+          "Offset": 153,
+          "Op": "ldloc.s",
+          "Operand": "7"
+        },
+        {
+          "Offset": 155,
+          "Op": "ldc.i4.6",
+          "Operand": ""
+        },
+        {
+          "Offset": 156,
+          "Op": "bne.un.s",
+          "Operand": "172"
+        },
+        {
+          "Offset": 158,
+          "Op": "ldloc.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 159,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 160,
+          "Op": "ldfld",
+          "Operand": "recoveryProtectedBackup"
+        },
+        {
+          "Offset": 165,
+          "Op": "call",
+          "Operand": "SaveStore.Equal"
+        },
+        {
+          "Offset": 170,
+          "Op": "br.s",
+          "Operand": "173"
+        },
+        {
+          "Offset": 172,
+          "Op": "ldc.i4.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 173,
+          "Op": "stloc.s",
+          "Operand": "11"
+        },
+        {
+          "Offset": 175,
+          "Op": "ldloc.s",
+          "Operand": "5"
+        },
+        {
+          "Offset": 177,
+          "Op": "brtrue.s",
+          "Operand": "187"
+        },
+        {
+          "Offset": 179,
+          "Op": "ldloc.s",
+          "Operand": "6"
+        },
+        {
+          "Offset": 181,
+          "Op": "brfalse.s",
+          "Operand": "202"
+        },
+        {
+          "Offset": 183,
+          "Op": "ldloc.s",
+          "Operand": "11"
+        },
+        {
+          "Offset": 185,
+          "Op": "brtrue.s",
+          "Operand": "202"
+        },
+        {
+          "Offset": 187,
+          "Op": "ldarg.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 188,
+          "Op": "ldstr",
+          "Operand": "Save changed on disk. Close and reopen the game."
+        },
+        {
+          "Offset": 193,
+          "Op": "stind.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 194,
+          "Op": "ldc.i4.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 195,
+          "Op": "stloc.s",
+          "Operand": "18"
+        },
+        {
+          "Offset": 197,
+          "Op": "leave",
+          "Operand": "832"
+        },
+        {
+          "Offset": 202,
+          "Op": "ldloc.s",
+          "Operand": "9"
+        },
+        {
+          "Offset": 204,
+          "Op": "stloc.s",
+          "Operand": "12"
+        },
+        {
+          "Offset": 206,
+          "Op": "ldloc.s",
+          "Operand": "9"
+        },
+        {
+          "Offset": 208,
+          "Op": "brtrue.s",
+          "Operand": "266"
+        },
+        {
+          "Offset": 210,
+          "Op": "ldloc.s",
+          "Operand": "10"
+        },
+        {
+          "Offset": 212,
+          "Op": "brtrue.s",
+          "Operand": "266"
+        },
+        {
+          "Offset": 214,
+          "Op": "ldloc.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 215,
+          "Op": "brtrue.s",
+          "Operand": "236"
+        },
+        {
+          "Offset": 217,
+          "Op": "ldloc.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 218,
+          "Op": "brtrue.s",
+          "Operand": "236"
+        },
+        {
+          "Offset": 220,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 221,
+          "Op": "ldfld",
+          "Operand": "migrationRequired"
+        },
+        {
+          "Offset": 226,
+          "Op": "brtrue.s",
+          "Operand": "236"
+        },
+        {
+          "Offset": 228,
+          "Op": "ldc.i4.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 229,
+          "Op": "stloc.s",
+          "Operand": "18"
+        },
+        {
+          "Offset": 231,
+          "Op": "leave",
+          "Operand": "832"
+        },
+        {
+          "Offset": 236,
+          "Op": "ldarg.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 237,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 238,
+          "Op": "ldfld",
+          "Operand": "migrationRequired"
+        },
+        {
+          "Offset": 243,
+          "Op": "brtrue.s",
+          "Operand": "252"
+        },
+        {
+          "Offset": 245,
+          "Op": "ldstr",
+          "Operand": "Local save needs recovery; original files preserved."
+        },
+        {
+          "Offset": 250,
+          "Op": "br.s",
+          "Operand": "257"
+        },
+        {
+          "Offset": 252,
+          "Op": "ldstr",
+          "Operand": "Could not protect the old save. No changes were saved."
+        },
+        {
+          "Offset": 257,
+          "Op": "stind.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 258,
+          "Op": "ldc.i4.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 259,
+          "Op": "stloc.s",
+          "Operand": "18"
+        },
+        {
+          "Offset": 261,
+          "Op": "leave",
+          "Operand": "832"
+        },
+        {
+          "Offset": 266,
+          "Op": "ldloc.s",
+          "Operand": "12"
+        },
+        {
+          "Offset": 268,
+          "Op": "brtrue.s",
+          "Operand": "274"
+        },
+        {
+          "Offset": 270,
+          "Op": "ldloc.s",
+          "Operand": "4"
+        },
+        {
+          "Offset": 272,
+          "Op": "br.s",
+          "Operand": "275"
+        },
+        {
+          "Offset": 274,
+          "Op": "ldloc.3",
+          "Operand": ""
+        },
+        {
+          "Offset": 275,
+          "Op": "stloc.s",
+          "Operand": "13"
+        },
+        {
+          "Offset": 277,
+          "Op": "ldloc.s",
+          "Operand": "12"
+        },
+        {
+          "Offset": 279,
+          "Op": "brtrue.s",
+          "Operand": "285"
+        },
+        {
+          "Offset": 281,
+          "Op": "ldloc.s",
+          "Operand": "8"
+        },
+        {
+          "Offset": 283,
+          "Op": "br.s",
+          "Operand": "287"
+        },
+        {
+          "Offset": 285,
+          "Op": "ldloc.s",
+          "Operand": "7"
+        },
+        {
+          "Offset": 287,
+          "Op": "stloc.s",
+          "Operand": "14"
+        },
+        {
+          "Offset": 289,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 290,
+          "Op": "ldfld",
+          "Operand": "migrationRequired"
+        },
+        {
+          "Offset": 295,
+          "Op": "brfalse.s",
+          "Operand": "336"
+        },
+        {
+          "Offset": 297,
+          "Op": "ldloc.s",
+          "Operand": "13"
+        },
+        {
+          "Offset": 299,
+          "Op": "brfalse.s",
+          "Operand": "321"
+        },
+        {
+          "Offset": 301,
+          "Op": "ldloc.s",
+          "Operand": "12"
+        },
+        {
+          "Offset": 303,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 304,
+          "Op": "ldfld",
+          "Operand": "migrationPrimarySource"
+        },
+        {
+          "Offset": 309,
+          "Op": "bne.un.s",
+          "Operand": "321"
+        },
+        {
+          "Offset": 311,
+          "Op": "ldloc.s",
+          "Operand": "14"
+        },
+        {
+          "Offset": 313,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 314,
+          "Op": "ldfld",
+          "Operand": "migrationSourceVersion"
+        },
+        {
+          "Offset": 319,
+          "Op": "beq.s",
+          "Operand": "336"
+        },
+        {
+          "Offset": 321,
+          "Op": "ldarg.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 322,
+          "Op": "ldstr",
+          "Operand": "Could not protect the old save. No changes were saved."
+        },
+        {
+          "Offset": 327,
+          "Op": "stind.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 328,
+          "Op": "ldc.i4.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 329,
+          "Op": "stloc.s",
+          "Operand": "18"
+        },
+        {
+          "Offset": 331,
+          "Op": "leave",
+          "Operand": "832"
+        },
+        {
+          "Offset": 336,
+          "Op": "ldloc.s",
+          "Operand": "13"
+        },
+        {
+          "Offset": 338,
+          "Op": "brtrue.s",
+          "Operand": "348"
+        },
+        {
+          "Offset": 340,
+          "Op": "ldc.i4.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 341,
+          "Op": "stloc.s",
+          "Operand": "18"
+        },
+        {
+          "Offset": 343,
+          "Op": "leave",
+          "Operand": "832"
+        },
+        {
+          "Offset": 348,
+          "Op": "newobj",
+          "Operand": ".ctor"
+        },
+        {
+          "Offset": 353,
+          "Op": "stloc.s",
+          "Operand": "19"
+        },
+        {
+          "Offset": 355,
+          "Op": "ldloc.s",
+          "Operand": "19"
+        },
+        {
+          "Offset": 357,
+          "Op": "call",
+          "Operand": "get_UTF8"
+        },
+        {
+          "Offset": 362,
+          "Op": "ldc.i4.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 363,
+          "Op": "newobj",
+          "Operand": ".ctor"
+        },
+        {
+          "Offset": 368,
+          "Op": "stloc.s",
+          "Operand": "20"
+        },
+        {
+          "Offset": 370,
+          "Op": "ldloc.s",
+          "Operand": "20"
+        },
+        {
+          "Offset": 372,
+          "Op": "ldloc.s",
+          "Operand": "14"
+        },
+        {
+          "Offset": 374,
+          "Op": "callvirt",
+          "Operand": "Write"
+        },
+        {
+          "Offset": 379,
+          "Op": "ldc.i4.2",
+          "Operand": ""
+        },
+        {
+          "Offset": 380,
+          "Op": "newarr",
+          "Operand": "token:1b00000c"
+        },
+        {
+          "Offset": 385,
+          "Op": "dup",
+          "Operand": ""
+        },
+        {
+          "Offset": 386,
+          "Op": "ldc.i4.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 387,
+          "Op": "ldloc.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 388,
+          "Op": "stelem.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 389,
+          "Op": "dup",
+          "Operand": ""
+        },
+        {
+          "Offset": 390,
+          "Op": "ldc.i4.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 391,
+          "Op": "ldloc.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 392,
+          "Op": "stelem.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 393,
+          "Op": "stloc.s",
+          "Operand": "21"
+        },
+        {
+          "Offset": 395,
+          "Op": "ldc.i4.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 396,
+          "Op": "stloc.s",
+          "Operand": "22"
+        },
+        {
+          "Offset": 398,
+          "Op": "br.s",
+          "Operand": "444"
+        },
+        {
+          "Offset": 400,
+          "Op": "ldloc.s",
+          "Operand": "21"
+        },
+        {
+          "Offset": 402,
+          "Op": "ldloc.s",
+          "Operand": "22"
+        },
+        {
+          "Offset": 404,
+          "Op": "ldelem.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 405,
+          "Op": "stloc.s",
+          "Operand": "23"
+        },
+        {
+          "Offset": 407,
+          "Op": "ldloc.s",
+          "Operand": "20"
+        },
+        {
+          "Offset": 409,
+          "Op": "ldloc.s",
+          "Operand": "23"
+        },
+        {
+          "Offset": 411,
+          "Op": "brfalse.s",
+          "Operand": "419"
+        },
+        {
+          "Offset": 413,
+          "Op": "ldloc.s",
+          "Operand": "23"
+        },
+        {
+          "Offset": 415,
+          "Op": "ldlen",
+          "Operand": ""
+        },
+        {
+          "Offset": 416,
+          "Op": "conv.i4",
+          "Operand": ""
+        },
+        {
+          "Offset": 417,
+          "Op": "br.s",
+          "Operand": "420"
+        },
+        {
+          "Offset": 419,
+          "Op": "ldc.i4.m1",
+          "Operand": ""
+        },
+        {
+          "Offset": 420,
+          "Op": "callvirt",
+          "Operand": "Write"
+        },
+        {
+          "Offset": 425,
+          "Op": "ldloc.s",
+          "Operand": "23"
+        },
+        {
+          "Offset": 427,
+          "Op": "brfalse.s",
+          "Operand": "438"
+        },
+        {
+          "Offset": 429,
+          "Op": "ldloc.s",
+          "Operand": "20"
+        },
+        {
+          "Offset": 431,
+          "Op": "ldloc.s",
+          "Operand": "23"
+        },
+        {
+          "Offset": 433,
+          "Op": "callvirt",
+          "Operand": "Write"
+        },
+        {
+          "Offset": 438,
+          "Op": "ldloc.s",
+          "Operand": "22"
+        },
+        {
+          "Offset": 440,
+          "Op": "ldc.i4.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 441,
+          "Op": "add",
+          "Operand": ""
+        },
+        {
+          "Offset": 442,
+          "Op": "stloc.s",
+          "Operand": "22"
+        },
+        {
+          "Offset": 444,
+          "Op": "ldloc.s",
+          "Operand": "22"
+        },
+        {
+          "Offset": 446,
+          "Op": "ldloc.s",
+          "Operand": "21"
+        },
+        {
+          "Offset": 448,
+          "Op": "ldlen",
+          "Operand": ""
+        },
+        {
+          "Offset": 449,
+          "Op": "conv.i4",
+          "Operand": ""
+        },
+        {
+          "Offset": 450,
+          "Op": "blt.s",
+          "Operand": "400"
+        },
+        {
+          "Offset": 452,
+          "Op": "leave.s",
+          "Operand": "466"
+        },
+        {
+          "Offset": 454,
+          "Op": "ldloc.s",
+          "Operand": "20"
+        },
+        {
+          "Offset": 456,
+          "Op": "brfalse.s",
+          "Operand": "465"
+        },
+        {
+          "Offset": 458,
+          "Op": "ldloc.s",
+          "Operand": "20"
+        },
+        {
+          "Offset": 460,
+          "Op": "callvirt",
+          "Operand": "Dispose"
+        },
+        {
+          "Offset": 465,
+          "Op": "endfinally",
+          "Operand": ""
+        },
+        {
+          "Offset": 466,
+          "Op": "call",
+          "Operand": "Create"
+        },
+        {
+          "Offset": 471,
+          "Op": "stloc.s",
+          "Operand": "24"
+        },
+        {
+          "Offset": 473,
+          "Op": "ldloc.s",
+          "Operand": "24"
+        },
+        {
+          "Offset": 475,
+          "Op": "ldloc.s",
+          "Operand": "19"
+        },
+        {
+          "Offset": 477,
+          "Op": "callvirt",
+          "Operand": "ToArray"
+        },
+        {
+          "Offset": 482,
+          "Op": "callvirt",
+          "Operand": "ComputeHash"
+        },
+        {
+          "Offset": 487,
+          "Op": "call",
+          "Operand": "ToString"
+        },
+        {
+          "Offset": 492,
+          "Op": "ldstr",
+          "Operand": "-"
+        },
+        {
+          "Offset": 497,
+          "Op": "ldstr",
+          "Operand": ""
+        },
+        {
+          "Offset": 502,
+          "Op": "callvirt",
+          "Operand": "Replace"
+        },
+        {
+          "Offset": 507,
+          "Op": "callvirt",
+          "Operand": "ToLowerInvariant"
+        },
+        {
+          "Offset": 512,
+          "Op": "stloc.s",
+          "Operand": "15"
+        },
+        {
+          "Offset": 514,
+          "Op": "leave.s",
+          "Operand": "528"
+        },
+        {
+          "Offset": 516,
+          "Op": "ldloc.s",
+          "Operand": "24"
+        },
+        {
+          "Offset": 518,
+          "Op": "brfalse.s",
+          "Operand": "527"
+        },
+        {
+          "Offset": 520,
+          "Op": "ldloc.s",
+          "Operand": "24"
+        },
+        {
+          "Offset": 522,
+          "Op": "callvirt",
+          "Operand": "Dispose"
+        },
+        {
+          "Offset": 527,
+          "Op": "endfinally",
+          "Operand": ""
+        },
+        {
+          "Offset": 528,
+          "Op": "leave.s",
+          "Operand": "542"
+        },
+        {
+          "Offset": 530,
+          "Op": "ldloc.s",
+          "Operand": "19"
+        },
+        {
+          "Offset": 532,
+          "Op": "brfalse.s",
+          "Operand": "541"
+        },
+        {
+          "Offset": 534,
+          "Op": "ldloc.s",
+          "Operand": "19"
+        },
+        {
+          "Offset": 536,
+          "Op": "callvirt",
+          "Operand": "Dispose"
+        },
+        {
+          "Offset": 541,
+          "Op": "endfinally",
+          "Operand": ""
+        },
+        {
+          "Offset": 542,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 543,
+          "Op": "ldfld",
+          "Operand": "path"
+        },
+        {
+          "Offset": 548,
+          "Op": "ldstr",
+          "Operand": ".pre-schema"
+        },
+        {
+          "Offset": 553,
+          "Op": "ldc.i4.6",
+          "Operand": ""
+        },
+        {
+          "Offset": 554,
+          "Op": "stloc.s",
+          "Operand": "22"
+        },
+        {
+          "Offset": 556,
+          "Op": "ldloca.s",
+          "Operand": "22"
+        },
+        {
+          "Offset": 558,
+          "Op": "call",
+          "Operand": "ToString"
+        },
+        {
+          "Offset": 563,
+          "Op": "call",
+          "Operand": "Concat"
+        },
+        {
+          "Offset": 568,
+          "Op": "ldstr",
+          "Operand": "v"
+        },
+        {
+          "Offset": 573,
+          "Op": "ldloca.s",
+          "Operand": "14"
+        },
+        {
+          "Offset": 575,
+          "Op": "call",
+          "Operand": "ToString"
+        },
+        {
+          "Offset": 580,
+          "Op": "ldstr",
+          "Operand": "-"
+        },
+        {
+          "Offset": 585,
+          "Op": "ldloc.s",
+          "Operand": "15"
+        },
+        {
+          "Offset": 587,
+          "Op": "call",
+          "Operand": "Concat"
+        },
+        {
+          "Offset": 592,
+          "Op": "call",
+          "Operand": "Combine"
+        },
+        {
+          "Offset": 597,
+          "Op": "stloc.s",
+          "Operand": "16"
+        },
+        {
+          "Offset": 599,
+          "Op": "ldloc.s",
+          "Operand": "16"
+        },
+        {
+          "Offset": 601,
+          "Op": "call",
+          "Operand": "CreateDirectory"
+        },
+        {
+          "Offset": 606,
+          "Op": "pop",
+          "Operand": ""
+        },
+        {
+          "Offset": 607,
+          "Op": "ldloc.s",
+          "Operand": "16"
+        },
+        {
+          "Offset": 609,
+          "Op": "ldstr",
+          "Operand": "primary.json"
+        },
+        {
+          "Offset": 614,
+          "Op": "call",
+          "Operand": "Combine"
+        },
+        {
+          "Offset": 619,
+          "Op": "ldloc.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 620,
+          "Op": "call",
+          "Operand": "SaveStore.PreserveFile"
+        },
+        {
+          "Offset": 625,
+          "Op": "ldloc.s",
+          "Operand": "16"
+        },
+        {
+          "Offset": 627,
+          "Op": "ldstr",
+          "Operand": "backup.json"
+        },
+        {
+          "Offset": 632,
+          "Op": "call",
+          "Operand": "Combine"
+        },
+        {
+          "Offset": 637,
+          "Op": "ldloc.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 638,
+          "Op": "call",
+          "Operand": "SaveStore.PreserveFile"
+        },
+        {
+          "Offset": 643,
+          "Op": "ldc.i4.s",
+          "Operand": "11"
+        },
+        {
+          "Offset": 645,
+          "Op": "newarr",
+          "Operand": "String"
+        },
+        {
+          "Offset": 650,
+          "Op": "dup",
+          "Operand": ""
+        },
+        {
+          "Offset": 651,
+          "Op": "ldc.i4.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 652,
+          "Op": "ldstr",
+          "Operand": "snapshot-v1\nschema="
+        },
+        {
+          "Offset": 657,
+          "Op": "stelem.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 658,
+          "Op": "dup",
+          "Operand": ""
+        },
+        {
+          "Offset": 659,
+          "Op": "ldc.i4.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 660,
+          "Op": "ldloca.s",
+          "Operand": "14"
+        },
+        {
+          "Offset": 662,
+          "Op": "call",
+          "Operand": "ToString"
+        },
+        {
+          "Offset": 667,
+          "Op": "stelem.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 668,
+          "Op": "dup",
+          "Operand": ""
+        },
+        {
+          "Offset": 669,
+          "Op": "ldc.i4.2",
+          "Operand": ""
+        },
+        {
+          "Offset": 670,
+          "Op": "ldstr",
+          "Operand": "\nsource="
+        },
+        {
+          "Offset": 675,
+          "Op": "stelem.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 676,
+          "Op": "dup",
+          "Operand": ""
+        },
+        {
+          "Offset": 677,
+          "Op": "ldc.i4.3",
+          "Operand": ""
+        },
+        {
+          "Offset": 678,
+          "Op": "ldloc.s",
+          "Operand": "12"
+        },
+        {
+          "Offset": 680,
+          "Op": "brtrue.s",
+          "Operand": "689"
+        },
+        {
+          "Offset": 682,
+          "Op": "ldstr",
+          "Operand": "backup"
+        },
+        {
+          "Offset": 687,
+          "Op": "br.s",
+          "Operand": "694"
+        },
+        {
+          "Offset": 689,
+          "Op": "ldstr",
+          "Operand": "primary"
+        },
+        {
+          "Offset": 694,
+          "Op": "stelem.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 695,
+          "Op": "dup",
+          "Operand": ""
+        },
+        {
+          "Offset": 696,
+          "Op": "ldc.i4.4",
+          "Operand": ""
+        },
+        {
+          "Offset": 697,
+          "Op": "ldstr",
+          "Operand": "\nprimary="
+        },
+        {
+          "Offset": 702,
+          "Op": "stelem.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 703,
+          "Op": "dup",
+          "Operand": ""
+        },
+        {
+          "Offset": 704,
+          "Op": "ldc.i4.5",
+          "Operand": ""
+        },
+        {
+          "Offset": 705,
+          "Op": "ldloc.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 706,
+          "Op": "brfalse.s",
+          "Operand": "715"
+        },
+        {
+          "Offset": 708,
+          "Op": "ldstr",
+          "Operand": "present"
+        },
+        {
+          "Offset": 713,
+          "Op": "br.s",
+          "Operand": "720"
+        },
+        {
+          "Offset": 715,
+          "Op": "ldstr",
+          "Operand": "absent"
+        },
+        {
+          "Offset": 720,
+          "Op": "stelem.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 721,
+          "Op": "dup",
+          "Operand": ""
+        },
+        {
+          "Offset": 722,
+          "Op": "ldc.i4.6",
+          "Operand": ""
+        },
+        {
+          "Offset": 723,
+          "Op": "ldstr",
+          "Operand": "\nbackup="
+        },
+        {
+          "Offset": 728,
+          "Op": "stelem.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 729,
+          "Op": "dup",
+          "Operand": ""
+        },
+        {
+          "Offset": 730,
+          "Op": "ldc.i4.7",
+          "Operand": ""
+        },
+        {
+          "Offset": 731,
+          "Op": "ldloc.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 732,
+          "Op": "brfalse.s",
+          "Operand": "741"
+        },
+        {
+          "Offset": 734,
+          "Op": "ldstr",
+          "Operand": "present"
+        },
+        {
+          "Offset": 739,
+          "Op": "br.s",
+          "Operand": "746"
+        },
+        {
+          "Offset": 741,
+          "Op": "ldstr",
+          "Operand": "absent"
+        },
+        {
+          "Offset": 746,
+          "Op": "stelem.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 747,
+          "Op": "dup",
+          "Operand": ""
+        },
+        {
+          "Offset": 748,
+          "Op": "ldc.i4.8",
+          "Operand": ""
+        },
+        {
+          "Offset": 749,
+          "Op": "ldstr",
+          "Operand": "\nfingerprint="
+        },
+        {
+          "Offset": 754,
+          "Op": "stelem.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 755,
+          "Op": "dup",
+          "Operand": ""
+        },
+        {
+          "Offset": 756,
+          "Op": "ldc.i4.s",
+          "Operand": "9"
+        },
+        {
+          "Offset": 758,
+          "Op": "ldloc.s",
+          "Operand": "15"
+        },
+        {
+          "Offset": 760,
+          "Op": "stelem.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 761,
+          "Op": "dup",
+          "Operand": ""
+        },
+        {
+          "Offset": 762,
+          "Op": "ldc.i4.s",
+          "Operand": "10"
+        },
+        {
+          "Offset": 764,
+          "Op": "ldstr",
+          "Operand": "\n"
+        },
+        {
+          "Offset": 769,
+          "Op": "stelem.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 770,
+          "Op": "call",
+          "Operand": "Concat"
+        },
+        {
+          "Offset": 775,
+          "Op": "stloc.s",
+          "Operand": "17"
+        },
+        {
+          "Offset": 777,
+          "Op": "ldloc.s",
+          "Operand": "16"
+        },
+        {
+          "Offset": 779,
+          "Op": "ldstr",
+          "Operand": "snapshot.txt"
+        },
+        {
+          "Offset": 784,
+          "Op": "call",
+          "Operand": "Combine"
+        },
+        {
+          "Offset": 789,
+          "Op": "call",
+          "Operand": "get_UTF8"
+        },
+        {
+          "Offset": 794,
+          "Op": "ldloc.s",
+          "Operand": "17"
+        },
+        {
+          "Offset": 796,
+          "Op": "callvirt",
+          "Operand": "GetBytes"
+        },
+        {
+          "Offset": 801,
+          "Op": "call",
+          "Operand": "SaveStore.PreserveFile"
+        },
+        {
+          "Offset": 806,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 807,
+          "Op": "ldloc.s",
+          "Operand": "16"
+        },
+        {
+          "Offset": 809,
+          "Op": "call",
+          "Operand": "SaveStore.set_PreMigrationSnapshotPath"
+        },
+        {
+          "Offset": 814,
+          "Op": "ldc.i4.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 815,
+          "Op": "stloc.s",
+          "Operand": "18"
+        },
+        {
+          "Offset": 817,
+          "Op": "leave.s",
+          "Operand": "832"
+        },
+        {
+          "Offset": 819,
+          "Op": "pop",
+          "Operand": ""
+        },
+        {
+          "Offset": 820,
+          "Op": "ldarg.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 821,
+          "Op": "ldstr",
+          "Operand": "Could not protect the old save. No changes were saved."
+        },
+        {
+          "Offset": 826,
+          "Op": "stind.ref",
+          "Operand": ""
+        },
+        {
+          "Offset": 827,
+          "Op": "ldc.i4.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 828,
+          "Op": "stloc.s",
+          "Operand": "18"
+        },
+        {
+          "Offset": 830,
+          "Op": "leave.s",
+          "Operand": "832"
+        },
+        {
+          "Offset": 832,
+          "Op": "ldloc.s",
+          "Operand": "18"
+        },
+        {
+          "Offset": 834,
+          "Op": "ret",
+          "Operand": ""
+        }
+      ]
+    },
+    {
+      "Type": "SaveStore",
+      "Name": "RememberMigration",
+      "IL": [
+        {
+          "Offset": 0,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 1,
+          "Op": "ldc.i4.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 2,
+          "Op": "stfld",
+          "Operand": "migrationRequired"
+        },
+        {
+          "Offset": 7,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 8,
+          "Op": "ldarg.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 9,
+          "Op": "stfld",
+          "Operand": "migrationPrimarySource"
+        },
+        {
+          "Offset": 14,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 15,
+          "Op": "ldarg.2",
+          "Operand": ""
+        },
+        {
+          "Offset": 16,
+          "Op": "stfld",
+          "Operand": "migrationSourceVersion"
+        },
+        {
+          "Offset": 21,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 22,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 23,
+          "Op": "ldfld",
+          "Operand": "path"
+        },
+        {
+          "Offset": 28,
+          "Op": "call",
+          "Operand": "SaveStore.ReadOriginal"
+        },
+        {
+          "Offset": 33,
+          "Op": "stfld",
+          "Operand": "migrationPrimary"
+        },
+        {
+          "Offset": 38,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 39,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 40,
+          "Op": "ldfld",
+          "Operand": "path"
+        },
+        {
+          "Offset": 45,
+          "Op": "ldstr",
+          "Operand": ".bak"
+        },
+        {
+          "Offset": 50,
+          "Op": "call",
+          "Operand": "Concat"
+        },
+        {
+          "Offset": 55,
+          "Op": "call",
+          "Operand": "SaveStore.ReadOriginal"
+        },
+        {
+          "Offset": 60,
+          "Op": "stfld",
+          "Operand": "migrationBackup"
+        },
+        {
+          "Offset": 65,
+          "Op": "ldarg.3",
+          "Operand": ""
+        },
+        {
+          "Offset": 66,
+          "Op": "ldarg.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 67,
+          "Op": "brtrue.s",
+          "Operand": "77"
+        },
+        {
+          "Offset": 69,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 70,
+          "Op": "ldfld",
+          "Operand": "migrationBackup"
+        },
+        {
+          "Offset": 75,
+          "Op": "br.s",
+          "Operand": "83"
+        },
+        {
+          "Offset": 77,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 78,
+          "Op": "ldfld",
+          "Operand": "migrationPrimary"
+        },
+        {
+          "Offset": 83,
+          "Op": "call",
+          "Operand": "SaveStore.Equal"
+        },
+        {
+          "Offset": 88,
+          "Op": "brtrue.s",
+          "Operand": "101"
+        },
+        {
+          "Offset": 90,
+          "Op": "ldstr",
+          "Operand": "Migration source changed during load"
+        },
+        {
+          "Offset": 95,
+          "Op": "newobj",
+          "Operand": ".ctor"
+        },
+        {
+          "Offset": 100,
+          "Op": "throw",
+          "Operand": ""
+        },
+        {
+          "Offset": 101,
+          "Op": "leave.s",
+          "Operand": "113"
+        },
+        {
+          "Offset": 103,
+          "Op": "pop",
+          "Operand": ""
+        },
+        {
+          "Offset": 104,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 105,
+          "Op": "ldc.i4.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 106,
+          "Op": "stfld",
+          "Operand": "migrationCaptureFailed"
+        },
+        {
+          "Offset": 111,
+          "Op": "leave.s",
+          "Operand": "113"
+        },
+        {
+          "Offset": 113,
+          "Op": "ret",
+          "Operand": ""
+        }
+      ]
+    },
+    {
+      "Type": "GameSession",
+      "Name": "TrySelectStake",
+      "IL": [
+        {
+          "Offset": 0,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 1,
+          "Op": "ldfld",
+          "Operand": "gate"
+        },
+        {
+          "Offset": 6,
+          "Op": "stloc.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 7,
+          "Op": "ldc.i4.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 8,
+          "Op": "stloc.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 9,
+          "Op": "ldloc.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 10,
+          "Op": "ldloca.s",
+          "Operand": "1"
+        },
+        {
+          "Offset": 12,
+          "Op": "call",
+          "Operand": "Enter"
+        },
+        {
+          "Offset": 17,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 18,
+          "Op": "ldfld",
+          "Operand": "presentingSpin"
+        },
+        {
+          "Offset": 23,
+          "Op": "brtrue.s",
+          "Operand": "41"
+        },
+        {
+          "Offset": 25,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 26,
+          "Op": "call",
+          "Operand": "GameSession.get_RecoveryRequired"
+        },
+        {
+          "Offset": 31,
+          "Op": "brtrue.s",
+          "Operand": "41"
+        },
+        {
+          "Offset": 33,
+          "Op": "ldarg.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 34,
+          "Op": "call",
+          "Operand": "Economy.ValidStake"
+        },
+        {
+          "Offset": 39,
+          "Op": "brtrue.s",
+          "Operand": "45"
+        },
+        {
+          "Offset": 41,
+          "Op": "ldc.i4.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 42,
+          "Op": "stloc.3",
+          "Operand": ""
+        },
+        {
+          "Offset": 43,
+          "Op": "leave.s",
+          "Operand": "123"
+        },
+        {
+          "Offset": 45,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 46,
+          "Op": "ldfld",
+          "Operand": "model"
+        },
+        {
+          "Offset": 51,
+          "Op": "callvirt",
+          "Operand": "GameModel.get_SelectedStake"
+        },
+        {
+          "Offset": 56,
+          "Op": "ldarg.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 57,
+          "Op": "bne.un.s",
+          "Operand": "63"
+        },
+        {
+          "Offset": 59,
+          "Op": "ldc.i4.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 60,
+          "Op": "stloc.3",
+          "Operand": ""
+        },
+        {
+          "Offset": 61,
+          "Op": "leave.s",
+          "Operand": "123"
+        },
+        {
+          "Offset": 63,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 64,
+          "Op": "ldstr",
+          "Operand": ""
+        },
+        {
+          "Offset": 69,
+          "Op": "call",
+          "Operand": "GameSession.set_Error"
+        },
+        {
+          "Offset": 74,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 75,
+          "Op": "ldfld",
+          "Operand": "model"
+        },
+        {
+          "Offset": 80,
+          "Op": "callvirt",
+          "Operand": "GameModel.get_Snapshot"
+        },
+        {
+          "Offset": 85,
+          "Op": "newobj",
+          "Operand": "GameModel..ctor"
+        },
+        {
+          "Offset": 90,
+          "Op": "stloc.2",
+          "Operand": ""
+        },
+        {
+          "Offset": 91,
+          "Op": "ldloc.2",
+          "Operand": ""
+        },
+        {
+          "Offset": 92,
+          "Op": "ldarg.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 93,
+          "Op": "callvirt",
+          "Operand": "GameModel.TrySelectStake"
+        },
+        {
+          "Offset": 98,
+          "Op": "brfalse.s",
+          "Operand": "109"
+        },
+        {
+          "Offset": 100,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 101,
+          "Op": "ldloc.2",
+          "Operand": ""
+        },
+        {
+          "Offset": 102,
+          "Op": "call",
+          "Operand": "GameSession.Publish"
+        },
+        {
+          "Offset": 107,
+          "Op": "br.s",
+          "Operand": "110"
+        },
+        {
+          "Offset": 109,
+          "Op": "ldc.i4.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 110,
+          "Op": "stloc.3",
+          "Operand": ""
+        },
+        {
+          "Offset": 111,
+          "Op": "leave.s",
+          "Operand": "123"
+        },
+        {
+          "Offset": 113,
+          "Op": "ldloc.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 114,
+          "Op": "brfalse.s",
+          "Operand": "122"
+        },
+        {
+          "Offset": 116,
+          "Op": "ldloc.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 117,
+          "Op": "call",
+          "Operand": "Exit"
+        },
+        {
+          "Offset": 122,
+          "Op": "endfinally",
+          "Operand": ""
+        },
+        {
+          "Offset": 123,
+          "Op": "ldloc.3",
+          "Operand": ""
+        },
+        {
+          "Offset": 124,
+          "Op": "ret",
+          "Operand": ""
+        }
+      ]
+    },
+    {
+      "Type": "GameView",
+      "Name": "SelectStake",
+      "IL": [
+        {
+          "Offset": 0,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 1,
+          "Op": "call",
+          "Operand": "GameView.get_StakeOpen"
+        },
+        {
+          "Offset": 6,
+          "Op": "brfalse.s",
+          "Operand": "16"
+        },
+        {
+          "Offset": 8,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 9,
+          "Op": "ldfld",
+          "Operand": "spinning"
+        },
+        {
+          "Offset": 14,
+          "Op": "brfalse.s",
+          "Operand": "17"
+        },
+        {
+          "Offset": 16,
+          "Op": "ret",
+          "Operand": ""
+        },
+        {
+          "Offset": 17,
+          "Op": "ldarg.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 18,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 19,
+          "Op": "call",
+          "Operand": "GameView.get_model"
+        },
+        {
+          "Offset": 24,
+          "Op": "callvirt",
+          "Operand": "get_SelectedStake"
+        },
+        {
+          "Offset": 29,
+          "Op": "ceq",
+          "Operand": ""
+        },
+        {
+          "Offset": 31,
+          "Op": "ldc.i4.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 32,
+          "Op": "ceq",
+          "Operand": ""
+        },
+        {
+          "Offset": 34,
+          "Op": "stloc.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 35,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 36,
+          "Op": "ldfld",
+          "Operand": "session"
+        },
+        {
+          "Offset": 41,
+          "Op": "ldarg.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 42,
+          "Op": "callvirt",
+          "Operand": "TrySelectStake"
+        },
+        {
+          "Offset": 47,
+          "Op": "brtrue.s",
+          "Operand": "73"
+        },
+        {
+          "Offset": 49,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 50,
+          "Op": "ldc.i4.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 51,
+          "Op": "call",
+          "Operand": "GameView.UpdateSaveStatus"
+        },
+        {
+          "Offset": 56,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 57,
+          "Op": "ldfld",
+          "Operand": "stakeBalance"
+        },
+        {
+          "Offset": 62,
+          "Op": "ldstr",
+          "Operand": "Could not save this stake. Please retry."
+        },
+        {
+          "Offset": 67,
+          "Op": "callvirt",
+          "Operand": "set_text"
+        },
+        {
+          "Offset": 72,
+          "Op": "ret",
+          "Operand": ""
+        },
+        {
+          "Offset": 73,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 74,
+          "Op": "ldloc.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 75,
+          "Op": "call",
+          "Operand": "GameView.UpdateSaveStatus"
+        },
+        {
+          "Offset": 80,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 81,
+          "Op": "call",
+          "Operand": "GameView.HideStakes"
+        },
+        {
+          "Offset": 86,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 87,
+          "Op": "call",
+          "Operand": "GameView.Refresh"
+        },
+        {
+          "Offset": 92,
+          "Op": "ldarg.0",
+          "Operand": ""
+        },
+        {
+          "Offset": 93,
+          "Op": "ldarga.s",
+          "Operand": "1"
+        },
+        {
+          "Offset": 95,
+          "Op": "call",
+          "Operand": "ToString"
+        },
+        {
+          "Offset": 100,
+          "Op": "ldstr",
+          "Operand": "x STAKE \u00B7 "
+        },
+        {
+          "Offset": 105,
+          "Op": "ldc.i4.5",
+          "Operand": ""
+        },
+        {
+          "Offset": 106,
+          "Op": "ldarg.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 107,
+          "Op": "mul",
+          "Operand": ""
+        },
+        {
+          "Offset": 108,
+          "Op": "stloc.1",
+          "Operand": ""
+        },
+        {
+          "Offset": 109,
+          "Op": "ldloca.s",
+          "Operand": "1"
+        },
+        {
+          "Offset": 111,
+          "Op": "call",
+          "Operand": "ToString"
+        },
+        {
+          "Offset": 116,
+          "Op": "ldstr",
+          "Operand": " COINS"
+        },
+        {
+          "Offset": 121,
+          "Op": "call",
+          "Operand": "Concat"
+        },
+        {
+          "Offset": 126,
+          "Op": "call",
+          "Operand": "GameView.ShowToast"
+        },
+        {
+          "Offset": 131,
+          "Op": "ret",
+          "Operand": ""
+        }
+      ]
+    }
+  ]
+}
