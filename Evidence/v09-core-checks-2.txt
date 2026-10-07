@@ -1,0 +1,7 @@
+PASS 107769 economy assertions; 1000 complete levels; spins min=49 median=53 p95=57 max=60
+PASS walking: 432000 random motion samples, 1396 destinations; walls/furniture/door clear
+PASS 52 offline session checks; interruption/rollback, concurrent taps, relaunch, reset backup and net overflow
+PASS 20998 layout migration assertions
+PASS 370857 stake/schema6 assertions; 3000 full levels
+1x mean53.333, median53, p9557; 2x/3x mean53.277, median53, p9557
+.NET10 runner; no Unity UI/native input executed by this check

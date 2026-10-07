@@ -1,0 +1,139 @@
+{
+    "development": false,
+    "qaHooksPresent": false,
+    "automatedHarnessPresent": false,
+    "profileVerified": true,
+    "recoveryRequired": false,
+    "recoveryVisible": false,
+    "actualSavePath": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\native-v09-saveonly-3\\stake3\\save\\level1-v1.json",
+    "unity": "6000.3.21f1",
+    "graphicsApi": "Direct3D11",
+    "questTitle": "",
+    "questStatus": "",
+    "dialogueText": "",
+    "dialogueVisible": false,
+    "tutorialStep": -1,
+    "taskCashPrice": 0,
+    "taskFragmentGoal": 0,
+    "firstFrame": 1,
+    "lastFrame": 20866,
+    "samples": 12000,
+    "width": 360,
+    "height": 800,
+    "owned": 8,
+    "activeQuest": -1,
+    "drawCounterNonzero": 0,
+    "seconds": 7.013235300000001,
+    "medianMs": 0.24090000000054347,
+    "p95Ms": 0.5717000000000638,
+    "p99Ms": 2.595499999999973,
+    "maxMs": 245.7041000000002,
+    "distance": 1.600083827972412,
+    "complete": true,
+    "spinEnabled": false,
+    "buyEnabled": false,
+    "state": {
+        "version": 6,
+        "cash": 61,
+        "stakeMultiplier": 3,
+        "freeSpins": 0,
+        "spins": 0,
+        "recoveries": 0,
+        "heroineU": 2.4635727405548097,
+        "heroineV": 2.2226932048797609,
+        "fragments": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "purchased": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "lastGrid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "quests": [
+            {
+                "id": "floor-patches",
+                "status": 3,
+                "cashPrice": 60,
+                "fragmentGoal": 20
+            },
+            {
+                "id": "surface-repair",
+                "status": 3,
+                "cashPrice": 115,
+                "fragmentGoal": 30
+            },
+            {
+                "id": "cheap-wallpaper",
+                "status": 3,
+                "cashPrice": 155,
+                "fragmentGoal": 38
+            },
+            {
+                "id": "door-repair",
+                "status": 3,
+                "cashPrice": 195,
+                "fragmentGoal": 44
+            },
+            {
+                "id": "window-repair",
+                "status": 3,
+                "cashPrice": 235,
+                "fragmentGoal": 50
+            },
+            {
+                "id": "first-mattress",
+                "status": 3,
+                "cashPrice": 300,
+                "fragmentGoal": 58
+            },
+            {
+                "id": "small-lamp",
+                "status": 3,
+                "cashPrice": 315,
+                "fragmentGoal": 62
+            },
+            {
+                "id": "wooden-stool",
+                "status": 3,
+                "cashPrice": 355,
+                "fragmentGoal": 70
+            }
+        ],
+        "tutorial": {
+            "version": 1,
+            "step": 0,
+            "storySeenMask": 15,
+            "completed": true,
+            "skipped": false
+        }
+    }
+}

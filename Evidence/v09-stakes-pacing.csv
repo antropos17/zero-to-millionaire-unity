@@ -1,0 +1,4 @@
+stake,seeds,min_spins,median_spins,p95_spins,max_spins,mean_spins,mean_final_cash,min_paid_stake_reductions
+1,1000,49,53,57,60,53.333,236.076,0
+2,1000,47,53,57,60,53.277,2065.596,0
+3,1000,47,53,57,60,53.277,3900.283,0

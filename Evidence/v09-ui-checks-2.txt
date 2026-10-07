@@ -1,0 +1,666 @@
+PASS within portrait spin (x:124.88, y:632.25, width:225.00, height:82.13)
+PASS target44 menu
+PASS caption fits menu
+PASS target44 shop
+PASS caption fits shop
+PASS target44 bet-panel
+PASS 3x unaffordable display and gate
+PASS actual panel picks bet-panel
+PASS within portrait stake-overlay-panel (x:12.38, y:137.25, width:335.25, height:446.63)
+PASS target44 stake-1
+PASS caption fits stake-1
+PASS target44 stake-2
+PASS caption fits stake-2
+PASS target44 stake-3
+PASS caption fits stake-3
+PASS target44 close-stakes
+PASS caption fits close-stakes
+PASS stake modal initial current choice focus
+PASS stake Tab scoped
+PASS stake ShiftTab scoped
+PASS stake modal no submit click-through
+PASS stake backdrop intercepts underlying pointer
+PASS stake selection saved through real UI callback/Unity JSON
+PASS lower affordable stake and trigger focus restored
+PASS within portrait shop-overlay-panel (x:12.38, y:18.00, width:335.25, height:684.00)
+PASS target44 close-shop
+PASS caption fits close-shop
+PASS target44 shop-buy-0
+PASS caption fits shop-buy-0
+PASS shop focus safe close
+PASS eight catalog entries
+PASS exact existing item icon0
+PASS shop current-only both-resource gate0
+PASS room improvement preview0
+PASS exact existing item icon1
+PASS shop current-only both-resource gate1
+PASS room improvement preview1
+PASS exact existing item icon2
+PASS shop current-only both-resource gate2
+PASS room improvement preview2
+PASS exact existing item icon3
+PASS shop current-only both-resource gate3
+PASS room improvement preview3
+PASS exact existing item icon4
+PASS shop current-only both-resource gate4
+PASS room improvement preview4
+PASS exact existing item icon5
+PASS shop current-only both-resource gate5
+PASS room improvement preview5
+PASS exact existing item icon6
+PASS shop current-only both-resource gate6
+PASS room improvement preview6
+PASS exact existing item icon7
+PASS shop current-only both-resource gate7
+PASS room improvement preview7
+PASS shop Tab reaches current purchase
+PASS shop ShiftTab wraps within modal
+PASS within portrait shop-buy-0 (x:32.63, y:312.75, width:270.00, height:45.00)
+PASS shop no background transaction
+PASS actual panel picks shop-buy-0
+PASS shop explicit install debits both once
+PASS shop purchase persisted
+PASS install returns to changed room/focus
+PASS shop parts-only remains disabled
+PASS no overdraw from unmet shop cash
+PASS Escape closes shop/restores trigger
+PASS real paid3x spin cash scaling/parts consistency
+PASS stake and shop lock during spin
+PASS session locks captured stake
+PASS STOP/SKIP repeats award once during presentation
+PASS paid3x survives disk reload
+PASS free spin remains1x with3x selected
+PASS captured free stake stays explicit during presentation
+PASS owned shop terminal gate0
+PASS owned shop terminal gate1
+PASS owned shop terminal gate2
+PASS owned shop terminal gate3
+PASS owned shop terminal gate4
+PASS owned shop terminal gate5
+PASS owned shop terminal gate6
+PASS owned shop terminal gate7
+PASS catalog scroll reaches later items
+SCENARIO PASS 320x640 calm=False
+PASS within portrait spin (x:125.00, y:566.00, width:225.00, height:68.00)
+PASS target44 menu
+PASS caption fits menu
+PASS target44 shop
+PASS caption fits shop
+PASS target44 bet-panel
+PASS 3x unaffordable display and gate
+PASS actual panel picks bet-panel
+PASS within portrait stake-overlay-panel (x:13.00, y:95.00, width:334.00, height:451.00)
+PASS target44 stake-1
+PASS caption fits stake-1
+PASS target44 stake-2
+PASS caption fits stake-2
+PASS target44 stake-3
+PASS caption fits stake-3
+PASS target44 close-stakes
+PASS caption fits close-stakes
+PASS stake modal initial current choice focus
+PASS stake Tab scoped
+PASS stake ShiftTab scoped
+PASS stake modal no submit click-through
+PASS stake backdrop intercepts underlying pointer
+PASS stake selection saved through real UI callback/Unity JSON
+PASS lower affordable stake and trigger focus restored
+PASS within portrait shop-overlay-panel (x:13.00, y:16.00, width:334.00, height:608.00)
+PASS target44 close-shop
+PASS caption fits close-shop
+PASS target44 shop-buy-0
+PASS caption fits shop-buy-0
+PASS shop focus safe close
+PASS eight catalog entries
+PASS exact existing item icon0
+PASS shop current-only both-resource gate0
+PASS room improvement preview0
+PASS exact existing item icon1
+PASS shop current-only both-resource gate1
+PASS room improvement preview1
+PASS exact existing item icon2
+PASS shop current-only both-resource gate2
+PASS room improvement preview2
+PASS exact existing item icon3
+PASS shop current-only both-resource gate3
+PASS room improvement preview3
+PASS exact existing item icon4
+PASS shop current-only both-resource gate4
+PASS room improvement preview4
+PASS exact existing item icon5
+PASS shop current-only both-resource gate5
+PASS room improvement preview5
+PASS exact existing item icon6
+PASS shop current-only both-resource gate6
+PASS room improvement preview6
+PASS exact existing item icon7
+PASS shop current-only both-resource gate7
+PASS room improvement preview7
+PASS shop Tab reaches current purchase
+PASS shop ShiftTab wraps within modal
+PASS within portrait shop-buy-0 (x:33.00, y:313.00, width:270.00, height:45.00)
+PASS shop no background transaction
+PASS actual panel picks shop-buy-0
+PASS shop explicit install debits both once
+PASS shop purchase persisted
+PASS install returns to changed room/focus
+PASS shop parts-only remains disabled
+PASS no overdraw from unmet shop cash
+PASS Escape closes shop/restores trigger
+PASS real paid3x spin cash scaling/parts consistency
+PASS stake and shop lock during spin
+PASS session locks captured stake
+PASS STOP/SKIP repeats award once during presentation
+PASS paid3x survives disk reload
+PASS free spin remains1x with3x selected
+PASS captured free stake stays explicit during presentation
+PASS owned shop terminal gate0
+PASS owned shop terminal gate1
+PASS owned shop terminal gate2
+PASS owned shop terminal gate3
+PASS owned shop terminal gate4
+PASS owned shop terminal gate5
+PASS owned shop terminal gate6
+PASS owned shop terminal gate7
+PASS catalog scroll reaches later items
+SCENARIO PASS 360x640 calm=False
+PASS within portrait spin (x:125.00, y:698.00, width:225.00, height:96.00)
+PASS target44 menu
+PASS caption fits menu
+PASS target44 shop
+PASS caption fits shop
+PASS target44 bet-panel
+PASS 3x unaffordable display and gate
+PASS actual panel picks bet-panel
+PASS within portrait stake-overlay-panel (x:13.00, y:175.00, width:334.00, height:451.00)
+PASS target44 stake-1
+PASS caption fits stake-1
+PASS target44 stake-2
+PASS caption fits stake-2
+PASS target44 stake-3
+PASS caption fits stake-3
+PASS target44 close-stakes
+PASS caption fits close-stakes
+PASS stake modal initial current choice focus
+PASS stake Tab scoped
+PASS stake ShiftTab scoped
+PASS stake modal no submit click-through
+PASS stake backdrop intercepts underlying pointer
+PASS stake selection saved through real UI callback/Unity JSON
+PASS lower affordable stake and trigger focus restored
+PASS within portrait shop-overlay-panel (x:13.00, y:20.00, width:334.00, height:760.00)
+PASS target44 close-shop
+PASS caption fits close-shop
+PASS target44 shop-buy-0
+PASS caption fits shop-buy-0
+PASS shop focus safe close
+PASS eight catalog entries
+PASS exact existing item icon0
+PASS shop current-only both-resource gate0
+PASS room improvement preview0
+PASS exact existing item icon1
+PASS shop current-only both-resource gate1
+PASS room improvement preview1
+PASS exact existing item icon2
+PASS shop current-only both-resource gate2
+PASS room improvement preview2
+PASS exact existing item icon3
+PASS shop current-only both-resource gate3
+PASS room improvement preview3
+PASS exact existing item icon4
+PASS shop current-only both-resource gate4
+PASS room improvement preview4
+PASS exact existing item icon5
+PASS shop current-only both-resource gate5
+PASS room improvement preview5
+PASS exact existing item icon6
+PASS shop current-only both-resource gate6
+PASS room improvement preview6
+PASS exact existing item icon7
+PASS shop current-only both-resource gate7
+PASS room improvement preview7
+PASS shop Tab reaches current purchase
+PASS shop ShiftTab wraps within modal
+PASS within portrait shop-buy-0 (x:33.00, y:317.00, width:270.00, height:45.00)
+PASS shop no background transaction
+PASS actual panel picks shop-buy-0
+PASS shop explicit install debits both once
+PASS shop purchase persisted
+PASS install returns to changed room/focus
+PASS shop parts-only remains disabled
+PASS no overdraw from unmet shop cash
+PASS Escape closes shop/restores trigger
+PASS real paid3x spin cash scaling/parts consistency
+PASS stake and shop lock during spin
+PASS session locks captured stake
+PASS STOP/SKIP repeats award once during presentation
+PASS paid3x survives disk reload
+PASS free spin remains1x with3x selected
+PASS captured free stake stays explicit during presentation
+PASS owned shop terminal gate0
+PASS owned shop terminal gate1
+PASS owned shop terminal gate2
+PASS owned shop terminal gate3
+PASS owned shop terminal gate4
+PASS owned shop terminal gate5
+PASS owned shop terminal gate6
+PASS owned shop terminal gate7
+PASS catalog scroll reaches later items
+SCENARIO PASS 360x800 calm=False
+PASS within portrait spin (x:124.50, y:632.25, width:225.75, height:81.75)
+PASS target44 menu
+PASS caption fits menu
+PASS target44 shop
+PASS caption fits shop
+PASS target44 bet-panel
+PASS 3x unaffordable display and gate
+PASS actual panel picks bet-panel
+PASS within portrait stake-overlay-panel (x:12.75, y:135.00, width:334.50, height:450.00)
+PASS target44 stake-1
+PASS caption fits stake-1
+PASS target44 stake-2
+PASS caption fits stake-2
+PASS target44 stake-3
+PASS caption fits stake-3
+PASS target44 close-stakes
+PASS caption fits close-stakes
+PASS stake modal initial current choice focus
+PASS stake Tab scoped
+PASS stake ShiftTab scoped
+PASS stake modal no submit click-through
+PASS stake backdrop intercepts underlying pointer
+PASS stake selection saved through real UI callback/Unity JSON
+PASS lower affordable stake and trigger focus restored
+PASS within portrait shop-overlay-panel (x:12.75, y:18.00, width:334.50, height:684.00)
+PASS target44 close-shop
+PASS caption fits close-shop
+PASS target44 shop-buy-0
+PASS caption fits shop-buy-0
+PASS shop focus safe close
+PASS eight catalog entries
+PASS exact existing item icon0
+PASS shop current-only both-resource gate0
+PASS room improvement preview0
+PASS exact existing item icon1
+PASS shop current-only both-resource gate1
+PASS room improvement preview1
+PASS exact existing item icon2
+PASS shop current-only both-resource gate2
+PASS room improvement preview2
+PASS exact existing item icon3
+PASS shop current-only both-resource gate3
+PASS room improvement preview3
+PASS exact existing item icon4
+PASS shop current-only both-resource gate4
+PASS room improvement preview4
+PASS exact existing item icon5
+PASS shop current-only both-resource gate5
+PASS room improvement preview5
+PASS exact existing item icon6
+PASS shop current-only both-resource gate6
+PASS room improvement preview6
+PASS exact existing item icon7
+PASS shop current-only both-resource gate7
+PASS room improvement preview7
+PASS shop Tab reaches current purchase
+PASS shop ShiftTab wraps within modal
+PASS within portrait shop-buy-0 (x:33.00, y:314.25, width:270.00, height:45.00)
+PASS shop no background transaction
+PASS actual panel picks shop-buy-0
+PASS shop explicit install debits both once
+PASS shop purchase persisted
+PASS install returns to changed room/focus
+PASS shop parts-only remains disabled
+PASS no overdraw from unmet shop cash
+PASS Escape closes shop/restores trigger
+PASS real paid3x spin cash scaling/parts consistency
+PASS stake and shop lock during spin
+PASS session locks captured stake
+PASS STOP/SKIP repeats award once during presentation
+PASS paid3x survives disk reload
+PASS free spin remains1x with3x selected
+PASS captured free stake stays explicit during presentation
+PASS owned shop terminal gate0
+PASS owned shop terminal gate1
+PASS owned shop terminal gate2
+PASS owned shop terminal gate3
+PASS owned shop terminal gate4
+PASS owned shop terminal gate5
+PASS owned shop terminal gate6
+PASS owned shop terminal gate7
+PASS catalog scroll reaches later items
+SCENARIO PASS 480x960 calm=False
+PASS private calm preference saved
+PASS within portrait spin (x:124.88, y:632.25, width:225.00, height:82.13)
+PASS target44 menu
+PASS caption fits menu
+PASS target44 shop
+PASS caption fits shop
+PASS target44 bet-panel
+PASS 3x unaffordable display and gate
+PASS actual panel picks bet-panel
+PASS within portrait stake-overlay-panel (x:12.38, y:137.25, width:335.25, height:446.63)
+PASS target44 stake-1
+PASS caption fits stake-1
+PASS target44 stake-2
+PASS caption fits stake-2
+PASS target44 stake-3
+PASS caption fits stake-3
+PASS target44 close-stakes
+PASS caption fits close-stakes
+PASS stake modal initial current choice focus
+PASS stake Tab scoped
+PASS stake ShiftTab scoped
+PASS stake modal no submit click-through
+PASS stake backdrop intercepts underlying pointer
+PASS stake selection saved through real UI callback/Unity JSON
+PASS lower affordable stake and trigger focus restored
+PASS within portrait shop-overlay-panel (x:12.38, y:18.00, width:335.25, height:684.00)
+PASS target44 close-shop
+PASS caption fits close-shop
+PASS target44 shop-buy-0
+PASS caption fits shop-buy-0
+PASS shop focus safe close
+PASS eight catalog entries
+PASS exact existing item icon0
+PASS shop current-only both-resource gate0
+PASS room improvement preview0
+PASS exact existing item icon1
+PASS shop current-only both-resource gate1
+PASS room improvement preview1
+PASS exact existing item icon2
+PASS shop current-only both-resource gate2
+PASS room improvement preview2
+PASS exact existing item icon3
+PASS shop current-only both-resource gate3
+PASS room improvement preview3
+PASS exact existing item icon4
+PASS shop current-only both-resource gate4
+PASS room improvement preview4
+PASS exact existing item icon5
+PASS shop current-only both-resource gate5
+PASS room improvement preview5
+PASS exact existing item icon6
+PASS shop current-only both-resource gate6
+PASS room improvement preview6
+PASS exact existing item icon7
+PASS shop current-only both-resource gate7
+PASS room improvement preview7
+PASS shop Tab reaches current purchase
+PASS shop ShiftTab wraps within modal
+PASS within portrait shop-buy-0 (x:32.63, y:312.75, width:270.00, height:45.00)
+PASS shop no background transaction
+PASS actual panel picks shop-buy-0
+PASS shop explicit install debits both once
+PASS shop purchase persisted
+PASS install returns to changed room/focus
+PASS shop parts-only remains disabled
+PASS no overdraw from unmet shop cash
+PASS Escape closes shop/restores trigger
+PASS real paid3x spin cash scaling/parts consistency
+PASS stake and shop lock during spin
+PASS session locks captured stake
+PASS STOP/SKIP repeats award once during presentation
+PASS paid3x survives disk reload
+PASS free spin remains1x with3x selected
+PASS captured free stake stays explicit during presentation
+PASS owned shop terminal gate0
+PASS owned shop terminal gate1
+PASS owned shop terminal gate2
+PASS owned shop terminal gate3
+PASS owned shop terminal gate4
+PASS owned shop terminal gate5
+PASS owned shop terminal gate6
+PASS owned shop terminal gate7
+PASS catalog scroll reaches later items
+SCENARIO PASS 320x640 calm=True
+PASS within portrait spin (x:125.00, y:566.00, width:225.00, height:68.00)
+PASS target44 menu
+PASS caption fits menu
+PASS target44 shop
+PASS caption fits shop
+PASS target44 bet-panel
+PASS 3x unaffordable display and gate
+PASS actual panel picks bet-panel
+PASS within portrait stake-overlay-panel (x:13.00, y:95.00, width:334.00, height:451.00)
+PASS target44 stake-1
+PASS caption fits stake-1
+PASS target44 stake-2
+PASS caption fits stake-2
+PASS target44 stake-3
+PASS caption fits stake-3
+PASS target44 close-stakes
+PASS caption fits close-stakes
+PASS stake modal initial current choice focus
+PASS stake Tab scoped
+PASS stake ShiftTab scoped
+PASS stake modal no submit click-through
+PASS stake backdrop intercepts underlying pointer
+PASS stake selection saved through real UI callback/Unity JSON
+PASS lower affordable stake and trigger focus restored
+PASS within portrait shop-overlay-panel (x:13.00, y:16.00, width:334.00, height:608.00)
+PASS target44 close-shop
+PASS caption fits close-shop
+PASS target44 shop-buy-0
+PASS caption fits shop-buy-0
+PASS shop focus safe close
+PASS eight catalog entries
+PASS exact existing item icon0
+PASS shop current-only both-resource gate0
+PASS room improvement preview0
+PASS exact existing item icon1
+PASS shop current-only both-resource gate1
+PASS room improvement preview1
+PASS exact existing item icon2
+PASS shop current-only both-resource gate2
+PASS room improvement preview2
+PASS exact existing item icon3
+PASS shop current-only both-resource gate3
+PASS room improvement preview3
+PASS exact existing item icon4
+PASS shop current-only both-resource gate4
+PASS room improvement preview4
+PASS exact existing item icon5
+PASS shop current-only both-resource gate5
+PASS room improvement preview5
+PASS exact existing item icon6
+PASS shop current-only both-resource gate6
+PASS room improvement preview6
+PASS exact existing item icon7
+PASS shop current-only both-resource gate7
+PASS room improvement preview7
+PASS shop Tab reaches current purchase
+PASS shop ShiftTab wraps within modal
+PASS within portrait shop-buy-0 (x:33.00, y:313.00, width:270.00, height:45.00)
+PASS shop no background transaction
+PASS actual panel picks shop-buy-0
+PASS shop explicit install debits both once
+PASS shop purchase persisted
+PASS install returns to changed room/focus
+PASS shop parts-only remains disabled
+PASS no overdraw from unmet shop cash
+PASS Escape closes shop/restores trigger
+PASS real paid3x spin cash scaling/parts consistency
+PASS stake and shop lock during spin
+PASS session locks captured stake
+PASS STOP/SKIP repeats award once during presentation
+PASS paid3x survives disk reload
+PASS free spin remains1x with3x selected
+PASS captured free stake stays explicit during presentation
+PASS owned shop terminal gate0
+PASS owned shop terminal gate1
+PASS owned shop terminal gate2
+PASS owned shop terminal gate3
+PASS owned shop terminal gate4
+PASS owned shop terminal gate5
+PASS owned shop terminal gate6
+PASS owned shop terminal gate7
+PASS catalog scroll reaches later items
+SCENARIO PASS 360x640 calm=True
+PASS within portrait spin (x:125.00, y:698.00, width:225.00, height:96.00)
+PASS target44 menu
+PASS caption fits menu
+PASS target44 shop
+PASS caption fits shop
+PASS target44 bet-panel
+PASS 3x unaffordable display and gate
+PASS actual panel picks bet-panel
+PASS within portrait stake-overlay-panel (x:13.00, y:175.00, width:334.00, height:451.00)
+PASS target44 stake-1
+PASS caption fits stake-1
+PASS target44 stake-2
+PASS caption fits stake-2
+PASS target44 stake-3
+PASS caption fits stake-3
+PASS target44 close-stakes
+PASS caption fits close-stakes
+PASS stake modal initial current choice focus
+PASS stake Tab scoped
+PASS stake ShiftTab scoped
+PASS stake modal no submit click-through
+PASS stake backdrop intercepts underlying pointer
+PASS stake selection saved through real UI callback/Unity JSON
+PASS lower affordable stake and trigger focus restored
+PASS within portrait shop-overlay-panel (x:13.00, y:20.00, width:334.00, height:760.00)
+PASS target44 close-shop
+PASS caption fits close-shop
+PASS target44 shop-buy-0
+PASS caption fits shop-buy-0
+PASS shop focus safe close
+PASS eight catalog entries
+PASS exact existing item icon0
+PASS shop current-only both-resource gate0
+PASS room improvement preview0
+PASS exact existing item icon1
+PASS shop current-only both-resource gate1
+PASS room improvement preview1
+PASS exact existing item icon2
+PASS shop current-only both-resource gate2
+PASS room improvement preview2
+PASS exact existing item icon3
+PASS shop current-only both-resource gate3
+PASS room improvement preview3
+PASS exact existing item icon4
+PASS shop current-only both-resource gate4
+PASS room improvement preview4
+PASS exact existing item icon5
+PASS shop current-only both-resource gate5
+PASS room improvement preview5
+PASS exact existing item icon6
+PASS shop current-only both-resource gate6
+PASS room improvement preview6
+PASS exact existing item icon7
+PASS shop current-only both-resource gate7
+PASS room improvement preview7
+PASS shop Tab reaches current purchase
+PASS shop ShiftTab wraps within modal
+PASS within portrait shop-buy-0 (x:33.00, y:317.00, width:270.00, height:45.00)
+PASS shop no background transaction
+PASS actual panel picks shop-buy-0
+PASS shop explicit install debits both once
+PASS shop purchase persisted
+PASS install returns to changed room/focus
+PASS shop parts-only remains disabled
+PASS no overdraw from unmet shop cash
+PASS Escape closes shop/restores trigger
+PASS real paid3x spin cash scaling/parts consistency
+PASS stake and shop lock during spin
+PASS session locks captured stake
+PASS STOP/SKIP repeats award once during presentation
+PASS paid3x survives disk reload
+PASS free spin remains1x with3x selected
+PASS captured free stake stays explicit during presentation
+PASS owned shop terminal gate0
+PASS owned shop terminal gate1
+PASS owned shop terminal gate2
+PASS owned shop terminal gate3
+PASS owned shop terminal gate4
+PASS owned shop terminal gate5
+PASS owned shop terminal gate6
+PASS owned shop terminal gate7
+PASS catalog scroll reaches later items
+SCENARIO PASS 360x800 calm=True
+PASS within portrait spin (x:124.50, y:632.25, width:225.75, height:81.75)
+PASS target44 menu
+PASS caption fits menu
+PASS target44 shop
+PASS caption fits shop
+PASS target44 bet-panel
+PASS 3x unaffordable display and gate
+PASS actual panel picks bet-panel
+PASS within portrait stake-overlay-panel (x:12.75, y:135.00, width:334.50, height:450.00)
+PASS target44 stake-1
+PASS caption fits stake-1
+PASS target44 stake-2
+PASS caption fits stake-2
+PASS target44 stake-3
+PASS caption fits stake-3
+PASS target44 close-stakes
+PASS caption fits close-stakes
+PASS stake modal initial current choice focus
+PASS stake Tab scoped
+PASS stake ShiftTab scoped
+PASS stake modal no submit click-through
+PASS stake backdrop intercepts underlying pointer
+PASS stake selection saved through real UI callback/Unity JSON
+PASS lower affordable stake and trigger focus restored
+PASS within portrait shop-overlay-panel (x:12.75, y:18.00, width:334.50, height:684.00)
+PASS target44 close-shop
+PASS caption fits close-shop
+PASS target44 shop-buy-0
+PASS caption fits shop-buy-0
+PASS shop focus safe close
+PASS eight catalog entries
+PASS exact existing item icon0
+PASS shop current-only both-resource gate0
+PASS room improvement preview0
+PASS exact existing item icon1
+PASS shop current-only both-resource gate1
+PASS room improvement preview1
+PASS exact existing item icon2
+PASS shop current-only both-resource gate2
+PASS room improvement preview2
+PASS exact existing item icon3
+PASS shop current-only both-resource gate3
+PASS room improvement preview3
+PASS exact existing item icon4
+PASS shop current-only both-resource gate4
+PASS room improvement preview4
+PASS exact existing item icon5
+PASS shop current-only both-resource gate5
+PASS room improvement preview5
+PASS exact existing item icon6
+PASS shop current-only both-resource gate6
+PASS room improvement preview6
+PASS exact existing item icon7
+PASS shop current-only both-resource gate7
+PASS room improvement preview7
+PASS shop Tab reaches current purchase
+PASS shop ShiftTab wraps within modal
+PASS within portrait shop-buy-0 (x:33.00, y:314.25, width:270.00, height:45.00)
+PASS shop no background transaction
+PASS actual panel picks shop-buy-0
+PASS shop explicit install debits both once
+PASS shop purchase persisted
+PASS install returns to changed room/focus
+PASS shop parts-only remains disabled
+PASS no overdraw from unmet shop cash
+PASS Escape closes shop/restores trigger
+PASS real paid3x spin cash scaling/parts consistency
+PASS stake and shop lock during spin
+PASS session locks captured stake
+PASS STOP/SKIP repeats award once during presentation
+PASS paid3x survives disk reload
+PASS free spin remains1x with3x selected
+PASS captured free stake stays explicit during presentation
+PASS owned shop terminal gate0
+PASS owned shop terminal gate1
+PASS owned shop terminal gate2
+PASS owned shop terminal gate3
+PASS owned shop terminal gate4
+PASS owned shop terminal gate5
+PASS owned shop terminal gate6
+PASS owned shop terminal gate7
+PASS catalog scroll reaches later items
+SCENARIO PASS 480x960 calm=True
+RESULT PASS assertions=657 runtimeFrames=1354 elapsed=23,77; actual offscreen Editor pixels/Unity JSON; synthetic UITK pointer/navigation/key events; no OS input
