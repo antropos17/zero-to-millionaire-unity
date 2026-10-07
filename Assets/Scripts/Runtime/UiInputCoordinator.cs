@@ -47,7 +47,8 @@ namespace ZeroToMillionaire
         public void FocusAfterLayout(Button target)
         {
             int request = ++focusRequest;
-            root.schedule.Execute(() => { if (!disposed && request == focusRequest && modal == null && CanActivate(target)) target.Focus(); });
+            var previousFocus = root.panel?.focusController.focusedElement;
+            root.schedule.Execute(() => { if (!disposed && request == focusRequest && modal == null && CanActivate(target) && (root.panel.focusController.focusedElement == null || root.panel.focusController.focusedElement == previousFocus)) target.Focus(); });
         }
 
         public void Open(VisualElement window, Button first, Action cancelAction, VisualElement restore)
@@ -106,6 +107,7 @@ namespace ZeroToMillionaire
             var focused = root.panel.focusController.focusedElement as VisualElement;
             int index = candidates.IndexOf(ButtonFor(focused));
             index = index < 0 ? (previous ? candidates.Count - 1 : 0) : (index + (previous ? -1 : 1) + candidates.Count) % candidates.Count;
+            ++focusRequest;
             candidates[index].Focus();
         }
         void KeyUp(KeyUpEvent evt)
@@ -118,10 +120,12 @@ namespace ZeroToMillionaire
         {
             var button = ButtonFor(evt.target as VisualElement);
             if (!CanActivate(button) || !InScope(button) || (heldKeys.Count != 0 && submitConsumed)) evt.StopImmediatePropagation();
+            else ++focusRequest;
         }
         void PointerDown(PointerDownEvent evt)
         {
             if (!InScope(evt.target as VisualElement)) evt.StopImmediatePropagation();
+            else if (CanActivate(ButtonFor(evt.target as VisualElement))) ++focusRequest;
         }
         void ReleasePressed() { if (pressedButton != null) PixelUi.SetPressed(pressedButton, false); pressedButton = null; }
         public void ReleaseKeys() { heldKeys.Clear(); submitConsumed = false; ReleasePressed(); }

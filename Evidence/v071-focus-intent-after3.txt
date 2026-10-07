@@ -1,0 +1,16 @@
+immediate paired-navigation focus=none establishedIntent=False
+INCONCLUSIVE rapid navigation preceded resolved modal layout; not classified as a defect
+replay then pointer SPIN immediate focus=spin committed_spins=1
+PASS explicit pointer SPIN intent survives replay deferred-focus scheduling expected=spin actual=spin
+PASS dismissed replay restores MENU expected=menu actual=menu
+PASS initial modal focus is preserved expected=tutorial-replay actual=tutorial-replay
+PASS initial replay focus is preserved without newer intent expected=tutorial-next actual=tutorial-next
+PASS paired keyboard navigation establishes newer focus expected=tutorial-skip actual=tutorial-skip
+PASS deferred callback cannot override keyboard navigation expected=tutorial-skip actual=tutorial-skip
+PASS direct focus change cancels obsolete callback expected=menu actual=menu
+PASS pointer dismissal preserves restore target expected=menu actual=menu
+PASS recreated UI retains initial modal focus expected=tutorial-replay actual=tutorial-replay
+PASS recreated UI paired Tab advances once expected=motion-toggle actual=motion-toggle
+PASS retired dialogue cannot steal focus or act expected=motion-toggle actual=motion-toggle
+PASS recreated modal restores MENU expected=menu actual=menu
+RESULT PASS assertions=12 failures=0; real UITK paired events/pointer callbacks and actual Editor frames; no OS input
