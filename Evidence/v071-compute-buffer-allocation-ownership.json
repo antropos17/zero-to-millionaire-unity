@@ -1,0 +1,58 @@
+{
+  "scope": "Static exact installed v0.7 engine IL allocation sites; not allocation-stack proof of the warning",
+  "runtimeSource": "dd74c983dcb22eaa7a03b54027dfa3b3aefe8926",
+  "sites": [
+    {
+      "assembly": "UnityEngine.Physics2DModule.dll",
+      "method": "System.Void UnityEngine.LowLevelPhysics2D.PhysicsWorldRenderer/DrawerGroup/PolygonGeometryDrawer::Draw(UnityEngine.Rendering.CommandBuffer,UnityEngine.LowLevelPhysics2D.PhysicsWorld/DrawResults&,System.Single,System.Single,UnityEngine.LowLevelPhysics2D.PhysicsWorld/TransformPlane,System.Int32)",
+      "constructor": "System.Void UnityEngine.ComputeBuffer::.ctor(System.Int32,System.Int32)"
+    },
+    {
+      "assembly": "UnityEngine.Physics2DModule.dll",
+      "method": "System.Void UnityEngine.LowLevelPhysics2D.PhysicsWorldRenderer/DrawerGroup/PolygonGeometryDrawer::Draw(UnityEngine.Rendering.CommandBuffer,UnityEngine.LowLevelPhysics2D.PhysicsWorld/DrawResults&,System.Single,System.Single,UnityEngine.LowLevelPhysics2D.PhysicsWorld/TransformPlane,System.Int32)",
+      "constructor": "System.Void UnityEngine.ComputeBuffer::.ctor(System.Int32,System.Int32)"
+    },
+    {
+      "assembly": "UnityEngine.Physics2DModule.dll",
+      "method": "System.Void UnityEngine.LowLevelPhysics2D.PhysicsWorldRenderer/DrawerGroup/CircleGeometryDrawer::Draw(UnityEngine.Rendering.CommandBuffer,UnityEngine.LowLevelPhysics2D.PhysicsWorld/DrawResults&,System.Single,System.Single,UnityEngine.LowLevelPhysics2D.PhysicsWorld/TransformPlane,System.Int32)",
+      "constructor": "System.Void UnityEngine.ComputeBuffer::.ctor(System.Int32,System.Int32)"
+    },
+    {
+      "assembly": "UnityEngine.Physics2DModule.dll",
+      "method": "System.Void UnityEngine.LowLevelPhysics2D.PhysicsWorldRenderer/DrawerGroup/CircleGeometryDrawer::Draw(UnityEngine.Rendering.CommandBuffer,UnityEngine.LowLevelPhysics2D.PhysicsWorld/DrawResults&,System.Single,System.Single,UnityEngine.LowLevelPhysics2D.PhysicsWorld/TransformPlane,System.Int32)",
+      "constructor": "System.Void UnityEngine.ComputeBuffer::.ctor(System.Int32,System.Int32)"
+    },
+    {
+      "assembly": "UnityEngine.Physics2DModule.dll",
+      "method": "System.Void UnityEngine.LowLevelPhysics2D.PhysicsWorldRenderer/DrawerGroup/CapsuleGeometryDrawer::Draw(UnityEngine.Rendering.CommandBuffer,UnityEngine.LowLevelPhysics2D.PhysicsWorld/DrawResults&,System.Single,System.Single,UnityEngine.LowLevelPhysics2D.PhysicsWorld/TransformPlane,System.Int32)",
+      "constructor": "System.Void UnityEngine.ComputeBuffer::.ctor(System.Int32,System.Int32)"
+    },
+    {
+      "assembly": "UnityEngine.Physics2DModule.dll",
+      "method": "System.Void UnityEngine.LowLevelPhysics2D.PhysicsWorldRenderer/DrawerGroup/CapsuleGeometryDrawer::Draw(UnityEngine.Rendering.CommandBuffer,UnityEngine.LowLevelPhysics2D.PhysicsWorld/DrawResults&,System.Single,System.Single,UnityEngine.LowLevelPhysics2D.PhysicsWorld/TransformPlane,System.Int32)",
+      "constructor": "System.Void UnityEngine.ComputeBuffer::.ctor(System.Int32,System.Int32)"
+    },
+    {
+      "assembly": "UnityEngine.Physics2DModule.dll",
+      "method": "System.Void UnityEngine.LowLevelPhysics2D.PhysicsWorldRenderer/DrawerGroup/LineDrawer::Draw(UnityEngine.Rendering.CommandBuffer,UnityEngine.LowLevelPhysics2D.PhysicsWorld/DrawResults&,System.Single,System.Single,UnityEngine.LowLevelPhysics2D.PhysicsWorld/TransformPlane,System.Int32)",
+      "constructor": "System.Void UnityEngine.ComputeBuffer::.ctor(System.Int32,System.Int32)"
+    },
+    {
+      "assembly": "UnityEngine.Physics2DModule.dll",
+      "method": "System.Void UnityEngine.LowLevelPhysics2D.PhysicsWorldRenderer/DrawerGroup/LineDrawer::Draw(UnityEngine.Rendering.CommandBuffer,UnityEngine.LowLevelPhysics2D.PhysicsWorld/DrawResults&,System.Single,System.Single,UnityEngine.LowLevelPhysics2D.PhysicsWorld/TransformPlane,System.Int32)",
+      "constructor": "System.Void UnityEngine.ComputeBuffer::.ctor(System.Int32,System.Int32)"
+    },
+    {
+      "assembly": "UnityEngine.Physics2DModule.dll",
+      "method": "System.Void UnityEngine.LowLevelPhysics2D.PhysicsWorldRenderer/DrawerGroup/PointDrawer::Draw(UnityEngine.Rendering.CommandBuffer,UnityEngine.LowLevelPhysics2D.PhysicsWorld/DrawResults&,System.Single,System.Single,UnityEngine.LowLevelPhysics2D.PhysicsWorld/TransformPlane,System.Int32)",
+      "constructor": "System.Void UnityEngine.ComputeBuffer::.ctor(System.Int32,System.Int32)"
+    },
+    {
+      "assembly": "UnityEngine.Physics2DModule.dll",
+      "method": "System.Void UnityEngine.LowLevelPhysics2D.PhysicsWorldRenderer/DrawerGroup/PointDrawer::Draw(UnityEngine.Rendering.CommandBuffer,UnityEngine.LowLevelPhysics2D.PhysicsWorld/DrawResults&,System.Single,System.Single,UnityEngine.LowLevelPhysics2D.PhysicsWorld/TransformPlane,System.Int32)",
+      "constructor": "System.Void UnityEngine.ComputeBuffer::.ctor(System.Int32,System.Int32)"
+    }
+  ],
+  "projectAllocationSites": 0,
+  "warning": "Known actual baseline shutdown warning remains unsuppressed"
+}

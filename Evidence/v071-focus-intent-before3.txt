@@ -1,0 +1,5 @@
+immediate paired-navigation focus=none establishedIntent=False
+INCONCLUSIVE rapid navigation preceded resolved modal layout; not classified as a defect
+replay then pointer SPIN immediate focus=spin committed_spins=1
+FAIL explicit pointer SPIN intent survives replay deferred-focus scheduling expected=spin actual=tutorial-next
+RESULT REPRODUCED assertions=1 failures=1; real UITK paired events/pointer callbacks and actual Editor frames; no OS input
