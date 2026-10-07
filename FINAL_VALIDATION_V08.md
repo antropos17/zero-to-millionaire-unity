@@ -63,3 +63,6 @@ both-resource BUY, repeat/overdraw guard, visible persistent upgrades; complete
 level; save relaunch and confirmed reset; compact/tall portrait/performance;
 honest Editor/native/device coverage; exact final source/build/part identity;
 APK when included in the agreed scope. Android is currently deferred.
+
+Extracted delivery verification also passed:162 original build files hash-match after7-Zip split extraction, then two actual clean extracted-executable processes rendered and retained fresh resources. This makes10 successful native process runs in total. See native-v08-extracted-1-checks.json and split-v08-windows-7zip.txt.
+
