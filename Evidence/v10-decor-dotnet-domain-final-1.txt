@@ -1,0 +1,1 @@
+PASS 94300 decor/schema7 assertions; 3000optional completions preservingbase8/8; decor spins min=11 median=15 p95=16 max=19; all files private; runtime/art integration absent
