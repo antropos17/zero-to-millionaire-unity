@@ -15,6 +15,7 @@ namespace ZeroToMillionaire
         public static string SaveNotice(string notice, bool failed) {
             if (notice == SaveStore.RecoveryNotice) return "Save unavailable. Original files are protected.";
             if (notice == SaveStore.MigrationSnapshotError) return "Could not protect the old save. No changes saved.";
+            if (notice == SaveStore.SaveChangedNotice) return "Save changed. Close and reopen the game.";
             if (failed) return "Could not save. Please retry the action.";
             if (notice == "Save upgraded: all progress kept.") return "Save updated. All progress kept.";
             if (notice == "Recovered the previous local save.") return "Previous local save recovered.";

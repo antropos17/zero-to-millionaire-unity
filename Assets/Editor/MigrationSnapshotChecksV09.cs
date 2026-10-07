@@ -7,6 +7,17 @@ namespace ZeroToMillionaire
 {
     public static class MigrationSnapshotChecksV09
     {
+        sealed class FaultCodec : IStateCodec {
+            readonly IStateCodec inner; public int FailDecode;
+            public FaultCodec(IStateCodec value) { inner = value; }
+            public string Encode(PlayerState state) { return inner.Encode(state); }
+            public PlayerState Decode(string text) {
+                if (FailDecode == 1) throw new InvalidOperationException("Private classification fault");
+                if (FailDecode == 2) throw new IOException("Private classification IO fault");
+                return inner.Decode(text);
+            }
+        }
+        static bool shareProbeReplacement;
         static int checks;
         static void Check(bool ok, string why) { checks++; if (!ok) throw new Exception("MIGRATION SNAPSHOT: " + why); }
         static PlayerState Old(int version, int cash = 123) {
@@ -92,7 +103,70 @@ namespace ZeroToMillionaire
                 Check(original != later.PreMigrationSnapshotPath && Directory.GetDirectories(p + ".pre-schema6").Length == 2, "nonrotating content versions retain both episodes");
                 Same(first, Path.Combine(original, "primary.json"), "first valid snapshot never overwritten by later migration");
             }
-            return "PASS " + checks + " durable migration snapshot checks; schema1-5, exact bytes/BOM, repeat/relaunch, backup-source migration, required-copy/commit failure and nonrotating history";
+            foreach(int fault in new[]{1,2}) {
+                string p=PathFor(root,"decode-fault-"+fault);byte[] original=Bytes(Old(5),codec),backup=Bytes(Old(5,41),codec);
+                File.WriteAllBytes(p,original);File.WriteAllBytes(p+".bak",backup);
+                var failing=new FaultCodec(codec);var store=new SaveStore(p,failing);var state=store.Load(out _);
+                Check(state.version==6,"legacy load succeeded before classification fault");failing.FailDecode=fault;
+                Check(!store.Save(state,out var error)&&error==SaveStore.MigrationSnapshotError,"unexpected decode fault cannot skip required snapshot");
+                Same(original,p,"classification fault preserves live legacy primary");Same(backup,p+".bak","classification fault preserves live backup");
+                Check(!File.Exists(p+".tmp"),"classification fault refuses before temp write");failing.FailDecode=0;
+                Check(store.Save(state,out _),"pending migration requirement survives failed decode and retry");
+                Same(original,Path.Combine(store.PreMigrationSnapshotPath,"primary.json"),"retry still snapshots original legacy source");
+            }
+            {
+                string p=PathFor(root,"read-denied-delete-shared");byte[] original=Bytes(Old(5),codec);File.WriteAllBytes(p,original);
+                var store=new SaveStore(p,codec);var state=store.Load(out _);
+                using(var held=new FileStream(p,FileMode.Open,FileAccess.Write,FileShare.Write|FileShare.Delete)) {
+                    bool readDenied=false;try{File.ReadAllBytes(p);}catch(IOException){readDenied=true;}
+                    Check(readDenied,"private primary read actually denied while delete-share configured");
+                    Check(!store.Save(state,out var error)&&error==SaveStore.MigrationSnapshotError,"read-denied original blocks before write even with pending legacy requirement");
+                    Check(!File.Exists(p+".tmp")&&!Directory.Exists(p+".pre-schema6"),"read-denied failure cannot reach temp/snapshot write");
+                }
+                Same(original,p,"read-denied failure preserves original primary after handle release");
+                Check(store.Save(state,out _),"read-denied retry retains required snapshot");
+                Same(original,Path.Combine(store.PreMigrationSnapshotPath,"primary.json"),"read-denied retry protects exact source");
+                string probe=Path.Combine(Path.GetDirectoryName(p),"separate-replace-probe"),temp=probe+".tmp";
+                File.WriteAllText(probe,"private probe original");File.WriteAllText(temp,"private probe replacement");
+                shareProbeReplacement=false;
+                using(var held=new FileStream(probe,FileMode.Open,FileAccess.Write,FileShare.Write|FileShare.Delete)) {
+                    try{File.Replace(temp,probe,probe+".bak");shareProbeReplacement=true;}catch(IOException){}catch(UnauthorizedAccessException){}
+                }
+                // Record the observed OS primitive; do not assume replacement succeeds.
+                Check(File.ReadAllText(probe)==(shareProbeReplacement?"private probe replacement":"private probe original"),"separate delete-shared replace probe outcome recorded honestly");
+            }
+            foreach(int foreignVersion in new[]{6,7}) {
+                string p=PathFor(root,"external-version-"+foreignVersion);byte[] original=Bytes(Old(5),codec);File.WriteAllBytes(p,original);
+                var store=new SaveStore(p,codec);var migrated=store.Load(out _);
+                var foreign=new PlayerState{version=foreignVersion,cash=321,stakeMultiplier=3};byte[] foreignBytes=Bytes(foreign,codec);File.WriteAllBytes(p,foreignBytes);
+                Check(!store.Save(migrated,out var error)&&error==SaveStore.SaveChangedNotice,"external current/future primary cannot erase pending migration requirement");
+                Same(foreignBytes,p,"external changed primary stays untouched");Check(!Directory.Exists(p+".pre-schema6"),"stale loaded state cannot snapshot/rewrite another generation");
+                File.WriteAllBytes(p,original);Check(store.Save(migrated,out _),"restored exact originals permit original pending migration");
+                Same(original,Path.Combine(store.PreMigrationSnapshotPath,"primary.json"),"original pending source is protected after external-change refusal");
+            }
+            {
+                string p=PathFor(root,"deleted-originals");File.WriteAllBytes(p,Bytes(Old(5),codec));var store=new SaveStore(p,codec);var state=store.Load(out _);File.Delete(p);
+                Check(!store.Save(state,out var error)&&error==SaveStore.SaveChangedNotice,"removed originals are not mistaken for a fresh migration-free profile");
+                Check(!File.Exists(p),"deleted originals remain absent after refused stale write");
+            }
+            foreach(bool futureBackup in new[]{false,true}) {
+                string p=PathFor(root,futureBackup?"unsupported-backup":"unsupported-primary");
+                var future=new PlayerState{version=7,cash=246,stakeMultiplier=2};byte[] current=Bytes(new PlayerState(),codec),foreign=Bytes(future,codec);
+                File.WriteAllBytes(p,futureBackup?current:foreign);if(futureBackup)File.WriteAllBytes(p+".bak",foreign);
+                var store=new SaveStore(p,codec);Check(!store.Save(new PlayerState(),out var error)&&error==SaveStore.SaveChangedNotice,"unsupported present originals block direct saves before any copy/replace");
+                Same(futureBackup?current:foreign,p,"unsupported guard preserves primary");if(futureBackup)Same(foreign,p+".bak","unsupported guard preserves future backup");
+            }
+            {
+                string p=PathFor(root,"confirmed-future-reset");var future=new PlayerState{version=7,cash=400,stakeMultiplier=3};byte[] primary=Bytes(future,codec);future.cash=200;byte[] backup=Bytes(future,codec);
+                File.WriteAllBytes(p,primary);File.WriteAllBytes(p+".bak",backup);var store=new SaveStore(p,codec);store.Load(out _);
+                Check(store.RecoveryRequired,"future primary enters explicit protected recovery");
+                Check(store.TryStartFresh(new PlayerState(),out var error),"confirmed recovery reset still commits after copying future originals: "+error);
+                Check(store.Save(new PlayerState(),out error),"confirmed reset may rotate only its already-protected future backup: "+error);
+                Check(store.Load(out _).cash==0&&File.ReadAllText(p+".bak")==codec.Encode(new PlayerState()),"reset primary and backup stay fresh");
+                var copies=Directory.GetFiles(Path.GetDirectoryName(p),"*.recovery-*");
+                Check(copies.Length==2&&copies.Any(x=>File.ReadAllBytes(x).SequenceEqual(primary))&&copies.Any(x=>File.ReadAllBytes(x).SequenceEqual(backup)),"confirmed reset retains both exact original future streams");
+            }
+            return "PASS " + checks + " durable migration snapshot checks; schema1-5, exact bytes/BOM, repeat/relaunch, backup-source migration, required-copy/commit failure and nonrotating history; fail-closed decode/read/external/future checks; separate delete-shared replace primitive observed="+shareProbeReplacement;
         }
     }
 }

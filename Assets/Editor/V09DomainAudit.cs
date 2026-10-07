@@ -8,11 +8,11 @@ namespace ZeroToMillionaire.Editor
         public static void Run()
         {
             string root = Directory.GetParent(Application.dataPath).FullName;
-            string dir = Path.Combine(root, ".tooling", "v09-unity-core-checks-2");
+            string dir = Path.Combine(root, ".tooling", "v09-unity-core-checks-4");
             if (Directory.Exists(dir)) throw new Exception("Fresh private audit root required");
             string result = ModelChecks.Run(new UnityStateCodec(), dir);
-            File.WriteAllText(Path.Combine(root, "Evidence", "v09-unity-core-checks-2.txt"), result);
-            File.Copy(Path.Combine(dir, "stakes-v09-pacing.csv"), Path.Combine(root, "Evidence", "v09-unity-stakes-pacing-2.csv"), false);
+            File.WriteAllText(Path.Combine(root, "Evidence", "v09-unity-core-checks-4.txt"), result);
+            File.Copy(Path.Combine(dir, "stakes-v09-pacing.csv"), Path.Combine(root, "Evidence", "v09-unity-stakes-pacing-4.csv"), false);
             Debug.Log(result);
         }
     }

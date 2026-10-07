@@ -14,11 +14,11 @@ namespace ZeroToMillionaire.Editor
         static GameView view; static RenderTexture target;
         static int phase, scenario, warm, assertions, frame0;
         static double started, at;
-        static PlayerState before; static FileStream failedWriteLease;
+        static PlayerState before; static FileStream failedWriteLease; static byte[] externalOriginal;
         static readonly StringBuilder Log = new StringBuilder();
         static readonly int[] Widths = {320,360,360,480}, Heights = {640,640,800,960};
         static string Root => Directory.GetParent(Application.dataPath).FullName;
-        static string SaveDir => Path.Combine(Root, ".tooling", "v09-ui-checks-4", "save");
+        static string SaveDir => Path.Combine(Root, ".tooling", "v09-ui-checks-5", "save");
         static VisualElement UI => view.GetComponent<UIDocument>().rootVisualElement;
         static string Focused => (UI.panel.focusController.focusedElement as VisualElement)?.name ?? "<none>";
         static GameSession Session => (GameSession)typeof(GameView).GetField("session", BindingFlags.Instance|BindingFlags.NonPublic).GetValue(view);
@@ -52,7 +52,7 @@ namespace ZeroToMillionaire.Editor
         {
             var old=RenderTexture.active;RenderTexture.active=target;var t=new Texture2D(target.width,target.height,TextureFormat.RGBA32,false);
             t.ReadPixels(new Rect(0,0,target.width,target.height),0,0);t.Apply();
-            File.WriteAllBytes(Path.Combine(Root,"Evidence","v09-qa4-"+name+"-"+(scenario>=4?"calm":"full")+"-"+target.width+"x"+target.height+".png"),t.EncodeToPNG());
+            File.WriteAllBytes(Path.Combine(Root,"Evidence","v09-qa5-"+name+"-"+(scenario>=4?"calm":"full")+"-"+target.width+"x"+target.height+".png"),t.EncodeToPNG());
             UnityEngine.Object.Destroy(t);RenderTexture.active=old;
         }
         static void Submit(Button button) { using(var e=NavigationSubmitEvent.GetPooled()){e.target=button;button.SendEvent(e);} }
@@ -183,6 +183,26 @@ namespace ZeroToMillionaire.Editor
                     view.QaClick("close-settings");
                     File.Move(Path.Combine(SaveDir,"level1-v1.json.pre-schema6"),Path.Combine(SaveDir,"private-backup-blocker-"+scenario));
                     Check(Session.TrySelectStake(3),"private migration-copy retry actually commits");
+                    var legacy=Fixture(80,0);legacy.version=5;legacy.stakeMultiplier=0;
+                    externalOriginal=Encoding.UTF8.GetBytes(new UnityStateCodec().Encode(legacy));
+                    File.WriteAllBytes(Path.Combine(SaveDir,"level1-v1.json"),externalOriginal);
+                    Check(Session.TryReload(),"legacy loaded before external-change UI check");
+                    typeof(GameView).GetMethod("Refresh",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(view,null);
+                    var foreign=Fixture(444,0);foreign.version=7;
+                    File.WriteAllText(Path.Combine(SaveDir,"level1-v1.json"),new UnityStateCodec().Encode(foreign));
+                    view.QaClick("bet-panel");At(19);
+                }
+                else if(phase==19&&Warm())
+                {
+                    before=view.Model.Snapshot;Tap(UI.Q<Button>("stake-3"));
+                    Check(Session.Error==SaveStore.SaveChangedNotice&&SameResources(before,view.Model.Snapshot),"external future save blocks real UI commit without changing resources");
+                    view.QaClick("close-stakes");view.QaClick("menu");At(20);
+                }
+                else if(phase==20&&Warm())
+                {
+                    Check(UI.Q<Label>("save-status").text=="Save changed. Close and reopen the game.","external-change refusal gives actionable visible message");
+                    Bounds(UI.Q<Label>("save-status"));Capture("save-external-change");view.QaClick("close-settings");
+                    File.WriteAllBytes(Path.Combine(SaveDir,"level1-v1.json"),externalOriginal);
                     Set(Fixture(60,20));view.QaClick("shop");At(4);
                 }
                 else if(phase==4&&Warm())
@@ -251,7 +271,7 @@ namespace ZeroToMillionaire.Editor
         {
             failedWriteLease?.Dispose();failedWriteLease=null;
             SessionState.SetBool(Key,false);Log.AppendLine("RESULT "+(pass?"PASS":"FAIL")+" assertions="+assertions+" runtimeFrames="+(Time.frameCount-frame0)+" elapsed="+(EditorApplication.timeSinceStartup-started).ToString("F2")+"; actual offscreen Editor pixels/Unity JSON; synthetic UITK pointer/navigation/key events; no OS input");
-            File.WriteAllText(Path.Combine(Root,"Evidence","v09-ui-checks-4.txt"),Log.ToString());
+            File.WriteAllText(Path.Combine(Root,"Evidence","v09-ui-checks-5.txt"),Log.ToString());
             if(target!=null){if(view!=null)view.GetComponent<UIDocument>().panelSettings.targetTexture=null;target.Release();UnityEngine.Object.Destroy(target);}
             EditorApplication.ExitPlaymode();EditorApplication.delayCall+=()=>EditorApplication.Exit(pass?0:1);
         }
