@@ -1,0 +1,138 @@
+{
+    "development": false,
+    "qaHooksPresent": false,
+    "automatedHarnessPresent": false,
+    "profileVerified": true,
+    "recoveryRequired": false,
+    "recoveryVisible": false,
+    "actualSavePath": "X:\\Projects\\ZERO-TO-MILLIONAIRE\\.tooling\\native-v08-legacy-1\\save\\level1-v1.json",
+    "unity": "6000.3.21f1",
+    "graphicsApi": "Direct3D11",
+    "questTitle": "Wallpaper",
+    "questStatus": "3/8 • NEED PARTS",
+    "dialogueText": "The floor and walls feel solid again. Now I can picture what this room could become.",
+    "dialogueVisible": true,
+    "tutorialStep": -1,
+    "taskCashPrice": 155,
+    "taskFragmentGoal": 38,
+    "firstFrame": 1,
+    "lastFrame": 1586,
+    "samples": 1585,
+    "width": 360,
+    "height": 800,
+    "owned": 2,
+    "activeQuest": 2,
+    "drawCounterNonzero": 1583,
+    "seconds": 7.0816916999999999,
+    "medianMs": 4.165100000000699,
+    "p95Ms": 6.025600000000075,
+    "p99Ms": 7.089500000000193,
+    "maxMs": 294.7961999999995,
+    "distance": 1.526230812072754,
+    "complete": false,
+    "spinEnabled": true,
+    "buyEnabled": false,
+    "state": {
+        "version": 5,
+        "cash": 170,
+        "freeSpins": 3,
+        "spins": 15,
+        "recoveries": 0,
+        "heroineU": 2.4502220153808595,
+        "heroineV": 1.5966930389404297,
+        "fragments": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "purchased": [
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "lastGrid": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "quests": [
+            {
+                "id": "floor-patches",
+                "status": 3,
+                "cashPrice": 60,
+                "fragmentGoal": 20
+            },
+            {
+                "id": "surface-repair",
+                "status": 3,
+                "cashPrice": 115,
+                "fragmentGoal": 30
+            },
+            {
+                "id": "cheap-wallpaper",
+                "status": 1,
+                "cashPrice": 155,
+                "fragmentGoal": 38
+            },
+            {
+                "id": "door-repair",
+                "status": 0,
+                "cashPrice": 195,
+                "fragmentGoal": 44
+            },
+            {
+                "id": "window-repair",
+                "status": 0,
+                "cashPrice": 235,
+                "fragmentGoal": 50
+            },
+            {
+                "id": "first-mattress",
+                "status": 0,
+                "cashPrice": 300,
+                "fragmentGoal": 58
+            },
+            {
+                "id": "small-lamp",
+                "status": 0,
+                "cashPrice": 315,
+                "fragmentGoal": 62
+            },
+            {
+                "id": "wooden-stool",
+                "status": 0,
+                "cashPrice": 355,
+                "fragmentGoal": 70
+            }
+        ],
+        "tutorial": {
+            "version": 1,
+            "step": 0,
+            "storySeenMask": 0,
+            "completed": true,
+            "skipped": false
+        }
+    }
+}

@@ -1,0 +1,10 @@
+Succeeded
+source=46efc6581ff8a0c5e3eda661587f30fd49e010dc
+options=None
+auditDefine=False
+bundleVersion=0.8.0
+company=PrototypeWorkspace
+product=ZERO TO MILLIONAIRE
+guid=790688c052b44565a5753b49efa02075
+bytes=105455982
+duration=00:00:35.3374785
