@@ -66,7 +66,8 @@ namespace ZeroToMillionaire
             string qaDirectory = Environment.GetEnvironmentVariable("ZTM_QA_SAVE_DIR");
             if (!string.IsNullOrEmpty(qaDirectory)) saveDirectory = qaDirectory;
 #endif
-            presentation=new PresentationPreferences(saveDirectory);PixelUi.ReducedMotion=presentation.ReducedMotion;
+            localPlayer=new LocalPlayerStore(saveDirectory,new UnityLocalPlayerCodec());
+            presentation=new PresentationPreferences(saveDirectory);presentation.Bind(localPlayer);PixelUi.ReducedMotion=presentation.ReducedMotion;
             saves = new SaveStore(Path.Combine(saveDirectory, "level1-v1.json"), new UnityStateCodec());
             string notice;
             session=new GameSession(saves,new SeededRandom(unchecked(Environment.TickCount+31)));notice=session.Notice;
@@ -244,7 +245,7 @@ namespace ZeroToMillionaire
             var retry=Action("RETRY LOAD",RetryLoad,Forest);retry.name="retry-load";retry.style.marginTop=10;saveRecovery.Add(retry);
             var fresh=Action("START AGAIN",ShowReset,Rust);fresh.name="recovery-reset";fresh.style.marginTop=8;saveRecovery.Add(fresh);
             saveRecovery.style.display=DisplayStyle.None;root.Add(saveRecovery);
-            BuildStakesShop();
+            BuildStakesShop();BuildSections();
             root.RegisterCallback<GeometryChangedEvent>(_=>ApplySafeArea());
         }
         VisualElement Modal(string name)
@@ -253,20 +254,21 @@ namespace ZeroToMillionaire
             modal.style.left=16;modal.style.right=16;modal.style.top=Length.Percent(26);
             modal.style.paddingLeft=15;modal.style.paddingRight=15;modal.style.paddingTop=15;modal.style.paddingBottom=15;modal.RegisterCallback<GeometryChangedEvent>(_=>FitModal(modal));return modal;
         }
-        void FitModal(VisualElement modal){if(modal==null||modal.resolvedStyle.display==DisplayStyle.None||modal.layout.height<=0)return;float height=root.contentRect.height;if(height<=0)return;modal.style.top=Mathf.Floor(Mathf.Min(height*.26f,Mathf.Max(12,height-modal.layout.height-12)));}
+        void FitModal(VisualElement modal){if(modal==settings&&sections!=null)return;if(modal==null||modal.resolvedStyle.display==DisplayStyle.None||modal.layout.height<=0)return;float height=root.contentRect.height;if(height<=0)return;modal.style.top=Mathf.Floor(Mathf.Min(height*.26f,Mathf.Max(12,height-modal.layout.height-12)));}
         void UpdateSaveStatus(bool successful = false)
         {
             saveNotice=session.Notice;
             if(successful || (session.Notice=="Saved locally · offline" && string.IsNullOrEmpty(session.Error))) saveError="";
             if(!string.IsNullOrEmpty(session.Error)) saveError=session.Error;
             if(saveLabel!=null){saveLabel.text=EnglishUi.SaveNotice(saveNotice,!string.IsNullOrEmpty(saveError));saveLabel.style.color=string.IsNullOrEmpty(saveError)?Cream:PixelUi.Hex(0xffce76);}
+            SyncCritical();
         }
-        bool ModalOpen=>StakeOpen||ShopOpen||settings.style.display==DisplayStyle.Flex||confirmation.style.display==DisplayStyle.Flex||saveRecovery.style.display==DisplayStyle.Flex;
+        bool ModalOpen=>StakeOpen||SectionsOpen||confirmation.style.display==DisplayStyle.Flex||saveRecovery.style.display==DisplayStyle.Flex;
         void OnDialogueChanged(){saveNotice=session.Notice;Refresh();if(!string.IsNullOrEmpty(session.Error))ShowToast("NOT SAVED · PLEASE RETRY");}
-        void RetryLoad(){if(!session.TryReload()){UpdateSaveStatus();saveRecovery.Q<Button>("retry-load").Q<Label>("button-caption").text="LOAD FAILED · RETRY";return;}saveRecovery.style.display=DisplayStyle.None;main.SetEnabled(true);input.Close(saveRecovery);UpdateSaveStatus(true);dialogue.ResetUi();drawnQuest=-2;drawnRoom=-1;var s=model.Snapshot;wanderer=new RoomWanderer(new FloorPoint(s.heroineU,s.heroineV),new SeededRandom(Environment.TickCount));Refresh();}
-        void ToggleMotion(){if(!presentation.Toggle()){ShowToast("SETTING NOT SAVED");return;}PixelUi.ReducedMotion=presentation.ReducedMotion;ButtonText(motionToggle,presentation.ReducedMotion?"ANIMATION: CALM":"ANIMATION: FULL",14);effects.Clear();}
-        void ShowSettings(){if(StakeOpen||ShopOpen)return;if(session.RecoveryRequired||confirmation.style.display==DisplayStyle.Flex)return;if(spinning){pendingMenu=true;reelMotion.Skip();return;}HideToast();UpdateSaveStatus();main.SetEnabled(false);settings.style.display=DisplayStyle.Flex;settings.BringToFront();input.Open(settings,settings.Q<Button>("tutorial-replay"),HideSettings,menuButton);}
-        void HideSettings(){settings.style.display=DisplayStyle.None;main.SetEnabled(!session.RecoveryRequired);input?.Close(settings);}
+        void RetryLoad(){if(!session.TryReload()){UpdateSaveStatus();saveRecovery.Q<Button>("retry-load").Q<Label>("button-caption").text="LOAD FAILED · RETRY";return;}saveRecovery.style.display=DisplayStyle.None;main.SetEnabled(true);input.Close(saveRecovery);notifications.Reset(model.Snapshot,localPlayer.Snapshot.revision);UpdateSaveStatus(true);dialogue.ResetUi();drawnQuest=-2;drawnRoom=-1;var s=model.Snapshot;wanderer=new RoomWanderer(new FloorPoint(s.heroineU,s.heroineV),new SeededRandom(Environment.TickCount));Refresh();}
+        void ToggleMotion(){if(!presentation.Toggle()){MotionChanged(false);return;}PixelUi.ReducedMotion=presentation.ReducedMotion;effects.Clear();MotionChanged(true);}
+        void ShowSettings(){OpenSection(RoomSection.Settings,menuButton);}
+        void HideSettings(){CloseSections();}
         void ShowToast(string text){statusLabel.text=text;statusLabel.style.marginLeft=rewardPending||rewardFly.style.display==DisplayStyle.Flex?94:0;toastUntil=Time.unscaledTime+2;feedbackHint.style.display=DisplayStyle.None;toast.style.display=DisplayStyle.Flex;toast.BringToFront();}
         void HideToast(){toast.style.display=DisplayStyle.None;feedbackHint.style.display=DisplayStyle.Flex;}
         void ApplySafeArea()
@@ -283,7 +285,7 @@ namespace ZeroToMillionaire
             grid.style.height=Mathf.Lerp(144,204,tall);
             spinRow.style.height=Mathf.Lerp(68,96,tall);
             upgradeRows.style.height=104;
-            SizeRoomStage();FitModal(settings);FitModal(confirmation);FitModal(saveRecovery);
+            SizeRoomStage();FitModal(confirmation);FitModal(saveRecovery);
         }
 
         void DrawRoom(PlayerState s)
@@ -336,7 +338,7 @@ namespace ZeroToMillionaire
         void Update()
         {
             if (toast != null && Time.unscaledTime > toastUntil) HideToast();
-            UpdateRewardFlight();if(effects!=null)effects.Tick();
+            UpdateRewardFlight();if(effects!=null)effects.Tick();TickSections();
             if(dialogue!=null)dialogue.Tick();
             if (wanderer == null || model == null || heroine == null) return;
             #if UNITY_EDITOR || DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT
@@ -540,14 +542,16 @@ namespace ZeroToMillionaire
         }
         IEnumerator SpinRoutine()
         {
-            PlayerState before=model.Snapshot;SpinResult result;
+            PlayerState before=model.Snapshot;bool wasReady=model.ActiveQuest>=0&&model.CanBuy(model.ActiveQuest);SpinResult result;
             if(!session.TryBeginSpin(out result)){UpdateSaveStatus();if(!string.IsNullOrEmpty(session.Error))ShowToast("NOT SAVED · PLEASE RETRY");Refresh();yield break;}
-            UpdateSaveStatus(true);activeSpin=result;spinning=true;spinDisplay=before;spinDisplay.cash-=result.Cost;spinDisplay.freeSpins=model.Snapshot.freeSpins;Refresh();
+            UpdateSaveStatus(true);int gainedParts=0;foreach(int amount in result.Fragments)gainedParts+=amount;Record(SessionEvent.Spin,model.Snapshot.spins,"Spin "+model.Snapshot.spins+" · +"+result.Payout+" coins, +"+gainedParts+" parts");
+            if(!wasReady&&model.ActiveQuest>=0&&model.CanBuy(model.ActiveQuest))Record(SessionEvent.Ready,model.Snapshot.spins,EnglishUi.QuestTitle(model.ActiveQuest)+" ready to buy");
+            activeSpin=result;spinning=true;spinDisplay=before;spinDisplay.cash-=result.Cost;spinDisplay.freeSpins=model.Snapshot.freeSpins;Refresh();
             int fromCash=spinDisplay.cash,toCash=model.Snapshot.cash;
             yield return reelMotion.Play(result,presentation.ReducedMotion,
-                ()=>{spinDisplay=null;Refresh();cashLabel.text=fromCash.ToString();ShowToast("+"+result.Payout+" "+EnglishUi.Coins(result.Payout));StartRewardFlight(result);for(int i=0;i<15;i++)if(result.Grid[i]>0&&result.Fragments[result.Grid[i]-1]>0){effects.Reward(cells[i],root.Q<VisualElement>("progress-track-"+(result.Grid[i]-1)),presentation.ReducedMotion);break;}},
+                ()=>{spinDisplay=null;Refresh();cashLabel.text=fromCash.ToString();StartRewardFlight(result);for(int i=0;i<15;i++)if(result.Grid[i]>0&&result.Fragments[result.Grid[i]-1]>0){effects.Reward(cells[i],root.Q<VisualElement>("progress-track-"+(result.Grid[i]-1)),presentation.ReducedMotion);break;}},
                 t=>{long value=(long)fromCash+(long)Math.Round(((long)toCash-fromCash)*t);cashLabel.text=value.ToString();});
-            session.FinishSpinPresentation();spinning=false;activeSpin=null;spinDisplay=null;spinReadyAt=Time.unscaledTime+.18f;Refresh();ShowToast("+"+result.Payout+" "+EnglishUi.Coins(result.Payout));
+            session.FinishSpinPresentation();spinning=false;activeSpin=null;spinDisplay=null;spinReadyAt=Time.unscaledTime+.18f;Refresh();
             if(pendingMenu){pendingMenu=false;ShowSettings();}
         }
         void Buy(int index)
@@ -556,7 +560,8 @@ namespace ZeroToMillionaire
             if(!session.TryPurchase(index)){UpdateSaveStatus();if(!string.IsNullOrEmpty(session.Error))ShowToast("NOT SAVED · PLEASE RETRY");return;}
             UpdateSaveStatus(true);
             rewardPending=false;rewardFly.style.display=DisplayStyle.None;
-            ShowToast(model.Complete?"8/8 · ROOM COMPLETE":""+model.PurchasedCount+"/8 · INSTALLED");
+            Record(SessionEvent.Purchase,model.PurchasedCount,EnglishUi.QuestTitle(index)+" installed · "+model.PurchasedCount+"/8");
+            if(model.Complete)Record(SessionEvent.Completion,model.PurchasedCount,"8/8 · ROOM COMPLETE");
             page = model.Complete ? 3 : model.PurchasedCount / 2;
             Refresh();string target=index<3?(index==0?"patches":index==1?"surfaces":"wallpaper"):index==3?"door-overlay":index==4?"window-overlay":index==5?"mattress":index==6?"lamp":"stool";
             var item=roomStage.Query<Image>().Where(image=>image.image!=null&&image.image.name==target).First();effects.Reveal(item,index<3?oldBackground:null,roomStage,presentation.ReducedMotion,index>=5);
@@ -564,14 +569,14 @@ namespace ZeroToMillionaire
         void Recover()
         {
             if(!session.TryRecover()){UpdateSaveStatus();if(!string.IsNullOrEmpty(session.Error))ShowToast("NOT SAVED · PLEASE RETRY");return;}
-            UpdateSaveStatus(true);ShowToast("FREE SPIN");Refresh();
+            UpdateSaveStatus(true);Record(SessionEvent.Recovery,model.Snapshot.recoveries,"Free recovery spin granted");Refresh();
         }
         bool Persist(){bool saved=session.Save();UpdateSaveStatus(saved);return saved;}
         void ShowReset()
         {
             if(spinning||confirmation.style.display==DisplayStyle.Flex)return;
-            resetReturnsToSettings=settings.style.display==DisplayStyle.Flex;
-            input.Close(settings,false);input.Close(saveRecovery,false);
+            resetReturnsToSettings=SectionsOpen&&section==RoomSection.Settings;
+            input.Close(sections,false);input.Close(saveRecovery,false);sections.style.display=DisplayStyle.None;
             saveRecovery.style.display=DisplayStyle.None;settings.style.display=DisplayStyle.None;
             main.SetEnabled(false);confirmation.style.display=DisplayStyle.Flex;confirmation.BringToFront();
             input.Open(confirmation,confirmation.Q<Button>("keep-room"),HideReset,menuButton);
@@ -583,7 +588,7 @@ namespace ZeroToMillionaire
             confirmation.style.display=DisplayStyle.None;input?.Close(confirmation,false);
             if(!wasVisible)return;
             if(session.RecoveryRequired){main.SetEnabled(false);saveRecovery.style.display=DisplayStyle.Flex;saveRecovery.BringToFront();input?.Open(saveRecovery,saveRecovery.Q<Button>("retry-load"),null,menuButton);}
-            else if(!applied&&resetReturnsToSettings){main.SetEnabled(false);settings.style.display=DisplayStyle.Flex;settings.BringToFront();input?.Open(settings,settings.Q<Button>("reset"),HideSettings,menuButton);}
+            else if(!applied&&resetReturnsToSettings){OpenSection(RoomSection.Settings,menuButton);input?.Open(sections,settings.Q<Button>("reset"),CloseSections,menuButton);}
             else{main.SetEnabled(true);menuButton.schedule.Execute(()=>{if(!ModalOpen&&UiInputCoordinator.CanActivate(menuButton))menuButton.Focus();});}
             resetReturnsToSettings=false;
         }
@@ -595,7 +600,7 @@ namespace ZeroToMillionaire
             reelMotion.Clear();effects.Clear();activeSpin=null;spinDisplay=null;pendingMenu=false;PixelUi.SetPressed(spinButton,false);
             page=0;UpdateSaveStatus(true);dialogue.ResetUi();drawnQuest=-2;
             wanderer = new RoomWanderer(new FloorPoint(1.85f, 1.45f), new SeededRandom(Environment.TickCount)); drawnRoom = -1;
-            CloseReset(true); Refresh(); ShowToast("FRESH START · 3 FREE SPINS");
+            notifications.Reset(model.Snapshot,localPlayer.Snapshot.revision);CloseSections();CloseReset(true);Refresh();Record(SessionEvent.Reset,1,"Fresh start · 3 free spins");
         }
         void OnApplicationFocus(bool focused){if(!focused)input?.ReleaseKeys();}
         void OnApplicationPause(bool paused) { if (paused && model != null) Persist(); }
@@ -610,7 +615,7 @@ namespace ZeroToMillionaire
         void OnApplicationQuit() { if (model != null) Persist(); }
 #if UNITY_EDITOR || DEVELOPMENT_BUILD || ZTM_RELEASE_AUDIT
         public void SetQaState(PlayerState state, int upgradePage)
-        { HideStakes();HideShop();activeSpin=null;reelMotion?.Clear();effects?.Clear();spinDisplay=null;pendingMenu=false;resetReturnsToSettings=false;saveError="";HideReset();HideSettings();HideToast();rewardPending=false;rewardFly.style.display=DisplayStyle.None;PixelUi.SetPressed(spinButton,false);random=new SeededRandom(57);session=new GameSession(saves,new SeededRandom(57),state); if(dialogue!=null){dialogue.Dispose();dialogue=new DialoguePresenter(session,root,room,()=>spinning||rewardPending||rewardFly.style.display==DisplayStyle.Flex||ModalOpen||effects.PresentationBusy,OnDialogueChanged);} wanderer = new RoomWanderer(new FloorPoint(state.heroineU, state.heroineV), new SeededRandom(57)); drawnRoom = -1; drawnQuest=-2; page = upgradePage; spinning = false; statusLabel.text = ""; Refresh(); }
+        { HideStakes();HideShop();activeSpin=null;reelMotion?.Clear();effects?.Clear();spinDisplay=null;pendingMenu=false;resetReturnsToSettings=false;saveError="";HideReset();HideSettings();HideToast();rewardPending=false;rewardFly.style.display=DisplayStyle.None;PixelUi.SetPressed(spinButton,false);random=new SeededRandom(57);session=new GameSession(saves,new SeededRandom(57),state);notifications.Reset(state,localPlayer.Snapshot.revision); if(dialogue!=null){dialogue.Dispose();dialogue=new DialoguePresenter(session,root,room,()=>spinning||rewardPending||rewardFly.style.display==DisplayStyle.Flex||ModalOpen||effects.PresentationBusy,OnDialogueChanged);} wanderer = new RoomWanderer(new FloorPoint(state.heroineU, state.heroineV), new SeededRandom(57)); drawnRoom = -1; drawnQuest=-2; page = upgradePage; spinning = false; statusLabel.text = ""; Refresh(); }
         public void QaClick(string name)
         {
             var button=root.Q<Button>(name);if(button==null||!button.enabledInHierarchy)return;

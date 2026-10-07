@@ -1,0 +1,1027 @@
+PASS private optional notices baseline
+PASS within portrait sections-panel (x:12.38, y:18.00, width:335.25, height:684.00)
+PASS within portrait section-room (x:24.75, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.50, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.25, y:81.00, width:74.25, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:259.88, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS settings focus scoped
+PASS held Return changes setting once
+PASS focus loss releases held activation key
+PASS within portrait motion-toggle (x:24.75, y:442.13, width:310.50, height:45.00)
+PASS within portrait notification-toggle (x:24.75, y:389.25, width:310.50, height:45.00)
+PASS enabled visible action section-profile
+PASS actual panel picks section-profile
+PASS within portrait sections-panel (x:12.38, y:18.00, width:335.25, height:684.00)
+PASS within portrait section-room (x:24.75, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.50, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.25, y:81.00, width:74.25, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:259.88, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait profile-name (x:29.25, y:156.38, width:301.50, height:46.13)
+PASS name field receives section focus
+PASS honest current-save stats
+PASS approved reusable profile badge 0
+PASS approved reusable profile badge 1
+PASS approved reusable profile badge 2
+PASS editing Space/Enter does not save/spin
+PASS invalid name explicit save gate
+PASS enabled visible action avatar-stool
+PASS actual panel picks avatar-stool
+PASS within portrait save-profile (x:24.75, y:331.88, width:310.50, height:45.00)
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS explicit profile commit
+PASS profile persisted via Unity JSON
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS failed profile callback preserves committed display
+PASS profile failure visible in shared shell
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS profile no-op retains failed-write message
+PASS enabled visible action section-settings
+PASS actual panel picks section-settings
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS failed setting stays at saved choice
+PASS within portrait section-error (x:24.75, y:133.88, width:310.50, height:16.88)
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS actual successful settings commit clears local error
+PASS enabled visible action reset
+PASS actual panel picks reset
+PASS nested reset safe focus
+PASS cancel reset returns to settings preserving resources
+PASS rapid section changes cancel stale focus
+PASS Tab reaches badge from editable field
+PASS Back/Escape restores opener
+PASS closing cancels unsaved name draft
+PASS failed game write awards no spin
+PASS muted reward notices cannot hide game save failure
+PASS within portrait spin (x:124.88, y:632.25, width:225.00, height:82.13)
+PASS within portrait critical-status (x:10.13, y:76.50, width:339.75, height:16.88)
+PASS no fictitious failed spin in session log
+PASS repeated skip awards/logs one muted spin
+PASS one committed spin history entry
+PASS successful game commit clears game error
+PASS actual scene reload restores complete local profile/settings
+PASS saved game survives reload; session log starts empty
+PASS reloaded name/current-save stat rendered
+PASS enabled visible action confirm-reset
+PASS actual panel picks confirm-reset
+PASS confirmed reset preserves local profile/settings
+PASS confirmed reset clears old history then records actual reset
+PASS basic completion remains unchanged
+PASS within portrait sections-panel (x:12.38, y:18.00, width:335.25, height:684.00)
+PASS within portrait section-room (x:24.75, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.50, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.25, y:81.00, width:74.25, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:259.88, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait shop-buy-0 (x:32.63, y:363.38, width:270.00, height:45.00)
+PASS shared shop both-resource current gate
+PASS shared shop earlier-task gate1
+PASS shared shop earlier-task gate2
+PASS shared shop earlier-task gate3
+PASS shared shop earlier-task gate4
+PASS shared shop earlier-task gate5
+PASS shared shop earlier-task gate6
+PASS shared shop earlier-task gate7
+PASS enabled visible action shop-buy-0
+PASS actual panel picks shop-buy-0
+PASS shared shop repeated pointer/submit debits both once
+PASS shared shop purchase restores shop opener
+PASS enabled visible action motion-toggle
+PASS actual panel picks motion-toggle
+PASS external future local file blocks runtime setting commit
+PASS blocked local data disables setting changes
+PASS within portrait retry-local-data (x:24.75, y:644.63, width:285.75, height:45.00)
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS retry protects unsupported local original and surfaces read error
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS local retry restores current known profile after file correction
+PASS local retry preserves game resources
+SCENARIO PASS 320x640 calm=False
+PASS private optional notices baseline
+PASS within portrait sections-panel (x:13.00, y:16.00, width:334.00, height:608.00)
+PASS within portrait section-room (x:25.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.00, y:79.00, width:76.00, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS settings focus scoped
+PASS held Return changes setting once
+PASS focus loss releases held activation key
+PASS within portrait motion-toggle (x:25.00, y:408.00, width:286.00, height:45.00)
+PASS within portrait notification-toggle (x:25.00, y:355.00, width:286.00, height:45.00)
+PASS enabled visible action section-profile
+PASS actual panel picks section-profile
+PASS within portrait sections-panel (x:13.00, y:16.00, width:334.00, height:608.00)
+PASS within portrait section-room (x:25.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.00, y:79.00, width:76.00, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait profile-name (x:29.00, y:156.00, width:278.00, height:46.00)
+PASS name field receives section focus
+PASS honest current-save stats
+PASS approved reusable profile badge 0
+PASS approved reusable profile badge 1
+PASS approved reusable profile badge 2
+PASS editing Space/Enter does not save/spin
+PASS invalid name explicit save gate
+PASS enabled visible action avatar-stool
+PASS actual panel picks avatar-stool
+PASS within portrait save-profile (x:25.00, y:334.00, width:286.00, height:45.00)
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS explicit profile commit
+PASS profile persisted via Unity JSON
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS failed profile callback preserves committed display
+PASS profile failure visible in shared shell
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS profile no-op retains failed-write message
+PASS enabled visible action section-settings
+PASS actual panel picks section-settings
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS failed setting stays at saved choice
+PASS within portrait section-error (x:25.00, y:132.00, width:310.00, height:16.00)
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS actual successful settings commit clears local error
+PASS enabled visible action reset
+PASS actual panel picks reset
+PASS nested reset safe focus
+PASS cancel reset returns to settings preserving resources
+PASS rapid section changes cancel stale focus
+PASS Tab reaches badge from editable field
+PASS Back/Escape restores opener
+PASS closing cancels unsaved name draft
+PASS failed game write awards no spin
+PASS muted reward notices cannot hide game save failure
+PASS within portrait spin (x:125.00, y:566.00, width:225.00, height:68.00)
+PASS within portrait critical-status (x:10.00, y:73.00, width:340.00, height:16.00)
+PASS no fictitious failed spin in session log
+PASS repeated skip awards/logs one muted spin
+PASS one committed spin history entry
+PASS successful game commit clears game error
+PASS actual scene reload restores complete local profile/settings
+PASS saved game survives reload; session log starts empty
+PASS reloaded name/current-save stat rendered
+PASS enabled visible action confirm-reset
+PASS actual panel picks confirm-reset
+PASS confirmed reset preserves local profile/settings
+PASS confirmed reset clears old history then records actual reset
+PASS basic completion remains unchanged
+PASS within portrait sections-panel (x:13.00, y:16.00, width:334.00, height:608.00)
+PASS within portrait section-room (x:25.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.00, y:79.00, width:76.00, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait shop-buy-0 (x:33.00, y:364.00, width:270.00, height:45.00)
+PASS shared shop both-resource current gate
+PASS shared shop earlier-task gate1
+PASS shared shop earlier-task gate2
+PASS shared shop earlier-task gate3
+PASS shared shop earlier-task gate4
+PASS shared shop earlier-task gate5
+PASS shared shop earlier-task gate6
+PASS shared shop earlier-task gate7
+PASS enabled visible action shop-buy-0
+PASS actual panel picks shop-buy-0
+PASS shared shop repeated pointer/submit debits both once
+PASS shared shop purchase restores shop opener
+PASS enabled visible action motion-toggle
+PASS actual panel picks motion-toggle
+PASS external future local file blocks runtime setting commit
+PASS blocked local data disables setting changes
+PASS within portrait retry-local-data (x:25.00, y:567.00, width:286.00, height:45.00)
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS retry protects unsupported local original and surfaces read error
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS local retry restores current known profile after file correction
+PASS local retry preserves game resources
+SCENARIO PASS 360x640 calm=False
+PASS private optional notices baseline
+PASS within portrait sections-panel (x:13.00, y:20.00, width:334.00, height:760.00)
+PASS within portrait section-room (x:25.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.00, y:83.00, width:76.00, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS settings focus scoped
+PASS held Return changes setting once
+PASS focus loss releases held activation key
+PASS within portrait motion-toggle (x:25.00, y:448.00, width:310.00, height:45.00)
+PASS within portrait notification-toggle (x:25.00, y:395.00, width:310.00, height:45.00)
+PASS enabled visible action section-profile
+PASS actual panel picks section-profile
+PASS within portrait sections-panel (x:13.00, y:20.00, width:334.00, height:760.00)
+PASS within portrait section-room (x:25.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.00, y:83.00, width:76.00, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait profile-name (x:29.00, y:160.00, width:302.00, height:46.00)
+PASS name field receives section focus
+PASS honest current-save stats
+PASS approved reusable profile badge 0
+PASS approved reusable profile badge 1
+PASS approved reusable profile badge 2
+PASS editing Space/Enter does not save/spin
+PASS invalid name explicit save gate
+PASS enabled visible action avatar-stool
+PASS actual panel picks avatar-stool
+PASS within portrait save-profile (x:25.00, y:338.00, width:310.00, height:45.00)
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS explicit profile commit
+PASS profile persisted via Unity JSON
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS failed profile callback preserves committed display
+PASS profile failure visible in shared shell
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS profile no-op retains failed-write message
+PASS enabled visible action section-settings
+PASS actual panel picks section-settings
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS failed setting stays at saved choice
+PASS within portrait section-error (x:25.00, y:136.00, width:310.00, height:16.00)
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS actual successful settings commit clears local error
+PASS enabled visible action reset
+PASS actual panel picks reset
+PASS nested reset safe focus
+PASS cancel reset returns to settings preserving resources
+PASS rapid section changes cancel stale focus
+PASS Tab reaches badge from editable field
+PASS Back/Escape restores opener
+PASS closing cancels unsaved name draft
+PASS failed game write awards no spin
+PASS muted reward notices cannot hide game save failure
+PASS within portrait spin (x:125.00, y:698.00, width:225.00, height:96.00)
+PASS within portrait critical-status (x:10.00, y:81.00, width:340.00, height:16.00)
+PASS no fictitious failed spin in session log
+PASS repeated skip awards/logs one muted spin
+PASS one committed spin history entry
+PASS successful game commit clears game error
+PASS actual scene reload restores complete local profile/settings
+PASS saved game survives reload; session log starts empty
+PASS reloaded name/current-save stat rendered
+PASS enabled visible action confirm-reset
+PASS actual panel picks confirm-reset
+PASS confirmed reset preserves local profile/settings
+PASS confirmed reset clears old history then records actual reset
+PASS basic completion remains unchanged
+PASS within portrait sections-panel (x:13.00, y:20.00, width:334.00, height:760.00)
+PASS within portrait section-room (x:25.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.00, y:83.00, width:76.00, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait shop-buy-0 (x:33.00, y:368.00, width:270.00, height:45.00)
+PASS shared shop both-resource current gate
+PASS shared shop earlier-task gate1
+PASS shared shop earlier-task gate2
+PASS shared shop earlier-task gate3
+PASS shared shop earlier-task gate4
+PASS shared shop earlier-task gate5
+PASS shared shop earlier-task gate6
+PASS shared shop earlier-task gate7
+PASS enabled visible action shop-buy-0
+PASS actual panel picks shop-buy-0
+PASS shared shop repeated pointer/submit debits both once
+PASS shared shop purchase restores shop opener
+PASS enabled visible action motion-toggle
+PASS actual panel picks motion-toggle
+PASS external future local file blocks runtime setting commit
+PASS blocked local data disables setting changes
+PASS within portrait retry-local-data (x:25.00, y:682.00, width:310.00, height:45.00)
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS retry protects unsupported local original and surfaces read error
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS local retry restores current known profile after file correction
+PASS local retry preserves game resources
+SCENARIO PASS 360x800 calm=False
+PASS private optional notices baseline
+PASS within portrait sections-panel (x:12.75, y:18.00, width:334.50, height:684.00)
+PASS within portrait section-room (x:24.75, y:81.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:102.75, y:81.00, width:75.75, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:181.50, y:81.00, width:75.75, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.25, y:81.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS settings focus scoped
+PASS held Return changes setting once
+PASS focus loss releases held activation key
+PASS within portrait motion-toggle (x:24.75, y:447.00, width:310.50, height:45.00)
+PASS within portrait notification-toggle (x:24.75, y:393.75, width:310.50, height:45.00)
+PASS enabled visible action section-profile
+PASS actual panel picks section-profile
+PASS within portrait sections-panel (x:12.75, y:18.00, width:334.50, height:684.00)
+PASS within portrait section-room (x:24.75, y:81.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:102.75, y:81.00, width:75.75, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:181.50, y:81.00, width:75.75, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.25, y:81.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait profile-name (x:28.50, y:158.25, width:303.00, height:45.75)
+PASS name field receives section focus
+PASS honest current-save stats
+PASS approved reusable profile badge 0
+PASS approved reusable profile badge 1
+PASS approved reusable profile badge 2
+PASS editing Space/Enter does not save/spin
+PASS invalid name explicit save gate
+PASS enabled visible action avatar-stool
+PASS actual panel picks avatar-stool
+PASS within portrait save-profile (x:24.75, y:336.75, width:310.50, height:45.00)
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS explicit profile commit
+PASS profile persisted via Unity JSON
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS failed profile callback preserves committed display
+PASS profile failure visible in shared shell
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS profile no-op retains failed-write message
+PASS enabled visible action section-settings
+PASS actual panel picks section-settings
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS failed setting stays at saved choice
+PASS within portrait section-error (x:24.75, y:134.25, width:310.50, height:15.75)
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS actual successful settings commit clears local error
+PASS enabled visible action reset
+PASS actual panel picks reset
+PASS nested reset safe focus
+PASS cancel reset returns to settings preserving resources
+PASS rapid section changes cancel stale focus
+PASS Tab reaches badge from editable field
+PASS Back/Escape restores opener
+PASS closing cancels unsaved name draft
+PASS failed game write awards no spin
+PASS muted reward notices cannot hide game save failure
+PASS within portrait spin (x:124.50, y:632.25, width:225.75, height:81.75)
+PASS within portrait critical-status (x:9.75, y:77.25, width:340.50, height:15.75)
+PASS no fictitious failed spin in session log
+PASS repeated skip awards/logs one muted spin
+PASS one committed spin history entry
+PASS successful game commit clears game error
+PASS actual scene reload restores complete local profile/settings
+PASS saved game survives reload; session log starts empty
+PASS reloaded name/current-save stat rendered
+PASS enabled visible action confirm-reset
+PASS actual panel picks confirm-reset
+PASS confirmed reset preserves local profile/settings
+PASS confirmed reset clears old history then records actual reset
+PASS basic completion remains unchanged
+PASS within portrait sections-panel (x:12.75, y:18.00, width:334.50, height:684.00)
+PASS within portrait section-room (x:24.75, y:81.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:102.75, y:81.00, width:75.75, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:181.50, y:81.00, width:75.75, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.25, y:81.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait shop-buy-0 (x:33.00, y:365.25, width:270.00, height:45.00)
+PASS shared shop both-resource current gate
+PASS shared shop earlier-task gate1
+PASS shared shop earlier-task gate2
+PASS shared shop earlier-task gate3
+PASS shared shop earlier-task gate4
+PASS shared shop earlier-task gate5
+PASS shared shop earlier-task gate6
+PASS shared shop earlier-task gate7
+PASS enabled visible action shop-buy-0
+PASS actual panel picks shop-buy-0
+PASS shared shop repeated pointer/submit debits both once
+PASS shared shop purchase restores shop opener
+PASS enabled visible action motion-toggle
+PASS actual panel picks motion-toggle
+PASS external future local file blocks runtime setting commit
+PASS blocked local data disables setting changes
+PASS within portrait retry-local-data (x:24.75, y:645.00, width:286.50, height:45.00)
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS retry protects unsupported local original and surfaces read error
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS local retry restores current known profile after file correction
+PASS local retry preserves game resources
+SCENARIO PASS 480x960 calm=False
+PASS private full/calm saved
+PASS private optional notices baseline
+PASS within portrait sections-panel (x:12.38, y:18.00, width:335.25, height:684.00)
+PASS within portrait section-room (x:24.75, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.50, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.25, y:81.00, width:74.25, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:259.88, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS settings focus scoped
+PASS held Return changes setting once
+PASS focus loss releases held activation key
+PASS within portrait motion-toggle (x:24.75, y:442.13, width:310.50, height:45.00)
+PASS within portrait notification-toggle (x:24.75, y:389.25, width:310.50, height:45.00)
+PASS enabled visible action section-profile
+PASS actual panel picks section-profile
+PASS within portrait sections-panel (x:12.38, y:18.00, width:335.25, height:684.00)
+PASS within portrait section-room (x:24.75, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.50, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.25, y:81.00, width:74.25, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:259.88, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait profile-name (x:29.25, y:156.38, width:301.50, height:46.13)
+PASS name field receives section focus
+PASS honest current-save stats
+PASS approved reusable profile badge 0
+PASS approved reusable profile badge 1
+PASS approved reusable profile badge 2
+PASS editing Space/Enter does not save/spin
+PASS invalid name explicit save gate
+PASS enabled visible action avatar-stool
+PASS actual panel picks avatar-stool
+PASS within portrait save-profile (x:24.75, y:331.88, width:310.50, height:45.00)
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS explicit profile commit
+PASS profile persisted via Unity JSON
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS failed profile callback preserves committed display
+PASS profile failure visible in shared shell
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS profile no-op retains failed-write message
+PASS enabled visible action section-settings
+PASS actual panel picks section-settings
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS failed setting stays at saved choice
+PASS within portrait section-error (x:24.75, y:133.88, width:310.50, height:16.88)
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS actual successful settings commit clears local error
+PASS enabled visible action reset
+PASS actual panel picks reset
+PASS nested reset safe focus
+PASS cancel reset returns to settings preserving resources
+PASS rapid section changes cancel stale focus
+PASS Tab reaches badge from editable field
+PASS Back/Escape restores opener
+PASS closing cancels unsaved name draft
+PASS failed game write awards no spin
+PASS muted reward notices cannot hide game save failure
+PASS within portrait spin (x:124.88, y:632.25, width:225.00, height:82.13)
+PASS within portrait critical-status (x:10.13, y:76.50, width:339.75, height:16.88)
+PASS no fictitious failed spin in session log
+PASS repeated skip awards/logs one muted spin
+PASS one committed spin history entry
+PASS successful game commit clears game error
+PASS actual scene reload restores complete local profile/settings
+PASS saved game survives reload; session log starts empty
+PASS reloaded name/current-save stat rendered
+PASS enabled visible action confirm-reset
+PASS actual panel picks confirm-reset
+PASS confirmed reset preserves local profile/settings
+PASS confirmed reset clears old history then records actual reset
+PASS basic completion remains unchanged
+PASS within portrait sections-panel (x:12.38, y:18.00, width:335.25, height:684.00)
+PASS within portrait section-room (x:24.75, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.50, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.25, y:81.00, width:74.25, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:259.88, y:81.00, width:75.38, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait shop-buy-0 (x:32.63, y:363.38, width:270.00, height:45.00)
+PASS shared shop both-resource current gate
+PASS shared shop earlier-task gate1
+PASS shared shop earlier-task gate2
+PASS shared shop earlier-task gate3
+PASS shared shop earlier-task gate4
+PASS shared shop earlier-task gate5
+PASS shared shop earlier-task gate6
+PASS shared shop earlier-task gate7
+PASS enabled visible action shop-buy-0
+PASS actual panel picks shop-buy-0
+PASS shared shop repeated pointer/submit debits both once
+PASS shared shop purchase restores shop opener
+PASS enabled visible action motion-toggle
+PASS actual panel picks motion-toggle
+PASS external future local file blocks runtime setting commit
+PASS blocked local data disables setting changes
+PASS within portrait retry-local-data (x:24.75, y:644.63, width:285.75, height:45.00)
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS retry protects unsupported local original and surfaces read error
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS local retry restores current known profile after file correction
+PASS local retry preserves game resources
+SCENARIO PASS 320x640 calm=True
+PASS private optional notices baseline
+PASS within portrait sections-panel (x:13.00, y:16.00, width:334.00, height:608.00)
+PASS within portrait section-room (x:25.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.00, y:79.00, width:76.00, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS settings focus scoped
+PASS held Return changes setting once
+PASS focus loss releases held activation key
+PASS within portrait motion-toggle (x:25.00, y:408.00, width:286.00, height:45.00)
+PASS within portrait notification-toggle (x:25.00, y:355.00, width:286.00, height:45.00)
+PASS enabled visible action section-profile
+PASS actual panel picks section-profile
+PASS within portrait sections-panel (x:13.00, y:16.00, width:334.00, height:608.00)
+PASS within portrait section-room (x:25.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.00, y:79.00, width:76.00, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait profile-name (x:29.00, y:156.00, width:278.00, height:46.00)
+PASS name field receives section focus
+PASS honest current-save stats
+PASS approved reusable profile badge 0
+PASS approved reusable profile badge 1
+PASS approved reusable profile badge 2
+PASS editing Space/Enter does not save/spin
+PASS invalid name explicit save gate
+PASS enabled visible action avatar-stool
+PASS actual panel picks avatar-stool
+PASS within portrait save-profile (x:25.00, y:334.00, width:286.00, height:45.00)
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS explicit profile commit
+PASS profile persisted via Unity JSON
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS failed profile callback preserves committed display
+PASS profile failure visible in shared shell
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS profile no-op retains failed-write message
+PASS enabled visible action section-settings
+PASS actual panel picks section-settings
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS failed setting stays at saved choice
+PASS within portrait section-error (x:25.00, y:132.00, width:310.00, height:16.00)
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS actual successful settings commit clears local error
+PASS enabled visible action reset
+PASS actual panel picks reset
+PASS nested reset safe focus
+PASS cancel reset returns to settings preserving resources
+PASS rapid section changes cancel stale focus
+PASS Tab reaches badge from editable field
+PASS Back/Escape restores opener
+PASS closing cancels unsaved name draft
+PASS failed game write awards no spin
+PASS muted reward notices cannot hide game save failure
+PASS within portrait spin (x:125.00, y:566.00, width:225.00, height:68.00)
+PASS within portrait critical-status (x:10.00, y:73.00, width:340.00, height:16.00)
+PASS no fictitious failed spin in session log
+PASS repeated skip awards/logs one muted spin
+PASS one committed spin history entry
+PASS successful game commit clears game error
+PASS actual scene reload restores complete local profile/settings
+PASS saved game survives reload; session log starts empty
+PASS reloaded name/current-save stat rendered
+PASS enabled visible action confirm-reset
+PASS actual panel picks confirm-reset
+PASS confirmed reset preserves local profile/settings
+PASS confirmed reset clears old history then records actual reset
+PASS basic completion remains unchanged
+PASS within portrait sections-panel (x:13.00, y:16.00, width:334.00, height:608.00)
+PASS within portrait section-room (x:25.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.00, y:79.00, width:76.00, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.00, y:79.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait shop-buy-0 (x:33.00, y:364.00, width:270.00, height:45.00)
+PASS shared shop both-resource current gate
+PASS shared shop earlier-task gate1
+PASS shared shop earlier-task gate2
+PASS shared shop earlier-task gate3
+PASS shared shop earlier-task gate4
+PASS shared shop earlier-task gate5
+PASS shared shop earlier-task gate6
+PASS shared shop earlier-task gate7
+PASS enabled visible action shop-buy-0
+PASS actual panel picks shop-buy-0
+PASS shared shop repeated pointer/submit debits both once
+PASS shared shop purchase restores shop opener
+PASS enabled visible action motion-toggle
+PASS actual panel picks motion-toggle
+PASS external future local file blocks runtime setting commit
+PASS blocked local data disables setting changes
+PASS within portrait retry-local-data (x:25.00, y:567.00, width:286.00, height:45.00)
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS retry protects unsupported local original and surfaces read error
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS local retry restores current known profile after file correction
+PASS local retry preserves game resources
+SCENARIO PASS 360x640 calm=True
+PASS private optional notices baseline
+PASS within portrait sections-panel (x:13.00, y:20.00, width:334.00, height:760.00)
+PASS within portrait section-room (x:25.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.00, y:83.00, width:76.00, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS settings focus scoped
+PASS held Return changes setting once
+PASS focus loss releases held activation key
+PASS within portrait motion-toggle (x:25.00, y:448.00, width:310.00, height:45.00)
+PASS within portrait notification-toggle (x:25.00, y:395.00, width:310.00, height:45.00)
+PASS enabled visible action section-profile
+PASS actual panel picks section-profile
+PASS within portrait sections-panel (x:13.00, y:20.00, width:334.00, height:760.00)
+PASS within portrait section-room (x:25.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.00, y:83.00, width:76.00, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait profile-name (x:29.00, y:160.00, width:302.00, height:46.00)
+PASS name field receives section focus
+PASS honest current-save stats
+PASS approved reusable profile badge 0
+PASS approved reusable profile badge 1
+PASS approved reusable profile badge 2
+PASS editing Space/Enter does not save/spin
+PASS invalid name explicit save gate
+PASS enabled visible action avatar-stool
+PASS actual panel picks avatar-stool
+PASS within portrait save-profile (x:25.00, y:338.00, width:310.00, height:45.00)
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS explicit profile commit
+PASS profile persisted via Unity JSON
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS failed profile callback preserves committed display
+PASS profile failure visible in shared shell
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS profile no-op retains failed-write message
+PASS enabled visible action section-settings
+PASS actual panel picks section-settings
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS failed setting stays at saved choice
+PASS within portrait section-error (x:25.00, y:136.00, width:310.00, height:16.00)
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS actual successful settings commit clears local error
+PASS enabled visible action reset
+PASS actual panel picks reset
+PASS nested reset safe focus
+PASS cancel reset returns to settings preserving resources
+PASS rapid section changes cancel stale focus
+PASS Tab reaches badge from editable field
+PASS Back/Escape restores opener
+PASS closing cancels unsaved name draft
+PASS failed game write awards no spin
+PASS muted reward notices cannot hide game save failure
+PASS within portrait spin (x:125.00, y:698.00, width:225.00, height:96.00)
+PASS within portrait critical-status (x:10.00, y:81.00, width:340.00, height:16.00)
+PASS no fictitious failed spin in session log
+PASS repeated skip awards/logs one muted spin
+PASS one committed spin history entry
+PASS successful game commit clears game error
+PASS actual scene reload restores complete local profile/settings
+PASS saved game survives reload; session log starts empty
+PASS reloaded name/current-save stat rendered
+PASS enabled visible action confirm-reset
+PASS actual panel picks confirm-reset
+PASS confirmed reset preserves local profile/settings
+PASS confirmed reset clears old history then records actual reset
+PASS basic completion remains unchanged
+PASS within portrait sections-panel (x:13.00, y:20.00, width:334.00, height:760.00)
+PASS within portrait section-room (x:25.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:103.00, y:83.00, width:76.00, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:182.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.00, y:83.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait shop-buy-0 (x:33.00, y:368.00, width:270.00, height:45.00)
+PASS shared shop both-resource current gate
+PASS shared shop earlier-task gate1
+PASS shared shop earlier-task gate2
+PASS shared shop earlier-task gate3
+PASS shared shop earlier-task gate4
+PASS shared shop earlier-task gate5
+PASS shared shop earlier-task gate6
+PASS shared shop earlier-task gate7
+PASS enabled visible action shop-buy-0
+PASS actual panel picks shop-buy-0
+PASS shared shop repeated pointer/submit debits both once
+PASS shared shop purchase restores shop opener
+PASS enabled visible action motion-toggle
+PASS actual panel picks motion-toggle
+PASS external future local file blocks runtime setting commit
+PASS blocked local data disables setting changes
+PASS within portrait retry-local-data (x:25.00, y:682.00, width:310.00, height:45.00)
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS retry protects unsupported local original and surfaces read error
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS local retry restores current known profile after file correction
+PASS local retry preserves game resources
+SCENARIO PASS 360x800 calm=True
+PASS private optional notices baseline
+PASS within portrait sections-panel (x:12.75, y:18.00, width:334.50, height:684.00)
+PASS within portrait section-room (x:24.75, y:81.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:102.75, y:81.00, width:75.75, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:181.50, y:81.00, width:75.75, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.25, y:81.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS settings focus scoped
+PASS held Return changes setting once
+PASS focus loss releases held activation key
+PASS within portrait motion-toggle (x:24.75, y:447.00, width:310.50, height:45.00)
+PASS within portrait notification-toggle (x:24.75, y:393.75, width:310.50, height:45.00)
+PASS enabled visible action section-profile
+PASS actual panel picks section-profile
+PASS within portrait sections-panel (x:12.75, y:18.00, width:334.50, height:684.00)
+PASS within portrait section-room (x:24.75, y:81.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:102.75, y:81.00, width:75.75, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:181.50, y:81.00, width:75.75, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.25, y:81.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait profile-name (x:28.50, y:158.25, width:303.00, height:45.75)
+PASS name field receives section focus
+PASS honest current-save stats
+PASS approved reusable profile badge 0
+PASS approved reusable profile badge 1
+PASS approved reusable profile badge 2
+PASS editing Space/Enter does not save/spin
+PASS invalid name explicit save gate
+PASS enabled visible action avatar-stool
+PASS actual panel picks avatar-stool
+PASS within portrait save-profile (x:24.75, y:336.75, width:310.50, height:45.00)
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS explicit profile commit
+PASS profile persisted via Unity JSON
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS failed profile callback preserves committed display
+PASS profile failure visible in shared shell
+PASS enabled visible action save-profile
+PASS actual panel picks save-profile
+PASS profile no-op retains failed-write message
+PASS enabled visible action section-settings
+PASS actual panel picks section-settings
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS failed setting stays at saved choice
+PASS within portrait section-error (x:24.75, y:134.25, width:310.50, height:15.75)
+PASS enabled visible action notification-toggle
+PASS actual panel picks notification-toggle
+PASS actual successful settings commit clears local error
+PASS enabled visible action reset
+PASS actual panel picks reset
+PASS nested reset safe focus
+PASS cancel reset returns to settings preserving resources
+PASS rapid section changes cancel stale focus
+PASS Tab reaches badge from editable field
+PASS Back/Escape restores opener
+PASS closing cancels unsaved name draft
+PASS failed game write awards no spin
+PASS muted reward notices cannot hide game save failure
+PASS within portrait spin (x:124.50, y:632.25, width:225.75, height:81.75)
+PASS within portrait critical-status (x:9.75, y:77.25, width:340.50, height:15.75)
+PASS no fictitious failed spin in session log
+PASS repeated skip awards/logs one muted spin
+PASS one committed spin history entry
+PASS successful game commit clears game error
+PASS actual scene reload restores complete local profile/settings
+PASS saved game survives reload; session log starts empty
+PASS reloaded name/current-save stat rendered
+PASS enabled visible action confirm-reset
+PASS actual panel picks confirm-reset
+PASS confirmed reset preserves local profile/settings
+PASS confirmed reset clears old history then records actual reset
+PASS basic completion remains unchanged
+PASS within portrait sections-panel (x:12.75, y:18.00, width:334.50, height:684.00)
+PASS within portrait section-room (x:24.75, y:81.00, width:75.00, height:45.00)
+PASS section touch44 section-room
+PASS section text fits section-room
+PASS within portrait section-shop (x:102.75, y:81.00, width:75.75, height:45.00)
+PASS section touch44 section-shop
+PASS section text fits section-shop
+PASS within portrait section-profile (x:181.50, y:81.00, width:75.75, height:45.00)
+PASS section touch44 section-profile
+PASS section text fits section-profile
+PASS within portrait section-settings (x:260.25, y:81.00, width:75.00, height:45.00)
+PASS section touch44 section-settings
+PASS section text fits section-settings
+PASS within portrait shop-buy-0 (x:33.00, y:365.25, width:270.00, height:45.00)
+PASS shared shop both-resource current gate
+PASS shared shop earlier-task gate1
+PASS shared shop earlier-task gate2
+PASS shared shop earlier-task gate3
+PASS shared shop earlier-task gate4
+PASS shared shop earlier-task gate5
+PASS shared shop earlier-task gate6
+PASS shared shop earlier-task gate7
+PASS enabled visible action shop-buy-0
+PASS actual panel picks shop-buy-0
+PASS shared shop repeated pointer/submit debits both once
+PASS shared shop purchase restores shop opener
+PASS enabled visible action motion-toggle
+PASS actual panel picks motion-toggle
+PASS external future local file blocks runtime setting commit
+PASS blocked local data disables setting changes
+PASS within portrait retry-local-data (x:24.75, y:645.00, width:286.50, height:45.00)
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS retry protects unsupported local original and surfaces read error
+PASS enabled visible action retry-local-data
+PASS actual panel picks retry-local-data
+PASS local retry restores current known profile after file correction
+PASS local retry preserves game resources
+SCENARIO PASS 480x960 calm=True
+RESULT PASS assertions=1017 runtimeFrames=2349 elapsed=42,30; actual offscreen Editor panels; synthetic UITK pointer/key/navigation; private save only; no OS input
+Editor tick intervals (including captures/reloads): samples=20000 medianMs=0,14 p95Ms=0,23 maxMs=308,07; not native/device frame benchmark

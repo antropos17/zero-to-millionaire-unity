@@ -21,6 +21,17 @@ class JsonCodec : IStateCodec
         return state;
     }
 }
+class LocalCodec : ILocalPlayerCodec
+{
+    static readonly JsonSerializerOptions Options = new JsonSerializerOptions { IncludeFields = true };
+    public string Encode(LocalPlayer p) => JsonSerializer.Serialize(p,Options);
+    public LocalPlayer Decode(string text)
+    {
+        using(var d=JsonDocument.Parse(text))
+        {var r=d.RootElement;foreach(string key in new[]{"version","revision","displayName","avatarId","animationMode","notificationMode"})if(!r.TryGetProperty(key,out _))return null;}
+        return JsonSerializer.Deserialize<LocalPlayer>(text,Options);
+    }
+}
 class Program
 {
     static int Main(string[] args)
@@ -28,6 +39,7 @@ class Program
         try
         {
             Console.WriteLine(ModelChecks.Run(new JsonCodec(), args.Length > 0 ? args[0] : "../Evidence/checks-tmp"));
+            Console.WriteLine(ProfileChecksV10.Run(new LocalCodec(),args.Length > 0 ? args[0] : "../Evidence/checks-tmp"));
             return 0;
         }
         catch (Exception e) { Console.Error.WriteLine(e); return 1; }

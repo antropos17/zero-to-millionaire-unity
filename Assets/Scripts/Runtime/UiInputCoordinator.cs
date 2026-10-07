@@ -51,12 +51,12 @@ namespace ZeroToMillionaire
             root.schedule.Execute(() => { if (!disposed && request == focusRequest && modal == null && CanActivate(target) && (root.panel.focusController.focusedElement == null || root.panel.focusController.focusedElement == previousFocus)) target.Focus(); });
         }
 
-        public void Open(VisualElement window, Button first, Action cancelAction, VisualElement restore)
+        public void Open(VisualElement window, VisualElement first, Action cancelAction, VisualElement restore)
         {
             int request = ++focusRequest;
             modal = window; cancel = cancelAction; restoreTarget = restore;
             ReleasePressed();
-            window.schedule.Execute(() => { if (!disposed && request == focusRequest && modal == window && CanActivate(first)) first.Focus(); });
+            window.schedule.Execute(() => { if (!disposed && request == focusRequest && modal == window && CanFocus(first)) first.Focus(); });
         }
         public void Close(VisualElement window, bool restore = true)
         {
@@ -74,6 +74,12 @@ namespace ZeroToMillionaire
             for (var item = target; item != null; item = item.parent) if (item is Button button) return button;
             return null;
         }
+        static TextField FieldFor(VisualElement target)
+        {
+            for(var item=target;item!=null;item=item.parent)if(item is TextField field)return field;
+            return null;
+        }
+        static bool CanFocus(VisualElement target) => target != null && target.enabledInHierarchy && IsShown(target);
         static bool ActivationKey(KeyCode key) => key == KeyCode.Return || key == KeyCode.KeypadEnter || key == KeyCode.Space;
         void KeyDown(KeyDownEvent evt)
         {
@@ -91,6 +97,7 @@ namespace ZeroToMillionaire
                 return;
             }
             if (!ActivationKey(evt.keyCode)) return;
+            if(FieldFor(evt.target as VisualElement)!=null || FieldFor(root.panel.focusController.focusedElement as VisualElement)!=null)return;
             if (!heldKeys.Add(evt.keyCode)) { evt.StopImmediatePropagation(); return; }
             if (heldKeys.Count == 1) submitConsumed = false;
             pressedButton = ButtonFor(root.panel.focusController.focusedElement as VisualElement);
@@ -100,12 +107,12 @@ namespace ZeroToMillionaire
         {
             if (evt.direction != NavigationMoveEvent.Direction.Next && evt.direction != NavigationMoveEvent.Direction.Previous) return;
             evt.StopImmediatePropagation();
-            var candidates = (modal ?? root).Query<Button>().ToList();
-            candidates.RemoveAll(b => !b.focusable || b.tabIndex < 0 || !CanActivate(b));
+            var candidates = (modal ?? root).Query<VisualElement>().Where(v=>v is Button||v is TextField).ToList();
+            candidates.RemoveAll(b => !b.focusable || b.tabIndex < 0 || !CanFocus(b));
             if (candidates.Count == 0) return;
             bool previous = evt.direction == NavigationMoveEvent.Direction.Previous;
             var focused = root.panel.focusController.focusedElement as VisualElement;
-            int index = candidates.IndexOf(ButtonFor(focused));
+            int index = candidates.IndexOf((VisualElement)FieldFor(focused) ?? ButtonFor(focused));
             index = index < 0 ? (previous ? candidates.Count - 1 : 0) : (index + (previous ? -1 : 1) + candidates.Count) % candidates.Count;
             ++focusRequest;
             candidates[index].Focus();
@@ -118,6 +125,7 @@ namespace ZeroToMillionaire
         }
         void Submit(NavigationSubmitEvent evt)
         {
+            if(FieldFor(evt.target as VisualElement)!=null){evt.StopImmediatePropagation();return;}
             var button = ButtonFor(evt.target as VisualElement);
             if (!CanActivate(button) || !InScope(button) || (heldKeys.Count != 0 && submitConsumed)) evt.StopImmediatePropagation();
             else ++focusRequest;
@@ -125,7 +133,7 @@ namespace ZeroToMillionaire
         void PointerDown(PointerDownEvent evt)
         {
             if (!InScope(evt.target as VisualElement)) evt.StopImmediatePropagation();
-            else if (CanActivate(ButtonFor(evt.target as VisualElement))) ++focusRequest;
+            else if (CanActivate(ButtonFor(evt.target as VisualElement)) || CanFocus(FieldFor(evt.target as VisualElement))) ++focusRequest;
         }
         void ReleasePressed() { if (pressedButton != null) PixelUi.SetPressed(pressedButton, false); pressedButton = null; }
         public void ReleaseKeys() { heldKeys.Clear(); submitConsumed = false; ReleasePressed(); }

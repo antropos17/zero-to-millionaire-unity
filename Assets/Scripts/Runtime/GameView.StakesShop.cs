@@ -83,20 +83,15 @@ namespace ZeroToMillionaire
             bool changed = value != model.SelectedStake;
             if (!session.TrySelectStake(value)) { UpdateSaveStatus(); stakeBalance.text = "Could not save this stake. Please retry."; return; }
             UpdateSaveStatus(changed); HideStakes(); Refresh();
-            ShowToast(value + "x STAKE · " + (5 * value) + " COINS");
+            if(changed)Record(SessionEvent.Stake,++stakeEventId,value + "x stake selected · " + (5 * value) + " coins");
         }
         void ShowShop()
         {
-            if (spinning || ModalOpen || session.RecoveryRequired) return;
-            HideToast(); main.SetEnabled(false); shopOverlay.style.display = DisplayStyle.Flex; shopOverlay.BringToFront();
-            RefreshShop();
-            shopList.scrollOffset = Vector2.zero;
-            shopList.schedule.Execute(() => { if(ShopOpen) shopList.ScrollTo(shopList.Q<VisualElement>("shop-item-" + Math.Max(0,model.ActiveQuest))); }).StartingIn(60);
-            input.Open(shopOverlay, shopOverlay.Q<Button>("close-shop"), HideShop, shopButton);
+            OpenSection(RoomSection.Shop,shopButton);
         }
         void HideShop()
         {
-            shopOverlay.style.display = DisplayStyle.None; main.SetEnabled(!session.RecoveryRequired); input?.Close(shopOverlay);
+            if(ShopOpen)CloseSections();
         }
         void BuyFromShop(int index)
         {
